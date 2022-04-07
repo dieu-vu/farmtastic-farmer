@@ -10,7 +10,7 @@ import CoreData
 
 struct BaseView: View {
     init() {
-        UITabBar.appearance().backgroundColor = UIColor.white
+        UITabBar.appearance().backgroundColor = UIColor(Color("TabBarBackground"))
     }
    
     var body: some View {
@@ -30,7 +30,7 @@ struct BaseView: View {
                     Image(systemName: "person.fill")
                     Text("User")
                 }
-        }.accentColor(Color("LightGreen"))
+        }.accentColor(Color("DarkGreen"))
     }
 }
 
