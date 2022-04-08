@@ -16,7 +16,13 @@
 		182D9C4127F9E01400158D0C /* FarmtasticFarmerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C4027F9E01400158D0C /* FarmtasticFarmerTests.swift */; };
 		182D9C4B27F9E01400158D0C /* FarmtasticFarmerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C4A27F9E01400158D0C /* FarmtasticFarmerUITests.swift */; };
 		182D9C4D27F9E01400158D0C /* FarmtasticFarmerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C4C27F9E01400158D0C /* FarmtasticFarmerUITestsLaunchTests.swift */; };
-		182D9C6527F9E0C500158D0C /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C6427F9E0C500158D0C /* LoginForm.swift */; };
+		87C66D1227FEE9E20068503E /* AllCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1127FEE9E20068503E /* AllCategories.swift */; };
+		87C66D1427FF6F950068503E /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1327FF6F940068503E /* SearchResults.swift */; };
+		87C66D1C27FF76620068503E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1B27FF76620068503E /* Product.swift */; };
+		87C66D1E27FF792A0068503E /* ProductResultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1D27FF792A0068503E /* ProductResultCard.swift */; };
+		87C66D2027FFE04F0068503E /* ProductResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1F27FFE04F0068503E /* ProductResultView.swift */; };
+		87C66D2228000E800068503E /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D2128000E800068503E /* LoginPage.swift */; };
+		87C66D24280021FD0068503E /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D23280021FC0068503E /* ProductDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +55,13 @@
 		182D9C4627F9E01400158D0C /* FarmtasticFarmerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FarmtasticFarmerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		182D9C4A27F9E01400158D0C /* FarmtasticFarmerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerUITests.swift; sourceTree = "<group>"; };
 		182D9C4C27F9E01400158D0C /* FarmtasticFarmerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		182D9C6427F9E0C500158D0C /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
+		87C66D1127FEE9E20068503E /* AllCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategories.swift; sourceTree = "<group>"; };
+		87C66D1327FF6F940068503E /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		87C66D1B27FF76620068503E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		87C66D1D27FF792A0068503E /* ProductResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResultCard.swift; sourceTree = "<group>"; };
+		87C66D1F27FFE04F0068503E /* ProductResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResultView.swift; sourceTree = "<group>"; };
+		87C66D2128000E800068503E /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		87C66D23280021FC0068503E /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +112,7 @@
 		182D9C2927F9E01300158D0C /* FarmtasticFarmer */ = {
 			isa = PBXGroup;
 			children = (
+				87C66D0D27FEE96C0068503E /* Product */,
 				182D9C5E27F9E05300158D0C /* Profile */,
 				182D9C5927F9E03000158D0C /* Login */,
 				182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */,
@@ -150,7 +163,7 @@
 		182D9C5A27F9E03700158D0C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				182D9C6427F9E0C500158D0C /* LoginForm.swift */,
+				87C66D2128000E800068503E /* LoginPage.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -214,6 +227,75 @@
 			children = (
 			);
 			path = UpdateProfile;
+			sourceTree = "<group>";
+		};
+		87C66D0D27FEE96C0068503E /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				87C66D1027FEE9AD0068503E /* UI */,
+				87C66D0F27FEE9A40068503E /* Controller */,
+				87C66D0E27FEE99A0068503E /* Models */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		87C66D0E27FEE99A0068503E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				87C66D1B27FF76620068503E /* Product.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		87C66D0F27FEE9A40068503E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		87C66D1027FEE9AD0068503E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				87C66D1827FF74EE0068503E /* AddNewProduct */,
+				87C66D1727FF74DC0068503E /* ProductDetail */,
+				87C66D1627FF74CE0068503E /* AllCategories */,
+				87C66D1527FF74B50068503E /* SearchResults */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		87C66D1527FF74B50068503E /* SearchResults */ = {
+			isa = PBXGroup;
+			children = (
+				87C66D1327FF6F940068503E /* SearchResults.swift */,
+				87C66D1D27FF792A0068503E /* ProductResultCard.swift */,
+				87C66D1F27FFE04F0068503E /* ProductResultView.swift */,
+			);
+			path = SearchResults;
+			sourceTree = "<group>";
+		};
+		87C66D1627FF74CE0068503E /* AllCategories */ = {
+			isa = PBXGroup;
+			children = (
+				87C66D1127FEE9E20068503E /* AllCategories.swift */,
+			);
+			path = AllCategories;
+			sourceTree = "<group>";
+		};
+		87C66D1727FF74DC0068503E /* ProductDetail */ = {
+			isa = PBXGroup;
+			children = (
+				87C66D23280021FC0068503E /* ProductDetailView.swift */,
+			);
+			path = ProductDetail;
+			sourceTree = "<group>";
+		};
+		87C66D1827FF74EE0068503E /* AddNewProduct */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddNewProduct;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,9 +428,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				182D9C6527F9E0C500158D0C /* LoginForm.swift in Sources */,
+				87C66D1C27FF76620068503E /* Product.swift in Sources */,
 				182D9C3727F9E01400158D0C /* FarmtasticFarmer.xcdatamodeld in Sources */,
+				87C66D24280021FD0068503E /* ProductDetailView.swift in Sources */,
+				87C66D2027FFE04F0068503E /* ProductResultView.swift in Sources */,
 				182D9C3427F9E01400158D0C /* Persistence.swift in Sources */,
+				87C66D2228000E800068503E /* LoginPage.swift in Sources */,
+				87C66D1227FEE9E20068503E /* AllCategories.swift in Sources */,
+				87C66D1E27FF792A0068503E /* ProductResultCard.swift in Sources */,
+				87C66D1427FF6F950068503E /* SearchResults.swift in Sources */,
 				182D9C2D27F9E01300158D0C /* BaseView.swift in Sources */,
 				182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */,
 			);
@@ -516,6 +604,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,6 +633,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
