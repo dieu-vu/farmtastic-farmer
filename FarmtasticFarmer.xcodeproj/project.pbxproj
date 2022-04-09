@@ -120,9 +120,7 @@
 		182D9C2927F9E01300158D0C /* FarmtasticFarmer */ = {
 			isa = PBXGroup;
 			children = (
-				0112CAC927FEF33100A77B74 /* FormView.swift */,
-				0112CACB27FF09E100A77B74 /* ButtonView.swift */,
-				B3ED07A227FF589100A95D0E /* Launch Screen.storyboard */,
+				187DFEB72801DA390033693C /* CommonUIComponents */,
 				182D9C5E27F9E05300158D0C /* Profile */,
 				182D9C5927F9E03000158D0C /* Login */,
 				182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */,
@@ -259,6 +257,16 @@
 			children = (
 			);
 			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		187DFEB72801DA390033693C /* CommonUIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				0112CAC927FEF33100A77B74 /* FormView.swift */,
+				B3ED07A227FF589100A95D0E /* Launch Screen.storyboard */,
+				0112CACB27FF09E100A77B74 /* ButtonView.swift */,
+			);
+			path = CommonUIComponents;
 			sourceTree = "<group>";
 		};
 		B3ED079727FF559C00A95D0E /* Home */ = {
