@@ -8,14 +8,29 @@
 import SwiftUI
 import CoreData
 
-
 struct BaseView: View {
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor(Color("TabBarBackground"))
+    }
+   
     var body: some View {
-        VStack {
-                Text("Hello, this is Farmtastic App")
-                Spacer()
-                
-        }.padding()
+        TabView {
+            Home()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
+                }
+            Product()
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Product")
+                }
+            ProfileScreen()
+                .tabItem {
+                    Image(systemName: "person.fill")
+                    Text("User")
+                }
+        }.accentColor(Color("DarkGreen"))
     }
 }
 
