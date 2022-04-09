@@ -47,8 +47,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0112CABC27FDFFE300A77B74 /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeLanguageView.swift; path = ../../../../../../../../Farmtastic/Farmtastic/ChangeLanguageView.swift; sourceTree = "<group>"; };
-		0112CABD27FDFFEE00A77B74 /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeLanguageView.swift; path = ../../../../../../../../../Farmtastic/Farmtastic/ChangeLanguageView.swift; sourceTree = "<group>"; };
 		0112CABF27FE002C00A77B74 /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageView.swift; sourceTree = "<group>"; };
 		0112CAC127FEBE6900A77B74 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
 		0112CAC327FEC6C000A77B74 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
@@ -69,7 +67,7 @@
 		182D9C4C27F9E01400158D0C /* FarmtasticFarmerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		182D9C6427F9E0C500158D0C /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 		B3ED079827FF55AC00A95D0E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		B3ED079C27FF56AF00A95D0E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = FarmtasticFarmer/Home/Profile.swift; sourceTree = SOURCE_ROOT; };
+		B3ED079C27FF56AF00A95D0E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = FarmtasticFarmer/Profile/UI/BaseProfile/Profile.swift; sourceTree = SOURCE_ROOT; };
 		B3ED07A027FF56F800A95D0E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		B3ED07A227FF589100A95D0E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,7 +165,6 @@
 		182D9C5927F9E03000158D0C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				0112CABC27FDFFE300A77B74 /* ChangeLanguageView.swift */,
 				182D9C5D27F9E04C00158D0C /* Controller */,
 				182D9C5C27F9E04500158D0C /* Models */,
 				182D9C5A27F9E03700158D0C /* UI */,
@@ -178,7 +175,6 @@
 		182D9C5A27F9E03700158D0C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0112CABD27FDFFEE00A77B74 /* ChangeLanguageView.swift */,
 				182D9C6427F9E0C500158D0C /* LoginForm.swift */,
 			);
 			path = UI;
