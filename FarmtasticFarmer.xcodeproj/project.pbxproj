@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0112CAC027FE002C00A77B74 /* ChangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CABF27FE002C00A77B74 /* ChangeLanguageView.swift */; };
+		0112CAC227FEBE6900A77B74 /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC127FEBE6900A77B74 /* LanguagePicker.swift */; };
+		0112CAC427FEC6C000A77B74 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC327FEC6C000A77B74 /* Language.swift */; };
+		0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC527FEC73900A77B74 /* LanguageView.swift */; };
+		0112CACA27FEF33100A77B74 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC927FEF33100A77B74 /* FormView.swift */; };
+		0112CACC27FF09E100A77B74 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CACB27FF09E100A77B74 /* ButtonView.swift */; };
 		182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */; };
 		182D9C2D27F9E01300158D0C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2C27F9E01300158D0C /* BaseView.swift */; };
 		182D9C2F27F9E01400158D0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182D9C2E27F9E01400158D0C /* Assets.xcassets */; };
@@ -43,6 +49,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0112CABC27FDFFE300A77B74 /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeLanguageView.swift; path = ../../../../../../../../Farmtastic/Farmtastic/ChangeLanguageView.swift; sourceTree = "<group>"; };
+		0112CABD27FDFFEE00A77B74 /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChangeLanguageView.swift; path = ../../../../../../../../../Farmtastic/Farmtastic/ChangeLanguageView.swift; sourceTree = "<group>"; };
+		0112CABF27FE002C00A77B74 /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageView.swift; sourceTree = "<group>"; };
+		0112CAC127FEBE6900A77B74 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
+		0112CAC327FEC6C000A77B74 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		0112CAC527FEC73900A77B74 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
+		0112CAC927FEF33100A77B74 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
+		0112CACB27FF09E100A77B74 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		182D9C2727F9E01300158D0C /* FarmtasticFarmer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmtasticFarmer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerApp.swift; sourceTree = "<group>"; };
 		182D9C2C27F9E01300158D0C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -116,6 +130,8 @@
 				182D9C5E27F9E05300158D0C /* Profile */,
 				182D9C5927F9E03000158D0C /* Login */,
 				182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */,
+				0112CAC927FEF33100A77B74 /* FormView.swift */,
+				0112CACB27FF09E100A77B74 /* ButtonView.swift */,
 				182D9C2C27F9E01300158D0C /* BaseView.swift */,
 				182D9C2E27F9E01400158D0C /* Assets.xcassets */,
 				182D9C3327F9E01400158D0C /* Persistence.swift */,
@@ -153,6 +169,7 @@
 		182D9C5927F9E03000158D0C /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				0112CABC27FDFFE300A77B74 /* ChangeLanguageView.swift */,
 				182D9C5D27F9E04C00158D0C /* Controller */,
 				182D9C5C27F9E04500158D0C /* Models */,
 				182D9C5A27F9E03700158D0C /* UI */,
@@ -163,7 +180,10 @@
 		182D9C5A27F9E03700158D0C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				87C66D2128000E800068503E /* LoginPage.swift */,
+
+				0112CABD27FDFFEE00A77B74 /* ChangeLanguageView.swift */,
+				182D9C6427F9E0C500158D0C /* LoginForm.swift */,
+
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -218,6 +238,7 @@
 		182D9C6227F9E08300158D0C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0112CAC327FEC6C000A77B74 /* Language.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,6 +246,9 @@
 		182D9C6327F9E08B00158D0C /* UpdateProfile */ = {
 			isa = PBXGroup;
 			children = (
+				0112CAC527FEC73900A77B74 /* LanguageView.swift */,
+				0112CAC127FEBE6900A77B74 /* LanguagePicker.swift */,
+				0112CABF27FE002C00A77B74 /* ChangeLanguageView.swift */,
 			);
 			path = UpdateProfile;
 			sourceTree = "<group>";
@@ -428,17 +452,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87C66D1C27FF76620068503E /* Product.swift in Sources */,
+
+				0112CAC027FE002C00A77B74 /* ChangeLanguageView.swift in Sources */,
+				0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */,
+				182D9C6527F9E0C500158D0C /* LoginForm.swift in Sources */,
 				182D9C3727F9E01400158D0C /* FarmtasticFarmer.xcdatamodeld in Sources */,
-				87C66D24280021FD0068503E /* ProductDetailView.swift in Sources */,
-				87C66D2027FFE04F0068503E /* ProductResultView.swift in Sources */,
+				0112CAC227FEBE6900A77B74 /* LanguagePicker.swift in Sources */,
 				182D9C3427F9E01400158D0C /* Persistence.swift in Sources */,
-				87C66D2228000E800068503E /* LoginPage.swift in Sources */,
-				87C66D1227FEE9E20068503E /* AllCategories.swift in Sources */,
-				87C66D1E27FF792A0068503E /* ProductResultCard.swift in Sources */,
-				87C66D1427FF6F950068503E /* SearchResults.swift in Sources */,
+				0112CACC27FF09E100A77B74 /* ButtonView.swift in Sources */,
+				0112CAC427FEC6C000A77B74 /* Language.swift in Sources */,
+
 				182D9C2D27F9E01300158D0C /* BaseView.swift in Sources */,
 				182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */,
+				0112CACA27FEF33100A77B74 /* FormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
