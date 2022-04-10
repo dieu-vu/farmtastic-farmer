@@ -9,10 +9,21 @@ import SwiftUI
 
 struct ProfileScreen: View {
     var body: some View {
-        ZStack {
+        VStack {
             Color("AppBackground")
                 .ignoresSafeArea()
-            Text("Profile")
+            HeaderImage()
+            Text("AFdsf")
+            actionButtonGroup
+            ButtonView(buttonText: "Log out", buttonAction: {})
+        }
+    }
+    
+    var actionButtonGroup: some View {
+        VStack {
+            ActionButton(icon: "clock", title: "Order list", onClick: {})
+            ActionButton(icon: "t.bubble", title: "Change language", onClick: {})
+            ActionButton(icon: "pencil", title: "Update profile", onClick: {})
         }
     }
 }
