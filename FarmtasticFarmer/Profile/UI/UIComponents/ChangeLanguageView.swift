@@ -38,8 +38,8 @@ struct Profile: View {
                 ZStack {
                     Color.white
                     VStack{
-                        FormView(formTitle: "Update profile")
-                        ButtonView(buttonText: "Apply", buttonAction: { showSheet.toggle() })
+                        FormView(formTitle: "Update Profile", fieldPlaceholder1: "New name", fieldPlaceholder2: "New address", fieldPlaceholder3: "New number")
+                        ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" ,buttonAction: { showSheet.toggle() })
                     }
                 }
                 .cornerRadius(32)
