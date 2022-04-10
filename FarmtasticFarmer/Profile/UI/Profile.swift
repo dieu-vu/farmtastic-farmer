@@ -12,7 +12,7 @@ struct ProfileScreen: View {
         ZStack {
             Color("AppBackground")
                 .ignoresSafeArea()
-            Text("Profile")
+            UserInfoCardView()
         }
     }
 }
