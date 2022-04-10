@@ -16,9 +16,8 @@ struct ProfileScreen: View {
         ScrollView {
             Color("AppBackground")
             HeaderImage()
-            Text("Name: Farmer")
-            Text("Address: Helsinki")
-            Text("Phone number: 0123456789" )
+            UserInfoCardView()
+
             actionButtonGroup
             ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
                        buttonAction: {})
