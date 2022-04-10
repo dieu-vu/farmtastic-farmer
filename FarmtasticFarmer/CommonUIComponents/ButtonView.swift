@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ButtonView: View {
     var buttonText: String
+    var buttonColorLight: String
+    var buttonColorDark: String
     var buttonAction: () -> ()
     
     var body: some View {
@@ -18,7 +20,7 @@ struct ButtonView: View {
                 .foregroundColor(Color.white)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Capsule().fill(LinearGradient(gradient: Gradient(colors: [Color("LightGreen"), Color("DarkGreen")]), startPoint: .leading, endPoint: .trailing)))
+                .background(Capsule().fill(LinearGradient(gradient: Gradient(colors: [Color("\(buttonColorLight)"), Color("\(buttonColorDark)")]), startPoint: .leading, endPoint: .trailing)))
         }
         .padding(32)
     }
@@ -26,6 +28,9 @@ struct ButtonView: View {
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(buttonText: "Apply", buttonAction: {print("Button clicked")})
+        ButtonView(buttonText: "Delete", buttonColorLight: "PinkishRed", buttonColorDark: "PinkishRed", buttonAction: {print("Button clicked")})
+            .previewLayout(.sizeThatFits)
+        ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen", buttonAction: {print("Button clicked")})
+            .previewLayout(.sizeThatFits)
     }
 }
