@@ -18,7 +18,7 @@ struct ProductDetailView: View {
             .fontWeight(.bold)
         
             ScrollView {
-                Image ("Entrecote")
+                Image ("entrecote")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 300, height: 200)
@@ -50,14 +50,7 @@ struct ProductDetailView: View {
                 }
                 .frame(width: 300)
                
-                Button(action: {}) {
-                    Text("Delete")
-                        .font(.headline)
-                        .padding()
-                        .frame(width: 300, height: 50)
-                        .background(Color.red)
-                        .cornerRadius(15.0)
-                }.padding(.top, 50)
+                ButtonView(buttonText: "Delete", buttonColorLight: "PinkishRed", buttonColorDark: "PinkishRed", buttonAction: {print("Button clicked")}).padding(.top, 30)
             }
         }
     }
