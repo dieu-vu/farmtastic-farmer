@@ -1,5 +1,5 @@
 //
-//  LoginPage.swift
+//  LoginView.swift
 //  FarmtasticFarmer
 //
 //  Created by Trang on 8.4.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginPage: View {
+struct LoginView: View {
     @State private var username = ""
     @State private var password = ""
     
@@ -42,8 +42,8 @@ struct LoginPage: View {
     }
 }
 
-struct LoginPage_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginPage()
+        LoginView()
     }
 }
