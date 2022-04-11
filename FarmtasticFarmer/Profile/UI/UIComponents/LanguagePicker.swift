@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct LanguagePicker: View {
+    @State private var languagePrefix = Locale.preferredLanguages[0].split(separator: "-")[0]
+    @State var selectedLanguage: Language = .en
     
-    @Binding var selectedLanguage: Language
+//    private let isLanguageAvailable: Int = Language.allCases.filter{ $0.rawValue == languagePrefix }.count
     
     var body: some View {
-        List {
-            Picker("Language", selection: $selectedLanguage) {
-                ForEach(Language.allCases) { language in
-                    LanguageView(language: language)
-                        .tag(language)
-                }
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(Language.allCases) { language in
+                        LanguageView(language: language, selectedLanguage:  $selectedLanguage)
+                           
+                    }
+                }.listStyle(.inset).navigationTitle("Change language")
+                ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen", buttonAction: {})
             }
         }
     }
@@ -25,7 +30,7 @@ struct LanguagePicker: View {
 
 struct LanguagePicker_Previews: PreviewProvider {
     static var previews: some View {
-        LanguagePicker(selectedLanguage: .constant(.english))
+        LanguagePicker()
     }
 }
 
