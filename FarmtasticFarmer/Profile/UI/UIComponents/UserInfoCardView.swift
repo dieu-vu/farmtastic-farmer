@@ -10,8 +10,7 @@ import SwiftUI
 
 struct UserInfoCardView: View {
     let screenSize: CGRect = UIScreen.main.bounds
-    let user = User.fetchUser()
-    
+//    let user = UserProfileViewController
     var body: some View {
         VStack (alignment: .leading, spacing: 20){
             HStack{

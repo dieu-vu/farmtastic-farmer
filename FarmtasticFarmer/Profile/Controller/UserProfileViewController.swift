@@ -17,9 +17,6 @@ class UserProfileViewController {
         self.currentUser = User(user_id: 0, username: "init", email: "init", full_name: User.UserExtraInfo(name: "init", type:  "init", address: "init", phone:  "init"))
     }
     
-    
-    
-    
 }
 
 extension UserProfileViewController {
