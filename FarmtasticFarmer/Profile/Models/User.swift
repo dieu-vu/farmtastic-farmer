@@ -20,6 +20,7 @@ struct User: Codable {
     
     var full_name: UserExtraInfo
     
+    
 }
 
 
