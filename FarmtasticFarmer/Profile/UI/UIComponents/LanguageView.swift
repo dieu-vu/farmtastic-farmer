@@ -12,7 +12,7 @@ struct LanguageView: View {
     @Binding var selectedLanguage: Language 
     
     var body: some View {
-        HStack {
+        HStack { 
             Text(language.name)
                 .padding(4)
             Spacer()
@@ -22,9 +22,9 @@ struct LanguageView: View {
         }
         .fixedSize(horizontal: false, vertical: true)
         .onTapGesture {
-            let languagePrefix = Locale.preferredLanguages[0].split(separator: "-")[0]
-            print(languagePrefix)
-           //print(language)
+            //            let languagePrefix = Locale.preferredLanguages[0].split(separator: "-")[0]
+            //            print(languagePrefix)
+            //print(language)
             selectedLanguage = language
         }
     }

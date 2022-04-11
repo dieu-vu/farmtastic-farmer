@@ -9,30 +9,44 @@ import SwiftUI
 
 struct ProfileScreen: View {
     @State var showLanguageBottomSheet: Bool = false
+    @State var showUpdateProfile: Bool = false
+    @State var showChangePassword: Bool = false
     
     var body: some View {
-        VStack {
+        ScrollView {
             Color("AppBackground")
-                .ignoresSafeArea()
             HeaderImage()
-            Text("Name")
+            Text("Name: Farmer")
+            Text("Address: Helsinki")
+            Text("Phone number: 0123456789" )
             actionButtonGroup
             ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
                        buttonAction: {})
-        }.halfSheet(showSheet: $showLanguageBottomSheet) {
-                LanguagePicker()
-                .cornerRadius(32)
-                .ignoresSafeArea()
-            } onEnd: {
-                print("Dismissed")
-            }
+            Spacer()
+        }.edgesIgnoringSafeArea(.top).halfSheet(showSheet: $showLanguageBottomSheet) {
+            LanguagePicker(showLanguageBottomSheet: $showLanguageBottomSheet)
+                .cornerRadius(32).ignoresSafeArea()
+        } onEnd: {
+            print("Dismissed")
+        }
+        .halfSheet(showSheet: $showUpdateProfile) {
+            UpdateProfileView(showUpdateProfile: $showUpdateProfile).cornerRadius(32).ignoresSafeArea()
+        } onEnd: {
+            print("Dismissed")
+        }
+        .halfSheet(showSheet: $showChangePassword) {
+            ChangePasswordView(showChangePassword: $showChangePassword).cornerRadius(32).ignoresSafeArea()
+        } onEnd: {
+            print("Dismissed")
+        }
     }
     
     var actionButtonGroup: some View {
         VStack {
             ActionButton(icon: "clock", title: "Order list", onClick: {})
             ActionButton(icon: "t.bubble", title: "Change language", onClick: { showLanguageBottomSheet.toggle()})
-            ActionButton(icon: "pencil", title: "Update profile", onClick: {})
+            ActionButton(icon: "pencil", title: "Update profile", onClick: { showUpdateProfile.toggle() })
+            ActionButton(icon: "person.circle", title: "Change password", onClick: { showChangePassword.toggle() })
         }
     }
 }
@@ -40,6 +54,17 @@ struct ProfileScreen: View {
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
         ProfileScreen()
+    }
+}
+
+extension View {
+    
+    func halfSheet<SheetView: View>(showSheet: Binding<Bool>, @ViewBuilder sheetView: @escaping () -> SheetView, onEnd: @escaping () -> ()) -> some View {
+        
+        return self
+            .background(
+                HalfSheetHelper(sheetView: sheetView(), showSheet: showSheet, onEnd: onEnd)
+            )
     }
 }
 

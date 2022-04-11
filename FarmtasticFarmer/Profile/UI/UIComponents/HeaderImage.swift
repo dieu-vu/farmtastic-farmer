@@ -14,7 +14,7 @@ struct HeaderImage: View {
     }
     
     var headerImage: some View {
-        Image("headerImage").overlay(Rectangle().foregroundColor(.black).opacity(0.4))
+        Image("headerImage").overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
     }
     
     var avatar: some View {
@@ -23,7 +23,7 @@ struct HeaderImage: View {
                 .foregroundColor(Color("LightGreen"))
             
             Text("A").foregroundColor(.white).font(.system(size: 60)).fontWeight(.medium)
-        }.offset(y: -60).padding(.bottom, -60)
+        }.offset(y: -80).padding(.bottom, -70)
     }
 }
 

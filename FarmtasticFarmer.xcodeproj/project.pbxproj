@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0112CAC027FE002C00A77B74 /* ChangeLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CABF27FE002C00A77B74 /* ChangeLanguageView.swift */; };
 		0112CAC227FEBE6900A77B74 /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC127FEBE6900A77B74 /* LanguagePicker.swift */; };
 		0112CAC427FEC6C000A77B74 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC327FEC6C000A77B74 /* Language.swift */; };
 		0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC527FEC73900A77B74 /* LanguageView.swift */; };
@@ -25,6 +24,8 @@
 		182D9C6527F9E0C500158D0C /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C6427F9E0C500158D0C /* LoginForm.swift */; };
 		B347E61E2802FB1100DA9863 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B347E61D2802FB1100DA9863 /* ActionButton.swift */; };
 		B347E622280315E400DA9863 /* HeaderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B347E621280315E400DA9863 /* HeaderImage.swift */; };
+		B3986C002804959E003C4130 /* UpdateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3986BFF2804959E003C4130 /* UpdateProfileView.swift */; };
+		B3986C042804A249003C4130 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3986C032804A249003C4130 /* ChangePasswordView.swift */; };
 		B3ED079927FF55AC00A95D0E /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED079827FF55AC00A95D0E /* Home.swift */; };
 		B3ED079D27FF56AF00A95D0E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED079C27FF56AF00A95D0E /* Profile.swift */; };
 		B3ED07A127FF56F800A95D0E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ED07A027FF56F800A95D0E /* Product.swift */; };
@@ -49,7 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0112CABF27FE002C00A77B74 /* ChangeLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageView.swift; sourceTree = "<group>"; };
 		0112CAC127FEBE6900A77B74 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
 		0112CAC327FEC6C000A77B74 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		0112CAC527FEC73900A77B74 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		182D9C6427F9E0C500158D0C /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 		B347E61D2802FB1100DA9863 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		B347E621280315E400DA9863 /* HeaderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderImage.swift; sourceTree = "<group>"; };
+		B3986BFF2804959E003C4130 /* UpdateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileView.swift; sourceTree = "<group>"; };
+		B3986C032804A249003C4130 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		B3ED079827FF55AC00A95D0E /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		B3ED079C27FF56AF00A95D0E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		B3ED07A027FF56F800A95D0E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -236,9 +238,10 @@
 			children = (
 				0112CAC527FEC73900A77B74 /* LanguageView.swift */,
 				0112CAC127FEBE6900A77B74 /* LanguagePicker.swift */,
-				0112CABF27FE002C00A77B74 /* ChangeLanguageView.swift */,
 				B347E61D2802FB1100DA9863 /* ActionButton.swift */,
 				B347E621280315E400DA9863 /* HeaderImage.swift */,
+				B3986BFF2804959E003C4130 /* UpdateProfileView.swift */,
+				B3986C032804A249003C4130 /* ChangePasswordView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -431,10 +434,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0112CAC027FE002C00A77B74 /* ChangeLanguageView.swift in Sources */,
 				0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */,
 				182D9C6527F9E0C500158D0C /* LoginForm.swift in Sources */,
 				B3ED079D27FF56AF00A95D0E /* Profile.swift in Sources */,
+				B3986C042804A249003C4130 /* ChangePasswordView.swift in Sources */,
 				182D9C3727F9E01400158D0C /* FarmtasticFarmer.xcdatamodeld in Sources */,
 				0112CAC227FEBE6900A77B74 /* LanguagePicker.swift in Sources */,
 				182D9C3427F9E01400158D0C /* Persistence.swift in Sources */,
@@ -445,6 +448,7 @@
 				182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */,
 				B3ED079927FF55AC00A95D0E /* Home.swift in Sources */,
 				0112CACA27FEF33100A77B74 /* FormView.swift in Sources */,
+				B3986C002804959E003C4130 /* UpdateProfileView.swift in Sources */,
 				B3ED07A127FF56F800A95D0E /* Product.swift in Sources */,
 				B347E61E2802FB1100DA9863 /* ActionButton.swift in Sources */,
 			);
