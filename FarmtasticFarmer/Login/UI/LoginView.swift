@@ -20,23 +20,23 @@ struct LoginView: View {
             VStack(alignment: .leading, spacing: 15) {
                 TextField("Username", text: self.$username)
                     .padding()
-                    .cornerRadius(20.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray, lineWidth: 1)
+                        )
                 
                 SecureField("Password", text: self.$password)
                     .padding()
-                    .cornerRadius(20.0)
-                    .shadow(radius: 10.0, x: 20, y: 10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray, lineWidth: 1)
+                        )
             }.padding([.leading, .trailing], 27.5)
             
-            Button(action: {}) {
-                Text("Log In")
-                    .font(.headline)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.green)
-                    .cornerRadius(15.0)
-            }.padding(.top, 50)
-                    
+            ButtonView(buttonText: "Login",
+                       buttonColorLight: "LightGreen",
+                       buttonColorDark: "DarkGreen",
+                       buttonAction: {print("Button clicked")})
         }
         
     }
