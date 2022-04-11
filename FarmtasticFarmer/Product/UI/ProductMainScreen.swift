@@ -4,9 +4,10 @@
 //
 //  Created by Nguyen Giang on 11.4.2022.
 //
+
 import SwiftUI
 
-struct ProductScreen: View {
+struct ProductMainScreen: View {
     var body: some View {
         ZStack {
             Color("AppBackground")
@@ -16,8 +17,8 @@ struct ProductScreen: View {
     }
 }
 
-struct ProductScreen_Previews: PreviewProvider {
+struct ProductMainScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProductScreen()
+        ProductMainScreen()
     }
 }
