@@ -143,6 +143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0112CAEB2805E1DB00A77B74 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				182D9C6427F9E0C500158D0C /* LoginForm.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		182D9C1E27F9E01300158D0C = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +158,7 @@
 				182D9C3F27F9E01400158D0C /* FarmtasticFarmerTests */,
 				182D9C4927F9E01400158D0C /* FarmtasticFarmerUITests */,
 				182D9C2827F9E01300158D0C /* Products */,
+				0112CAEB2805E1DB00A77B74 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,8 +179,6 @@
 				87C66D0D27FEE96C0068503E /* Product */,
 				182D9C5E27F9E05300158D0C /* Profile */,
 				182D9C5927F9E03000158D0C /* Login */,
-				B3ED079E27FF56E300A95D0E /* Product */,
-				182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */,
 				182D9C2C27F9E01300158D0C /* BaseView.swift */,
 				182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */,
 				0112CADF28057E6D00A77B74 /* ContentView.swift */,
@@ -182,7 +189,6 @@
 				B3ED079727FF559C00A95D0E /* Home */,
 				182D9C3527F9E01400158D0C /* FarmtasticFarmer.xcdatamodeld */,
 				182D9C3027F9E01400158D0C /* Preview Content */,
-				0112CAE928059D0B00A77B74 /* ChangePasswordController.swift */,
 			);
 			path = FarmtasticFarmer;
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 		182D9C6127F9E07C00158D0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0112CAE928059D0B00A77B74 /* ChangePasswordController.swift */,
 				187DFEBE2802CC0B0033693C /* UserProfileViewController.swift */,
 			);
 			path = Controller;
