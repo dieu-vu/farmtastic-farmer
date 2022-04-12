@@ -7,20 +7,18 @@
 
 import Foundation
 
-struct User: Codable {
+struct User: Decodable {
     let user_id: Int
     var username: String
     var email: String
-    struct UserExtraInfo: Codable {
-        var name: String
-        var type: String
-        var address: String
-        var phone: String
-    }
-    
     var full_name: UserExtraInfo
-    
-    
 }
 
 
+struct UserExtraInfo: Decodable {
+    var name: String
+    var type: String
+    var address: String
+    var phone: String
+    var location: Array<Int>
+}

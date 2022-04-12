@@ -23,14 +23,13 @@ struct UserDataRequest{
     init (){
         let sourceString = "https://media.mw.metropolia.fi/wbma/users/user"
         guard let sourceURL = URL(string: sourceString) else {fatalError()}
-        
         self.sourceUrl = sourceURL
     }
     
-    
+   
     //tut: https://www.youtube.com/watch?v=tdxKIPpPDAI
     func getUser (completion: @escaping(Result<User, UserRequestError>)->Void){
-        let dataTask = URLSession.shared.dataTask(with: sourceUrl){ data,_,_ in
+        let dataTask = URLSession.shared.dataTask(with: sourceUrl){ data,response,error in
             guard let jsonData = data else {
                 completion(.failure(.invalidToken))
                 return
