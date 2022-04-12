@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            isAuthenticated ? AnyView(BaseView()) : AnyView(LoginForm())
+            isAuthenticated ? AnyView(BaseView()) : AnyView(LoginView())
         }
         .onReceive(AppManager.Authenticated, perform: { isAuthenticated = $0 })
     }
