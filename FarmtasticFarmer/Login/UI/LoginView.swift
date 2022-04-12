@@ -1,37 +1,16 @@
 //
-//  LoginForm.swift
+//  LoginView.swift
 //  FarmtasticFarmer
 //
-//  Created by Dieu Vu on 4/3/22.
+//  Created by Trang on 8.4.2022.
 //
 
 import SwiftUI
 
-struct LoginForm: View {
-    
+struct LoginView: View {
     @StateObject private var loginController = LoginController()
     
     var body: some View {
-        /* VStack {
-            Form {
-                HStack {
-                    Spacer()
-                    Text(loginController.isAuthenticated ? "authenticated" : "not authenticated")
-                }
-                TextField("Username", text: $loginController.username)
-                    .autocapitalization(.none)
-                TextField("Password", text: $loginController.password)
-                    .autocapitalization(.none)
-                HStack {
-                    Spacer()
-                    Button("Login") {
-                        loginController.login()
-                    }
-                    Spacer()
-                }
-            }
-            .buttonStyle(PlainButtonStyle())
-        }*/
         
         VStack() {
             Text("Log In")
@@ -60,10 +39,10 @@ struct LoginForm: View {
                        buttonAction: {loginController.login()})
         }
     }
-} 
+}
 
-struct LoginForm_Previews: PreviewProvider {
+struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginForm()
+        LoginView()
     }
 }
