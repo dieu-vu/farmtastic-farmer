@@ -13,7 +13,8 @@ struct FarmtasticFarmerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            BaseView()
+            //BaseView()
+            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
