@@ -9,15 +9,44 @@ import SwiftUI
 
 struct ChangePasswordView: View {
     @Binding var showChangePassword: Bool
+    @StateObject private var changePasswordControler = ChangePasswordController()
+    @State var isDisabled = false
     
     var body: some View {
         NavigationView {
             VStack {
-                FormView(formTitle: "Change password", fieldPlaceholder1: "Old password", fieldPlaceholder2: "New password", fieldPlaceholder3: "Confirm new password")
-                ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: { showChangePassword.toggle() })
+                VStack(alignment: .leading, spacing: 15) {
+                    Text("Change Password").font(.title).bold().padding(32)
+                    TextField("New password", text: $changePasswordControler.password)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .disabled(isDisabled)
+                    TextField("Confirmed password", text: $changePasswordControler.confirmedPassword)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .disabled(isDisabled)
+                }.padding([.leading, .trailing], 27.5)
+                ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
+                    closeKeyboard()
+                    isDisabled = true
+                    showChangePassword.toggle()
+                    changePasswordControler.changePassword()
+                })
                     .padding(.bottom, 32)
             }
         }
+    }
+    
+    func closeKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil
+        )
     }
 }
 
