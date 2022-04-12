@@ -1,13 +1,12 @@
 //
-//  Product.swift
+//  ProductMainScreen.swift
 //  FarmtasticFarmer
 //
-//  Created by Nguyen Giang on 7.4.2022.
+//  Created by Nguyen Giang on 11.4.2022.
 //
-
 import SwiftUI
 
-struct Product: View {
+struct ProductScreen: View {
     var body: some View {
         ZStack {
             Color("AppBackground")
@@ -17,8 +16,8 @@ struct Product: View {
     }
 }
 
-struct Product_Previews: PreviewProvider {
+struct ProductScreen_Previews: PreviewProvider {
     static var previews: some View {
-        Product()
+        ProductScreen()
     }
 }

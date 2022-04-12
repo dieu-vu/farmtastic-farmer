@@ -13,7 +13,9 @@ struct FarmtasticFarmerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            BaseView()
+            //BaseView()
+            //LoginView()
+            ProductResultView(products: ProductList.sampleData)
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
