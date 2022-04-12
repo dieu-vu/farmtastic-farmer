@@ -14,7 +14,7 @@ import UIKit
 class UserProfileViewController {
     var currentUser: User
     init (){
-        self.currentUser = User(user_id: 0, username: "init", email: "init", full_name: User.UserExtraInfo(name: "init", type:  "init", address: "init", phone:  "init"))
+        self.currentUser = User(user_id: 0, username: "init", email: "init", full_name: UserExtraInfo(name: "init", type:  "init", address: "init", phone:  "init"))
     }
     
 }
