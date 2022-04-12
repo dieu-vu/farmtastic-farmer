@@ -36,7 +36,7 @@ struct FormView: View {
             .textFieldStyle(.roundedBorder)
             .padding()
         }
-        .padding()
+        .padding(.horizontal)
     }
 }
 
