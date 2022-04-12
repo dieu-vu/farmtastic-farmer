@@ -12,11 +12,11 @@
 		0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC527FEC73900A77B74 /* LanguageView.swift */; };
 		0112CACA27FEF33100A77B74 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAC927FEF33100A77B74 /* FormView.swift */; };
 		0112CACC27FF09E100A77B74 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CACB27FF09E100A77B74 /* ButtonView.swift */; };
-		0112CADC280577F000A77B74 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CADB280577F000A77B74 /* WebService.swift */; };
 		0112CADE28057CE700A77B74 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CADD28057CE700A77B74 /* LoginController.swift */; };
 		0112CAE028057E6D00A77B74 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CADF28057E6D00A77B74 /* ContentView.swift */; };
 		0112CAE228057FD300A77B74 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAE128057FD300A77B74 /* KeychainHelper.swift */; };
 		0112CAE42805828200A77B74 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAE32805828200A77B74 /* AppManager.swift */; };
+		0112CAE6280587CC00A77B74 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0112CAE5280587CC00A77B74 /* LoginModel.swift */; };
 		182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */; };
 		182D9C2D27F9E01300158D0C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2C27F9E01300158D0C /* BaseView.swift */; };
 		182D9C2F27F9E01400158D0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182D9C2E27F9E01400158D0C /* Assets.xcassets */; };
@@ -64,11 +64,11 @@
 		0112CAC527FEC73900A77B74 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		0112CAC927FEF33100A77B74 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		0112CACB27FF09E100A77B74 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
-		0112CADB280577F000A77B74 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		0112CADD28057CE700A77B74 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		0112CADF28057E6D00A77B74 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0112CAE128057FD300A77B74 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		0112CAE32805828200A77B74 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		0112CAE5280587CC00A77B74 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		182D9C2727F9E01300158D0C /* FarmtasticFarmer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmtasticFarmer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerApp.swift; sourceTree = "<group>"; };
 		182D9C2C27F9E01300158D0C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -150,7 +150,6 @@
 				182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */,
 				B3ED079E27FF56E300A95D0E /* Product */,
 				182D9C2C27F9E01300158D0C /* BaseView.swift */,
-				0112CADB280577F000A77B74 /* WebService.swift */,
 				0112CADF28057E6D00A77B74 /* ContentView.swift */,
 				182D9C2E27F9E01400158D0C /* Assets.xcassets */,
 				182D9C3327F9E01400158D0C /* Persistence.swift */,
@@ -209,6 +208,7 @@
 		182D9C5C27F9E04500158D0C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0112CAE5280587CC00A77B74 /* LoginModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -461,7 +461,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0112CADC280577F000A77B74 /* WebService.swift in Sources */,
 				0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */,
 				0112CAE028057E6D00A77B74 /* ContentView.swift in Sources */,
 				0112CAE228057FD300A77B74 /* KeychainHelper.swift in Sources */,
@@ -483,6 +482,7 @@
 				0112CAE42805828200A77B74 /* AppManager.swift in Sources */,
 				187DFEBB2802BB780033693C /* User.swift in Sources */,
 				B3ED079927FF55AC00A95D0E /* Home.swift in Sources */,
+				0112CAE6280587CC00A77B74 /* LoginModel.swift in Sources */,
 				0112CACA27FEF33100A77B74 /* FormView.swift in Sources */,
 				B3986C002804959E003C4130 /* UpdateProfileView.swift in Sources */,
 				B3ED07A127FF56F800A95D0E /* Product.swift in Sources */,

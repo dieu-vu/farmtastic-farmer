@@ -1,5 +1,5 @@
 //
-//  WebService.swift
+//  LoginModel.swift
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 12.4.2022.
@@ -22,7 +22,7 @@ struct LoginResponse: Codable {
     let message: String?
 }
 
-class WebService {
+class LoginModel {
     
     func login(username: String, password: String, completion: @escaping (Result<String, AuthenticationError>) -> Void) {
         
@@ -60,3 +60,4 @@ class WebService {
         .resume()
     }
 }
+
