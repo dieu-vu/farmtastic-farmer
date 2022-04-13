@@ -16,6 +16,8 @@ struct FarmtasticFarmerApp: App {
         WindowGroup {
             //BaseView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            //just for test
+            //ProductResultView(products: ProductList.sampleData)
            
             if (authentication.isAuthenticated) || (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
                 BaseView()
@@ -24,7 +26,7 @@ struct FarmtasticFarmerApp: App {
                 LoginView()
                     .environmentObject(authentication)
             }
-            
+
         }
     }
 }
