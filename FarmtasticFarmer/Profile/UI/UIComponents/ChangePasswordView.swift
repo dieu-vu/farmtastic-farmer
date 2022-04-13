@@ -23,19 +23,19 @@ struct ChangePasswordView: View {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
-                        //.disabled(isDisabled)
+                        .disabled(isDisabled)
                     TextField("Confirmed password", text: $changePasswordControler.confirmedPassword)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
-                        //.disabled(isDisabled)
+                        .disabled(isDisabled)
                 }
                 .padding([.leading, .trailing], 27.5)
                 ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
-                    //closeKeyboard()
-                    //isDisabled = true
+                    closeKeyboard()
+                    isDisabled = true
                     changePasswordControler.changePassword()
                     showChangePassword.toggle()
                 })
@@ -45,11 +45,11 @@ struct ChangePasswordView: View {
     }
 }
 
-/*func closeKeyboard() {
+func closeKeyboard() {
     UIApplication.shared.sendAction(
         #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil
     )
-}*/
+}
 
 struct ChangePasswordView_Previews: PreviewProvider {
     static var previews: some View {

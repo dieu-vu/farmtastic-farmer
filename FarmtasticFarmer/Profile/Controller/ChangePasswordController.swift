@@ -15,7 +15,7 @@ class ChangePasswordController: ObservableObject {
     func changePassword() {
         
         if password == confirmedPassword {
-            ChangePasswordModel().changePassword(password: password) { result in
+            WebService().changePassword(password: password) { result in
                 switch result {
                 case .success(let message):
                     print(message)

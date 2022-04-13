@@ -15,7 +15,7 @@ class LoginController: ObservableObject {
     
     func login() {
         
-        LoginModel().login(username: username, password: password) { result in
+        WebService().login(username: username, password: password) { result in
             switch result {
             case .success(let token):
                 let data = Data(token.utf8)
