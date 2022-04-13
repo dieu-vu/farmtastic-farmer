@@ -18,11 +18,9 @@ class LocalizationService {
             // get language in UserDefaults and return language in UserDefaults if there is
             guard let languageString = UserDefaults.standard.string(forKey: "language") else {
                 // get phone language and return phone language if there is
-                guard let phoneLanguage = NSLocale.current.languageCode else {
-                    // else always fallback to English
-                    return .en
-                }
-                return Language(rawValue: phoneLanguage) ?? .en
+                let phoneLanguage = Locale.preferredLanguages[0].prefix(2)
+                // else always fallback to English
+                return Language(rawValue: String(phoneLanguage)) ?? .en
             }
             return Language(rawValue: languageString) ?? .en
         } set {
