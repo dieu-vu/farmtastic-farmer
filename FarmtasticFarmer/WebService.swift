@@ -43,7 +43,7 @@ class WebService {
     
     let baseUrl = "https://media.mw.metropolia.fi/wbma/"
     
-    func login(username: String, password: String, completion: @escaping (Result<String, CustomError>) -> Void) {
+    func login(username: String, password: String, completion: @escaping (Result<Bool, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)login") else {
             completion(.failure(.custom(errorMessage: "URL is not correct")))
@@ -74,7 +74,12 @@ class WebService {
                 return
             }
             
-            completion(.success(token))
+            let savedToken = Data(token.utf8)
+            
+            KeychainHelper.standard.save(savedToken, service: "auth-token", account: "farmtastic")
+            DispatchQueue.main.async {
+                completion(.success(true))
+            }
         }
         .resume()
     }
@@ -176,7 +181,7 @@ class WebService {
         guard let token = getUserToken() else {
             return
         }
-        //print("Token for change password \(token)")
+        print("Token for change password \(token)")
         let body = ChangePasswordRequestBody(password: password)
         var request = URLRequest(url: url)
         
@@ -184,7 +189,7 @@ class WebService {
         request.addValue(token, forHTTPHeaderField: "x-access-token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
-        //print("requestBody in ChangePasswordModel \(String(data: request.httpBody!, encoding: .utf8))")
+        print("requestBody in ChangePasswordModel \(String(describing: String(data: request.httpBody!, encoding: .utf8)))")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {

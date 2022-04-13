@@ -14,7 +14,7 @@ final class KeychainHelper {
     
     func save(_ data: Data, service: String, account: String) {
 
-        let query = [
+        var query = [
             kSecValueData: data,
             kSecAttrService: service,
             kSecAttrAccount: account,
@@ -26,7 +26,7 @@ final class KeychainHelper {
 
         if status == errSecDuplicateItem {
             // Item already exist, thus update it.
-            let query = [
+            query = [
                 kSecAttrService: service,
                 kSecAttrAccount: account,
                 kSecClass: kSecClassGenericPassword,
@@ -37,6 +37,7 @@ final class KeychainHelper {
             // Update existing item
             SecItemUpdate(query, attributesToUpdate)
         }
+        
     }
     
     func read(service: String, account: String) -> Data? {
@@ -52,6 +53,18 @@ final class KeychainHelper {
         SecItemCopyMatching(query, &result)
         
         return (result as? Data)
+    }
+    
+    func delete(service: String, account: String) {
+        
+        let query = [
+            kSecAttrService: service,
+            kSecAttrAccount: account,
+            kSecClass: kSecClassGenericPassword,
+        ] as CFDictionary
+        
+        // Delete item from keychain
+        SecItemDelete(query)
     }
 }
 

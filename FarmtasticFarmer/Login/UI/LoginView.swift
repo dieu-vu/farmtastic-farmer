@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject private var loginController = LoginController()
+    @EnvironmentObject var authentication: Authentication
     
     var body: some View {
         
@@ -24,19 +25,24 @@ struct LoginView: View {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.gray, lineWidth: 1)
                     )
-                
+                    .autocapitalization(.none)
                 SecureField("Password", text: $loginController.password)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.gray, lineWidth: 1)
                     )
+                    .autocapitalization(.none)
             }.padding([.leading, .trailing], 27.5)
-            
             ButtonView(buttonText: "Login",
                        buttonColorLight: "LightGreen",
                        buttonColorDark: "DarkGreen",
-                       buttonAction: {loginController.login()})
+                       buttonAction: {
+                loginController.login { success in
+                    authentication.updatedAuthentication(success: success)
+                }
+            })
+            
         }
     }
 }
