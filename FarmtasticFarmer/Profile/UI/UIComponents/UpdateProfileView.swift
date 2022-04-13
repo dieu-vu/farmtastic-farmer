@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct UpdateProfileView: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     @Binding var showUpdateProfile: Bool
     
     var body: some View {
         NavigationView {
             VStack {
-                FormView(formTitle: "Update Profile", fieldPlaceholder1: "New name", fieldPlaceholder2: "New address", fieldPlaceholder3: "New number")
-                ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: { showUpdateProfile.toggle() })
+                FormView(formTitle: "profile.update".localized(language: language), fieldPlaceholder1: "New name", fieldPlaceholder2: "New address", fieldPlaceholder3: "New number")
+                ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: { showUpdateProfile.toggle() })
                     .padding(.bottom, 32)
             }
         }

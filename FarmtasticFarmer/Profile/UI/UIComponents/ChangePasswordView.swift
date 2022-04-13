@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     @Binding var showChangePassword: Bool
     
     var body: some View {
         NavigationView {
             VStack {
-                FormView(formTitle: "Change password", fieldPlaceholder1: "Old password", fieldPlaceholder2: "New password", fieldPlaceholder3: "Confirm new password")
-                ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: { showChangePassword.toggle() })
+                FormView(formTitle: "profile.changePassword".localized(language: language), fieldPlaceholder1: "profile.oldPassword".localized(language: language), fieldPlaceholder2: "profile.newPassword".localized(language: language), fieldPlaceholder3: "profile.confirmPassword".localized(language: language))
+                ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: { showChangePassword.toggle() })
                     .padding(.bottom, 32)
             }
         }
