@@ -11,16 +11,46 @@ struct ChangePasswordView: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     @Binding var showChangePassword: Bool
+    @StateObject private var changePasswordControler = ChangePasswordController()
+    @State var isDisabled = false
     
     var body: some View {
         NavigationView {
             VStack {
-                FormView(formTitle: "profile.changePassword".localized(language: language), fieldPlaceholder1: "profile.oldPassword".localized(language: language), fieldPlaceholder2: "profile.newPassword".localized(language: language), fieldPlaceholder3: "profile.confirmPassword".localized(language: language))
-                ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: { showChangePassword.toggle() })
+                Text("profile.changePassword".localized(language: language)).font(.title).bold()
+                VStack(alignment: .leading, spacing: 15) {
+                    TextField("profile.newPassword".localized(language: language), text: $changePasswordControler.password)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .disabled(isDisabled)
+                    TextField("profile.confirmPassword".localized(language: language), text: $changePasswordControler.confirmedPassword)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .disabled(isDisabled)
+                }
+                .padding([.leading, .trailing], 27.5)
+                ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
+                    closeKeyboard()
+                    isDisabled = true
+                    changePasswordControler.changePassword()
+                    showChangePassword.toggle()
+                })
                     .padding(.bottom, 32)
             }
         }
     }
+}
+
+func closeKeyboard() {
+    UIApplication.shared.sendAction(
+        #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil
+    )
 }
 
 struct ChangePasswordView_Previews: PreviewProvider {

@@ -1,20 +1,19 @@
 //
-//  LoginForm.swift
+//  SearchResults.swift
 //  FarmtasticFarmer
 //
-//  Created by Dieu Vu on 4/3/22.
+//  Created by Trung on 7.4.2022.
 //
 
 import SwiftUI
-
-struct LoginForm: View {
+struct SearchResults: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct LoginForm_Previews: PreviewProvider {
+struct SearchResults_Previews: PreviewProvider {
     static var previews: some View {
-        LoginForm()
+        SearchResults()
     }
 }
