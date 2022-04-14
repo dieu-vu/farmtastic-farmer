@@ -19,21 +19,21 @@ struct UpdateProfileView: View {
             VStack {
                 Text("profile.update".localized(language: language)).font(.title).bold()
                 VStack(alignment: .leading, spacing: 15) {
-                    TextField("Name", text: $updateUserInfoController.name)
+                    TextField("profile.newName".localized(language: language), text: $updateUserInfoController.name)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .disabled(isDisabled)
-                    TextField("Address", text: $updateUserInfoController.address)
+                    TextField("profile.newAddress".localized(language: language), text: $updateUserInfoController.address)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .disabled(isDisabled)
-                    TextField("Phone number", text: $updateUserInfoController.phone)
+                    TextField("profile.newPhone".localized(language: language), text: $updateUserInfoController.phone)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
