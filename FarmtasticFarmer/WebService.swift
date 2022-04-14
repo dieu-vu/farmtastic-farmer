@@ -152,7 +152,7 @@ class WebService {
         request.addValue(token, forHTTPHeaderField: "x-access-token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
-        print("requestBody in UpdateUserInfo \(String(data: request.httpBody!, encoding: .utf8))")
+        //print("requestBody in UpdateUserInfo \(String(data: request.httpBody!, encoding: .utf8))")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
@@ -204,6 +204,17 @@ class WebService {
             completion(.success("Password changed successfully"))
         }
         .resume()
+    }
+    
+    func logout(completion: @escaping (Result<Bool, CustomError>) -> Void) {
+        KeychainHelper.standard.delete(service: "auth-token", account: "farmtastic")
+        
+        if KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil {
+            completion(.failure(.custom(errorMessage: "Fail to delete token")))
+            return
+        }
+        print("Logging out")
+        completion(.success(true))
     }
 }
 
