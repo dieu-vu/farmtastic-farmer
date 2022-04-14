@@ -15,7 +15,7 @@ struct User: Decodable {
 }
 
 
-struct UserExtraInfo: Decodable {
+struct UserExtraInfo: Codable {
     var name: String
     var type: String
     var address: String

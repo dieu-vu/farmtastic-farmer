@@ -8,37 +8,42 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var username = ""
-    @State private var password = ""
+    @StateObject private var loginController = LoginController()
+    @EnvironmentObject var authentication: Authentication
     
     var body: some View {
+        
         VStack() {
             Text("Log In")
                 .font(.largeTitle)
                 .padding([.top, .bottom], 40)
             
             VStack(alignment: .leading, spacing: 15) {
-                TextField("Username", text: self.$username)
+                TextField("Username", text: $loginController.username)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                        )
-                
-                SecureField("Password", text: self.$password)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+                    .autocapitalization(.none)
+                SecureField("Password", text: $loginController.password)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                        )
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+                    .autocapitalization(.none)
             }.padding([.leading, .trailing], 27.5)
-            
             ButtonView(buttonText: "Login",
                        buttonColorLight: "LightGreen",
                        buttonColorDark: "DarkGreen",
-                       buttonAction: {print("Button clicked")})
+                       buttonAction: {
+                loginController.login { success in
+                    authentication.updatedAuthentication(success: success)
+                }
+            })
+            
         }
-        
     }
 }
 
