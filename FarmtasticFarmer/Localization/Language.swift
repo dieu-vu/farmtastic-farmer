@@ -13,9 +13,9 @@ enum Language: String, CaseIterable, Identifiable {
     
     var name: String {
         switch self {
-        case .en: return "English"
-        case .fi: return "Finnish"
-        case .vi: return "Vietnamese"
+            case .en: return "English"
+            case .fi: return "Finnish"
+            case .vi: return "Vietnamese"
         }
     }
     

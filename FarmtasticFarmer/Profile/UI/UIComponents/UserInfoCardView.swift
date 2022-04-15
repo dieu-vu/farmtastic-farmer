@@ -9,12 +9,14 @@ import SwiftUI
 
 
 struct UserInfoCardView: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     let screenSize: CGRect = UIScreen.main.bounds
 //    let user = UserProfileViewController
     var body: some View {
         VStack (alignment: .leading, spacing: 20){
             HStack{
-                Text("Username")
+                Text("profile.username".localized(language: language))
                     .bold()
                 Button (action: {print("Hi")}, label: {
                     Image.init(systemName: "pencil")
@@ -23,13 +25,13 @@ struct UserInfoCardView: View {
             }
             HStack{
                 Image.init(systemName: "mappin.circle" )
-                Text("address")
+                Text("profile.address".localized(language: language))
                     .fontWeight(.light)
                     .foregroundColor(.gray)
             }
             HStack{
                 Image.init(systemName: "phone" )
-                Text("Phone")
+                Text("profile.phone".localized(language: language))
                     .fontWeight(.light)
                     .foregroundColor(.gray)
             }

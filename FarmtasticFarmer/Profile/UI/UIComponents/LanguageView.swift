@@ -9,11 +9,13 @@ import SwiftUI
 
 struct LanguageView: View {
     let language: Language
-    @Binding var selectedLanguage: Language 
+    @Binding var selectedLanguage: Language
+    @AppStorage("language")
+    private var translatedLanguage = LocalizationService.shared.language
     
     var body: some View {
         HStack { 
-            Text(language.name)
+            Text(language.name.lowercased().localized(language: translatedLanguage))
                 .padding(4)
             Spacer()
             if selectedLanguage == language {
@@ -22,9 +24,6 @@ struct LanguageView: View {
         }
         .fixedSize(horizontal: false, vertical: true)
         .onTapGesture {
-            //            let languagePrefix = Locale.preferredLanguages[0].split(separator: "-")[0]
-            //            print(languagePrefix)
-            //print(language)
             selectedLanguage = language
         }
     }
