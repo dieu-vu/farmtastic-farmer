@@ -22,10 +22,9 @@ struct User: Codable {
 }
 
 
-
 struct UserExtraInfo: Codable {
     var name: String
-    var type: String
+    var type: Int
     var address: String
     var phone: String
     var location: Array<Int>?
@@ -33,7 +32,7 @@ struct UserExtraInfo: Codable {
 
 
 extension User {
-    static let initData: User =  User(user_id: 0, username: "init", email: "init", full_name: UserExtraInfo(name: "", type:  "init", address: "init", phone:  "init", location:[]))
+    static let initData: User =  User(user_id: 0, username: "init", email: "init", full_name: UserExtraInfo(name: "", type: 0, address: "init", phone:  "init", location:[]))
 }
 
 
