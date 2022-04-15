@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     
     @EnvironmentObject var authentication: AuthenticationController
+    @StateObject var userController = UserDataController()
     @State var username: String = ""
     @State var password: String = ""
     

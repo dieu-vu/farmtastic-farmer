@@ -102,6 +102,7 @@ class WebService {
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
+        print("token \(token)")
         
         var request = URLRequest(url: url)
         
@@ -109,29 +110,28 @@ class WebService {
         request.addValue(token, forHTTPHeaderField: "x-access-token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let dataTask = URLSession.shared.dataTask(with: url){ data, response, error in
-            
-            guard let jsonData = data else {
-                completion(.failure(.invalidToken))
-                return
+        let dataTask = URLSession.shared.dataTask(with: request){data, response, error in
+            if let error = error {
+                print("dataTask error: \(error.localizedDescription)")
             }
-            
-            do {
-                let decoder = JSONDecoder()
-                // make sure this JSON is in the format we expect
-                let user = try decoder.decode(User.self, from: jsonData)
-                let userDetails = user.full_name
-                completion(.success(user))
-                // try to read out a string array
-                print(user)
-                print(userDetails)
-                print(user.full_name.address)
-                
-            } catch {
-                completion(.failure(.cannotProcessData))
+            else {
+                guard let response = response else {
+                    return
+                }
+                print("response: \(response.expectedContentLength)")
+                if let data = data {
+                    do {
+                        let reformattedData = Utils.utils.preProcessJson(data)
+                        let decoder = JSONDecoder()
+                        let user = try decoder.decode(User.self, from: reformattedData)
+                        completion(.success(user))
+                    } catch {
+                        print("failed to load")
+                        completion(.failure(.cannotProcessData))
+                    }
+                }
             }
         }
-        
         dataTask.resume()
     }
     
@@ -216,5 +216,7 @@ class WebService {
         print("Logging out")
         completion(.success(true))
     }
+    
+    
 }
 

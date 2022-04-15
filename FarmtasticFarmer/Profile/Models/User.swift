@@ -7,12 +7,20 @@
 
 import Foundation
 
-struct User: Decodable {
+struct User: Codable {
     let user_id: Int
     var username: String
     var email: String
     var full_name: UserExtraInfo
+    
+    init (user_id: Int, username: String, email: String, full_name: UserExtraInfo) {
+        self.user_id = user_id
+        self.username = username
+        self.email = email
+        self.full_name = full_name
+    }
 }
+
 
 
 struct UserExtraInfo: Codable {
@@ -20,5 +28,12 @@ struct UserExtraInfo: Codable {
     var type: String
     var address: String
     var phone: String
-    var location: Array<Int>
+    var location: Array<Int>?
 }
+
+
+extension User {
+    static let initData: User =  User(user_id: 0, username: "init", email: "init", full_name: UserExtraInfo(name: "", type:  "init", address: "init", phone:  "init", location:[]))
+}
+
+
