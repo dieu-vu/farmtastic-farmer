@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-// TODO: Implement this with ObservableObject
 
 class UserDataController: ObservableObject {
     @Published var currentUser = User.initData
@@ -24,10 +23,10 @@ class UserDataController: ObservableObject {
                     case .failure(let error):
                         completion(.failure(error))
                     case .success(let user):
-                        print("loaded user \(user)")
+//                        print("loaded user \(user)")
                         DispatchQueue.main.sync {
                             self.currentUser = user
-                            print("CURRENT USER \(self.currentUser)")
+//                            print("CURRENT USER \(self.currentUser)")
                         }
                 }}
                 completion(.success(self.currentUser))

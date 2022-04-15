@@ -11,7 +11,7 @@ import CoreData
 struct BaseView: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
-    
+
     init() {
         UITabBar.appearance().backgroundColor = UIColor(Color("TabBarBackground"))
     }
@@ -34,6 +34,7 @@ struct BaseView: View {
                     Text("profile".localized(language: language))
                 }
         }.accentColor(Color("DarkGreen"))
+            
     }
 }
 

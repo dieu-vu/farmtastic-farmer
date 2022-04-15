@@ -19,6 +19,7 @@ struct UserInfoCardView: View {
             HStack{
                 Text(currentUser.username.localized(language: language))
                     .bold()
+                    .font(.title)
             }
             HStack{
                 Image.init(systemName: "mappin.circle" )

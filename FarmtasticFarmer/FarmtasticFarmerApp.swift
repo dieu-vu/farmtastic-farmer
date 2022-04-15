@@ -11,7 +11,7 @@ import SwiftUI
 struct FarmtasticFarmerApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject var authentication = AuthenticationController()
-    
+
     var body: some Scene {
         WindowGroup {
             //BaseView()

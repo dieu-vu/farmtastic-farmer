@@ -23,6 +23,8 @@ struct UpdatedFields: Codable {
     let name: String
     let address: String
     let phone: String
+    let type: String
+    let location: Array<Int>?
 }
 
 struct ChangePasswordRequestBody: Codable {
@@ -146,7 +148,8 @@ class WebService {
         }
         
         var request = URLRequest(url: url)
-        let body = UpdateUserInfo(full_name: UpdatedFields(name: name, address: address, phone: phone))
+    
+        let body = UpdateUserInfo(full_name: UpdatedFields(name: name, address: address, phone: phone, type: "farmer", location:[]))
         
         request.httpMethod = "PUT"
         request.addValue(token, forHTTPHeaderField: "x-access-token")
