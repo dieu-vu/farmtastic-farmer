@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  FarmtasticFarmer
+
+  Created by Nguyen Giang on 13.4.2022.
+  
+*/
+
+"apply" = "Lähetä";
+"english" = "Englanti";
+"finnish" = "Suomi";
+"vietnamese" = "Vietnami";
+
+"home" = "Etuvisu";
+
+
+"product" = "Tuotteet";
+
+
+"profile" = "Profiili";
+"profile.username" = "Käyttäjätunnus";
+"profile.address" = "Osoite";
+"profile.phone" = "Puhelinnumero";
+"profile.logOutButton" = "Kirjaudu ulos";
+"profile.orderList" = "Tilauslista";
+"profile.changeLanguage" = "Vaihda kieltä";
+"profile.update" = "Päivitä profiili";
+"profile.changePassword" = "Vaihda salasana";
+"profile.oldPassword" = "Vanha salasana";
+"profile.newPassword" = "Uusi salasana";
+"profile.confirmPassword" = "Vahvistaa uusi salasana";
+"profile.newName" = "Uusi nimi";
+"profile.newAddress" = "Uusi osoite";
+"profile.newPhone" = "Uusi puhelinnumero";

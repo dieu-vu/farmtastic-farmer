@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  FarmtasticFarmer
+
+  Created by Nguyen Giang on 13.4.2022.
+  
+*/
+
+"apply" = "Cập nhật";
+"english" = "Tiếng Anh";
+"finnish" = "Tiếng Phần Lan";
+"vietnamese" = "Tiếng Việt";
+
+"home" = "Trang chủ";
+
+
+"product" = "Sản phẩm";
+
+
+"profile" = "Hồ sơ";
+"profile.username" = "Tên tài khoản";
+"profile.address" = "Địa chỉ";
+"profile.phone" = "Số điện thoại";
+"profile.logOutButton" = "Đăng xuất";
+"profile.orderList" = "Danh sách đặt hàng";
+"profile.changeLanguage" = "Đổi ngôn ngữ";
+"profile.update" = "Cập nhật hồ sơ";
+"profile.changePassword" = "Đổi mật khẩu";
+"profile.oldPassword" = "Mật khẩu cũ";
+"profile.newPassword" = "Mật khẩu mới";
+"profile.confirmPassword" = "Xác nhận mật khẩu mới";
+"profile.newName" = "Tên mới";
+"profile.newAddress" = "Địa chỉ mới";
+"profile.newPhone" = "Số điện thoại mới";

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ActionButton: View {
-    var icon: String = "clock"
-    var title: String = "Order list"
+    var icon: String = ""
+    var title: String = ""
     var onClick: () -> ()
     
     var body: some View {

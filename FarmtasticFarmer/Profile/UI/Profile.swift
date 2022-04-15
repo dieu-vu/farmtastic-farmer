@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileScreen: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     @State var showLanguageBottomSheet: Bool = false
     @State var showUpdateProfile: Bool = false
     @State var showChangePassword: Bool = false
@@ -18,7 +20,6 @@ struct ProfileScreen: View {
             Color("AppBackground")
             HeaderImage()
             UserInfoCardView()
-
             actionButtonGroup
             ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
                        buttonAction: {authentication.logout()})
@@ -43,10 +44,10 @@ struct ProfileScreen: View {
     
     var actionButtonGroup: some View {
         VStack {
-            ActionButton(icon: "clock", title: "Order list", onClick: {})
-            ActionButton(icon: "t.bubble", title: "Change language", onClick: { showLanguageBottomSheet.toggle()})
-            ActionButton(icon: "pencil", title: "Update profile", onClick: { showUpdateProfile.toggle() })
-            ActionButton(icon: "person.circle", title: "Change password", onClick: { showChangePassword.toggle() })
+            ActionButton(icon: "clock", title: "profile.orderList".localized(language: language), onClick: {})
+            ActionButton(icon: "t.bubble", title: "profile.changeLanguage".localized(language: language), onClick: { showLanguageBottomSheet.toggle()})
+            ActionButton(icon: "pencil", title: "profile.update".localized(language: language), onClick: { showUpdateProfile.toggle() })
+            ActionButton(icon: "person.circle", title: "profile.changePassword".localized(language: language), onClick: { showChangePassword.toggle() })
         }
     }
 }
