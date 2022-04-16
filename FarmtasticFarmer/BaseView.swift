@@ -20,7 +20,7 @@ struct BaseView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            ProductMainScreen()
+            ProductMainScreen(products: Product.sampleProductsList)
                 .tabItem {
                     Image(systemName: "list.bullet")
                     Text("Product")
