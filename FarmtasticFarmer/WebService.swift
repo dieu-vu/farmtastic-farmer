@@ -135,12 +135,13 @@ class WebService {
                         let user = try decoder.decode(User.self, from: reformattedData)
                         completion(.success(user))
                     } catch {
-                        print("failed to load")
+                        print("failed to parse User")
                         do {
                             let res = try JSONDecoder().decode(GetUserResponse.self, from: data)
                             print("RES if invalid token: \(res)")
                             completion(.failure(.invalidToken))
                         } catch {
+                            print("failed to parse response")
                             completion(.failure(.cannotProcessData))
                         }
                        
