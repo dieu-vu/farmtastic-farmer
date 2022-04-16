@@ -9,26 +9,29 @@ import SwiftUI
 import CoreData
 
 struct BaseView: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     init() {
         UITabBar.appearance().backgroundColor = UIColor(Color("TabBarBackground"))
     }
-   
+    
     var body: some View {
         TabView {
             Home()
                 .tabItem {
                     Image(systemName: "house")
-                    Text("Home")
+                    Text("home".localized(language: language))
                 }
             ProductMainScreen(products: Product.sampleProductsList)
                 .tabItem {
                     Image(systemName: "list.bullet")
-                    Text("Product")
+                    Text("product".localized(language: language))
                 }
             ProfileScreen()
                 .tabItem {
                     Image(systemName: "person.fill")
-                    Text("User")
+                    Text("profile".localized(language: language))
                 }
         }.accentColor(Color("DarkGreen"))
     }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProductMainScreen: View {
+
     let products: [Product]
     @State var searchText = ""
     @State var searching = false
@@ -56,6 +57,16 @@ struct ProductMainScreen: View {
                                image: Image(systemName: "plus")
                                 .foregroundColor(.black)) {
             
+
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
+    var body: some View {
+        ZStack {
+            Color("AppBackground")
+                .ignoresSafeArea()
+            Text("product".localized(language: language))
+
         }
     }
     

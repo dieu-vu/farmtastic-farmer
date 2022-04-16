@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct Home: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     var body: some View {
         ZStack {
             Color("AppBackground")
                 .ignoresSafeArea()
-            Text("Home")
+            Text("home".localized(language: language))
         }
         
     }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     @Binding var showChangePassword: Bool
     @StateObject private var changePasswordControler = ChangePasswordController()
     @State var isDisabled = false
@@ -15,16 +17,16 @@ struct ChangePasswordView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Change Password").font(.title).bold()
+                Text("profile.changePassword".localized(language: language)).font(.title).bold()
                 VStack(alignment: .leading, spacing: 15) {
-                    TextField("New password", text: $changePasswordControler.password)
+                    TextField("profile.newPassword".localized(language: language), text: $changePasswordControler.password)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .disabled(isDisabled)
-                    TextField("Confirmed password", text: $changePasswordControler.confirmedPassword)
+                    TextField("profile.confirmPassword".localized(language: language), text: $changePasswordControler.confirmedPassword)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
@@ -33,7 +35,7 @@ struct ChangePasswordView: View {
                         .disabled(isDisabled)
                 }
                 .padding([.leading, .trailing], 27.5)
-                ButtonView(buttonText: "Apply", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
+                ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
                     closeKeyboard()
                     isDisabled = true
                     changePasswordControler.changePassword()

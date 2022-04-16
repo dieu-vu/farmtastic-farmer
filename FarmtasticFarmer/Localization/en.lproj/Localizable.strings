@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  FarmtasticFarmer
+
+  Created by Nguyen Giang on 13.4.2022.
+  
+*/
+
+"apply" = "Apply";
+"english" = "English";
+"finnish" = "Finnish";
+"vietnamese" = "Vietnamees";
+
+"home" = "Home";
+
+
+"product" = "Product";
+
+
+"profile" = "Profile";
+"profile.username" = "Username";
+"profile.address" = "Address";
+"profile.phone" = "Phone";
+"profile.logOutButton" = "Log out";
+"profile.orderList" = "Order list";
+"profile.changeLanguage" = "Change language";
+"profile.update" = "Update profile";
+"profile.changePassword" = "Change password";
+"profile.oldPassword" = "Old password";
+"profile.newPassword" = "New password";
+"profile.confirmPassword" = "Confirm";
+"profile.newName" = "New name";
+"profile.newAddress" = "New address";
+"profile.newPhone" = "New phone";
