@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct FarmtasticFarmerApp: App {
     let persistenceController = PersistenceController.shared
-    @StateObject var authentication = Authentication()
+    @StateObject var authentication = AuthenticationController()
     
     var body: some Scene {
         WindowGroup {
@@ -19,14 +19,24 @@ struct FarmtasticFarmerApp: App {
             //just for test
             //ProductResultView(products: ProductList.sampleData)
            
-            if (authentication.isAuthenticated) || (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
-                BaseView()
-                    .environmentObject(authentication)
-            } else {
-                LoginView()
-                    .environmentObject(authentication)
+            NavigationView {
+                ApplicationSwitcher()
             }
+            .navigationViewStyle(.stack)
+            .environmentObject(authentication)
+        }
+    }
+}
 
+struct ApplicationSwitcher: View {
+    
+    @EnvironmentObject var authController: AuthenticationController
+    
+    var body: some View {
+        if (authController.isLoggedIn) || (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
+            BaseView()
+        } else {
+            LoginView()
         }
     }
 }

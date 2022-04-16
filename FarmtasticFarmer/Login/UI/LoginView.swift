@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var username = ""
-    @State private var password = ""
+    
+    @EnvironmentObject var authentication: AuthenticationController
+    @State var username: String = ""
+    @State var password: String = ""
     
     var body: some View {
         ScrollView() {
@@ -21,14 +23,15 @@ struct LoginView: View {
                 .font(.largeTitle)
             
             VStack(alignment: .leading, spacing: 15) {
-                TextField("Username", text: self.$username)
+
+                TextField("Username", text: $username)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                        )
-                
-                SecureField("Password", text: self.$password)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+                    .autocapitalization(.none)
+                SecureField("Password", text: $password)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
@@ -39,9 +42,10 @@ struct LoginView: View {
             ButtonView(buttonText: "Login",
                        buttonColorLight: "LightGreen",
                        buttonColorDark: "DarkGreen",
-                       buttonAction: {print("Button clicked")})
-        }.edgesIgnoringSafeArea(.top)
-        
+                       buttonAction: {
+                authentication.login(username: username, password: password)
+                })
+        }
     }
 }
 
