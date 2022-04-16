@@ -9,6 +9,8 @@ import Foundation
 
 class UpdateUserInfoController: ObservableObject {
     
+    
+    
     @Published var name: String = ""
     @Published var address: String = ""
     @Published var phone: String = ""
