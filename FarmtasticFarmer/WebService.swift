@@ -41,6 +41,10 @@ struct LoginResponse: Codable {
     let message: String?
 }
 
+struct GetUserResponse: Codable {
+    let message: String?
+}
+
 class WebService {
     
     let baseUrl = "https://media.mw.metropolia.fi/wbma/"
@@ -121,7 +125,10 @@ class WebService {
                     return
                 }
                 print("response: \(response.expectedContentLength)")
+
                 if let data = data {
+                    print("data: \(String(decoding: data, as: UTF8.self))")
+
                     do {
                         let reformattedData = Utils.utils.preProcessJson(data)
                         let decoder = JSONDecoder()
@@ -129,7 +136,14 @@ class WebService {
                         completion(.success(user))
                     } catch {
                         print("failed to load")
-                        completion(.failure(.cannotProcessData))
+                        do {
+                            let res = try JSONDecoder().decode(GetUserResponse.self, from: data)
+                            print("RES if invalid token: \(res)")
+                            completion(.failure(.invalidToken))
+                        } catch {
+                            completion(.failure(.cannotProcessData))
+                        }
+                       
                     }
                 }
             }

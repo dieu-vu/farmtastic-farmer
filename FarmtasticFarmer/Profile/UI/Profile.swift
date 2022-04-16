@@ -49,7 +49,9 @@ struct ProfileScreen: View {
                 case .success(let user):
                     userController.currentUser = user
                 case .failure(let error):
+                    print("ERROR \(error)")
                     fatalError(error.localizedDescription)
+                    
                 }
             }
             print("LOGGED IN USER: \($userController.currentUser)")

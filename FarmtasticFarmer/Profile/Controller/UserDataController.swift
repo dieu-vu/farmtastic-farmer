@@ -21,6 +21,7 @@ class UserDataController: ObservableObject {
                 userRequest.getUser { result in
                 switch result {
                     case .failure(let error):
+                        print("FAILURE \(error)")
                         completion(.failure(error))
                     case .success(let user):
 //                        print("loaded user \(user)")
@@ -30,7 +31,7 @@ class UserDataController: ObservableObject {
                         }
                 }}
                 completion(.success(self.currentUser))
-                }
+            }
         }
 
     }

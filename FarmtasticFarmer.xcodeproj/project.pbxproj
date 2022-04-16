@@ -100,16 +100,15 @@
 		187DFEBA2802BB780033693C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = FarmtasticFarmer/Profile/Models/User.swift; sourceTree = SOURCE_ROOT; };
 		187DFEBE2802CC0B0033693C /* UserDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataController.swift; sourceTree = "<group>"; };
 		18C079A128096F3F0079E186 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		8732FE9828081FDB002EC378 /* CategoryProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListView.swift; sourceTree = "<group>"; };
+		8732FE9A2808200A002EC378 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtonView.swift; sourceTree = "<group>"; };
+		8788398C280A0EB000A2593C /* ProductAddScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddScreen.swift; sourceTree = "<group>"; };
 		87C66D1327FF6F940068503E /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		87C66D1B27FF76620068503E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		87C66D1D27FF792A0068503E /* ProductResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResultCard.swift; sourceTree = "<group>"; };
 		87C66D1F27FFE04F0068503E /* ProductResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResultView.swift; sourceTree = "<group>"; };
 		87C66D23280021FC0068503E /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
-		8732FE9828081FDB002EC378 /* CategoryProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListView.swift; sourceTree = "<group>"; };
-		8732FE9A2808200A002EC378 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtonView.swift; sourceTree = "<group>"; };
-		8788398C280A0EB000A2593C /* ProductAddScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddScreen.swift; sourceTree = "<group>"; };
-
 		B347E61D2802FB1100DA9863 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		B347E621280315E400DA9863 /* HeaderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderImage.swift; sourceTree = "<group>"; };
 		B37CCD582806A3E6004BE217 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -184,7 +183,6 @@
 				182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */,
 				182D9C2E27F9E01400158D0C /* Assets.xcassets */,
 				182D9C3327F9E01400158D0C /* Persistence.swift */,
-				0112CAE128057FD300A77B74 /* KeychainHelper.swift */,
 				B3ED079727FF559C00A95D0E /* Home */,
 				182D9C3527F9E01400158D0C /* FarmtasticFarmer.xcdatamodeld */,
 				182D9C3027F9E01400158D0C /* Preview Content */,
@@ -296,6 +294,7 @@
 				B347E61D2802FB1100DA9863 /* ActionButton.swift */,
 				B347E621280315E400DA9863 /* HeaderImage.swift */,
 				B3986BFF2804959E003C4130 /* UpdateProfileView.swift */,
+				0112CAE128057FD300A77B74 /* KeychainHelper.swift */,
 				B3986C032804A249003C4130 /* ChangePasswordView.swift */,
 				187DFEB82802A9200033693C /* UserInfoCardView.swift */,
 			);
@@ -555,7 +554,6 @@
 				B3986C042804A249003C4130 /* ChangePasswordView.swift in Sources */,
 				187DFEBF2802CC0B0033693C /* UserDataController.swift in Sources */,
 				8732FE9B2808200A002EC378 /* SearchBar.swift in Sources */,
-				0112CADE28057CE700A77B74 /* LoginController.swift in Sources */,
 				0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */,
 				B3986BF528043876003C4130 /* ProductMainScreen.swift in Sources */,
 				B3ED079D27FF56AF00A95D0E /* Profile.swift in Sources */,
