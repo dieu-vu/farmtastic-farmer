@@ -9,10 +9,12 @@ import Foundation
 import UIKit
 
 
+
 class UserDataController: ObservableObject {
     @Published var currentUser = User.initData
-       
-    func fetchUser (completion: @escaping(Result<User,Error>)-> Void) {
+
+    
+    func fetchUser (completion: @escaping(Result<User, Error>)-> Void) {
         print("FIRST CURRENT USER \(self.currentUser)")
 
         DispatchQueue.global(qos: .userInteractive).sync {

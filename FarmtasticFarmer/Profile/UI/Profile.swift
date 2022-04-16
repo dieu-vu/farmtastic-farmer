@@ -16,6 +16,8 @@ struct ProfileScreen: View {
     @EnvironmentObject var authentication: AuthenticationController
     @ObservedObject var userController = UserDataController()
 
+    @State private var presentAlert = false
+
     
     var body: some View {
         ScrollView {
@@ -49,13 +51,15 @@ struct ProfileScreen: View {
                 case .success(let user):
                     userController.currentUser = user
                 case .failure(let error):
-                    print("ERROR \(error)")
+                    authentication.logout()
                     fatalError(error.localizedDescription)
-                    
                 }
             }
             print("LOGGED IN USER: \($userController.currentUser)")
         }
+    
+        
+        
     }
     
     var actionButtonGroup: some View {
