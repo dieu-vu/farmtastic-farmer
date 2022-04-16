@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductResultView: View {
-    let products: [ProductList]
+    let products: [Product]
     
     var body: some View {
         VStack {
@@ -28,6 +28,6 @@ struct ProductResultView: View {
 
 struct ProductResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductResultView(products: ProductList.sampleData)
+        ProductResultView(products: Product.sampleProductsList)
     }
 }

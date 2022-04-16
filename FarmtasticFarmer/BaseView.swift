@@ -23,7 +23,7 @@ struct BaseView: View {
                     Image(systemName: "house")
                     Text("home".localized(language: language))
                 }
-            ProductMainScreen()
+            ProductMainScreen(products: Product.sampleProductsList)
                 .tabItem {
                     Image(systemName: "list.bullet")
                     Text("product".localized(language: language))

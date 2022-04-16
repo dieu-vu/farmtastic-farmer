@@ -2,13 +2,13 @@
 //  ProductCard.swift
 //  FarmtasticFarmer
 //
-//  Created by Trung on 7.4.2022.
+//  Created by Trang on 7.4.2022.
 //
 
 import SwiftUI
 
 struct ProductResultCard: View {
-    let product: ProductList
+    let product: Product
     var body: some View {
         HStack {
             
@@ -35,7 +35,7 @@ struct ProductResultCard: View {
 }
 
 struct ProductCard_Previews: PreviewProvider {
-    static var product = ProductList.sampleData[0]
+    static var product = Product.sampleProductsList[0]
     static var previews: some View {
         ProductResultCard(product: product)
             .previewLayout(.fixed(width: 1000, height: 70))
