@@ -13,6 +13,7 @@ struct ProfileScreen: View {
     @State var showLanguageBottomSheet: Bool = false
     @State var showUpdateProfile: Bool = false
     @State var showChangePassword: Bool = false
+    @EnvironmentObject var authentication: AuthenticationController
     
     var body: some View {
         ScrollView {
@@ -20,8 +21,8 @@ struct ProfileScreen: View {
             HeaderImage()
             UserInfoCardView()
             actionButtonGroup
-            ButtonView(buttonText: "profile.logOutButton".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
-                       buttonAction: {})
+            ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
+                       buttonAction: {authentication.logout()})
             Spacer()
         }.edgesIgnoringSafeArea(.top).halfSheet(showSheet: $showLanguageBottomSheet) {
             LanguagePicker(showLanguageBottomSheet: $showLanguageBottomSheet)
