@@ -141,7 +141,6 @@ class WebService {
                             print("RES if invalid token: \(res)")
                             completion(.failure(.invalidToken))
                         } catch {
-                            print("failed to parse response")
                             completion(.failure(.cannotProcessData))
                         }
                        
