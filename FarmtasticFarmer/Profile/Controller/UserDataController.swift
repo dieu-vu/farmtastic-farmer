@@ -24,13 +24,14 @@ class UserDataController: UIViewController, ObservableObject {
 //        do {
 //            let fr: NSFetchRequest<UserFetched> = UserFetched.fetchRequest()
 //            self.loggedInUser = try context.fetch(fr)
-////            DispatchQueue.main.async {
-////                self.profileView.reloadData()
-////            }
+//            DispatchQueue.main.async {
+//                self.profileView.reloadData()
+//            }
 //        } catch {
-//            
+//
 //        }
 //    }
+
     
     func fetchUser (completion: @escaping(Result<User, Error>)-> Void) {
         print("FIRST CURRENT USER \(self.currentUser)")
@@ -49,18 +50,21 @@ class UserDataController: UIViewController, ObservableObject {
                             self.currentUser = user
 //                            self.storeUserInfo(forUserId: user.user_id, full_name: user.full_name)
 //                            print("CURRENT USER \(self.currentUser)")
+                            self.save(context: self.context)
                         }
                 }}
                 completion(.success(self.currentUser))
             }
         }
-
+        
+    }
+    
+    func save(context: NSManagedObjectContext){
+        //save fetched User to core data
+        
     }
     
     
-    
-    
-
     
     
 //    let userDefaults: UserDefaults

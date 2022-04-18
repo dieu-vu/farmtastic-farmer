@@ -14,7 +14,7 @@ struct ProfileScreen: View {
     @State var showUpdateProfile: Bool = false
     @State var showChangePassword: Bool = false
     @EnvironmentObject var authentication: AuthenticationController
-    @ObservedObject var userController = UserDataController()
+    @EnvironmentObject var userController: UserDataController
     @State private var presentAlert = false
 
     
