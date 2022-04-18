@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CartItem" representedClassName="CartItem" parentEntity="Order" syncable="YES" codeGenerationType="class">
+        <attribute name="sold_quantity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="items" inverseEntity="Order"/>
+        <relationship name="product_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductFetched" inverseName="sold_quantity" inverseEntity="ProductFetched"/>
+    </entity>
+    <entity name="Order" representedClassName="Order" syncable="YES" codeGenerationType="class">
+        <attribute name="order_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="order_id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="pickup_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pickup_location" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CartItem" inverseName="order" inverseEntity="CartItem"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserFetched" inverseName="orders" inverseEntity="UserFetched"/>
+    </entity>
+    <entity name="ProductFetched" representedClassName="ProductFetched" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="harvest_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="product_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="product_name" optional="YES" attributeType="String"/>
+        <attribute name="selling_quantity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="unit" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="unit_price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="sold_quantity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CartItem" inverseName="product_id" inverseEntity="CartItem"/>
+    </entity>
+    <entity name="UserFetched" representedClassName="UserFetched" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="orders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="user" inverseEntity="Order"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="CartItem" positionX="132.1484375" positionY="-87.09765625" width="128" height="74"/>
+        <element name="Order" positionX="394.5625" positionY="88.4921875" width="128" height="133"/>
+        <element name="ProductFetched" positionX="-80.47265625" positionY="62.96484375" width="128" height="149"/>
+        <element name="UserFetched" positionX="76.32421875" positionY="357.25390625" width="128" height="149"/>
     </elements>
 </model>

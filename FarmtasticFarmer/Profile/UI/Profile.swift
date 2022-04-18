@@ -14,12 +14,14 @@ struct ProfileScreen: View {
     @State var showUpdateProfile: Bool = false
     @State var showChangePassword: Bool = false
     @EnvironmentObject var authentication: AuthenticationController
+    @ObservedObject var userController = UserDataController()
+
     
     var body: some View {
         ScrollView {
             Color("AppBackground")
             HeaderImage()
-            UserInfoCardView()
+            UserInfoCardView(currentUser: $userController.currentUser)
             actionButtonGroup
             ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
                        buttonAction: {authentication.logout()})
@@ -39,6 +41,20 @@ struct ProfileScreen: View {
             ChangePasswordView(showChangePassword: $showChangePassword).cornerRadius(32).ignoresSafeArea()
         } onEnd: {
             print("Dismissed")
+        }
+        .onAppear{
+            userController.fetchUser{
+                result in
+                switch result {
+                case .success(let user):
+                    userController.currentUser = user
+                case .failure(let error):
+                    print("ERROR \(error)")
+                    fatalError(error.localizedDescription)
+                    
+                }
+            }
+            print("LOGGED IN USER: \($userController.currentUser)")
         }
     }
     

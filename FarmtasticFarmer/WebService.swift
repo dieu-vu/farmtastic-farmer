@@ -23,6 +23,8 @@ struct UpdatedFields: Codable {
     let name: String
     let address: String
     let phone: String
+    let type: String
+    let location: Array<Int>?
 }
 
 struct ChangePasswordRequestBody: Codable {
@@ -36,6 +38,10 @@ struct LoginRequestBody: Codable {
 
 struct LoginResponse: Codable {
     let token: String?
+    let message: String?
+}
+
+struct GetUserResponse: Codable {
     let message: String?
 }
 
@@ -102,6 +108,7 @@ class WebService {
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
+        print("token \(token)")
         
         var request = URLRequest(url: url)
         
@@ -109,29 +116,38 @@ class WebService {
         request.addValue(token, forHTTPHeaderField: "x-access-token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let dataTask = URLSession.shared.dataTask(with: url){ data, response, error in
-            
-            guard let jsonData = data else {
-                completion(.failure(.invalidToken))
-                return
+        let dataTask = URLSession.shared.dataTask(with: request){data, response, error in
+            if let error = error {
+                print("dataTask error: \(error.localizedDescription)")
             }
-            
-            do {
-                let decoder = JSONDecoder()
-                // make sure this JSON is in the format we expect
-                let user = try decoder.decode(User.self, from: jsonData)
-                let userDetails = user.full_name
-                completion(.success(user))
-                // try to read out a string array
-                print(user)
-                print(userDetails)
-                print(user.full_name.address)
-                
-            } catch {
-                completion(.failure(.cannotProcessData))
+            else {
+                guard let response = response else {
+                    return
+                }
+                print("response: \(response.expectedContentLength)")
+
+                if let data = data {
+                    print("data: \(String(decoding: data, as: UTF8.self))")
+
+                    do {
+                        let reformattedData = Utils.utils.preProcessJson(data)
+                        let decoder = JSONDecoder()
+                        let user = try decoder.decode(User.self, from: reformattedData)
+                        completion(.success(user))
+                    } catch {
+                        print("failed to load")
+                        do {
+                            let res = try JSONDecoder().decode(GetUserResponse.self, from: data)
+                            print("RES if invalid token: \(res)")
+                            completion(.failure(.invalidToken))
+                        } catch {
+                            completion(.failure(.cannotProcessData))
+                        }
+                       
+                    }
+                }
             }
         }
-        
         dataTask.resume()
     }
     
@@ -146,7 +162,8 @@ class WebService {
         }
         
         var request = URLRequest(url: url)
-        let body = UpdateUserInfo(full_name: UpdatedFields(name: name, address: address, phone: phone))
+    
+        let body = UpdateUserInfo(full_name: UpdatedFields(name: name, address: address, phone: phone, type: "farmer", location:[]))
         
         request.httpMethod = "PUT"
         request.addValue(token, forHTTPHeaderField: "x-access-token")
@@ -216,5 +233,7 @@ class WebService {
         print("Logging out")
         completion(.success(true))
     }
+    
+    
 }
 

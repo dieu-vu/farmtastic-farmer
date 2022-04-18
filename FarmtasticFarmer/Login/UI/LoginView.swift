@@ -10,17 +10,21 @@ import SwiftUI
 struct LoginView: View {
     
     @EnvironmentObject var authentication: AuthenticationController
+    @StateObject var userController = UserDataController()
     @State var username: String = ""
     @State var password: String = ""
     
     var body: some View {
+        ScrollView() {
         
-        VStack() {
+            Image("headerImage").overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
+        
+        
             Text("Log In")
                 .font(.largeTitle)
-                .padding([.top, .bottom], 40)
             
             VStack(alignment: .leading, spacing: 15) {
+
                 TextField("Username", text: $username)
                     .padding()
                     .overlay(
@@ -32,10 +36,10 @@ struct LoginView: View {
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-                    .autocapitalization(.none)
+                        .stroke(Color.gray, lineWidth: 1)
+                        )
             }.padding([.leading, .trailing], 27.5)
+            
             ButtonView(buttonText: "Login",
                        buttonColorLight: "LightGreen",
                        buttonColorDark: "DarkGreen",
