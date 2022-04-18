@@ -17,7 +17,7 @@ class UserDataController: UIViewController, ObservableObject {
 
     let context = PersistenceController.shared.container.viewContext
     
-
+    
     func fetchUser (completion: @escaping(Result<User, Error>)-> Void) {
         print("FIRST CURRENT USER \(self.currentUser)")
 
@@ -32,8 +32,11 @@ class UserDataController: UIViewController, ObservableObject {
                     case .success(let user):
                         DispatchQueue.main.sync {
                             self.currentUser = user
-                            print(self.currentUser.full_name.phone)
-//                            self.saveUser(context: self.context, user: user)
+                            print(user.full_name.address)
+                            let string_test = String(data: try! JSONEncoder().encode(self.currentUser.full_name), encoding: .utf8)
+                            print("convert extra info to string: \(type(of:string_test))")
+                            // Save current user to CoreData UserFetched
+                            self.saveUser(context: self.context, user: user)
                         }
                 }}
                 completion(.success(self.currentUser))
@@ -52,7 +55,7 @@ class UserDataController: UIViewController, ObservableObject {
         userFetched.address = user.full_name.address
         userFetched.name = user.full_name.name
         userFetched.location = user.full_name.location ?? []
-        userFetched.type = user.full_name.type
+        userFetched.type = Int16(user.full_name.type)
         do {
             try context.save()
         } catch {

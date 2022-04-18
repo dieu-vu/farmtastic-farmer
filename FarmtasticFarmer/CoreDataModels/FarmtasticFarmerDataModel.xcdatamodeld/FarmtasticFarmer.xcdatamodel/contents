@@ -31,7 +31,7 @@
         <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="user_id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" customClassName="NSNumber*"/>
-        <attribute name="username" optional="YES" attributeType="String"/>
+        <attribute name="username" attributeType="String" defaultValueString=""/>
     </entity>
     <elements>
         <element name="CartItem" positionX="132.1484375" positionY="-87.09765625" width="128" height="74"/>

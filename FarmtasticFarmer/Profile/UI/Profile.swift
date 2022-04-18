@@ -16,8 +16,7 @@ struct ProfileScreen: View {
     @EnvironmentObject var authentication: AuthenticationController
     @EnvironmentObject var userController: UserDataController
     @State private var presentAlert = false
-
-
+  
     
     var body: some View {
         ScrollView {

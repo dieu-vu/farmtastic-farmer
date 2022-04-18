@@ -17,12 +17,12 @@ extension UserFetched {
     }
 
     @NSManaged public var address: String?
-    @NSManaged public var email: String?
+    @NSManaged public var email: String
     @NSManaged public var name: String?
     @NSManaged public var phone: String?
-    @NSManaged public var type: Int
+    @NSManaged public var type: Int16
     @NSManaged public var user_id: Int16
-    @NSManaged public var username: String?
+    @NSManaged public var username: String
     @NSManaged public var location: [Int]?
 
 //    @NSManaged public var orders: NSSet?
@@ -32,3 +32,4 @@ extension UserFetched {
 extension UserFetched : Identifiable {
 
 }
+

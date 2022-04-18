@@ -14,6 +14,10 @@ struct UpdateProfileView: View {
     @StateObject private var updateUserInfoController = UpdateUserInfoController()
     @State var isDisabled = false
     
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: []) var loggedInUser: FetchedResults<UserFetched>
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -45,6 +49,13 @@ struct UpdateProfileView: View {
                 ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
                     isDisabled = true
                     closeKeyboard()
+                    
+                    // Verify if update fields are left blank, if blank then filled from CoreData
+                    let temp = checkNewUserData(newData: updateUserInfoController, loggedInUser: loggedInUser.last)
+                    updateUserInfoController.address = temp.address
+                    updateUserInfoController.name = temp.name
+                    updateUserInfoController.phone = temp.phone
+                    updateUserInfoController.location = [Int](loggedInUser.last?.location ?? [])
                     updateUserInfoController.updateUserInfo()
                     showUpdateProfile.toggle()
                     
@@ -52,6 +63,20 @@ struct UpdateProfileView: View {
                 .padding(.bottom, 32)
             }
         }
+    }
+    
+    func checkNewUserData(newData: UpdateUserInfoController, loggedInUser: UserFetched?) -> UpdateUserInfoController {
+        let checkedNewData = UpdateUserInfoController()
+        if newData.address == "" {
+            checkedNewData.address = loggedInUser?.address ?? ""
+        }
+        if newData.phone == "" {
+            checkedNewData.phone = loggedInUser?.phone ?? ""
+        }
+        if newData.name == "" {
+            checkedNewData.name = loggedInUser?.name ?? ""
+        }
+        return checkedNewData
     }
 }
 

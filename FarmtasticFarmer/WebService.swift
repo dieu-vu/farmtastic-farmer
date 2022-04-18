@@ -16,14 +16,14 @@ enum CustomError: Error {
 }
 
 struct UpdateUserInfo: Codable {
-    var full_name:  UpdatedFields
+    var full_name: String?
 }
 
 struct UpdatedFields: Codable {
     let name: String
     let address: String
     let phone: String
-    let type: String
+    let type: Int
     let location: Array<Int>?
 }
 
@@ -44,6 +44,7 @@ struct LoginResponse: Codable {
 struct GetUserResponse: Codable {
     let message: String?
 }
+
 
 class WebService {
     
@@ -152,7 +153,7 @@ class WebService {
         dataTask.resume()
     }
     
-    func updateUserInfo(name: String, address: String, phone: String, completion: @escaping (Result<String, CustomError>) -> Void) {
+    func updateUserInfo(name: String, address: String, phone: String, type: Int, location: [Int], completion: @escaping (Result<String, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users") else {
             fatalError("getUserInfo: Failed to create URL")
@@ -164,13 +165,15 @@ class WebService {
         
         var request = URLRequest(url: url)
     
-        let body = UpdateUserInfo(full_name: UpdatedFields(name: name, address: address, phone: phone, type: "farmer", location:[]))
+        let extraInfo = UpdatedFields(name: name, address: address, phone: phone, type: type, location: location)
+        let extraInfoString =  String(data: try! JSONEncoder().encode(extraInfo), encoding: .utf8)
+        let body = UpdateUserInfo(full_name: extraInfoString)
         
         request.httpMethod = "PUT"
         request.addValue(token, forHTTPHeaderField: "x-access-token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
-        //print("requestBody in UpdateUserInfo \(String(data: request.httpBody!, encoding: .utf8))")
+        print("requestBody in UpdateUserInfo \(String(data: request.httpBody!, encoding: .utf8))")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
