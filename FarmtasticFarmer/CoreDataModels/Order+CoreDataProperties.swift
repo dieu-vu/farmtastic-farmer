@@ -21,7 +21,7 @@ extension Order {
     @NSManaged public var pickup_date: Date?
     @NSManaged public var pickup_location: Int16
     @NSManaged public var items: NSSet?
-    @NSManaged public var user: UserFetched?
+//    @NSManaged public var user: UserFetched?
 
 }
 

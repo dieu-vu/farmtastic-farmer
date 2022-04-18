@@ -17,6 +17,7 @@ struct ProfileScreen: View {
     @EnvironmentObject var userController: UserDataController
     @State private var presentAlert = false
 
+
     
     var body: some View {
         ScrollView {
@@ -42,22 +43,7 @@ struct ProfileScreen: View {
             ChangePasswordView(showChangePassword: $showChangePassword).cornerRadius(32).ignoresSafeArea()
         } onEnd: {
             print("Dismissed")
-        }
-        .onAppear{
-            userController.fetchUser{
-                result in
-                switch result {
-                case .success(let user):
-                    userController.currentUser = user
-                case .failure(let error):
-                    authentication.logout()
-                    fatalError(error.localizedDescription)
-                }
-            }
-            print("LOGGED IN USER: \($userController.currentUser)")
-        }
-    
-        
+        }  
         
     }
     

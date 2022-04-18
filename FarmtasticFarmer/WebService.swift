@@ -47,6 +47,7 @@ struct GetUserResponse: Codable {
 
 class WebService {
     
+    
     let baseUrl = "https://media.mw.metropolia.fi/wbma/"
     
     func login(username: String, password: String, completion: @escaping (Result<Bool, CustomError>) -> Void) {
@@ -232,6 +233,10 @@ class WebService {
         }
         print("Logging out")
         completion(.success(true))
+    }
+    
+    func getProducts(){
+        
     }
     
     

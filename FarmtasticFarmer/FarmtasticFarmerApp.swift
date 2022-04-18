@@ -25,6 +25,8 @@ struct FarmtasticFarmerApp: App {
             .navigationViewStyle(.stack)
             .environmentObject(authentication)
             .environmentObject(UserDataController())
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+
         }
     }
 }

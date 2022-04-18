@@ -17,22 +17,7 @@ class UserDataController: UIViewController, ObservableObject {
 
     let context = PersistenceController.shared.container.viewContext
     
-    //Data for UserFetched table
-    var loggedInUser: [UserFetched]?
-    
-//    func fetchUserFromCoreData() {
-//        do {
-//            let fr: NSFetchRequest<UserFetched> = UserFetched.fetchRequest()
-//            self.loggedInUser = try context.fetch(fr)
-//            DispatchQueue.main.async {
-//                self.profileView.reloadData()
-//            }
-//        } catch {
-//
-//        }
-//    }
 
-    
     func fetchUser (completion: @escaping(Result<User, Error>)-> Void) {
         print("FIRST CURRENT USER \(self.currentUser)")
 
@@ -45,12 +30,10 @@ class UserDataController: UIViewController, ObservableObject {
                         print("FAILURE \(error)")
                         completion(.failure(error))
                     case .success(let user):
-//                        print("loaded user \(user)")
                         DispatchQueue.main.sync {
                             self.currentUser = user
-//                            self.storeUserInfo(forUserId: user.user_id, full_name: user.full_name)
-//                            print("CURRENT USER \(self.currentUser)")
-                            self.save(context: self.context)
+                            print(self.currentUser.full_name.phone)
+//                            self.saveUser(context: self.context, user: user)
                         }
                 }}
                 completion(.success(self.currentUser))
@@ -59,9 +42,22 @@ class UserDataController: UIViewController, ObservableObject {
         
     }
     
-    func save(context: NSManagedObjectContext){
+    func saveUser(context: NSManagedObjectContext, user: User){
         //save fetched User to core data
-        
+        let userFetched = UserFetched(context: context)
+        userFetched.user_id = Int16(user.user_id)
+        userFetched.username = user.username
+        userFetched.email = user.email
+        userFetched.phone = user.full_name.phone
+        userFetched.address = user.full_name.address
+        userFetched.name = user.full_name.name
+        userFetched.location = user.full_name.location ?? []
+        userFetched.type = user.full_name.type
+        do {
+            try context.save()
+        } catch {
+            UserDefaults.standard.setValue(true, forKey: Constants.isDataPreLoaded)
+        }
     }
     
     

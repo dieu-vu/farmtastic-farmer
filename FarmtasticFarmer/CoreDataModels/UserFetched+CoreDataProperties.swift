@@ -20,10 +20,12 @@ extension UserFetched {
     @NSManaged public var email: String?
     @NSManaged public var name: String?
     @NSManaged public var phone: String?
-    @NSManaged public var type: Int16
+    @NSManaged public var type: Int
     @NSManaged public var user_id: Int16
     @NSManaged public var username: String?
-    @NSManaged public var orders: NSSet?
+    @NSManaged public var location: [Int]?
+
+//    @NSManaged public var orders: NSSet?
 
 }
 
