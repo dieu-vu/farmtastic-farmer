@@ -16,11 +16,12 @@ struct UpdateProfileView: View {
     
     
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(sortDescriptors: []) var loggedInUser: FetchedResults<UserFetched>
+    @FetchRequest(sortDescriptors: []) private var loggedInUser: FetchedResults<UserFetched>
     
     var body: some View {
         NavigationView {
             VStack {
+                Text("User in coredata \(loggedInUser.count)")
                 Text("profile.update".localized(language: language)).font(.title).bold()
                 VStack(alignment: .leading, spacing: 15) {
                     TextField("profile.newName".localized(language: language), text: $updateUserInfoController.name)
