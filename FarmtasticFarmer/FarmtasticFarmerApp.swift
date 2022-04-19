@@ -24,6 +24,9 @@ struct FarmtasticFarmerApp: App {
             }
             .navigationViewStyle(.stack)
             .environmentObject(authentication)
+            .environmentObject(UserDataController())
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+
         }
     }
 }
@@ -31,10 +34,14 @@ struct FarmtasticFarmerApp: App {
 struct ApplicationSwitcher: View {
     
     @EnvironmentObject var authController: AuthenticationController
+    let persistenceController = PersistenceController.shared
+
     
     var body: some View {
         if (authController.isLoggedIn) || (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
             BaseView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+
         } else {
             LoginView()
         }

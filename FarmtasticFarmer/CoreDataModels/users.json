@@ -1,0 +1,44 @@
+/* 
+  users.strings
+  FarmtasticFarmer
+
+  Created by Dieu Vu on 4/18/22.
+  
+*/
+
+// Dummy data for the CoreData Model - Users who are buyers in the app
+[
+    {
+        "user_id": 1,
+        "username": "user1",
+        "email": "user1@metropolia.fi",
+        "full_name": {
+            "name": "Yoda",
+            "type": 1,
+            "address": "A galaxy faraway",
+            "phone": "012345678"
+        }
+    },
+    {
+        "user_id": 2,
+        "username": "user2",
+        "email": "user2@metropolia.fi",
+        "full_name": {
+            "name": "Dumbledore",
+            "type": 1,
+            "address": "Hogwart",
+            "phone": "012345678"
+        }
+    },
+    {
+        "user_id": 3,
+        "username": "user3",
+        "email": "user3@metropolia.fi",
+        "full_name": {
+            "name": "Tony Stark",
+            "type": 1,
+            "address": "NewYork",
+            "phone": "012345678"
+        }
+    }
+]

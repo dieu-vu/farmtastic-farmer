@@ -9,7 +9,17 @@ import SwiftUI
 import CoreData
 
 struct BaseView: View {
+
+//    @Environment(\.managedObjectContext) private var viewContext
+//
+//    @FetchRequest(
+//           sortDescriptors: [NSSortDescriptor(keyPath: \UserFetched.user_id, ascending: true)],
+//           animation: .default)
+//    
+    @EnvironmentObject var userController: UserDataController
+    @EnvironmentObject var authController: AuthenticationController
     @AppStorage("language")
+    
     private var language = LocalizationService.shared.language
 
     init() {
@@ -33,14 +43,29 @@ struct BaseView: View {
                     Image(systemName: "person.fill")
                     Text("profile".localized(language: language))
                 }
+                .onAppear{
+                    userController.fetchUser{
+                        result in
+                        switch result {
+                        case .success(let user):
+                            userController.currentUser = user
+                        case .failure(let error):
+                            authController.logout()
+                            fatalError(error.localizedDescription)
+                        }
+                    }
+                    print("LOGGED IN USER: \($userController.currentUser)")
+                }
         }.accentColor(Color("DarkGreen"))
             
     }
+       
 }
 
 struct BaseView_Previews: PreviewProvider {
     static var previews: some View {
         BaseView()
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 
