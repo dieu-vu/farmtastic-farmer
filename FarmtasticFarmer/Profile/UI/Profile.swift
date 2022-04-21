@@ -17,11 +17,18 @@ struct ProfileScreen: View {
     @EnvironmentObject var userController: UserDataController
     @State private var presentAlert = false
   
+    let persistenceController = PersistenceController.shared
+    
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+        sortDescriptors: []) var loggedInUser: FetchedResults<UserFetched>
     
     var body: some View {
         ScrollView {
             Color("AppBackground")
             HeaderImage()
+            Text("\(loggedInUser[0].username), \(loggedInUser[0].user_id), count \(loggedInUser.count)")
             UserInfoCardView(currentUser: $userController.currentUser)
             actionButtonGroup
             ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
@@ -34,7 +41,11 @@ struct ProfileScreen: View {
             print("Dismissed")
         }
         .halfSheet(showSheet: $showUpdateProfile) {
-            UpdateProfileView(showUpdateProfile: $showUpdateProfile).cornerRadius(32).ignoresSafeArea()
+            UpdateProfileView(showUpdateProfile: $showUpdateProfile)
+                .cornerRadius(32)
+                .ignoresSafeArea()
+            // Inject Managed Object context to the sub view
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         } onEnd: {
             print("Dismissed")
         }
