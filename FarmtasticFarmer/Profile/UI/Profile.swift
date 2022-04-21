@@ -54,8 +54,7 @@ struct ProfileScreen: View {
             ChangePasswordView(showChangePassword: $showChangePassword).cornerRadius(32).ignoresSafeArea()
         } onEnd: {
             print("Dismissed")
-        }  
-        
+        }
     }
     
     var actionButtonGroup: some View {

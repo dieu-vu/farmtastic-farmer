@@ -11,6 +11,7 @@ import SwiftUI
 struct FarmtasticFarmerApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject var authentication = AuthenticationController()
+    
 
     var body: some Scene {
         WindowGroup {
@@ -18,7 +19,6 @@ struct FarmtasticFarmerApp: App {
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             //just for test
             //ProductResultView(products: ProductList.sampleData)
-           
             NavigationView {
                 ApplicationSwitcher()
             }
@@ -26,7 +26,6 @@ struct FarmtasticFarmerApp: App {
             .environmentObject(authentication)
             .environmentObject(UserDataController())
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
-
         }
     }
 }
@@ -35,15 +34,24 @@ struct ApplicationSwitcher: View {
     
     @EnvironmentObject var authController: AuthenticationController
     let persistenceController = PersistenceController.shared
-
     
     var body: some View {
-        if (authController.isLoggedIn) || (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
+       if (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
             BaseView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-
-        } else {
+            //MapView()
+        }
+        else {
             LoginView()
         }
+        
+        /*if (authController.isLoggedIn) || (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
+             BaseView()
+ //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+             //MapView()
+         }
+         else {
+             LoginView()
+         }*/
     }
 }

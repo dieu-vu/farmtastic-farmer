@@ -12,7 +12,7 @@ struct LoginView: View {
     @EnvironmentObject var authentication: AuthenticationController
     @StateObject var userController = UserDataController()
     @State var username: String = ""
-    @State var password: String = ""
+    @State var password: String =  ""
     
     
     var body: some View {
@@ -43,6 +43,8 @@ struct LoginView: View {
                                buttonAction: {
                         authentication.login(username: username, password: password)
                     })
+                    .disabled(username.isEmpty || password.isEmpty)
+
                 }.offset(y: -80)
             ).padding(.bottom, -100)
             Image("logo").resizable().scaledToFit().frame(width: 300, height: 300).padding(.bottom, 50)
@@ -57,3 +59,4 @@ struct LoginView_Previews: PreviewProvider {
             .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
+

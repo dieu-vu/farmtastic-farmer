@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import os
 
 enum CustomError: Error {
     case invalidCredentials
@@ -45,11 +46,12 @@ struct GetUserResponse: Codable {
     let message: String?
 }
 
-
 class WebService {
-    
+    @EnvironmentObject var authController: AuthenticationController
     
     let baseUrl = "https://media.mw.metropolia.fi/wbma/"
+    
+    let logger = Logger(subsystem: "Fartastic", category: "WebService")
     
     func login(username: String, password: String, completion: @escaping (Result<Bool, CustomError>) -> Void) {
         
@@ -85,11 +87,29 @@ class WebService {
             let savedToken = Data(token.utf8)
             
             KeychainHelper.standard.save(savedToken, service: "auth-token", account: "farmtastic")
+            KeychainHelper.standard.save(password, service: "password", account: "farmtastic")
+            self.logger.log("PASSWORD IN KEYCHAIN \(password)")
+            
             DispatchQueue.main.async {
                 completion(.success(true))
             }
         }
         .resume()
+    }
+    
+    func reAuthentication() {
+        guard let password = KeychainHelper.standard.read(service: "password", account: "farmtastic") else {
+            fatalError("Password not found")
+        }
+        
+        login(username: "hangHuynh", password: String(data: password, encoding: .utf8)!) { result in
+            switch result {
+            case .success:
+                self.logger.log("reAuthentication successfully")
+            case .failure(let error):
+                self.logger.log("reAuthentication failed: \(error.localizedDescription)")
+            }
+        }
     }
     
     func getUserToken() -> String? {
@@ -153,7 +173,7 @@ class WebService {
         dataTask.resume()
     }
     
-    func updateUserInfo(name: String, address: String, phone: String, type: Int, location: [Int], completion: @escaping (Result<String, CustomError>) -> Void) {
+    func updateUserInfo(name: String, address: String, phone: String, type: Int, location: [Int], allowRetry: Bool = true ,completion: @escaping (Result<String, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users") else {
             fatalError("getUserInfo: Failed to create URL")
@@ -173,12 +193,28 @@ class WebService {
         request.addValue(token, forHTTPHeaderField: "x-access-token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
-        print("requestBody in UpdateUserInfo \(String(data: request.httpBody!, encoding: .utf8))")
+        logger.log("requestBody in UpdateUserInfo \(String(data: request.httpBody!, encoding: .utf8)! as NSObject)")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let error = error {
                 print("updateUserInfo: Client error \(error)")
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
+                if allowRetry {
+                    self.reAuthentication()
+                    self.updateUserInfo(name: name, address: address, phone: phone, type: type, location: location, allowRetry: false) { result in
+                        switch result {
+                        case .success:
+                            self.logger.log("Retry update user info successfully")
+                        case .failure(let error):
+                            self.logger.log("Retry update user info failed: \(error.localizedDescription)")
+                        }
+                    }
+                }
+                
+                completion(.failure(.invalidToken))
             }
             
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
@@ -192,7 +228,7 @@ class WebService {
         .resume()
     }
     
-    func changePassword(password: String, completion: @escaping (Result<String, CustomError>) -> Void) {
+    func changePassword(password: String, allowRetry: Bool = true, completion: @escaping (Result<String, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users") else {
             completion(.failure(.custom(errorMessage: "changePassword: URL is not correct")))
@@ -217,11 +253,28 @@ class WebService {
                 print("changePassword: Client error \(error)")
             }
             
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
+                if allowRetry {
+                    self.reAuthentication()
+                    self.changePassword(password: password, allowRetry: false) { result in
+                        switch result {
+                        case .success:
+                            self.logger.log("Retry update password successfully")
+                        case .failure(let error):
+                            self.logger.log("Retry update password failed: \(error.localizedDescription)")
+                        }
+                    }
+                }
+                
+                completion(.failure(.invalidToken))
+            }
+            
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                 print("changePassword: Error in httpResponse")
                 return
             }
-            
+            KeychainHelper.standard.save(password, service: "password", account: "farmtastic")
+            self.logger.log("PASSWORD IN KEYCHAIN: \(password)")
             completion(.success("Password changed successfully"))
         }
         .resume()
@@ -241,7 +294,6 @@ class WebService {
     func getProducts(){
         
     }
-    
     
 }
 
