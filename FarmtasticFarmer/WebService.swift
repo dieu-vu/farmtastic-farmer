@@ -98,11 +98,13 @@ class WebService {
     }
     
     func reAuthentication() {
-        guard let password = KeychainHelper.standard.read(service: "password", account: "farmtastic") else {
-            fatalError("Password not found")
-        }
         
-        login(username: "hangHuynh", password: String(data: password, encoding: .utf8)!) { result in
+        guard let password = KeychainHelper.standard.read(service: "password", account: "farmtastic") else {
+            return
+        }
+
+        login(username: "hangHuynh", password: String(data: password, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")) { result in
+            
             switch result {
             case .success:
                 self.logger.log("reAuthentication successfully")
@@ -121,7 +123,7 @@ class WebService {
         return String(data: data, encoding: .utf8)
     }
     
-    func getUser(completion: @escaping (Result<User, CustomError>) -> Void) {
+    func getUser(allowRetry: Bool = true, completion: @escaping (Result<User, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users/user") else {
             fatalError("getUserInfo: Failed to create URL")
@@ -131,7 +133,7 @@ class WebService {
             fatalError("getUserInfo: Token not found")
         }
         print("token \(token)")
-        
+    
         var request = URLRequest(url: url)
         
         request.httpMethod = "GET"
@@ -143,10 +145,25 @@ class WebService {
                 print("dataTask error: \(error.localizedDescription)")
             }
             else {
-                guard let response = response else {
-                    return
+                //guard let response = response else {
+                    //return
+                //}
+                //print("response: \(response.expectedContentLength)")
+                
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
+                    
+                    if allowRetry {
+                        self.reAuthentication()
+                        return self.getUser(allowRetry: false) { result in
+                            switch result {
+                            case .success:
+                                self.logger.log("Retry get user info successfully")
+                            case .failure(let error):
+                                self.logger.log("Retry get user info failed: \(error.localizedDescription)")
+                            }
+                        }
+                    }
                 }
-                print("response: \(response.expectedContentLength)")
 
                 if let data = data {
                     print("data: \(String(decoding: data, as: UTF8.self))")
@@ -201,23 +218,22 @@ class WebService {
                 print("updateUserInfo: Client error \(error)")
             }
             
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
-                if allowRetry {
-                    self.reAuthentication()
-                    self.updateUserInfo(name: name, address: address, phone: phone, type: type, location: location, allowRetry: false) { result in
-                        switch result {
-                        case .success:
-                            self.logger.log("Retry update user info successfully")
-                        case .failure(let error):
-                            self.logger.log("Retry update user info failed: \(error.localizedDescription)")
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
+                    if allowRetry {
+                        self.reAuthentication()
+                        return self.updateUserInfo(name: name, address: address, phone: phone, type: type, location: location, allowRetry: false) { result in
+                            switch result {
+                            case .success:
+                                self.logger.log("Retry update user info successfully")
+                                completion(.success("User info updated successfully"))
+                            case .failure(let error):
+                                self.logger.log("Retry update user info failed: \(error.localizedDescription)")
+                            }
                         }
                     }
                 }
-                
                 completion(.failure(.invalidToken))
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                 print("updateUserInfo: Error in httpResponse")
                 return
             }
@@ -239,6 +255,7 @@ class WebService {
             return
         }
         print("Token for change password \(token)")
+        
         let body = ChangePasswordRequestBody(password: password)
         var request = URLRequest(url: url)
         
@@ -253,26 +270,25 @@ class WebService {
                 print("changePassword: Client error \(error)")
             }
             
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
-                if allowRetry {
-                    self.reAuthentication()
-                    self.changePassword(password: password, allowRetry: false) { result in
-                        switch result {
-                        case .success:
-                            self.logger.log("Retry update password successfully")
-                        case .failure(let error):
-                            self.logger.log("Retry update password failed: \(error.localizedDescription)")
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
+                    if allowRetry {
+                        self.reAuthentication()
+                        return self.changePassword(password: password, allowRetry: false) { result in
+                            switch result {
+                            case .success:
+                                self.logger.log("Retry update password successfully")
+                                completion(.success("Password changed successfully"))
+                            case .failure(let error):
+                                self.logger.log("Retry update password failed: \(error.localizedDescription)")
+                            }
                         }
                     }
                 }
-                
                 completion(.failure(.invalidToken))
-            }
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                print("changePassword: Error in httpResponse")
                 return
             }
+            
             KeychainHelper.standard.save(password, service: "password", account: "farmtastic")
             self.logger.log("PASSWORD IN KEYCHAIN: \(password)")
             completion(.success("Password changed successfully"))
