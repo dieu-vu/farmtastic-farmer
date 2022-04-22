@@ -22,7 +22,7 @@
 "profile.address" = "Osoite";
 "profile.phone" = "Puhelinnumero";
 "profile.logOutButton" = "Kirjaudu ulos";
-"profile.orderList" = "Tilauslista";
+"profile.orderList" = "aktiivinen tilaus";
 "profile.changeLanguage" = "Vaihda kieltä";
 "profile.update" = "Päivitä profiili";
 "profile.changePassword" = "Vaihda salasana";
