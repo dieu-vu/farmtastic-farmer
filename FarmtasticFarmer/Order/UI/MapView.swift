@@ -16,7 +16,15 @@ struct PickupPoint: Identifiable {
 }
 
 struct MapView: View {
-    @State private var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.22, longitude: 24.76), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+    @State private var mapRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(
+        latitude: 60.22,
+        longitude: 24.76),
+        span: MKCoordinateSpan(
+            latitudeDelta: 10,
+            longitudeDelta: 10))
+    @StateObject var manager = LocationManager()
+    @State var tracking: MapUserTrackingMode = .follow
     
     let pickupPoints = [
         PickupPoint(name: "Pickup point 1", coordinate: CLLocationCoordinate2D(latitude: 60.17, longitude: 24.94)),
@@ -26,7 +34,12 @@ struct MapView: View {
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $mapRegion, annotationItems: pickupPoints
+            Map(
+                coordinateRegion: $manager.region,
+                interactionModes: MapInteractionModes.all,
+                showsUserLocation: true,
+                userTrackingMode: $tracking,
+                annotationItems: pickupPoints
             ) { point in
                 MapMarker(coordinate: point.coordinate)
             }

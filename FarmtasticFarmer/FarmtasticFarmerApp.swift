@@ -37,9 +37,9 @@ struct ApplicationSwitcher: View {
     
     var body: some View {
        if (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
-            BaseView()
+            //BaseView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            //MapView()
+            MapView()
         }
         else {
             LoginView()
