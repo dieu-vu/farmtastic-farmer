@@ -14,15 +14,15 @@ struct PickupPoint: Identifiable {
     let name: String
     let coordinate: CLLocationCoordinate2D
     let date: String
-   }
+}
 
-   extension PickupPoint {
-       static let samplePickupPointLists: [PickupPoint] =
-           [
-               PickupPoint(name: "Pickup point 1", coordinate: CLLocationCoordinate2D(latitude: 61.29, longitude: 24.96), date: "2022-04-19 13:47:29 +0000"),
-               PickupPoint(name: "Pickup point 2", coordinate: CLLocationCoordinate2D(latitude: 62.29, longitude: 24.96), date: "2022-04-29 13:47:29 +0000"),
-               PickupPoint(name: "Pickup point 3", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96), date: "2022-04-21 13:47:29 +0000")
-           ]
+extension PickupPoint {
+    static let samplePickupPointLists: [PickupPoint] =
+        [
+            PickupPoint(name: "Pickup point 1", coordinate: CLLocationCoordinate2D(latitude: 61.29, longitude: 24.96), date: "2022-04-19 13:47:29 +0000"),
+            PickupPoint(name: "Pickup point 2", coordinate: CLLocationCoordinate2D(latitude: 62.29, longitude: 24.96), date: "2022-04-29 13:47:29 +0000"),
+            PickupPoint(name: "Pickup point 3", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96), date: "2022-04-21 13:47:29 +0000")
+        ]
 }
 
 struct MapView: View {
@@ -37,9 +37,9 @@ struct MapView: View {
     @State var tracking: MapUserTrackingMode = .follow
     
     let pickupPoints = [
-        PickupPoint(name: "Pickup point 1", coordinate: CLLocationCoordinate2D(latitude: 60.17, longitude: 24.94)),
-        PickupPoint(name: "Pickup point 2", coordinate: CLLocationCoordinate2D(latitude: 60.21, longitude: 24.80)),
-        PickupPoint(name: "Pickup point 3", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96))
+        PickupPoint(name: "Pickup point 1", coordinate: CLLocationCoordinate2D(latitude: 60.17, longitude: 24.94), date: ""),
+        PickupPoint(name: "Pickup point 2", coordinate: CLLocationCoordinate2D(latitude: 60.21, longitude: 24.80), date: ""),
+        PickupPoint(name: "Pickup point 3", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96), date: "")
     ]
     
     var body: some View {
