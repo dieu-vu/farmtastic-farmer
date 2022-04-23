@@ -240,6 +240,8 @@
 		182D9C2927F9E01300158D0C /* FarmtasticFarmer */ = {
 			isa = PBXGroup;
 			children = (
+				01DEC6DB280EE2C200EDDF19 /* Info.plist */,
+				01DEC6D4280EDAFF00EDDF19 /* Order */,
 				2D863BDA28117B9500AC1EB2 /* Data */,
 				18C079C4280B0FEC0079E186 /* CoreDataModels */,
 				18C079A028096F2C0079E186 /* Utils */,
@@ -668,6 +670,7 @@
 				01DEC6DD281290EF00EDDF19 /* LocationManager.swift in Sources */,
 				B3986BF528043876003C4130 /* ProductMainScreen.swift in Sources */,
 				B3ED079D27FF56AF00A95D0E /* Profile.swift in Sources */,
+				01DEC6D7280EDB7000EDDF19 /* MapView.swift in Sources */,
 				1891D9A0280EBCDB00428C3C /* Location+CoreDataProperties.swift in Sources */,
 				1891D99F280EBCDB00428C3C /* Location+CoreDataClass.swift in Sources */,
 				18C079C0280B0FE60079E186 /* ProductFetched+CoreDataClass.swift in Sources */,
