@@ -13,6 +13,16 @@ struct PickupPoint: Identifiable {
     let id = UUID()
     let name: String
     let coordinate: CLLocationCoordinate2D
+    let date: String
+   }
+
+   extension PickupPoint {
+       static let samplePickupPointLists: [PickupPoint] =
+           [
+               PickupPoint(name: "Pickup point 1", coordinate: CLLocationCoordinate2D(latitude: 61.29, longitude: 24.96), date: "2022-04-19 13:47:29 +0000"),
+               PickupPoint(name: "Pickup point 2", coordinate: CLLocationCoordinate2D(latitude: 62.29, longitude: 24.96), date: "2022-04-29 13:47:29 +0000"),
+               PickupPoint(name: "Pickup point 3", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96), date: "2022-04-21 13:47:29 +0000")
+           ]
 }
 
 struct MapView: View {

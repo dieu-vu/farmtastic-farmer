@@ -17,7 +17,8 @@ struct ProfileScreen: View {
     @EnvironmentObject var userController: UserDataController
     @State private var presentAlert = false
     @State var navigateToOrder = false
-  
+    @State var navigateToPickup = false
+
     let persistenceController = PersistenceController.shared
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -64,6 +65,11 @@ struct ProfileScreen: View {
                     self.navigateToOrder = true
                 })
             }
+            NavigationLink(destination: PickupPointScreen(), isActive: $navigateToPickup) {
+                            ActionButton(icon: "clock", title: "profile.pickupList".localized(language: language), onClick: {
+                                self.navigateToPickup = true
+                            })
+                        }
             ActionButton(icon: "t.bubble", title: "profile.changeLanguage".localized(language: language), onClick: { showLanguageBottomSheet.toggle()})
             ActionButton(icon: "pencil", title: "profile.update".localized(language: language), onClick: { showUpdateProfile.toggle() })
             ActionButton(icon: "person.circle", title: "profile.changePassword".localized(language: language), onClick: { showChangePassword.toggle() })

@@ -23,6 +23,7 @@
 "profile.phone" = "Số điện thoại";
 "profile.logOutButton" = "Đăng xuất";
 "profile.orderList" = "Đơn hàng chưa giao";
+"profile.pickupList" = "Địa điểm nhận hàng";
 "profile.changeLanguage" = "Đổi ngôn ngữ";
 "profile.update" = "Cập nhật hồ sơ";
 "profile.changePassword" = "Đổi mật khẩu";

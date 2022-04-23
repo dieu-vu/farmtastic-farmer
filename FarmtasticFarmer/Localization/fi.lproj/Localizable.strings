@@ -23,6 +23,7 @@
 "profile.phone" = "Puhelinnumero";
 "profile.logOutButton" = "Kirjaudu ulos";
 "profile.orderList" = "aktiivinen tilaus";
+"profile.pickupList" = "Kerää pisteitä";
 "profile.changeLanguage" = "Vaihda kieltä";
 "profile.update" = "Päivitä profiili";
 "profile.changePassword" = "Vaihda salasana";
