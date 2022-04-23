@@ -16,43 +16,44 @@ struct LoginView: View {
     
     
     var body: some View {
-        ScrollView() {
-        
-            Image("headerImage").overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
-        
-        
-            Text("Log In")
-                .font(.largeTitle)
+        VStack() {
+            Image("headerImage").resizable().frame(width: 450, height: 400).overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
             
-            VStack(alignment: .leading, spacing: 15) {
-
-                TextField("Username", text: $username)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-                    .autocapitalization(.none)
-                SecureField("Password", text: $password)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                        )
-            }.padding([.leading, .trailing], 27.5)
-            
-            ButtonView(buttonText: "Login",
-                       buttonColorLight: "LightGreen",
-                       buttonColorDark: "DarkGreen",
-                       buttonAction: {
-                authentication.login(username: username, password: password)
-                })
-        }
+            RoundedRectangle(cornerRadius: 10).fill(.white).shadow(radius: 5).frame(height: 350).offset(y: -100).padding(.horizontal, 20).overlay(
+                VStack {
+                    Text("Log In").font(.largeTitle)
+                    VStack(alignment: .leading, spacing: 15) {
+                        TextField("Username", text: $username)
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.gray, lineWidth: 1)
+                            )
+                            .autocapitalization(.none)
+                        SecureField("Password", text: $password)
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.gray, lineWidth: 1)
+                            )
+                    }.padding([.leading, .trailing], 32)
+                    ButtonView(buttonText: "Login",
+                               buttonColorLight: "LightGreen",
+                               buttonColorDark: "DarkGreen",
+                               buttonAction: {
+                        authentication.login(username: username, password: password)
+                    })
+                }.offset(y: -80)
+            ).padding(.bottom, -100)
+            Image("logo").resizable().scaledToFit().frame(width: 300, height: 300).padding(.bottom, 50)
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .previewDevice("iPhone 13 Pro Max")
+            .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
