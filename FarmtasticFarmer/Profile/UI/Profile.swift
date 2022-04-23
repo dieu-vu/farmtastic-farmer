@@ -16,6 +16,7 @@ struct ProfileScreen: View {
     @EnvironmentObject var authentication: AuthenticationController
     @EnvironmentObject var userController: UserDataController
     @State private var presentAlert = false
+    @State var navigateToOrder = false
   
     let persistenceController = PersistenceController.shared
     
@@ -28,7 +29,7 @@ struct ProfileScreen: View {
         ScrollView {
             Color("AppBackground")
             HeaderImage()
-            Text("\(loggedInUser[0].username), \(loggedInUser[0].user_id), count \(loggedInUser.count)")
+            //Text("\(loggedInUser[0].username), \(loggedInUser[0].user_id), count \(loggedInUser.count)")
             UserInfoCardView(currentUser: $userController.currentUser)
             actionButtonGroup
             ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
@@ -59,11 +60,15 @@ struct ProfileScreen: View {
     
     var actionButtonGroup: some View {
         VStack {
-            ActionButton(icon: "clock", title: "profile.orderList".localized(language: language), onClick: {})
+            NavigationLink(destination: ActiveOrderScreen(), isActive: $navigateToOrder) {
+                ActionButton(icon: "clock", title: "profile.orderList".localized(language: language), onClick: {
+                    self.navigateToOrder = true
+                })
+            }
             ActionButton(icon: "t.bubble", title: "profile.changeLanguage".localized(language: language), onClick: { showLanguageBottomSheet.toggle()})
             ActionButton(icon: "pencil", title: "profile.update".localized(language: language), onClick: { showUpdateProfile.toggle() })
             ActionButton(icon: "person.circle", title: "profile.changePassword".localized(language: language), onClick: { showChangePassword.toggle() })
-        }
+        }.navigationBarHidden(true)
     }
 }
 

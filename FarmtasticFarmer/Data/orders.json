@@ -1,0 +1,197 @@
+[
+    {
+        "order_id": 1,
+        "order_date": "2022-04-20",
+        "pickup_date": "2022-04-22",
+        "pickup_location": 1,
+        "items": [
+            {
+                "id": 1,
+                "name": "Carrot",
+                "sold_quantity": "1kg"
+            },
+            {
+                "id": 2,
+                "name": "Brocoli",
+                "sold_quantity": "2kg"
+            },
+        ]
+    },
+    {
+        "id": 2,
+        "order_id": 2,
+        "order_date": "2022-04-20",
+        "pickup_date": "2022-04-22",
+        "pickup_location": 2,
+        "items": [
+            {
+                "id": 1,
+                "name": "Chicken",
+                "sold_quantity": "5kg"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "order_id": 3,
+        "order_date": "2022-04-21",
+        "pickup_date": "2022-04-23",
+        "pickup_location": 3,
+        "items": [
+            {
+                "id": 1,
+                "name": "Pork",
+                "sold_quantity": "5kg"
+            },
+            {
+                "id": 2,
+                "name": "Beef",
+                "sold_quantity": "2kg"
+            },
+        ]
+    },
+    {
+        "id": 4,
+        "order_id": 4,
+        "order_date": "2022-04-20",
+        "pickup_date": "2022-04-23",
+        "pickup_location": 1,
+        "items": [
+            {
+                "id": 1,
+                "name": "Egg",
+                "sold_quantity": "2 pieces"
+            },
+            {
+                "id": 2,
+                "name": "Chicken",
+                "sold_quantity": "2kg"
+            },
+        ]
+    },
+    {
+        "id": 5,
+        "order_id": 5,
+        "order_date": "2022-04-21",
+        "pickup_date": "2022-04-24",
+        "pickup_location": 2,
+        "items": [
+            {
+                "id": 1,
+                "name": "Bok choy",
+                "sold_quantity": "2kg"
+            },
+            {
+                "id": 2,
+                "name": "Cabbage",
+                "sold_quantity": "2kg"
+            },
+        ]
+    },
+    {
+        "id": 6,
+        "order_id": 6,
+        "order_date": "2022-04-20",
+        "pickup_date": "2022-04-22",
+        "pickup_location": 3,
+        "items": [
+            {
+                "id": 1,
+                "name": "Apple",
+                "sold_quantity": "1kg"
+            },
+            {
+                "id": 2,
+                "name": "Lemon",
+                "sold_quantity": "2kg"
+            },
+            {
+                "id": 3,
+                "name": "Starfruit",
+                "sold_quantity": "2kg"
+            },
+        ]
+    },
+    {
+        "id": 7,
+        "order_id": 7,
+        "order_date": "2022-04-21",
+        "pickup_date": "2022-04-23",
+        "pickup_location": 3,
+        "items": [
+            {
+                "id": 1,
+                "name": "Apple",
+                "sold_quantity": "5kg"
+            },
+        ]
+    },
+    {
+        "id": 8,
+        "order_id": 8,
+        "order_date": "2022-04-20",
+        "pickup_date": "2022-04-24",
+        "pickup_location": 2,
+        "items": [
+            {
+                "id": 1,
+                "name": "Egg",
+                "sold_quantity": "1 piece"
+            },
+            {
+                "id": 2,
+                "name": "Salad",
+                "sold_quantity": "2kg"
+            },
+        ]
+    },
+    {
+        "id": 9,
+        "order_id": 9,
+        "order_date": "2022-04-21",
+        "pickup_date": "2022-04-25",
+        "pickup_location": 2,
+        "items": [
+            {
+                "id": 1,
+                "name": "Tomato",
+                "sold_quantity": "1kg"
+            },
+            {
+                "id": 2,
+                "name": "Peas",
+                "sold_quantity": "2kg"
+            },
+            {
+                "id": 3,
+                "name": "Lettuce",
+                "sold_quantity": "2kg"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "order_id": 10,
+        "order_date": "2022-04-20",
+        "pickup_date": "2022-04-26",
+        "pickup_location": 1,
+        "items": [
+            {
+                "id": 1,
+                "name": "Beef",
+                "sold_quantity": "1kg"
+            },
+            {
+                "id": 2,
+                "name": "Chicken",
+                "sold_quantity": "2kg"
+            },
+            {
+                "id": 3,
+                "name": "Sweet pepper",
+                "sold_quantity": "2kg"
+            },
+        ]
+    },
+]
+ 

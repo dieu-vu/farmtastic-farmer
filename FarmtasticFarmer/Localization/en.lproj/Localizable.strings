@@ -22,7 +22,7 @@
 "profile.address" = "Address";
 "profile.phone" = "Phone";
 "profile.logOutButton" = "Log out";
-"profile.orderList" = "Order list";
+"profile.orderList" = "Active orders";
 "profile.changeLanguage" = "Change language";
 "profile.update" = "Update profile";
 "profile.changePassword" = "Change password";

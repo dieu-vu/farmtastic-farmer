@@ -22,7 +22,7 @@
 "profile.address" = "Địa chỉ";
 "profile.phone" = "Số điện thoại";
 "profile.logOutButton" = "Đăng xuất";
-"profile.orderList" = "Danh sách đặt hàng";
+"profile.orderList" = "Đơn hàng chưa giao";
 "profile.changeLanguage" = "Đổi ngôn ngữ";
 "profile.update" = "Cập nhật hồ sơ";
 "profile.changePassword" = "Đổi mật khẩu";
