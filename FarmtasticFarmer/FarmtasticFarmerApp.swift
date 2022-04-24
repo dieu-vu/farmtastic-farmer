@@ -36,10 +36,10 @@ struct ApplicationSwitcher: View {
     let persistenceController = PersistenceController.shared
     
     var body: some View {
-       if (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
-            //BaseView()
-             //   .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            MapView()
+       if ((KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) || (KeychainHelper.standard.read(service: "password", account: "farmtastic") != nil)) {
+            BaseView()
+               .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            //MapView()
         }
         else {
             LoginView()

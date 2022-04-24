@@ -16,7 +16,7 @@ struct PickupPointRow: View {
     var body: some View {
         HStack(){
             VStack(alignment: .leading, spacing: 5) {
-                Text("Address: \(pickupPoint.coordinate.latitude)").font(.title3).bold()
+                Text("Address: \(pickupPoint.name)").font(.title3).bold()
                 //Text("Date: \(pickupPoint.date)").bold()
                 //Text("Time: \(pickupPoint.date)").bold()
                     .padding(.bottom, 5)
