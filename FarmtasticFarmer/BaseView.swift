@@ -44,19 +44,23 @@ struct BaseView: View {
                     Text("profile".localized(language: language))
                 }
                 .onAppear{
+                    
                     userController.fetchUser{
                         result in
                         switch result {
                         case .success(let user):
                             userController.currentUser = user
                         case .failure(let error):
-                            authController.logout()
-                            fatalError(error.localizedDescription)
+                            //authController.logout()
+                            //fatalError(error.localizedDescription)
+                            print(error.localizedDescription)
                         }
                     }
                     print("LOGGED IN USER: \($userController.currentUser)")
                 }
-        }.accentColor(Color("DarkGreen"))
+            
+        }
+        .accentColor(Color("DarkGreen"))
             
     }
        

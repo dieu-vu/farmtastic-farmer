@@ -17,6 +17,9 @@
 		01853A7028069AA1000953EB /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01853A6F28069AA1000953EB /* WebService.swift */; };
 		01853A722806C95E000953EB /* UpdateUserInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01853A712806C95E000953EB /* UpdateUserInfoController.swift */; };
 		01853A7A2807FD89000953EB /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01853A792807FD89000953EB /* AuthenticationController.swift */; };
+		01DEC6D7280EDB7000EDDF19 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEC6D6280EDB7000EDDF19 /* MapView.swift */; };
+		01DEC6DA280EE27500EDDF19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DEC6D9280EE27500EDDF19 /* MapKit.framework */; };
+		01DEC6DD281290EF00EDDF19 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEC6DC281290EF00EDDF19 /* LocationManager.swift */; };
 		182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */; };
 		182D9C2D27F9E01300158D0C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2C27F9E01300158D0C /* BaseView.swift */; };
 		182D9C2F27F9E01400158D0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182D9C2E27F9E01400158D0C /* Assets.xcassets */; };
@@ -49,6 +52,8 @@
 		2D863BE02811FB4800AC1EB2 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D863BDF2811FB4800AC1EB2 /* OrderRow.swift */; };
 		8732FE9928081FDB002EC378 /* CategoryProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732FE9828081FDB002EC378 /* CategoryProductListView.swift */; };
 		8732FE9B2808200A002EC378 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732FE9A2808200A002EC378 /* SearchBar.swift */; };
+		878722BF28148E3600AB7F38 /* PickupPointRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722BE28148E3600AB7F38 /* PickupPointRow.swift */; };
+		878722C128148E9200AB7F38 /* PickupPointScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722C028148E9200AB7F38 /* PickupPointScreen.swift */; };
 		8788398B280A0CED00A2593C /* FloatingActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */; };
 		8788398D280A0EB000A2593C /* ProductAddScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8788398C280A0EB000A2593C /* ProductAddScreen.swift */; };
 		87C66D1427FF6F950068503E /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1327FF6F940068503E /* SearchResults.swift */; };
@@ -101,6 +106,10 @@
 		01853A6F28069AA1000953EB /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		01853A712806C95E000953EB /* UpdateUserInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoController.swift; sourceTree = "<group>"; };
 		01853A792807FD89000953EB /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		01DEC6D6280EDB7000EDDF19 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		01DEC6D9280EE27500EDDF19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		01DEC6DB280EE2C200EDDF19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		01DEC6DC281290EF00EDDF19 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		182D9C2727F9E01300158D0C /* FarmtasticFarmer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmtasticFarmer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerApp.swift; sourceTree = "<group>"; };
 		182D9C2C27F9E01300158D0C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -136,6 +145,8 @@
 		2D863BDF2811FB4800AC1EB2 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
 		8732FE9828081FDB002EC378 /* CategoryProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListView.swift; sourceTree = "<group>"; };
 		8732FE9A2808200A002EC378 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		878722BE28148E3600AB7F38 /* PickupPointRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointRow.swift; sourceTree = "<group>"; };
+		878722C028148E9200AB7F38 /* PickupPointScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointScreen.swift; sourceTree = "<group>"; };
 		8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtonView.swift; sourceTree = "<group>"; };
 		8788398C280A0EB000A2593C /* ProductAddScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddScreen.swift; sourceTree = "<group>"; };
 		87C66D1327FF6F940068503E /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
@@ -163,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01DEC6DA280EE27500EDDF19 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +195,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01DEC6D4280EDAFF00EDDF19 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				01DEC6DC281290EF00EDDF19 /* LocationManager.swift */,
+				01DEC6D5280EDB5600EDDF19 /* UI */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		01DEC6D5280EDB5600EDDF19 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				01DEC6D6280EDB7000EDDF19 /* MapView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		01DEC6D8280EE27500EDDF19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01DEC6D9280EE27500EDDF19 /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		182D9C1E27F9E01300158D0C = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +227,7 @@
 				182D9C3F27F9E01400158D0C /* FarmtasticFarmerTests */,
 				182D9C4927F9E01400158D0C /* FarmtasticFarmerUITests */,
 				182D9C2827F9E01300158D0C /* Products */,
+				01DEC6D8280EE27500EDDF19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +244,8 @@
 		182D9C2927F9E01300158D0C /* FarmtasticFarmer */ = {
 			isa = PBXGroup;
 			children = (
+				01DEC6DB280EE2C200EDDF19 /* Info.plist */,
+				01DEC6D4280EDAFF00EDDF19 /* Order */,
 				2D863BDA28117B9500AC1EB2 /* Data */,
 				18C079C4280B0FEC0079E186 /* CoreDataModels */,
 				18C079A028096F2C0079E186 /* Utils */,
@@ -299,6 +339,7 @@
 				B3ED079C27FF56AF00A95D0E /* Profile.swift */,
 				182D9C6327F9E08B00158D0C /* UIComponents */,
 				2D863BD628117A7A00AC1EB2 /* ActiveOrderScreen.swift */,
+				878722C028148E9200AB7F38 /* PickupPointScreen.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -334,6 +375,7 @@
 				B3986C032804A249003C4130 /* ChangePasswordView.swift */,
 				187DFEB82802A9200033693C /* UserInfoCardView.swift */,
 				2D863BDF2811FB4800AC1EB2 /* OrderRow.swift */,
+				878722BE28148E3600AB7F38 /* PickupPointRow.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -631,8 +673,11 @@
 				2D863BD728117A7A00AC1EB2 /* ActiveOrderScreen.swift in Sources */,
 				8732FE9B2808200A002EC378 /* SearchBar.swift in Sources */,
 				0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */,
+				01DEC6DD281290EF00EDDF19 /* LocationManager.swift in Sources */,
 				B3986BF528043876003C4130 /* ProductMainScreen.swift in Sources */,
+				878722C128148E9200AB7F38 /* PickupPointScreen.swift in Sources */,
 				B3ED079D27FF56AF00A95D0E /* Profile.swift in Sources */,
+				01DEC6D7280EDB7000EDDF19 /* MapView.swift in Sources */,
 				1891D9A0280EBCDB00428C3C /* Location+CoreDataProperties.swift in Sources */,
 				1891D99F280EBCDB00428C3C /* Location+CoreDataClass.swift in Sources */,
 				18C079C0280B0FE60079E186 /* ProductFetched+CoreDataClass.swift in Sources */,
@@ -643,6 +688,7 @@
 				B37CCD672806B52A004BE217 /* LocalizationService.swift in Sources */,
 				0112CACC27FF09E100A77B74 /* ButtonView.swift in Sources */,
 				B347E622280315E400DA9863 /* HeaderImage.swift in Sources */,
+				878722BF28148E3600AB7F38 /* PickupPointRow.swift in Sources */,
 				0112CAC427FEC6C000A77B74 /* Language.swift in Sources */,
 				18C079C9280D729B0079E186 /* Constants.swift in Sources */,
 				0112CAEA28059D0B00A77B74 /* ChangePasswordController.swift in Sources */,
@@ -858,6 +904,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FarmtasticFarmer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FarmtasticFarmer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Geolocation is needed to show your location on the map.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Geolocation is needed to show your location on the map.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Geolocation is needed to show your location on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -888,6 +938,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FarmtasticFarmer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FarmtasticFarmer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Geolocation is needed to show your location on the map.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Geolocation is needed to show your location on the map.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Geolocation is needed to show your location on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

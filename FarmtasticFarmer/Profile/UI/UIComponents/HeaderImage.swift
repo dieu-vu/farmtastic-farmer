@@ -14,7 +14,7 @@ struct HeaderImage: View {
     }
     
     var headerImage: some View {
-        Image("headerImage").overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
+        Image("headerImage").resizable().scaledToFit().overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
     }
     
     var avatar: some View {

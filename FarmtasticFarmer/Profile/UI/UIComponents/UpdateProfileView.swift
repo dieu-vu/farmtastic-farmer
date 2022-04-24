@@ -18,27 +18,31 @@ struct UpdateProfileView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: []) private var loggedInUser: FetchedResults<UserFetched>
     
+    @State var newName = ""
+    @State var newAddress = ""
+    @State var newNumber = ""
+    
     var body: some View {
         NavigationView {
             VStack {
                 Text("User in coredata \(loggedInUser.count)")
                 Text("profile.update".localized(language: language)).font(.title).bold()
                 VStack(alignment: .leading, spacing: 15) {
-                    TextField("profile.newName".localized(language: language), text: $updateUserInfoController.name)
+                    TextField("profile.newName".localized(language: language), text: $newName)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .disabled(isDisabled)
-                    TextField("profile.newAddress".localized(language: language), text: $updateUserInfoController.address)
+                    TextField("profile.newAddress".localized(language: language), text: $newAddress)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .disabled(isDisabled)
-                    TextField("profile.newPhone".localized(language: language), text: $updateUserInfoController.phone)
+                    TextField("profile.newPhone".localized(language: language), text: $newNumber)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
@@ -50,14 +54,15 @@ struct UpdateProfileView: View {
                 ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
                     isDisabled = true
                     closeKeyboard()
-                    
+                    checkNewUserData(newName: newName, newNumber: newNumber, newAddress: newAddress, loggedInUser: loggedInUser.last)
+                    updateUserInfoController.updateUserInfo(name: newName, address: newAddress, phone: newNumber)
                     // Verify if update fields are left blank, if blank then filled from CoreData
-                    let temp = checkNewUserData(newData: updateUserInfoController, loggedInUser: loggedInUser.last)
-                    updateUserInfoController.address = temp.address
+                    //let temp = checkNewUserData(newData: updateUserInfoController, loggedInUser: loggedInUser.last)
+                    /*updateUserInfoController.address = temp.address
                     updateUserInfoController.name = temp.name
                     updateUserInfoController.phone = temp.phone
                     updateUserInfoController.location = [Int](loggedInUser.last?.location ?? [])
-                    updateUserInfoController.updateUserInfo()
+                    updateUserInfoController.updateUserInfo()*/
                     showUpdateProfile.toggle()
                     
                 })
@@ -66,18 +71,17 @@ struct UpdateProfileView: View {
         }
     }
     
-    func checkNewUserData(newData: UpdateUserInfoController, loggedInUser: UserFetched?) -> UpdateUserInfoController {
-        let checkedNewData = UpdateUserInfoController()
-        if newData.address == "" {
-            checkedNewData.address = loggedInUser?.address ?? ""
+    func checkNewUserData(newName: String, newNumber: String, newAddress: String, loggedInUser: UserFetched?) {
+        //let checkedNewData = UpdateUserInfoController()
+        if newAddress == "" {
+            self.newName = loggedInUser?.address ?? ""
         }
-        if newData.phone == "" {
-            checkedNewData.phone = loggedInUser?.phone ?? ""
+        if newNumber == "" {
+            self.newNumber = loggedInUser?.phone ?? ""
         }
-        if newData.name == "" {
-            checkedNewData.name = loggedInUser?.name ?? ""
+        if newName == "" {
+            self.newName = loggedInUser?.name ?? ""
         }
-        return checkedNewData
     }
 }
 
