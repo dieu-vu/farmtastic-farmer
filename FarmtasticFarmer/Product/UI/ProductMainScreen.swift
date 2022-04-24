@@ -12,6 +12,9 @@ struct ProductMainScreen: View {
     @State var searchText = ""
     @State var searching = false
     
+    @State var navigateToAddProduct: Bool = false
+    
+    
     let meatProductList = Product.sampleProductsList.filter {
         $0.Category.starts(with: "Meat")
     }
@@ -36,8 +39,11 @@ struct ProductMainScreen: View {
                     CategoryProductListView(products: vegeProductList, category: "Vegetables")
                     CategoryProductListView(products: fruitProductList, category: "Fruit")
                 }
+                NavigationLink(destination: ProductAddScreen(), isActive: $navigateToAddProduct){
             }
-        }.toolbar {
+           
+        }
+        .toolbar {
             if searching {
                 Button("Cancel") {
                     searchText = ""
@@ -52,11 +58,11 @@ struct ProductMainScreen: View {
                     .onChanged({ _ in
             UIApplication.shared.dismissKeyboard()
         })
-        ).floatingActionButton(color: Color("LightYellow"),
-                               image: Image(systemName: "plus")
-                                .foregroundColor(.black)) {
-            
-        }
+        )
+        .floatingActionButton(color: Color("LightYellow"),
+                              image: Image(systemName: "plus").foregroundColor(.black)){
+            navigateToAddProduct = true
+        }}
     }
     
 }

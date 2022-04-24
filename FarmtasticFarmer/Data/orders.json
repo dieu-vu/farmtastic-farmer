@@ -8,12 +8,12 @@
             {
                 "id": 1,
                 "name": "Carrot",
-                "sold_quantity": "1kg"
+                "sold_quantity": "1.0"
             },
             {
                 "id": 2,
-                "name": "Brocoli",
-                "sold_quantity": "2kg"
+                "name": "Broccoli",
+                "sold_quantity": "2.0"
             },
         ]
     },

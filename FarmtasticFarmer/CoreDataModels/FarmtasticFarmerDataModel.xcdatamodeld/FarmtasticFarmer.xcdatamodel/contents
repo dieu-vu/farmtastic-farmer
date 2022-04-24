@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="CartItem" representedClassName="CartItem" parentEntity="Order" syncable="YES">
         <attribute name="sold_quantity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="order" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="items" inverseEntity="Order"/>
-        <relationship name="product_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductFetched" inverseName="sold_quantity" inverseEntity="ProductFetched"/>
+        <relationship name="product_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductFetched" inverseName="sold_in_cart" inverseEntity="ProductFetched"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -27,7 +27,7 @@
         <attribute name="selling_quantity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="unit" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="unit_price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="sold_quantity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CartItem" inverseName="product_id" inverseEntity="CartItem"/>
+        <relationship name="sold_in_cart" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CartItem" inverseName="product_id" inverseEntity="CartItem"/>
     </entity>
     <entity name="UserFetched" representedClassName="UserFetched" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String"/>

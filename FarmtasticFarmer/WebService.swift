@@ -308,6 +308,9 @@ class WebService {
     }
     
     func getProducts(){
+        // Get files from API based on user id
+        // Filter for files with title including "farmtastic"
+        
         
     }
     

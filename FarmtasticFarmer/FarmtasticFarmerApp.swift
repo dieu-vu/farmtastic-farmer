@@ -40,6 +40,7 @@ struct ApplicationSwitcher: View {
             BaseView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
 //            MapView()
+           
         }
         else {
             LoginView()
