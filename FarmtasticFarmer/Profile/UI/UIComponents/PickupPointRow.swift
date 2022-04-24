@@ -17,8 +17,8 @@ struct PickupPointRow: View {
         HStack(){
             VStack(alignment: .leading, spacing: 5) {
                 Text("Address: \(pickupPoint.coordinate.latitude)").font(.title3).bold()
-                Text("Date: \(pickupPoint.date)").bold()
-                Text("Time: \(pickupPoint.date)").bold()
+                //Text("Date: \(pickupPoint.date)").bold()
+                //Text("Time: \(pickupPoint.date)").bold()
                     .padding(.bottom, 5)
             }
             Image(systemName: "pencil")
@@ -38,7 +38,7 @@ struct PickupPointRow: View {
 
 struct PickupPointRow_Previews: PreviewProvider {
     static var previews: some View {
-        PickupPointRow(pickupPoint: PickupPoint(name: "Pickup point 3", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96), date: "2022-04-20 13:47:29 +0000"))
+        PickupPointRow(pickupPoint: PickupPoint(name: "Pickup point 3", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96)))
     }
 }
 
