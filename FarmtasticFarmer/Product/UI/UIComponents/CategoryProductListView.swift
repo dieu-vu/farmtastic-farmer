@@ -27,6 +27,7 @@ struct CategoryProductListView: View {
                 }
             }
         }
+        .padding(.horizontal, 8)
     }
 }
 

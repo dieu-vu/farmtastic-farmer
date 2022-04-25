@@ -7,13 +7,15 @@
 
 import SwiftUI
 struct SearchResults: View {
+    @Binding var searchText: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("\(searchText)")
     }
 }
 
-struct SearchResults_Previews: PreviewProvider {
+/*struct SearchResults_Previews: PreviewProvider {
     static var previews: some View {
         SearchResults()
     }
-}
+}*/
