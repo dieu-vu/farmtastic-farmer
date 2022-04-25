@@ -17,7 +17,6 @@ struct LoginView: View {
     
     @State var password: String = ""
     
-    
     var body: some View {
         VStack() {
             Image("headerImage").resizable().frame(width: 450, height: 400).overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
