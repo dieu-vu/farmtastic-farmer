@@ -15,6 +15,9 @@ struct ProductMainScreen: View {
     @State var isOn: Bool = false
     @StateObject var speechRecognizer = SpeechRecognizer()
     
+    @State var navigateToAddProduct: Bool = false
+    
+    
     let meatProductList = Product.sampleProductsList.filter {
         $0.Category.starts(with: "Meat")
     }
@@ -70,12 +73,15 @@ struct ProductMainScreen: View {
             .onAppear {
                 searchText = ""
             }
+            
             ScrollView {
                 VStack{
                     CategoryProductListView(products: meatProductList, category: "Meat")
                     CategoryProductListView(products: vegeProductList, category: "Vegetables")
                     CategoryProductListView(products: fruitProductList, category: "Fruit")
                 }
+                NavigationLink(destination: ProductAddScreen(), isActive: $navigateToAddProduct){}
+
             }
             .gesture(DragGesture()
                 .onChanged({ _ in
@@ -85,9 +91,11 @@ struct ProductMainScreen: View {
             .floatingActionButton(color: Color("LightYellow"),
                                   image: Image(systemName: "plus")
                 .foregroundColor(.black)) {
-                    
+                    navigateToAddProduct = true
                 }
+
         }
+
     }
 }
 

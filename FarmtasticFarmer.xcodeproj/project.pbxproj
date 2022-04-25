@@ -30,6 +30,9 @@
 		182D9C4127F9E01400158D0C /* FarmtasticFarmerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C4027F9E01400158D0C /* FarmtasticFarmerTests.swift */; };
 		182D9C4B27F9E01400158D0C /* FarmtasticFarmerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C4A27F9E01400158D0C /* FarmtasticFarmerUITests.swift */; };
 		182D9C4D27F9E01400158D0C /* FarmtasticFarmerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C4C27F9E01400158D0C /* FarmtasticFarmerUITestsLaunchTests.swift */; };
+		185C914D2815307500CBDCB6 /* ProductFetched+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C914B2815307500CBDCB6 /* ProductFetched+CoreDataClass.swift */; };
+		185C914E2815307500CBDCB6 /* ProductFetched+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C914C2815307500CBDCB6 /* ProductFetched+CoreDataProperties.swift */; };
+		185C9150281532DD00CBDCB6 /* ProductFromAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185C914F281532DD00CBDCB6 /* ProductFromAPI.swift */; };
 		187DFEB92802A9200033693C /* UserInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEB82802A9200033693C /* UserInfoCardView.swift */; };
 		187DFEBB2802BB780033693C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEBA2802BB780033693C /* User.swift */; };
 		187DFEBF2802CC0B0033693C /* UserDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEBE2802CC0B0033693C /* UserDataController.swift */; };
@@ -40,13 +43,12 @@
 		18C079BD280B0FE60079E186 /* CartItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B5280B0FE60079E186 /* CartItem+CoreDataProperties.swift */; };
 		18C079BE280B0FE60079E186 /* UserFetched+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B6280B0FE60079E186 /* UserFetched+CoreDataClass.swift */; };
 		18C079BF280B0FE60079E186 /* UserFetched+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */; };
-		18C079C0280B0FE60079E186 /* ProductFetched+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B8280B0FE60079E186 /* ProductFetched+CoreDataClass.swift */; };
-		18C079C1280B0FE60079E186 /* ProductFetched+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B9280B0FE60079E186 /* ProductFetched+CoreDataProperties.swift */; };
 		18C079C2280B0FE60079E186 /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079BA280B0FE60079E186 /* Order+CoreDataClass.swift */; };
 		18C079C3280B0FE60079E186 /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079BB280B0FE60079E186 /* Order+CoreDataProperties.swift */; };
 		18C079C7280D6F8E0079E186 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079C6280D6F8E0079E186 /* ProductModel.swift */; };
 		18C079C9280D729B0079E186 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079C8280D729B0079E186 /* Constants.swift */; };
 		18C079CB280D77CF0079E186 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C079CA280D77CF0079E186 /* users.json */; };
+		18E65337281698FC00DE8D81 /* ProductDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E65336281698FC00DE8D81 /* ProductDataController.swift */; };
 		2D863BD728117A7A00AC1EB2 /* ActiveOrderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D863BD628117A7A00AC1EB2 /* ActiveOrderScreen.swift */; };
 		2D863BD928117B1800AC1EB2 /* ActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D863BD828117B1800AC1EB2 /* ActiveOrder.swift */; };
 		2D863BDC28117BA400AC1EB2 /* orders.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D863BDB28117BA400AC1EB2 /* orders.json */; };
@@ -123,6 +125,9 @@
 		182D9C4627F9E01400158D0C /* FarmtasticFarmerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FarmtasticFarmerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		182D9C4A27F9E01400158D0C /* FarmtasticFarmerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerUITests.swift; sourceTree = "<group>"; };
 		182D9C4C27F9E01400158D0C /* FarmtasticFarmerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		185C914B2815307500CBDCB6 /* ProductFetched+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductFetched+CoreDataClass.swift"; sourceTree = "<group>"; };
+		185C914C2815307500CBDCB6 /* ProductFetched+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductFetched+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		185C914F281532DD00CBDCB6 /* ProductFromAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFromAPI.swift; sourceTree = "<group>"; };
 		187DFEB82802A9200033693C /* UserInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCardView.swift; sourceTree = "<group>"; };
 		187DFEBA2802BB780033693C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = FarmtasticFarmer/Profile/Models/User.swift; sourceTree = SOURCE_ROOT; };
 		187DFEBE2802CC0B0033693C /* UserDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataController.swift; sourceTree = "<group>"; };
@@ -133,13 +138,12 @@
 		18C079B5280B0FE60079E186 /* CartItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CartItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18C079B6280B0FE60079E186 /* UserFetched+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFetched+CoreDataClass.swift"; sourceTree = "<group>"; };
 		18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFetched+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		18C079B8280B0FE60079E186 /* ProductFetched+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductFetched+CoreDataClass.swift"; sourceTree = "<group>"; };
-		18C079B9280B0FE60079E186 /* ProductFetched+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductFetched+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18C079BA280B0FE60079E186 /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
 		18C079BB280B0FE60079E186 /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18C079C6280D6F8E0079E186 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		18C079C8280D729B0079E186 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		18C079CA280D77CF0079E186 /* users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
+		18E65336281698FC00DE8D81 /* ProductDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDataController.swift; path = FarmtasticFarmer/Product/Controller/ProductDataController.swift; sourceTree = SOURCE_ROOT; };
 		2D863BD628117A7A00AC1EB2 /* ActiveOrderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveOrderScreen.swift; sourceTree = "<group>"; };
 		2D863BD828117B1800AC1EB2 /* ActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveOrder.swift; sourceTree = "<group>"; };
 		2D863BDB28117BA400AC1EB2 /* orders.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = orders.json; sourceTree = "<group>"; };
@@ -425,14 +429,14 @@
 		18C079C4280B0FEC0079E186 /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				185C914B2815307500CBDCB6 /* ProductFetched+CoreDataClass.swift */,
+				185C914C2815307500CBDCB6 /* ProductFetched+CoreDataProperties.swift */,
 				1891D99D280EBCDB00428C3C /* Location+CoreDataClass.swift */,
 				1891D99E280EBCDB00428C3C /* Location+CoreDataProperties.swift */,
 				18C079B4280B0FE60079E186 /* CartItem+CoreDataClass.swift */,
 				18C079B5280B0FE60079E186 /* CartItem+CoreDataProperties.swift */,
 				18C079B6280B0FE60079E186 /* UserFetched+CoreDataClass.swift */,
 				18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */,
-				18C079B8280B0FE60079E186 /* ProductFetched+CoreDataClass.swift */,
-				18C079B9280B0FE60079E186 /* ProductFetched+CoreDataProperties.swift */,
 				182D9C3527F9E01400158D0C /* FarmtasticFarmerDataModel.xcdatamodeld */,
 				18C079BA280B0FE60079E186 /* Order+CoreDataClass.swift */,
 				18C079BB280B0FE60079E186 /* Order+CoreDataProperties.swift */,
@@ -465,6 +469,7 @@
 			children = (
 				18C079C6280D6F8E0079E186 /* ProductModel.swift */,
 				87C66D1B27FF76620068503E /* Product.swift */,
+				185C914F281532DD00CBDCB6 /* ProductFromAPI.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 		87C66D0F27FEE9A40068503E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18E65336281698FC00DE8D81 /* ProductDataController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -663,8 +669,8 @@
 				18C079BC280B0FE60079E186 /* CartItem+CoreDataClass.swift in Sources */,
 				0112CAE228057FD300A77B74 /* KeychainHelper.swift in Sources */,
 				01853A7028069AA1000953EB /* WebService.swift in Sources */,
-				18C079C1280B0FE60079E186 /* ProductFetched+CoreDataProperties.swift in Sources */,
 				187DFEB92802A9200033693C /* UserInfoCardView.swift in Sources */,
+				185C9150281532DD00CBDCB6 /* ProductFromAPI.swift in Sources */,
 				8732FE9928081FDB002EC378 /* CategoryProductListView.swift in Sources */,
 				2D863BD928117B1800AC1EB2 /* ActiveOrder.swift in Sources */,
 				B3986C042804A249003C4130 /* ChangePasswordView.swift in Sources */,
@@ -679,7 +685,6 @@
 				01DEC6D7280EDB7000EDDF19 /* MapView.swift in Sources */,
 				1891D9A0280EBCDB00428C3C /* Location+CoreDataProperties.swift in Sources */,
 				1891D99F280EBCDB00428C3C /* Location+CoreDataClass.swift in Sources */,
-				18C079C0280B0FE60079E186 /* ProductFetched+CoreDataClass.swift in Sources */,
 				0112CAC227FEBE6900A77B74 /* LanguagePicker.swift in Sources */,
 				18C079C3280B0FE60079E186 /* Order+CoreDataProperties.swift in Sources */,
 				18C079A228096F3F0079E186 /* Utils.swift in Sources */,
@@ -688,6 +693,7 @@
 				B37CCD672806B52A004BE217 /* LocalizationService.swift in Sources */,
 				0112CACC27FF09E100A77B74 /* ButtonView.swift in Sources */,
 				B347E622280315E400DA9863 /* HeaderImage.swift in Sources */,
+				18E65337281698FC00DE8D81 /* ProductDataController.swift in Sources */,
 				878722BF28148E3600AB7F38 /* PickupPointRow.swift in Sources */,
 				0112CAC427FEC6C000A77B74 /* Language.swift in Sources */,
 				18C079C9280D729B0079E186 /* Constants.swift in Sources */,
@@ -699,8 +705,10 @@
 				87C66D2228000E800068503E /* (null) in Sources */,
 				87C66D1E27FF792A0068503E /* ProductResultCard.swift in Sources */,
 				18C079BF280B0FE60079E186 /* UserFetched+CoreDataProperties.swift in Sources */,
+				185C914E2815307500CBDCB6 /* ProductFetched+CoreDataProperties.swift in Sources */,
 				87C66D1427FF6F950068503E /* SearchResults.swift in Sources */,
 				182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */,
+				185C914D2815307500CBDCB6 /* ProductFetched+CoreDataClass.swift in Sources */,
 				187DFEBB2802BB780033693C /* User.swift in Sources */,
 				B3ED079927FF55AC00A95D0E /* Home.swift in Sources */,
 				8788398D280A0EB000A2593C /* ProductAddScreen.swift in Sources */,
