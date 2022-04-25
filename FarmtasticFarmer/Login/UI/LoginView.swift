@@ -11,11 +11,11 @@ struct LoginView: View {
     
     @EnvironmentObject var authentication: AuthenticationController
     @StateObject var userController = UserDataController()
-    @State var username: String = "hangHuynh"
+    @State var username: String = ""
     
     //@State var password: String = String(data: KeychainHelper.standard.read(service: "password", account: "farmtastic")!, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")
     
-    @State var password: String = String(data: KeychainHelper.standard.read(service: "password", account: "farmtastic")!, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")
+    @State var password: String = ""
     
     
     var body: some View {
@@ -33,7 +33,7 @@ struct LoginView: View {
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                             .autocapitalization(.none)
-                        SecureField("Password", text: $password)
+                        TextField("Password", text: $password)
                             .padding()
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)

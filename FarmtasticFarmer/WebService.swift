@@ -121,12 +121,19 @@ class WebService {
     }
     
     func getUserToken() -> String? {
-        
-        guard let data = KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") else {
-            fatalError("getUserToken: Token not found")
+        var token = ""
+        if let data = KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") {
+            token = String(data: data, encoding: .utf8)!
+        } else {
+            if KeychainHelper.standard.read(service: "password", account: "farmtastic") != nil {
+                reAuthentication()
+                token = getUserToken()!
+            } else {
+                fatalError("getUserToken: Token not found")
+            }
         }
-        
-        return String(data: data, encoding: .utf8)
+            
+        return token
     }
     
     func getUser(allowRetry: Bool = true, completion: @escaping (Result<User, CustomError>) -> Void) {
