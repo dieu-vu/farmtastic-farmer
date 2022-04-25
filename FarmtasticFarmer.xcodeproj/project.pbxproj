@@ -20,6 +20,7 @@
 		01DEC6D7280EDB7000EDDF19 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEC6D6280EDB7000EDDF19 /* MapView.swift */; };
 		01DEC6DA280EE27500EDDF19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DEC6D9280EE27500EDDF19 /* MapKit.framework */; };
 		01DEC6DD281290EF00EDDF19 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEC6DC281290EF00EDDF19 /* LocationManager.swift */; };
+		01DEC6DF28166D5900EDDF19 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEC6DE28166D5900EDDF19 /* SpeechRecognizer.swift */; };
 		182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */; };
 		182D9C2D27F9E01300158D0C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2C27F9E01300158D0C /* BaseView.swift */; };
 		182D9C2F27F9E01400158D0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182D9C2E27F9E01400158D0C /* Assets.xcassets */; };
@@ -51,7 +52,6 @@
 		2D863BDC28117BA400AC1EB2 /* orders.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D863BDB28117BA400AC1EB2 /* orders.json */; };
 		2D863BE02811FB4800AC1EB2 /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D863BDF2811FB4800AC1EB2 /* OrderRow.swift */; };
 		8732FE9928081FDB002EC378 /* CategoryProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732FE9828081FDB002EC378 /* CategoryProductListView.swift */; };
-		8732FE9B2808200A002EC378 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732FE9A2808200A002EC378 /* SearchBar.swift */; };
 		878722BF28148E3600AB7F38 /* PickupPointRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722BE28148E3600AB7F38 /* PickupPointRow.swift */; };
 		878722C128148E9200AB7F38 /* PickupPointScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722C028148E9200AB7F38 /* PickupPointScreen.swift */; };
 		8788398B280A0CED00A2593C /* FloatingActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */; };
@@ -110,6 +110,7 @@
 		01DEC6D9280EE27500EDDF19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		01DEC6DB280EE2C200EDDF19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		01DEC6DC281290EF00EDDF19 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		01DEC6DE28166D5900EDDF19 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		182D9C2727F9E01300158D0C /* FarmtasticFarmer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FarmtasticFarmer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmtasticFarmerApp.swift; sourceTree = "<group>"; };
 		182D9C2C27F9E01300158D0C /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -144,7 +145,6 @@
 		2D863BDB28117BA400AC1EB2 /* orders.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = orders.json; sourceTree = "<group>"; };
 		2D863BDF2811FB4800AC1EB2 /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
 		8732FE9828081FDB002EC378 /* CategoryProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListView.swift; sourceTree = "<group>"; };
-		8732FE9A2808200A002EC378 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		878722BE28148E3600AB7F38 /* PickupPointRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointRow.swift; sourceTree = "<group>"; };
 		878722C028148E9200AB7F38 /* PickupPointScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointScreen.swift; sourceTree = "<group>"; };
 		8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtonView.swift; sourceTree = "<group>"; };
@@ -416,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				18C079A128096F3F0079E186 /* Utils.swift */,
+				01DEC6DE28166D5900EDDF19 /* SpeechRecognizer.swift */,
 				18C079C8280D729B0079E186 /* Constants.swift */,
 			);
 			path = Utils;
@@ -505,7 +506,6 @@
 			children = (
 				87C66D1D27FF792A0068503E /* ProductResultCard.swift */,
 				8732FE9828081FDB002EC378 /* CategoryProductListView.swift */,
-				8732FE9A2808200A002EC378 /* SearchBar.swift */,
 				8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */,
 			);
 			path = UIComponents;
@@ -671,7 +671,6 @@
 				187DFEBF2802CC0B0033693C /* UserDataController.swift in Sources */,
 				2D863BE02811FB4800AC1EB2 /* OrderRow.swift in Sources */,
 				2D863BD728117A7A00AC1EB2 /* ActiveOrderScreen.swift in Sources */,
-				8732FE9B2808200A002EC378 /* SearchBar.swift in Sources */,
 				0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */,
 				01DEC6DD281290EF00EDDF19 /* LocationManager.swift in Sources */,
 				B3986BF528043876003C4130 /* ProductMainScreen.swift in Sources */,
@@ -685,6 +684,7 @@
 				18C079C3280B0FE60079E186 /* Order+CoreDataProperties.swift in Sources */,
 				18C079A228096F3F0079E186 /* Utils.swift in Sources */,
 				18C079C7280D6F8E0079E186 /* ProductModel.swift in Sources */,
+				01DEC6DF28166D5900EDDF19 /* SpeechRecognizer.swift in Sources */,
 				B37CCD672806B52A004BE217 /* LocalizationService.swift in Sources */,
 				0112CACC27FF09E100A77B74 /* ButtonView.swift in Sources */,
 				B347E622280315E400DA9863 /* HeaderImage.swift in Sources */,
@@ -908,6 +908,8 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Geolocation is needed to show your location on the map.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Geolocation is needed to show your location on the map.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Geolocation is needed to show your location on the map.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the speech to text. Audio recordings are discarded after transciption.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can use speech to search for product in the app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -942,6 +944,8 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Geolocation is needed to show your location on the map.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Geolocation is needed to show your location on the map.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Geolocation is needed to show your location on the map.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the speech to text. Audio recordings are discarded after transciption.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can use speech to search for product in the app.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
