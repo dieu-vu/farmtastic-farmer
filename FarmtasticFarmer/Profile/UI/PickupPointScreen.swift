@@ -19,8 +19,8 @@ struct PickupPointScreen: View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
             ButtonView(buttonText: "Add New",
-                       buttonColorLight: "LightYellow",
-                       buttonColorDark: "Yellow",
+                       buttonColorLight: "LightGreen",
+                       buttonColorDark: "DarkGreen",
                        buttonAction: {
             })
             

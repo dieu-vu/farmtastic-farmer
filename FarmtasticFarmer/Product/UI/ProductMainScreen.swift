@@ -36,7 +36,7 @@ struct ProductMainScreen: View {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
             ZStack {
                 RoundedRectangle(cornerRadius: 40)
-                    .foregroundColor(Color("LightYellow"))
+                    .foregroundColor(Color("LightYellow")).opacity(0.2)
                 HStack {
                     TextField("Search ..", text: $searchText)
                     Button(action: {
@@ -81,8 +81,9 @@ struct ProductMainScreen: View {
                     CategoryProductListView(products: fruitProductList, category: "Fruit")
                 }
                 NavigationLink(destination: ProductAddScreen(), isActive: $navigateToAddProduct){}
-
+                
             }
+            .navigationBarHidden(true)
             .gesture(DragGesture()
                 .onChanged({ _ in
                     UIApplication.shared.dismissKeyboard()
@@ -93,8 +94,7 @@ struct ProductMainScreen: View {
                 .foregroundColor(.black)) {
                     navigateToAddProduct = true
                 }
-        }.navigationBarHidden(true)
-
+        }
     }
 }
 

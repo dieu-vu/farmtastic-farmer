@@ -18,7 +18,7 @@ struct ScreenLayout: View {
             Rectangle().fill(Color("LightGreen")).frame(height: 150).opacity(0.5).overlay(
                 Image("logo").resizable().scaledToFill().frame(width: 250, height: 100).padding(.top, 15)
             )
-            RoundedRectangle(cornerRadius: 50).fill(.white).frame(height: 70).offset(y: -50)
+            RoundedRectangle(cornerRadius: 50).fill(.white).frame(height: 70).padding(.top, -50)
             HStack {
                 if hasBackButton {
                     BackButton()
@@ -26,8 +26,8 @@ struct ScreenLayout: View {
                 Spacer()
                 Text("\(screenTitle)".localized(language: language)).font(.title).bold()
                 Spacer()
-            }.padding(.horizontal, 20).padding(.top, -100)
-        }.edgesIgnoringSafeArea(.top).padding(.bottom, -100)
+            }.padding(.horizontal, 20).padding(.top, -50)
+        }.edgesIgnoringSafeArea(.top).padding(.bottom, -50)
     }
 }
 

@@ -17,10 +17,9 @@ struct PickupPointRow: View {
         HStack(){
             VStack(alignment: .leading, spacing: 5) {
                 Text("Address: \(pickupPoint.name)").font(.title3).bold()
-                //Text("Date: \(pickupPoint.date)").bold()
-                //Text("Time: \(pickupPoint.date)").bold()
                     .padding(.bottom, 5)
             }
+            Spacer()
             Image(systemName: "pencil")
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(Color.black)
@@ -28,10 +27,10 @@ struct PickupPointRow: View {
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(Color.black)
         }.padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.green, lineWidth: 1)
-            )
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 10)
+//                    .stroke(Color.green, lineWidth: 1)
+//            )
         
     }
 }
