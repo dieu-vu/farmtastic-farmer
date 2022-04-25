@@ -13,8 +13,6 @@ struct LoginView: View {
     @StateObject var userController = UserDataController()
     @State var username: String = ""
     
-    //@State var password: String = String(data: KeychainHelper.standard.read(service: "password", account: "farmtastic")!, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")
-    
     @State var password: String = String(data: KeychainHelper.standard.read(service: "password", account: "farmtastic") ?? Data(), encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")
     
     var body: some View {

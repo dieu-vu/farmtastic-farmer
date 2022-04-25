@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProductAddScreen: View {
-    let categories = ["Meat", "Vegetables", "Fruit"]
-    let units = ["kg", "l", "piece"]
+    let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
+    let units = ["kg", "liter", "unit"]
     @State var selectedUnit = 0
     @State var selectedCategory = 0
     @State var selectedDateHarvest = Date()
@@ -29,7 +29,7 @@ struct ProductAddScreen: View {
                 Picker(selection: $selectedCategory,
                        label:Text(""))
                 {
-                    ForEach(0 ..< 3) {
+                    ForEach(0 ..< 4) {
                         Text(self.categories[$0]).foregroundColor(.red)
                     }
                 }.padding(4)

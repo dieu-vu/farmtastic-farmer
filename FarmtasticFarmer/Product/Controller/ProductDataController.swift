@@ -66,8 +66,9 @@ class ProductDataController: UIViewController, ObservableObject {
                 UserDefaults.standard.setValue(true, forKey: Constants.productsLoaded)
             }
         }
-
     }
+    
+    
     
     
     

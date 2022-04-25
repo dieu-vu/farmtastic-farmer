@@ -73,12 +73,15 @@ struct ProductMainScreen: View {
             .onAppear {
                 searchText = ""
             }
+            
             ScrollView {
                 VStack{
                     CategoryProductListView(products: meatProductList, category: "Meat")
                     CategoryProductListView(products: vegeProductList, category: "Vegetables")
                     CategoryProductListView(products: fruitProductList, category: "Fruit")
                 }
+                NavigationLink(destination: ProductAddScreen(), isActive: $navigateToAddProduct){}
+
             }
             .gesture(DragGesture()
                 .onChanged({ _ in
@@ -90,7 +93,9 @@ struct ProductMainScreen: View {
                 .foregroundColor(.black)) {
                     navigateToAddProduct = true
                 }
+
         }
+
     }
 }
 
