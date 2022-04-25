@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ProductDetailView: View {
     //let product: ProductList
+    @State var screenTitle = "product.details"
+    @State var hasBackButton = true
     
     var body: some View {
         
         VStack {
-            Text ("Product details")
-            .font(.headline)
-            .fontWeight(.bold)
+           ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
         
             ScrollView {
                 Image ("entrecote")

@@ -22,16 +22,16 @@ struct PickupPointRow: View {
                     .padding(.bottom, 5)
             }
             Image(systemName: "pencil")
-                                   .aspectRatio(contentMode: .fit)
-                                   .foregroundColor(Color.black)
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(Color.black)
             Image(systemName: "trash")
-                                   .aspectRatio(contentMode: .fit)
-                                   .foregroundColor(Color.black)
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(Color.black)
         }.padding()
             .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.green, lineWidth: 1)
-        )
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.green, lineWidth: 1)
+            )
         
     }
 }

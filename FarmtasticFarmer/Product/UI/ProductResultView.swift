@@ -9,18 +9,18 @@ import SwiftUI
 
 struct ProductResultView: View {
     let products: [Product]
+    @State var screenTitle = "product.searchResult"
+    @State var hasBackButton = true
     
     var body: some View {
         VStack {
-            Text ("Search Results")
-                .font(.headline)
-                .fontWeight(.bold)
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
             List {
                 ForEach(products, id: \.name) { product in
                     ProductResultCard(product: product)
                 }
             }
-        }
+        }.navigationBarHidden(true)
         .padding(.top, 10.0)
         
     }

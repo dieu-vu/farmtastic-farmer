@@ -15,6 +15,8 @@ struct ProductAddScreen: View {
     @State var selectedDateHarvest = Date()
     @State var quantity: Int = 0
     @State var price: Double = 0.0
+    @State var screenTitle = "product.addProduct"
+    @State var hasBackButton = true
     
     let formatterDecimal: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -23,69 +25,72 @@ struct ProductAddScreen: View {
     }()
     
     var body: some View {
-        Form {
-            VStack(alignment: .leading, spacing: 0){
-                Text("Choose category").font(.headline)
-                Picker(selection: $selectedCategory,
-                       label:Text(""))
-                {
-                    ForEach(0 ..< 4) {
-                        Text(self.categories[$0]).foregroundColor(.red)
-                    }
-                }.padding(4)
-            }.pickerStyle(.segmented)
-            //.pickerStyle(.menu)
-            
-            VStack(alignment: .leading, spacing: 6){
-                Text("Choose Product Image").bold()
-                Image ("entrecote")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 200)
-            }
-            
-            DatePicker("Harvest day?", selection: $selectedDateHarvest, displayedComponents: .date)
-            
-            HStack(spacing: 0){
-                VStack(alignment: .leading){
-                    Text("Quantity").bold()
-                    TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Text("Price per Unit").bold()
-                    
-                    TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    /*
-                     HStack{
-                     TextField("Price per unit", value: $price, formatter: formatterDecimal)             .textFieldStyle(RoundedBorderTextFieldStyle())
-                     Text("€").bold()
-                     }*/
-                }.frame(minWidth: 0, maxWidth: .infinity)
-                VStack(alignment: .leading){
-                    HStack{
-                        Text("Unit").bold()
-                        VStack {
-                            Picker("", selection: $selectedUnit) {
-                                ForEach(units, id: \.self) {
-                                    Text($0)                                      .foregroundColor(.yellow)
-                                        .font(.title3)
-                                    
-                                }
-                            }.pickerStyle(.menu)
+        VStack {
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
+            Form {
+                VStack(alignment: .leading, spacing: 0){
+                    Text("Choose category").font(.headline)
+                    Picker(selection: $selectedCategory,
+                           label:Text(""))
+                    {
+                        ForEach(0 ..< 4) {
+                            Text(self.categories[$0]).foregroundColor(.red)
+                        }
+                    }.padding(4)
+                }.pickerStyle(.segmented)
+                //.pickerStyle(.menu)
+                
+                VStack(alignment: .leading, spacing: 6){
+                    Text("Choose Product Image").bold()
+                    Image ("entrecote")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 200)
+                }
+                
+                DatePicker("Harvest day?", selection: $selectedDateHarvest, displayedComponents: .date)
+                
+                HStack(spacing: 0){
+                    VStack(alignment: .leading){
+                        Text("Quantity").bold()
+                        TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Text("Price per Unit").bold()
+                        
+                        TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        /*
+                         HStack{
+                         TextField("Price per unit", value: $price, formatter: formatterDecimal)             .textFieldStyle(RoundedBorderTextFieldStyle())
+                         Text("€").bold()
+                         }*/
+                    }.frame(minWidth: 0, maxWidth: .infinity)
+                    VStack(alignment: .leading){
+                        HStack{
+                            Text("Unit").bold()
+                            VStack {
+                                Picker("", selection: $selectedUnit) {
+                                    ForEach(units, id: \.self) {
+                                        Text($0)                                      .foregroundColor(.yellow)
+                                            .font(.title3)
+                                        
+                                    }
+                                }.pickerStyle(.menu)
                                 //.background(Color.red)
-                        }  .frame(width: 50)
-                            .clipped()
-                            .transition(.scale)
+                            }  .frame(width: 50)
+                                .clipped()
+                                .transition(.scale)
                             //.background(Color.red)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 6)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                    }
-                    
-                    Spacer()
-                }.frame(minWidth: 0, maxWidth: .infinity).padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
+                        }
+                        
+                        Spacer()
+                    }.frame(minWidth: 0, maxWidth: .infinity).padding()
+                }
             }
-        }
+        }.navigationBarHidden(true)
     }
 }
 

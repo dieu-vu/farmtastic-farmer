@@ -15,7 +15,10 @@
 
 
 "product" = "Sản phẩm";
-
+"product.allCategories" = "Tất cả sản phẩm";
+"product.addProduct" = "Thêm sản phẩm";
+"product.details" = "Chi tiết sản phẩm";
+"product.searchResult" = "kêt quả tìm kiếm";
 
 "profile" = "Hồ sơ";
 "profile.username" = "Tên tài khoản";
@@ -33,3 +36,4 @@
 "profile.newName" = "Tên mới";
 "profile.newAddress" = "Địa chỉ mới";
 "profile.newPhone" = "Số điện thoại mới";
+"profile.pickupPoint" = "Điểm giao hàng";

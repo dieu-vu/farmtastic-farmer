@@ -15,6 +15,8 @@ struct ProductMainScreen: View {
     @State var isOn: Bool = false
     @StateObject var speechRecognizer = SpeechRecognizer()
     
+    @State var screenTitle = "product.allCategories"
+    @State var hasBackButton = false
     @State var navigateToAddProduct: Bool = false
     
     
@@ -31,9 +33,7 @@ struct ProductMainScreen: View {
     var body: some View {
         
         VStack {
-            Text("All Categories")
-                .font(.headline)
-                .fontWeight(.bold)
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
             ZStack {
                 RoundedRectangle(cornerRadius: 40)
                     .foregroundColor(Color("LightYellow"))
@@ -93,8 +93,7 @@ struct ProductMainScreen: View {
                 .foregroundColor(.black)) {
                     navigateToAddProduct = true
                 }
-
-        }
+        }.navigationBarHidden(true)
 
     }
 }
