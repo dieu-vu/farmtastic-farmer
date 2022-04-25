@@ -21,23 +21,3 @@ struct ActiveOrder: Codable {
     var items: [Item]
 }
 
-public class ActiveOrderLoader: ObservableObject {
-    @Published var activeOrders = [ActiveOrder]()
-
-    init() {
-        loadData()
-    }
-
-    func loadData() {
-        let path = Bundle.main.path(forResource: "orders", ofType: "json")
-        let url = URL(fileURLWithPath: path!)
-
-        do {
-            let data = try Data(contentsOf: url)
-            let json = try JSONDecoder().decode([ActiveOrder].self, from: data)
-            self.activeOrders = json
-        } catch {
-            print(error)
-        }
-    }
-}
