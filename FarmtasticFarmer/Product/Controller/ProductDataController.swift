@@ -38,7 +38,7 @@ class ProductDataController: UIViewController, ObservableObject {
                             if (products.count > 0){
                                 let string_test = products[0].description.product_name
                                 print("product extra info: \(string_test)")
-//                                self.saveProducts(context: self.context, products: products)
+                                self.saveProducts(context: self.context, products: products)
                             }
                         }
                 }}
