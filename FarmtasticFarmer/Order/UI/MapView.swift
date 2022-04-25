@@ -26,13 +26,13 @@ extension PickupPoint {
 
 struct MapView: View {
     
-    @State private var mapRegion = MKCoordinateRegion(
+    /*@State private var mapRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(
         latitude: 60.22,
         longitude: 24.76),
         span: MKCoordinateSpan(
             latitudeDelta: 0.5,
-            longitudeDelta: 0.5))
+            longitudeDelta: 0.5))*/
     @StateObject var manager = LocationManager()
     @State var tracking: MapUserTrackingMode = .follow
     @Binding var selectedDate: Date
@@ -43,7 +43,7 @@ struct MapView: View {
     var body: some View {
         ZStack{
             Map(
-                coordinateRegion: $mapRegion,
+                coordinateRegion: $manager.region,
                 interactionModes: MapInteractionModes.all,
                 showsUserLocation: true,
                 userTrackingMode: $tracking,
