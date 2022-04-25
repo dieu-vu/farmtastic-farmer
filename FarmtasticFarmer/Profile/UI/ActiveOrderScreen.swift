@@ -55,7 +55,6 @@ func loadData() -> [ActiveOrder] {
     let path = Bundle.main.path(forResource: "orders", ofType: "json")
     let url = URL(fileURLWithPath: path!)
     var orders: [ActiveOrder] = []
-    
     do {
         let data = try Data(contentsOf: url)
         let json = try JSONDecoder().decode([ActiveOrder].self, from: data)

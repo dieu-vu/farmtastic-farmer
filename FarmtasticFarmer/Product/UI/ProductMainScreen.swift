@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ProductMainScreen: View {
     let products: [Product]
-    @State var searchText = ""
-    @State var searching = false
+    @State var searchText: String = ""
+    @State private var isRecording: Bool = false
+    @State var isOn: Bool = false
+    @StateObject var speechRecognizer = SpeechRecognizer()
     
     @State var navigateToAddProduct: Bool = false
     
@@ -27,45 +30,68 @@ struct ProductMainScreen: View {
     
     var body: some View {
         
-        VStack(alignment: .center) {
-                   Text("All Categories")
-                       .font(.title)
-                       .fontWeight(.bold)
-                   
-                   SearchBar(searchText: $searchText, searching: $searching)
-                   ScrollView {
-                       VStack{
-                           CategoryProductListView(products: meatProductList, category: "Meat")
-                           CategoryProductListView(products: vegeProductList, category: "Vegetables")
-                           CategoryProductListView(products: fruitProductList, category: "Fruit")
-                       }
-                       NavigationLink(destination: ProductAddScreen(), isActive: $navigateToAddProduct){
-                       }
-                  
-                   }
-                   .toolbar {
-                       if searching {
-                           Button("Cancel") {
-                               searchText = ""
-                               withAnimation {
-                                   searching = false
-                                   UIApplication.shared.dismissKeyboard()
-                               }
-                           }
-                       }
-                   }
-                   .gesture(DragGesture()
-                       .onChanged({ _ in
-                       UIApplication.shared.dismissKeyboard()})
-                   )
-                   .floatingActionButton(color: Color("LightYellow"),
-                                         image: Image(systemName: "plus").foregroundColor(.black)){
-                       navigateToAddProduct = true
-                   }
-               }
-               
-           }
-    
+        VStack {
+            Text("All Categories")
+                .font(.headline)
+                .fontWeight(.bold)
+            ZStack {
+                RoundedRectangle(cornerRadius: 40)
+                    .foregroundColor(Color("LightYellow"))
+                HStack {
+                    TextField("Search ..", text: $searchText)
+                    Button(action: {
+                        isOn.toggle()
+                        if isOn {
+                            speechRecognizer.reset()
+                            speechRecognizer.transcribe()
+                            isRecording = true
+                            print("isRecording: \(isRecording)")
+                        } else {
+                            speechRecognizer.stopTranscribing()
+                            isRecording = false
+                            searchText = speechRecognizer.transcript
+                            print("isRecording: \(isRecording)")
+                            print("searchText: \(searchText)")
+                        }
+                    }) {
+                        Image(systemName: isRecording ? "stop.circle" : "mic.fill").padding(.trailing, 8)
+                    }
+                    NavigationLink(destination: SearchResults(searchText: $searchText)){
+                        Image(systemName: "magnifyingglass").padding(.trailing, 20)
+                    }
+                    .disabled(searchText.isEmpty)
+                }
+                .foregroundColor(.gray)
+                .padding(.leading, 13)
+            }
+            .frame(height: 40)
+            .overlay(
+                RoundedRectangle(cornerRadius: 40)
+                    .stroke(Color.black, lineWidth: 2)
+            )
+            .padding()
+            .onAppear {
+                searchText = ""
+            }
+            ScrollView {
+                VStack{
+                    CategoryProductListView(products: meatProductList, category: "Meat")
+                    CategoryProductListView(products: vegeProductList, category: "Vegetables")
+                    CategoryProductListView(products: fruitProductList, category: "Fruit")
+                }
+            }
+            .gesture(DragGesture()
+                .onChanged({ _ in
+                    UIApplication.shared.dismissKeyboard()
+                })
+            )
+            .floatingActionButton(color: Color("LightYellow"),
+                                  image: Image(systemName: "plus")
+                .foregroundColor(.black)) {
+                    navigateToAddProduct = true
+                }
+        }
+    }
 }
 
 struct ProductMainScreen_Previews: PreviewProvider {
