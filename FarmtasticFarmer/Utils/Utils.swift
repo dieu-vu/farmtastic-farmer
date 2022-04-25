@@ -20,4 +20,24 @@ class Utils {
             .replacingOccurrences(of: "}\"", with: "}")
         return cleanedJson.data(using: .utf8)!
     }
+    
+    // Convert dateString from API to ISODateFormat to save into Coredata
+       func convertDateFromApi(_ timeStr: String) -> Date {
+           let date = ISO8601DateFormatter().date(from: timeStr) ?? Date()
+           return date
+       }
+       
+       // Convert ISO date to string dd-MM-yyyy
+       func formatDateString(_ dateObj: Date) -> String {
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "dd-MM-yyyy"
+           dateFormatter.locale = Locale(identifier: "fi_FI")
+           dateFormatter.timeZone = TimeZone(identifier: "Europe/Helsinki")
+           let dateFormatted = dateFormatter.string(from: dateObj)
+           return dateFormatted
+       }
+       
+       func getDateComponents(_ dateObj: Date) -> DateComponents {
+           return Calendar.current.dateComponents([.year, .month, .day], from: dateObj)
+       }
 }

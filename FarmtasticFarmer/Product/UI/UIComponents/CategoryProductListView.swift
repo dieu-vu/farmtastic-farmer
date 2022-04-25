@@ -10,6 +10,9 @@ import SwiftUI
 struct CategoryProductListView: View {
     let products: [Product]
     let category: String
+    
+    @EnvironmentObject var productDataController: ProductDataController
+
     var body: some View {
         VStack{
             Text (category)
@@ -24,6 +27,19 @@ struct CategoryProductListView: View {
                     ForEach(products, id: \.name) { product in
                         productCardView(product: product).padding(6)
                     }
+                }
+            }
+        }
+        .onAppear{
+            productDataController.fetchProduct{
+                result in
+                switch result {
+                case .success(let products):
+                    productDataController.products = products
+                case .failure(let error):
+                    //authController.logout()
+                    //fatalError(error.localizedDescription)
+                    print(error.localizedDescription)
                 }
             }
         }

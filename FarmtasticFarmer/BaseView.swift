@@ -18,7 +18,11 @@ struct BaseView: View {
 //    
     @EnvironmentObject var userController: UserDataController
     @EnvironmentObject var authController: AuthenticationController
+    @EnvironmentObject var productDataController: ProductDataController
+
+    
     @AppStorage("language")
+
     
     private var language = LocalizationService.shared.language
 

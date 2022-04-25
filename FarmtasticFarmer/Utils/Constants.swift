@@ -9,4 +9,6 @@ import Foundation
 
 struct Constants {
     static var isDataPreLoaded = "isDataPreLoaded"
+    static var productsLoaded = "productsLoaded"
+
 }

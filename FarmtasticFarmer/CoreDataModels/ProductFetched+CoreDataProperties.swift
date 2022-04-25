@@ -22,7 +22,7 @@ extension ProductFetched {
     @NSManaged public var product_id: Int64
     @NSManaged public var product_name: String?
     @NSManaged public var selling_quantity: Double
-    @NSManaged public var unit: Double
+    @NSManaged public var unit: String?
     @NSManaged public var unit_price: Double
     @NSManaged public var sold_in_cart: NSSet?
 

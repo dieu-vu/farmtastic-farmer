@@ -46,12 +46,18 @@ struct GetUserResponse: Codable {
     let message: String?
 }
 
+struct SearchRequestBody: Codable {
+    let title: String?
+}
+
 class WebService {
-    @EnvironmentObject var authController: AuthenticationController
     
     let baseUrl = "https://media.mw.metropolia.fi/wbma/"
     
     let logger = Logger(subsystem: "Fartastic", category: "WebService")
+    
+    let context = PersistenceController.shared.container.viewContext
+
     
     func login(username: String, password: String, completion: @escaping (Result<Bool, CustomError>) -> Void) {
         
@@ -172,6 +178,7 @@ class WebService {
                         let reformattedData = Utils.utils.preProcessJson(data)
                         let decoder = JSONDecoder()
                         let user = try decoder.decode(User.self, from: reformattedData)
+                        KeychainHelper.standard.save(user.user_id, service: "user-id", account: "farmtastic")
                         completion(.success(user))
                     } catch {
                         print("failed to parse User")
@@ -307,12 +314,69 @@ class WebService {
         completion(.success(true))
     }
     
-    func getProducts(){
-        // Get files from API based on user id
-        // Filter for files with title including "farmtastic"
-        
-        
-    }
-    
+    func getProducts(completion: @escaping (Result<[ProductFromApi], CustomError>) -> Void){
+           // Get files from API based on search key "farmtastic" (This is the shared backend from WBMA course, thus having many media that cannot be parsed properly)
+           guard let userIdInKeyChain = KeychainHelper.standard.read(service: "user-id", account: "farmtastic") else {
+//               authController.logout()
+               return
+           }
+           let userId = String(data: userIdInKeyChain, encoding: .utf8)
+           print("USER ID IN KEY CHAIN", userId ?? "")
+           
+           guard let token = getUserToken() else {
+               fatalError("getUserInfo: Token not found")
+           }
+
+           let searchRequestBody = SearchRequestBody(title: "farmtastic2022")
+           
+           let urlString = "\(baseUrl)media/search"
+           print("product req url", urlString)
+           guard let url = URL(string: urlString) else {
+               fatalError("getProductByUserId: Failed to create URL")
+           }
+           
+           var request = URLRequest(url: url)
+           
+           request.httpMethod = "POST"
+           request.addValue(token, forHTTPHeaderField: "x-access-token")
+           request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+           request.httpBody = try? JSONEncoder().encode(searchRequestBody)
+           
+           let dataTask = URLSession.shared.dataTask(with: request){data, response, error in
+               if let error = error {
+                   print("dataTask error: \(error.localizedDescription)")
+               }
+               else {
+                   guard let response = response else {
+                       return
+                   }
+                   print("response: \(response.expectedContentLength)")
+
+                   if let data = data {
+                       print("data: \(String(decoding: data, as: UTF8.self))")
+
+                       do {
+                           let reformattedData = Utils.utils.preProcessJson(data)
+                           print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
+                           let decoder = JSONDecoder()
+                           let productArray = try decoder.decode([ProductFromApi].self, from: reformattedData)
+                           print("GET PRODUCT RESULT", productArray)
+                           completion(.success(productArray))
+                       } catch {
+                           print("failed to parse Product array")
+                           do {
+                               let res = try JSONDecoder().decode(GetUserResponse.self, from: data)
+                               print("RES if invalid token: \(res)")
+                               completion(.failure(.invalidToken))
+                           } catch {
+                               completion(.failure(.cannotProcessData))
+                           }
+                       }
+                   }
+               }
+           }
+           dataTask.resume()
+           // Filter for files with title including "farmtastic"
+       }
 }
 
