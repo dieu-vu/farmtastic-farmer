@@ -9,10 +9,12 @@ import SwiftUI
 
 struct ProductAddScreen: View {
     let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
-    let units = ["kg", "liter", "unit"]
+        
+    let units = ["kg", "liter", "piece"]
     @State var selectedUnit = 0
     @State var selectedCategory = 0
     @State var selectedDateHarvest = Date()
+    @State var productName = ""
     @State var quantity: Int = 0
     @State var price: Double = 0.0
     @State var screenTitle = "product.addProduct"
@@ -41,12 +43,22 @@ struct ProductAddScreen: View {
                 //.pickerStyle(.menu)
                 
                 VStack(alignment: .leading, spacing: 6){
-                    Text("Choose Product Image").bold()
-                    Image ("entrecote")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 300, height: 200)
+                        Text("Choose Product Image").bold()
+                    VStack (alignment: .center){
+                        Image ("entrecote")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300 , height: 200, alignment: .center)
+                    }.padding()
                 }
+                
+               
+                HStack(alignment: .top, spacing: 0) {
+                    Text("Product name")
+                    Spacer()
+                    TextField("Enter text", text: $productName)
+                }
+                .padding()
                 
                 DatePicker("Harvest day?", selection: $selectedDateHarvest, displayedComponents: .date)
                 
@@ -89,7 +101,15 @@ struct ProductAddScreen: View {
                         Spacer()
                     }.frame(minWidth: 0, maxWidth: .infinity).padding()
                 }
+                HStack{
+                    Button("Add"){}
+                    Spacer()
+                    Button("Clear"){}
+                }.padding()
             }
+            
+           
+            
         }.navigationBarHidden(true)
     }
 }
