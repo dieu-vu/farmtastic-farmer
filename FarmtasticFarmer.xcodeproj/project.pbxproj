@@ -49,6 +49,7 @@
 		18C079C9280D729B0079E186 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079C8280D729B0079E186 /* Constants.swift */; };
 		18C079CB280D77CF0079E186 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C079CA280D77CF0079E186 /* users.json */; };
 		18E65337281698FC00DE8D81 /* ProductDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E65336281698FC00DE8D81 /* ProductDataController.swift */; };
+		18E653392817FA8B00DE8D81 /* AddProductForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E653382817FA8B00DE8D81 /* AddProductForm.swift */; };
 		2D863BD728117A7A00AC1EB2 /* ActiveOrderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D863BD628117A7A00AC1EB2 /* ActiveOrderScreen.swift */; };
 		2D863BD928117B1800AC1EB2 /* ActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D863BD828117B1800AC1EB2 /* ActiveOrder.swift */; };
 		2D863BDC28117BA400AC1EB2 /* orders.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D863BDB28117BA400AC1EB2 /* orders.json */; };
@@ -146,6 +147,7 @@
 		18C079C8280D729B0079E186 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		18C079CA280D77CF0079E186 /* users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		18E65336281698FC00DE8D81 /* ProductDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDataController.swift; path = FarmtasticFarmer/Product/Controller/ProductDataController.swift; sourceTree = SOURCE_ROOT; };
+		18E653382817FA8B00DE8D81 /* AddProductForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductForm.swift; sourceTree = "<group>"; };
 		2D863BD628117A7A00AC1EB2 /* ActiveOrderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveOrderScreen.swift; sourceTree = "<group>"; };
 		2D863BD828117B1800AC1EB2 /* ActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveOrder.swift; sourceTree = "<group>"; };
 		2D863BDB28117BA400AC1EB2 /* orders.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = orders.json; sourceTree = "<group>"; };
@@ -519,6 +521,7 @@
 				87C66D1D27FF792A0068503E /* ProductResultCard.swift */,
 				8732FE9828081FDB002EC378 /* CategoryProductListView.swift */,
 				8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */,
+				18E653382817FA8B00DE8D81 /* AddProductForm.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				2D863BD728117A7A00AC1EB2 /* ActiveOrderScreen.swift in Sources */,
 				0112CAC627FEC73900A77B74 /* LanguageView.swift in Sources */,
 				01DEC6DD281290EF00EDDF19 /* LocationManager.swift in Sources */,
+				18E653392817FA8B00DE8D81 /* AddProductForm.swift in Sources */,
 				B3986BF528043876003C4130 /* ProductMainScreen.swift in Sources */,
 				878722C128148E9200AB7F38 /* PickupPointScreen.swift in Sources */,
 				B3ED079D27FF56AF00A95D0E /* Profile.swift in Sources */,

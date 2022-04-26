@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct ProductAddScreen: View {
-    let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
-        
-    let units = ["kg", "liter", "piece"]
-    @State var selectedUnit = 0
-    @State var selectedCategory = 0
-    @State var selectedDateHarvest = Date()
-    @State var productName = ""
-    @State var quantity: Int = 0
-    @State var price: Double = 0.0
+ 
+    
+//    @Binding var category: String
+//    @Binding var productName: String
+//    @Binding var quantity: Double
+//    @Binding var price: Double
+//    @Binding var harvestDate: Date
+    
     @State var screenTitle = "product.addProduct"
     @State var hasBackButton = true
     
@@ -29,86 +28,7 @@ struct ProductAddScreen: View {
     var body: some View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
-            Form {
-                VStack(alignment: .leading, spacing: 0){
-                    Text("Choose category").font(.headline)
-                    Picker(selection: $selectedCategory,
-                           label:Text(""))
-                    {
-                        ForEach(0 ..< 4) {
-                            Text(self.categories[$0]).foregroundColor(.red)
-                        }
-                    }.padding(4)
-                }.pickerStyle(.segmented)
-                //.pickerStyle(.menu)
-                
-                VStack(alignment: .leading, spacing: 6){
-                        Text("Choose Product Image").bold()
-                    VStack (alignment: .center){
-                        Image ("entrecote")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300 , height: 200, alignment: .center)
-                    }.padding()
-                }
-                
-               
-                HStack(alignment: .top, spacing: 0) {
-                    Text("Product name")
-                    Spacer()
-                    TextField("Enter text", text: $productName)
-                }
-                .padding()
-                
-                DatePicker("Harvest day?", selection: $selectedDateHarvest, displayedComponents: .date)
-                
-                HStack(spacing: 0){
-                    VStack(alignment: .leading){
-                        Text("Quantity").bold()
-                        TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Text("Price per Unit").bold()
-                        
-                        TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        /*
-                         HStack{
-                         TextField("Price per unit", value: $price, formatter: formatterDecimal)             .textFieldStyle(RoundedBorderTextFieldStyle())
-                         Text("€").bold()
-                         }*/
-                    }.frame(minWidth: 0, maxWidth: .infinity)
-                    VStack(alignment: .leading){
-                        HStack{
-                            Text("Unit").bold()
-                            VStack {
-                                Picker("", selection: $selectedUnit) {
-                                    ForEach(units, id: \.self) {
-                                        Text($0)                                      .foregroundColor(.yellow)
-                                            .font(.title3)
-                                        
-                                    }
-                                }.pickerStyle(.menu)
-                                //.background(Color.red)
-                            }  .frame(width: 50)
-                                .clipped()
-                                .transition(.scale)
-                            //.background(Color.red)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                )
-                        }
-                        
-                        Spacer()
-                    }.frame(minWidth: 0, maxWidth: .infinity).padding()
-                }
-                HStack{
-                    Button("Add"){}
-                    Spacer()
-                    Button("Clear"){}
-                }.padding()
-            }
-            
-           
+            AddProductForm()
             
         }.navigationBarHidden(true)
     }
