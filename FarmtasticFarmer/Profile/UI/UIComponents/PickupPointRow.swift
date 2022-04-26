@@ -9,8 +9,8 @@
 import SwiftUI
 import CoreLocation
 
-struct PickupPointRow: View {
-    @AppStorage("language")
+/*struct PickupPointRow: View {
+   @AppStorage("language")
     private var language = LocalizationService.shared.language
     var pickupPoint: PickupPoint
     var body: some View {
@@ -40,5 +40,5 @@ struct PickupPointRow_Previews: PreviewProvider {
     static var previews: some View {
         PickupPointRow(pickupPoint: PickupPoint(name: "Pickup point 3", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96)))
     }
-}
+}*/
 

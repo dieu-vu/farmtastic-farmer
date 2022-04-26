@@ -11,7 +11,7 @@ import CoreLocation
 struct PickupPointScreen: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
-    let pickupPoints: [PickupPoint] = PickupPoint.samplePickupPointLists;
+    //let pickupPoints: [PickupPoint] = PickupPoint.samplePickupPointLists;
     
     var body: some View {
         VStack {
@@ -21,10 +21,10 @@ struct PickupPointScreen: View {
                        buttonAction: {
             })
             
-            List(pickupPoints,
+            /*List(pickupPoints,
                 id: \.id) { pickupPoint in
                 PickupPointRow(pickupPoint: pickupPoint)
-            }
+            }*/
             
         }.navigationTitle("Active Orders")
     }
