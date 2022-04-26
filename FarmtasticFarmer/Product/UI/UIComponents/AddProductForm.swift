@@ -11,13 +11,13 @@ struct AddProductForm: View {
     let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
         
     let units = ["kg", "liter", "piece"]
-    @State var selectedUnit = 0
-    @State var selectedCategory = 0
-    @State var selectedDateHarvest = Date()
-    @State private var productName = ""
-    @State private var quantity = 0.0
-    @State private var price = 0.0
+    @Binding var selectedUnit: Int
+    @Binding var selectedCategory: Int
 
+    @Binding var productName: String
+    @Binding var quantity: Double
+    @Binding var price: Double
+    @Binding var harvestDate: Date
 
     
     let formatterDecimal: NumberFormatter = {
@@ -25,6 +25,7 @@ struct AddProductForm: View {
         formatter.numberStyle = .decimal
         return formatter
     }()
+    
     var body: some View {
         
         Form {
@@ -58,7 +59,7 @@ struct AddProductForm: View {
             }
             .padding()
             
-            DatePicker("Harvest day?", selection: $selectedDateHarvest, displayedComponents: .date)
+            DatePicker("Harvest day?", selection: $harvestDate, displayedComponents: .date)
             
             HStack(spacing: 0){
                 VStack(alignment: .leading){
@@ -101,16 +102,44 @@ struct AddProductForm: View {
                 }.frame(minWidth: 0, maxWidth: .infinity).padding()
             }
             HStack{
-                Button("Add"){}
+                Button(action: {
+                    print("harvest date from form", harvestDate)
+                    print("price from form", price)
+                    var newProduct = ProductJSON()
+                    newProduct.product_name = productName
+                    newProduct.category = categories[selectedCategory]
+                    newProduct.unit = categories[selectedUnit]
+                    newProduct.unit_price = Double(price)
+                    newProduct.harvest_date = harvestDate
+                    newProduct.selling_quantity = quantity
+                    print("newProduct from form", newProduct)
+
+                }, label:
+                {
+                    Text("Add")
+                })
+                .buttonStyle(BorderlessButtonStyle())
+                
                 Spacer()
-                Button("Clear"){}
+                Button(action: {
+                    productName = ""
+                    quantity = 0.0
+                    harvestDate = Date()
+                    price = 0.0
+                    selectedUnit = 0
+                    selectedCategory = 0
+                }, label: {
+                        Text("Clear")
+                })
+                .buttonStyle(BorderlessButtonStyle())
+                
             }.padding()
         }
     }
 }
 
-struct AddProductForm_Previews: PreviewProvider {
-    static var previews: some View {
-        AddProductForm()
-    }
-}
+//struct AddProductForm_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddProductForm(category: "", productName: "", quantity: 0.0, price: 0.0, harvestDate: Date())
+//    }
+//}

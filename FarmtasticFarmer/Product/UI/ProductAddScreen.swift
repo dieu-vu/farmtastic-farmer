@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ProductAddScreen: View {
- 
+    let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
+        
+    let units = ["kg", "liter", "piece"]
     
-//    @Binding var category: String
-//    @Binding var productName: String
-//    @Binding var quantity: Double
-//    @Binding var price: Double
-//    @Binding var harvestDate: Date
+    @State var category: String = ""
+    @State var productName: String = ""
+    @State var quantity: Double = 0.0
+    @State var price: Double = 0.0
+    @State var harvestDate: Date = Date()
+    @State var selectedUnit = 0
+    @State var selectedCategory = 0
     
     @State var screenTitle = "product.addProduct"
     @State var hasBackButton = true
@@ -28,7 +32,7 @@ struct ProductAddScreen: View {
     var body: some View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
-            AddProductForm()
+            AddProductForm(selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate)
             
         }.navigationBarHidden(true)
     }

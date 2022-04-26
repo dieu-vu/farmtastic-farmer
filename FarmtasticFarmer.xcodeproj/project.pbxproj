@@ -50,6 +50,7 @@
 		18C079CB280D77CF0079E186 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C079CA280D77CF0079E186 /* users.json */; };
 		18E65337281698FC00DE8D81 /* ProductDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E65336281698FC00DE8D81 /* ProductDataController.swift */; };
 		18E653392817FA8B00DE8D81 /* AddProductForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E653382817FA8B00DE8D81 /* AddProductForm.swift */; };
+		18E6533B28180DDC00DE8D81 /* ProductJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E6533A28180DDC00DE8D81 /* ProductJSON.swift */; };
 		2D863BD728117A7A00AC1EB2 /* ActiveOrderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D863BD628117A7A00AC1EB2 /* ActiveOrderScreen.swift */; };
 		2D863BD928117B1800AC1EB2 /* ActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D863BD828117B1800AC1EB2 /* ActiveOrder.swift */; };
 		2D863BDC28117BA400AC1EB2 /* orders.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D863BDB28117BA400AC1EB2 /* orders.json */; };
@@ -148,6 +149,7 @@
 		18C079CA280D77CF0079E186 /* users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		18E65336281698FC00DE8D81 /* ProductDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDataController.swift; path = FarmtasticFarmer/Product/Controller/ProductDataController.swift; sourceTree = SOURCE_ROOT; };
 		18E653382817FA8B00DE8D81 /* AddProductForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductForm.swift; sourceTree = "<group>"; };
+		18E6533A28180DDC00DE8D81 /* ProductJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductJSON.swift; sourceTree = "<group>"; };
 		2D863BD628117A7A00AC1EB2 /* ActiveOrderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveOrderScreen.swift; sourceTree = "<group>"; };
 		2D863BD828117B1800AC1EB2 /* ActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveOrder.swift; sourceTree = "<group>"; };
 		2D863BDB28117BA400AC1EB2 /* orders.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = orders.json; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				18C079C6280D6F8E0079E186 /* ProductModel.swift */,
 				87C66D1B27FF76620068503E /* Product.swift */,
 				185C914F281532DD00CBDCB6 /* ProductFromAPI.swift */,
+				18E6533A28180DDC00DE8D81 /* ProductJSON.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E6533B28180DDC00DE8D81 /* ProductJSON.swift in Sources */,
 				18C079BE280B0FE60079E186 /* UserFetched+CoreDataClass.swift in Sources */,
 				18C079BD280B0FE60079E186 /* CartItem+CoreDataProperties.swift in Sources */,
 				18C079BC280B0FE60079E186 /* CartItem+CoreDataClass.swift in Sources */,
