@@ -11,7 +11,7 @@ import Foundation
 struct ProductJSON: Codable {
     var product_name: String?
     var category: String?
-    var harvest_date: Date?
+    var harvest_date: String?
     var selling_quantity: Double?
     var unit: String?
     var unit_price: Double?
