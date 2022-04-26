@@ -33,7 +33,7 @@ struct ProductMainScreen: View {
     var body: some View {
         
         VStack {
-            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton).padding(.bottom, 30)
             ZStack {
                 RoundedRectangle(cornerRadius: 40)
                     .foregroundColor(Color("LightYellow")).opacity(0.2)
@@ -62,7 +62,7 @@ struct ProductMainScreen: View {
                     .disabled(searchText.isEmpty)
                 }
                 .foregroundColor(.gray)
-                .padding(.leading, 13)
+                .padding(.leading, 15)
             }
             .frame(height: 40)
             .overlay(
@@ -75,7 +75,7 @@ struct ProductMainScreen: View {
             }
             
             ScrollView {
-                VStack{
+                VStack {
                     CategoryProductListView(products: meatProductList, category: "Meat")
                     CategoryProductListView(products: vegeProductList, category: "Vegetables")
                     CategoryProductListView(products: fruitProductList, category: "Fruit")
@@ -94,7 +94,7 @@ struct ProductMainScreen: View {
                 .foregroundColor(.black)) {
                     navigateToAddProduct = true
                 }
-        }
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 
