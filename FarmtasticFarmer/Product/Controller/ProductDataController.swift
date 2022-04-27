@@ -68,7 +68,7 @@ class ProductDataController: UIViewController, ObservableObject {
         }
     }
     
-    func addProduct(description: ProductJSON, image: Data){
+    func addProduct(description: ProductJSON, image: UIImage){
         // parse product info from add product form to a ProductExtraInfo object
         var product = ProductExtraInfo()
         product.product_name = description.product_name ?? ""
@@ -76,15 +76,83 @@ class ProductDataController: UIViewController, ObservableObject {
         product.selling_quantity = String(format: "%.2f", description.selling_quantity!)
         product.unit = description.unit ?? ""
         product.unit_price = String(format: "%.2f", description.unit_price!)
-        let newProductString = String(data: try! JSONEncoder().encode(product), encoding: .utf8)
+        let newProductString = String(data: try! JSONEncoder().encode(product), encoding: .utf8) ?? ""
         print("NEW PRODUCT DESCRIPTION STRING", newProductString)
         print("NEW PRODUCT IMAGE DATA", image)
+        
+        // Parse JSON for POST method in WebService: multipart/form-data
+        // API doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
+        // Title: string "farmtastic2022", description: stringified of ProductExtraInfo object
+        let productUpload = ProductUploadData(title: "farmtastic2022",
+                                              description: newProductString)
+        let productUploadData = try? JSONEncoder().encode(productUpload)
+        print(type(of: productUploadData))
+        let dataBody = createDataBody(image: image, productUploadData: productUploadData)
+        let boundary = dataBody["boundary"]
+        print("BOUNDARY", boundary)
 
-        // parse JSON for POST method in WebService
-        
+        let requestData = dataBody["dataBody"]
+        print("Data BODY", requestData)
+
         // call Webservice POST method
-        
+        WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
     }
     
     
+    // Function to prepare multipart/form-data body for the POST request
+    func createDataBody(image: UIImage, productUploadData: Data?) -> [String: Any] {
+        
+        let lineBreak = "\r\n"
+        var body = Data()
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        print("BUILDING REQUEST BODY INIT", String(data: body, encoding: .utf8)!)
+
+        guard let mediaImage = Media(withImage: image, forKey: "file") else { return ["dataBody": Data()] }
+        print("BUILDING REQUEST BODY MEDIA DATA", mediaImage.data)
+
+        body.append("--\(boundary + lineBreak)".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"\(mediaImage.key)\"; filename=\"\(mediaImage.fileName)\"\(lineBreak)".data(using: .utf8)!)
+        body.append("Content-Type: \(mediaImage.mimeType + lineBreak + lineBreak)".data(using: .utf8)!)
+        body.append(mediaImage.data)
+        
+        body.append(productUploadData!)
+        body.append(lineBreak.data(using: .utf8)!)
+        body.append("--\(boundary)--\(lineBreak)".data(using: .utf8)!)
+        
+        print("BUILDING REQUEST BODY", body.description)
+        let returnDict = ["dataBody": body, "boundary": boundary] as [String : Any]
+        return returnDict
+    }
+    
+}
+
+
+extension Data {
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
+    }
+}
+
+
+struct Media {
+    let key: String
+    let fileName: String
+    let data: Data
+    let mimeType: String
+    
+    init?(withImage image: UIImage, forKey key: String) {
+        self.key = key
+        self.mimeType = "image/jpeg"
+        self.fileName = "\(arc4random()).jpeg"
+        
+        guard let data = image.jpegData(compressionQuality: 0.1) else {
+            print("convert image data failed")
+            return nil
+        }
+        print("IMAGE DATA", data)
+        
+        self.data = data
+    }
 }

@@ -57,7 +57,7 @@ class WebService {
     let logger = Logger(subsystem: "Fartastic", category: "WebService")
     
     let context = PersistenceController.shared.container.viewContext
-
+    
     
     func login(username: String, password: String, completion: @escaping (Result<Bool, CustomError>) -> Void) {
         
@@ -108,7 +108,7 @@ class WebService {
         guard let password = KeychainHelper.standard.read(service: "password", account: "farmtastic") else {
             return
         }
-
+        
         login(username: "hangHuynh", password: String(data: password, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")) { result in
             
             switch result {
@@ -132,7 +132,7 @@ class WebService {
                 fatalError("getUserToken: Token not found")
             }
         }
-            
+        
         return token
     }
     
@@ -146,7 +146,7 @@ class WebService {
             fatalError("getUserInfo: Token not found")
         }
         print("token \(token)")
-    
+        
         var request = URLRequest(url: url)
         
         request.httpMethod = "GET"
@@ -159,7 +159,7 @@ class WebService {
             }
             else {
                 //guard let response = response else {
-                    //return
+                //return
                 //}
                 //print("response: \(response.expectedContentLength)")
                 
@@ -177,10 +177,10 @@ class WebService {
                         }
                     }
                 }
-
+                
                 if let data = data {
                     print("data: \(String(decoding: data, as: UTF8.self))")
-
+                    
                     do {
                         let reformattedData = Utils.utils.preProcessJson(data)
                         let decoder = JSONDecoder()
@@ -196,7 +196,7 @@ class WebService {
                         } catch {
                             completion(.failure(.cannotProcessData))
                         }
-                       
+                        
                     }
                 }
             }
@@ -215,7 +215,7 @@ class WebService {
         }
         
         var request = URLRequest(url: url)
-    
+        
         let extraInfo = UpdatedFields(name: name, address: address, phone: phone, type: type, location: location)
         let extraInfoString =  String(data: try! JSONEncoder().encode(extraInfo), encoding: .utf8)
         let body = UpdateUserInfo(full_name: extraInfoString)
@@ -322,73 +322,115 @@ class WebService {
     }
     
     func getProducts(completion: @escaping (Result<[ProductFromApi], CustomError>) -> Void){
-           // Get files from API based on search key "farmtastic" (This is the shared backend from WBMA course, thus having many media that cannot be parsed properly)
-           guard let userIdInKeyChain = KeychainHelper.standard.read(service: "user-id", account: "farmtastic") else {
-//               authController.logout()
-               return
-           }
-           let userId = String(data: userIdInKeyChain, encoding: .utf8)
-           print("USER ID IN KEY CHAIN", userId ?? "")
-           
-           guard let token = getUserToken() else {
-               fatalError("getUserInfo: Token not found")
-           }
-
-           let searchRequestBody = SearchRequestBody(title: "farmtastic2022")
-           
-           let urlString = "\(baseUrl)media/search"
-           print("product req url", urlString)
-           guard let url = URL(string: urlString) else {
-               fatalError("getProductByUserId: Failed to create URL")
-           }
-           
-           var request = URLRequest(url: url)
-           
-           request.httpMethod = "POST"
-           request.addValue(token, forHTTPHeaderField: "x-access-token")
-           request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-           request.httpBody = try? JSONEncoder().encode(searchRequestBody)
-           
-           let dataTask = URLSession.shared.dataTask(with: request){data, response, error in
-               if let error = error {
-                   print("dataTask error: \(error.localizedDescription)")
-               }
-               else {
-                   guard let response = response else {
-                       return
-                   }
-                   print("response: \(response.expectedContentLength)")
-
-                   if let data = data {
-                       print("data: \(String(decoding: data, as: UTF8.self))")
-
-                       do {
-                           let reformattedData = Utils.utils.preProcessJson(data)
-                           print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
-                           let decoder = JSONDecoder()
-                           let productArray = try decoder.decode([ProductFromApi].self, from: reformattedData)
-                           print("GET PRODUCT RESULT", productArray)
-                           completion(.success(productArray))
-                       } catch {
-                           print("failed to parse Product array")
-                           do {
-                               let res = try JSONDecoder().decode(GetUserResponse.self, from: data)
-                               print("RES if invalid token: \(res)")
-                               completion(.failure(.invalidToken))
-                           } catch {
-                               completion(.failure(.cannotProcessData))
-                           }
-                       }
-                   }
-               }
-           }
-           dataTask.resume()
-           // Filter for files with title including "farmtastic"
-       }
+        // Get files from API based on search key "farmtastic" (This is the shared backend from WBMA course, thus having many media that cannot be parsed properly)
+                
+//        guard let userIdInKeyChain = KeychainHelper.standard.read(service: "user-id", account: "farmtastic") else {
+//            //               authController.logout()
+//            return
+//        }
+//        let userId = String(data: userIdInKeyChain, encoding: .utf8)
+//        print("USER ID IN KEY CHAIN", userId ?? "")
+        
+        guard let token = getUserToken() else {
+            fatalError("getUserInfo: Token not found")
+        }
+        
+        let searchRequestBody = SearchRequestBody(title: "farmtastic2022")
+        
+        let urlString = "\(baseUrl)media/search"
+        print("product req url", urlString)
+        guard let url = URL(string: urlString) else {
+            fatalError("search Product: Failed to create URL")
+        }
+        
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST"
+        request.addValue(token, forHTTPHeaderField: "x-access-token")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONEncoder().encode(searchRequestBody)
+        
+        let dataTask = URLSession.shared.dataTask(with: request){data, response, error in
+            if let error = error {
+                print("dataTask error: \(error.localizedDescription)")
+            }
+            else {
+                guard let response = response else {
+                    return
+                }
+                print("response: \(response.expectedContentLength)")
+                
+                if let data = data {
+                    print("data: \(String(decoding: data, as: UTF8.self))")
+                    
+                    do {
+                        let reformattedData = Utils.utils.preProcessJson(data)
+                        print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
+                        let decoder = JSONDecoder()
+                        let productArray = try decoder.decode([ProductFromApi].self, from: reformattedData)
+                        print("GET PRODUCT RESULT", productArray)
+                        completion(.success(productArray))
+                    } catch {
+                        print("failed to parse Product array")
+                        do {
+                            let res = try JSONDecoder().decode(GetUserResponse.self, from: data)
+                            print("RES if invalid token: \(res)")
+                            completion(.failure(.invalidToken))
+                        } catch {
+                            completion(.failure(.cannotProcessData))
+                        }
+                    }
+                }
+            }
+        }
+        dataTask.resume()
+        // TODO: Filter for files with user Id of the current user
+    }
     
     
-    func uploadProduct(){
-        // https://developer.apple.com/documentation/foundation/url_loading_system/uploading_data_to_a_website
+    func uploadProduct(dataBody: Data, boundary: String) {
+        // Ref: https://developer.apple.com/documentation/foundation/url_loading_system/uploading_data_to_a_website
+        // API Doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
+        
+        guard let token = getUserToken() else {
+            fatalError("getUserInfo: Token not found")
+        }
+                
+        let urlString = "\(baseUrl)media"
+        print("product req url", urlString)
+        guard let url = URL(string: urlString) else {
+            fatalError("Post Product: Failed to create URL")
+        }
+        
+        var request = URLRequest(url: url)
+
+        request.httpMethod = "POST"
+
+        request.allHTTPHeaderFields = [
+                    "X-User-Agent": "ios",
+                    "Accept-Language": "en",
+                    "Accept": "application/json",
+                    "Content-Type": "multipart/form-data; boundary=\(boundary)",
+                    "x-access-token": token
+                ]
+
+        request.httpBody = dataBody
+
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch {
+                    print(error)
+                }
+            }
+            }.resume()
         
     }
 }

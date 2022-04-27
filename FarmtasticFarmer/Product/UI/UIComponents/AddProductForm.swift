@@ -28,7 +28,7 @@ struct AddProductForm: View {
     // Image Picker
     @State private var isShowingImagePicker = false
     @State private var selectedImageSource = UIImagePickerController.SourceType.photoLibrary
-    @State private var placeHolderImage = Image("placeholder")
+    @State var placeHolderImage = Image("placeholder")
     
     // Product Image
     @Binding var productImage: UIImage?
@@ -180,8 +180,7 @@ struct AddProductForm: View {
         newProduct.harvest_date = Utils.utils.convertDateToISOString(harvestDate)
         newProduct.selling_quantity = Double(quantity)
         print("newProduct from form", newProduct)
-        let imageData = productImage?.pngData()
-        productDataController.addProduct(description: newProduct, image: imageData ??  Data())
+        productDataController.addProduct(description: newProduct, image: productImage ?? UIImage(imageLiteralResourceName: "placeholder"))
     }
     
 }

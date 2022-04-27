@@ -16,3 +16,9 @@ struct ProductJSON: Codable {
     var unit: String?
     var unit_price: Double?
 }
+
+
+struct ProductUploadData: Codable {
+    let title: String
+    let description: String
+}
