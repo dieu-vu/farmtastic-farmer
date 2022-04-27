@@ -362,11 +362,11 @@ class WebService {
                 print("response: \(response.expectedContentLength)")
                 
                 if let data = data {
-                    print("data: \(String(decoding: data, as: UTF8.self))")
+//                    print("data: \(String(decoding: data, as: UTF8.self))")
                     
                     do {
                         let reformattedData = Utils.utils.preProcessJson(data)
-                        print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
+//                        print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
                         let decoder = JSONDecoder()
                         let productArray = try decoder.decode([ProductFromApi].self, from: reformattedData)
                         print("GET PRODUCT RESULT", productArray)
