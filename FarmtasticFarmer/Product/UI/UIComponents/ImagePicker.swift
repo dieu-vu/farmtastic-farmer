@@ -25,9 +25,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         return imagePickerController
     }
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-        
-    }
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
     
     func makeCoordinator() -> Coordinator {
         // Create a coordinator to call if there is not coordinator in the context

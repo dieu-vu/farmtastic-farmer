@@ -9,6 +9,13 @@ import SwiftUI
 import AVFoundation
 
 struct ProductMainScreen: View {
+    
+    @EnvironmentObject var productDataController: ProductDataController
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @Binding var tabSelection: Int
+    
     let products: [Product]
     @State var searchText: String = ""
     @State private var isRecording: Bool = false
@@ -80,7 +87,7 @@ struct ProductMainScreen: View {
                     CategoryProductListView(products: vegeProductList, category: "Vegetables")
                     CategoryProductListView(products: fruitProductList, category: "Fruit")
                 }
-                NavigationLink(destination: ProductAddScreen(), isActive: $navigateToAddProduct){}
+                NavigationLink(destination: ProductAddScreen(tabSelection: $tabSelection), isActive: $navigateToAddProduct){}
                 
             }
             .navigationBarHidden(true)
@@ -100,7 +107,7 @@ struct ProductMainScreen: View {
 
 struct ProductMainScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProductMainScreen(products: Product.sampleProductsList)
+        ProductMainScreen(tabSelection: Binding.constant(Constants.productTab), products: Product.sampleProductsList)
     }
 }
 

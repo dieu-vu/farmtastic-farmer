@@ -385,5 +385,11 @@ class WebService {
            dataTask.resume()
            // Filter for files with title including "farmtastic"
        }
+    
+    
+    func uploadProduct(){
+        // https://developer.apple.com/documentation/foundation/url_loading_system/uploading_data_to_a_website
+        
+    }
 }
 

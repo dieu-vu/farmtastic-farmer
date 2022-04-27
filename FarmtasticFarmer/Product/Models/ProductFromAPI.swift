@@ -21,12 +21,12 @@ struct ProductFromApi: Codable {
 
 
 struct ProductExtraInfo: Codable {
-    var product_name: String
-    var category: String
-    var harvest_date: String
-    var selling_quantity: String
-    var unit: String
-    var unit_price: String
+    var product_name: String = ""
+    var category: String = ""
+    var harvest_date: String = ""
+    var selling_quantity: String = ""
+    var unit: String = ""
+    var unit_price: String = ""
 }
 
 // Blank data to init the object at the beginning

@@ -10,15 +10,12 @@ import CoreData
 
 struct BaseView: View {
 
-//    @Environment(\.managedObjectContext) private var viewContext
-//
-//    @FetchRequest(
-//           sortDescriptors: [NSSortDescriptor(keyPath: \UserFetched.user_id, ascending: true)],
-//           animation: .default)
-//    
     @EnvironmentObject var userController: UserDataController
     @EnvironmentObject var authController: AuthenticationController
     @EnvironmentObject var productDataController: ProductDataController
+
+    @Environment(\.managedObjectContext) private var viewContext
+    @State private var tabSelection = 0
 
     
     @AppStorage("language")
@@ -31,31 +28,34 @@ struct BaseView: View {
     }
     
     var body: some View {
-        TabView {
+        TabView (selection: $tabSelection){
             Home()
                 .tabItem {
                     Image(systemName: "house")
                     Text("home".localized(language: language))
                 }
-            ProductMainScreen(products: Product.sampleProductsList)
+                .tag(Constants.homeTab)
+
+            ProductMainScreen(tabSelection: $tabSelection, products: Product.sampleProductsList)
                 .tabItem {
                     Image(systemName: "list.bullet")
                     Text("product".localized(language: language))
                 }
+                .tag(Constants.productTab)
+
             ProfileScreen()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("profile".localized(language: language))
                 }
+                .tag(Constants.profileTab)
                 .onAppear{
-                    
                     userController.fetchUser{
                         result in
                         switch result {
                         case .success(let user):
                             userController.currentUser = user
                         case .failure(let error):
-                            //authController.logout()
                             //fatalError(error.localizedDescription)
                             print(error.localizedDescription)
                         }

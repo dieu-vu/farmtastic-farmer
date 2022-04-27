@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct AddProductForm: View {
+    @EnvironmentObject var productDataController: ProductDataController
+    
+    // Tab selection
+    @Binding var tabSelection: Int
+    
     let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
     
     let units = ["kg", "liter", "piece"]
@@ -23,10 +28,10 @@ struct AddProductForm: View {
     // Image Picker
     @State private var isShowingImagePicker = false
     @State private var selectedImageSource = UIImagePickerController.SourceType.photoLibrary
-    @State private var placeHolderImage = Image("logo")
+    @State private var placeHolderImage = Image("placeholder")
     
     // Product Image
-    @State private var productImage: UIImage?
+    @Binding var productImage: UIImage?
     
     let formatterDecimal: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -51,7 +56,8 @@ struct AddProductForm: View {
             VStack(alignment: .leading, spacing: 6){
                 Text("Choose Product Image").bold()
                 VStack (alignment: .center){
-                    placeHolderImage                        .resizable()
+                    placeHolderImage
+                        .resizable()
                         .scaledToFit()
                         .frame(width: 300 , height: 200, alignment: .center)
                     HStack{
@@ -84,12 +90,12 @@ struct AddProductForm: View {
                 VStack(alignment: .leading){
                     Text("Quantity").bold()
                     TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
-//                        .keyboardType(.numberPad)
+                    //                        .keyboardType(.numberPad)
                     Text("Price per Unit").bold()
                     
                     TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-//                        .keyboardType(.numberPad)
+                    //                        .keyboardType(.numberPad)
                     /*
                      HStack{
                      TextField("Price per unit", value: $price, formatter: formatterDecimal)             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -121,17 +127,11 @@ struct AddProductForm: View {
             }
             HStack{
                 Button(action: {
-                    print("harvest date from form", harvestDate)
-                    print("price from form", price)
-                    var newProduct = ProductJSON()
-                    newProduct.product_name = productName.trimmingCharacters(in: .whitespacesAndNewlines)
-                    newProduct.category = categories[selectedCategory]
-                    newProduct.unit = categories[selectedUnit]
-                    newProduct.unit_price = Double(price)
-                    newProduct.harvest_date = Utils.utils.convertDateToISOString(harvestDate)
-                    newProduct.selling_quantity = Double(quantity)
-                    print("newProduct from form", newProduct)
-                    // TODO: parse a json string for api post here
+                    // Gather data from form to send to product data controller
+                    handleAddProductData()
+                    clearForm()
+                    // Navigate to main product list view
+                    tabSelection = 1
                 }, label:
                         {
                     Text("Add")
@@ -165,7 +165,23 @@ struct AddProductForm: View {
         price = 0.0
         selectedUnit = 0
         selectedCategory = 0
-        placeHolderImage = Image("logo")
+        placeHolderImage = Image("placeholder")
+    }
+    
+    func handleAddProductData(){
+        // Gather data from form to send to product data controller
+        print("harvest date from form", harvestDate)
+        print("price from form", price)
+        var newProduct = ProductJSON()
+        newProduct.product_name = productName.trimmingCharacters(in: .whitespacesAndNewlines)
+        newProduct.category = categories[selectedCategory]
+        newProduct.unit = units[selectedUnit]
+        newProduct.unit_price = Double(price)
+        newProduct.harvest_date = Utils.utils.convertDateToISOString(harvestDate)
+        newProduct.selling_quantity = Double(quantity)
+        print("newProduct from form", newProduct)
+        let imageData = productImage?.pngData()
+        productDataController.addProduct(description: newProduct, image: imageData ??  Data())
     }
     
 }

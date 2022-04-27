@@ -16,18 +16,18 @@ import SwiftUI
 class ProductDataController: UIViewController, ObservableObject {
     
     @Published var products: [ProductFromApi] = []
-
+    
     let context = PersistenceController.shared.container.viewContext
-
+    
     
     func fetchProduct (completion: @escaping(Result<[ProductFromApi], Error>)-> Void) {
         print("FETCHED PRODUCTS \(self.products)")
-
+        
         DispatchQueue.global(qos: .userInteractive).sync {
             do {
                 let userRequest = WebService()
                 userRequest.getProducts { result in
-                switch result {
+                    switch result {
                     case .failure(let error):
                         print("FAILURE \(error)")
                         completion(.failure(error))
@@ -41,7 +41,7 @@ class ProductDataController: UIViewController, ObservableObject {
                                 self.saveProducts(context: self.context, products: products)
                             }
                         }
-                }}
+                    }}
                 completion(.success(self.products))
             }
         }
@@ -68,8 +68,23 @@ class ProductDataController: UIViewController, ObservableObject {
         }
     }
     
-    
-    
+    func addProduct(description: ProductJSON, image: Data){
+        // parse product info from add product form to a ProductExtraInfo object
+        var product = ProductExtraInfo()
+        product.product_name = description.product_name ?? ""
+        product.category = description.category ?? ""
+        product.selling_quantity = String(format: "%.2f", description.selling_quantity!)
+        product.unit = description.unit ?? ""
+        product.unit_price = String(format: "%.2f", description.unit_price!)
+        let newProductString = String(data: try! JSONEncoder().encode(product), encoding: .utf8)
+        print("NEW PRODUCT DESCRIPTION STRING", newProductString)
+        print("NEW PRODUCT IMAGE DATA", image)
+
+        // parse JSON for POST method in WebService
+        
+        // call Webservice POST method
+        
+    }
     
     
 }

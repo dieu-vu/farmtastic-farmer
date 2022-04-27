@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ProductAddScreen: View {
+    
+    @EnvironmentObject var productDataController: ProductDataController
+    @Environment(\.managedObjectContext) private var viewContext
+    @Binding var tabSelection: Int
+    
     let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
         
     let units = ["kg", "liter", "piece"]
@@ -19,7 +24,8 @@ struct ProductAddScreen: View {
     @State var harvestDate: Date = Date()
     @State var selectedUnit = 0
     @State var selectedCategory = 0
-    
+    @State private var productImage: UIImage?
+
     @State var screenTitle = "product.addProduct"
     @State var hasBackButton = true
     
@@ -32,14 +38,15 @@ struct ProductAddScreen: View {
     var body: some View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
-            AddProductForm(selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate)
+            AddProductForm(tabSelection: $tabSelection, selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
             
         }.navigationBarHidden(true)
     }
+    
 }
 
 struct ProductAddScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProductAddScreen()
+        ProductAddScreen(tabSelection: Binding.constant(Constants.productTab))
     }
 }

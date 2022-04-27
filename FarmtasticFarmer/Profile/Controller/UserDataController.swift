@@ -63,49 +63,4 @@ class UserDataController: UIViewController, ObservableObject {
         }
     }
     
-    
-    
-    
-
-    
-    
-//    let userDefaults: UserDefaults
-//    
-//    enum Key: String, CaseIterable {
-//        case name, full_name
-//        func make(for userId: Int) -> String {
-//            return self.rawValue + "_" + String(userId)
-//        }
-//    }
-//    
-//    init(userDefaults: UserDefaults = .standard){
-//        self.userDefaults = userDefaults
-//    }
-//    
-//    func storeUserInfo(forUserId userId: Int, full_name: UserExtraInfo) {
-//        saveValue(forKey: .full_name, value: full_name, userId: userId)
-//    }
-//    
-//    func getUserInfo(forUserId userId: Int) -> UserExtraInfo? {
-//        let full_name: UserExtraInfo? = readValue(forKey: .full_name, userId: userId)
-//        return full_name
-//    }
-//    
-//    func removeUserInfo(forUserID userId: Int) {
-//        Key
-//            .allCases
-//            .map { $0.make(for: userId) }
-//            .forEach { key in
-//                userDefaults.removeObject(forKey: key)
-//        }
-//    }
-//    
-//    private func saveValue(forKey key: Key, value: Any, userId: Int) {
-//        userDefaults.set(value, forKey: key.make(for: userId))
-//    }
-//    
-//    private func readValue<T>(forKey key: Key, userId: Int) -> T? {
-//            return userDefaults.value(forKey: key.make(for: userId)) as? T
-//        }
-//    
 }
