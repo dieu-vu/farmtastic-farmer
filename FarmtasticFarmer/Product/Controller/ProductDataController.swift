@@ -77,7 +77,11 @@ class ProductDataController: UIViewController, ObservableObject {
         product.selling_quantity = String(format: "%.2f", description.selling_quantity!)
         product.unit = description.unit ?? ""
         product.unit_price = String(format: "%.2f", description.unit_price!)
-        let newProduct = try! JSONEncoder().encode(product)
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .sortedKeys
+        
+        let newProduct = try! encoder.encode(product)
         print("NEW PRODUCT DESCRIPTION JSON", newProduct)
         
         let newProductString = String(data: newProduct, encoding: .utf8)!
@@ -88,17 +92,13 @@ class ProductDataController: UIViewController, ObservableObject {
         
         // Parse JSON for POST method in WebService: multipart/form-data
         // API doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
-        // Title: string "farmtastic2022", description: stringified of ProductExtraInfo object
-        let newProductInfoEncoded = String(data: try! JSONEncoder().encode(newProductString), encoding: .utf8)!
-        print("new product string encoded", newProductInfoEncoded)
-
-        let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductInfoEncoded]
+        let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductString]
         let dataBody = createDataBody(withParameters: productDataDict, image: image)
         let boundary = dataBody["boundary"]
-        print("BOUNDARY", boundary)
+//        print("BOUNDARY", boundary)
         
         let requestData = dataBody["dataBody"]
-        print("Data BODY", requestData)
+//        print("Data BODY", requestData)
         
         // call Webservice POST method
         WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
