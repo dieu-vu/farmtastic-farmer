@@ -3,10 +3,8 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/24/22.
-//
 
-import Foundation
-
+// Class to handle data processes related to products between WebService and UI
 
 import Foundation
 import UIKit
@@ -85,12 +83,8 @@ class ProductDataController: UIViewController, ObservableObject {
         encoder.outputFormatting = .sortedKeys
         
         let newProduct = try! encoder.encode(product)
-        print("NEW PRODUCT DESCRIPTION JSON", newProduct)
-        
         let newProductString = String(data: newProduct, encoding: .utf8)!
         print("NEW PRODUCT DESCRIPTION STRING", newProductString)
-        print("NEW PRODUCT DESCRIPTION STRING", type(of:newProductString))
-        
         print("NEW PRODUCT IMAGE DATA", image)
         
         // Parse JSON for POST method in WebService: multipart/form-data
@@ -98,10 +92,7 @@ class ProductDataController: UIViewController, ObservableObject {
         let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductString]
         let dataBody = createDataBody(withParameters: productDataDict, image: image)
         let boundary = dataBody["boundary"]
-        //        print("BOUNDARY", boundary)
-        
         let requestData = dataBody["dataBody"]
-        //        print("Data BODY", requestData)
         
         // call Webservice POST method
         WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)

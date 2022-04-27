@@ -4,6 +4,7 @@
 //
 //  Created by hanghuynh on 13.4.2022.
 //
+// Class to handle requests to the API and return parsed response data
 
 import Foundation
 import SwiftUI
