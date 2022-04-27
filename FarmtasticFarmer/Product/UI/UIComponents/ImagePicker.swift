@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/26/22.
-//
+//  Image picker for the add product form
 
 import SwiftUI
 

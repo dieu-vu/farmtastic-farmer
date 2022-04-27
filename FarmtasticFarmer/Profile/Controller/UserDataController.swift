@@ -42,7 +42,6 @@ class UserDataController: UIViewController, ObservableObject {
                 completion(.success(self.currentUser))
             }
         }
-        
     }
     
     func saveUser(context: NSManagedObjectContext, user: User){

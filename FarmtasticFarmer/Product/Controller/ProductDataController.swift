@@ -59,6 +59,8 @@ class ProductDataController: UIViewController, ObservableObject {
             productsFetched.unit = product.description.unit
             productsFetched.unit_price = Double(product.description.unit_price) ?? 0.00
             productsFetched.sold_in_cart = NSSet()
+            productsFetched.image = loadImageFrom(filename: product.filename)
+//            print("product fetched image data ", productsFetched.image)
             do {
                 try context.save()
                 print("product fetched from API saved to coredata")
@@ -67,6 +69,7 @@ class ProductDataController: UIViewController, ObservableObject {
             }
         }
     }
+    
     
     func addProduct(description: ProductJSON, image: UIImage){
         // parse product info from add product form to a ProductExtraInfo object
@@ -95,16 +98,16 @@ class ProductDataController: UIViewController, ObservableObject {
         let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductString]
         let dataBody = createDataBody(withParameters: productDataDict, image: image)
         let boundary = dataBody["boundary"]
-//        print("BOUNDARY", boundary)
+        //        print("BOUNDARY", boundary)
         
         let requestData = dataBody["dataBody"]
-//        print("Data BODY", requestData)
+        //        print("Data BODY", requestData)
         
         // call Webservice POST method
         WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
     }
     
-    
+    // HELPERS
     // Function to prepare multipart/form-data body for the POST request
     func createDataBody(withParameters params: [String: String]?, image: UIImage) -> [String: Any] {
         let lineBreak = "\r\n"
@@ -134,6 +137,14 @@ class ProductDataController: UIViewController, ObservableObject {
         print("BUILDING REQUEST BODY", body.description)
         let returnDict = ["dataBody": body, "boundary": boundary] as [String : Any]
         return returnDict
+    }
+    
+    // Function to load image data from API
+    func loadImageFrom (filename: String) -> Data? {
+        let uploadUrl = Constants.uploadUrl + filename
+        guard let url = URL(string: uploadUrl) else { return Data()}
+        let loadedImageData = try! Data(contentsOf: url)
+        return loadedImageData
     }
     
 }
@@ -168,3 +179,4 @@ struct Media {
         self.data = data
     }
 }
+
