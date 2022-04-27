@@ -19,6 +19,5 @@ struct ProductJSON: Codable {
 
 
 struct ProductUploadData: Codable {
-    let title: String
     let description: String
 }
