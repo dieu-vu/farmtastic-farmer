@@ -31,7 +31,7 @@ struct CategoryProductListView: View {
             }
         }
         .onAppear{
-            productDataController.fetchProduct{
+            productDataController.loadProducts {
                 result in
                 switch result {
                 case .success(let products):
@@ -42,6 +42,7 @@ struct CategoryProductListView: View {
                     print(error.localizedDescription)
                 }
             }
+            productDataController.fetchProducts()
         }
     }
 }

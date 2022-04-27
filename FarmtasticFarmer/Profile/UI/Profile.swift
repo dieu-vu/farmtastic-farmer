@@ -30,7 +30,7 @@ struct ProfileScreen: View {
         ScrollView {
             Color("AppBackground")
             HeaderImage()
-            //Text("\(loggedInUser[0].username), \(loggedInUser[0].user_id), count \(loggedInUser.count)")
+            Text("core data, count \(loggedInUser.count)")
             UserInfoCardView(currentUser: $userController.currentUser)
             actionButtonGroup
             ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",

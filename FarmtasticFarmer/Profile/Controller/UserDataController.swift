@@ -14,22 +14,23 @@ class UserDataController: UIViewController, ObservableObject {
     
     
     @Published var currentUser = User.initData
-
+    
     let context = PersistenceController.shared.container.viewContext
     
     
     func fetchUser (completion: @escaping(Result<User, Error>)-> Void) {
         print("FIRST CURRENT USER \(self.currentUser)")
-
+        
         DispatchQueue.global(qos: .userInteractive).sync {
             do {
                 let userRequest = WebService()
                 userRequest.getUser { result in
-                switch result {
+                    switch result {
                     case .failure(let error):
                         print("FAILURE \(error)")
                         completion(.failure(error))
                     case .success(let user):
+                        self.clearUserCoreData(context: self.context)
                         DispatchQueue.main.sync {
                             self.currentUser = user
                             print(user.full_name.address)
@@ -38,7 +39,7 @@ class UserDataController: UIViewController, ObservableObject {
                             // Save current user to CoreData UserFetched
                             self.saveUser(context: self.context, user: user)
                         }
-                }}
+                    }}
                 completion(.success(self.currentUser))
             }
         }
@@ -62,4 +63,17 @@ class UserDataController: UIViewController, ObservableObject {
         }
     }
     
+    
+    func clearUserCoreData(context: NSManagedObjectContext) {
+        let fetchRequest: NSFetchRequest<UserFetched> = UserFetched.fetchRequest()
+        let items = try! context.fetch(fetchRequest)
+        for item in items {
+            context.delete(item)
+        }
+        do {
+            try context.save()
+        } catch {
+            print("CANNOT CLEAR USER DATA TABLE")
+        }
+    }
 }
