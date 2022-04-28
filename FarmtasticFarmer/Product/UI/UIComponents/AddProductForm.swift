@@ -6,10 +6,11 @@
 // Handle Add product form UI and parse JSON for product extra info object
 
 import SwiftUI
+import AlertToast
 
 struct AddProductForm: View {
     @EnvironmentObject var productDataController: ProductDataController
-    
+    @State var showToast = false
     // Tab selection
     @Binding var tabSelection: Int
     
@@ -35,100 +36,107 @@ struct AddProductForm: View {
     
     
     var body: some View {
-        List {
-            Section(header: Text("Product Image")) {
-                VStack (alignment: .center){
-                    placeHolderImage
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 300 , height: 200, alignment: .center)
-                    HStack{
-                        Button("Photo library"){
-                            selectedImageSource = .photoLibrary
-                            isShowingImagePicker = true
-                        }
-                        Text("|")
-                        Button("Camera"){
-                            selectedImageSource = .camera
-                            isShowingImagePicker = true
-                        }
-                    }
-                    .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
-                        ImagePicker(selectedSource: selectedImageSource, productImage: $productImage)
-                    }
-                }
-            }
-            
-            Section(header: Text("Product Info")) {
-                VStack(alignment: .leading) {
-                    Text("Choose category: ").bold()
-                    Picker(selection: $selectedCategory,
-                           label:Text(""))
-                    {
-                        ForEach(0 ..< 4) {
-                            Text(self.categories[$0]).foregroundColor(.red)
-                        }
-                    }.pickerStyle(.segmented)
-                }
-                HStack(alignment: .top, spacing: 0) {
-                    Text("Product name: ").bold()
-                    Spacer()
-                    TextField("Enter text", text: $productName)
-                }
-                DatePicker("Harvest date: ", selection: $harvestDate, displayedComponents: .date)
-                HStack(spacing: 0){
-                    VStack(alignment: .leading){
-                        Text("Quantity").bold()
-                        HStack {
-                            TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            HStack{
-                                Text("Unit").bold()
-                                VStack {
-                                    Picker("", selection: $selectedUnit) {
-                                        ForEach(units, id: \.self) {
-                                            Text($0)
-                                                .foregroundColor(.yellow)
-                                                .font(.title3)
-                                            
-                                        }
-                                    }.pickerStyle(.menu)
-                                }  .frame(width: 50)
-                                    .clipped()
-                                    .transition(.scale)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 6)
-                                            .stroke(Color.gray, lineWidth: 1)
-                                    )
+        VStack {
+            List {
+                Section(header: Text("Product Image")) {
+                    VStack (alignment: .center){
+                        placeHolderImage
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300 , height: 200, alignment: .center)
+                        HStack{
+                            Button("Photo library"){
+                                selectedImageSource = .photoLibrary
+                                isShowingImagePicker = true
+                            }
+                            Text("|")
+                            Button("Camera"){
+                                selectedImageSource = .camera
+                                isShowingImagePicker = true
                             }
                         }
-                        HStack {
-                            Text("Price per Unit").bold()
-                            TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
+                            ImagePicker(selectedSource: selectedImageSource, productImage: $productImage)
+                        }
+                    }
+                }
+                
+                Section(header: Text("Product Info")) {
+                    VStack(alignment: .leading) {
+                        Text("Choose category: ").bold()
+                        Picker(selection: $selectedCategory,
+                               label:Text(""))
+                        {
+                            ForEach(0 ..< 4) {
+                                Text(self.categories[$0]).foregroundColor(.red)
+                            }
+                        }.pickerStyle(.segmented)
+                    }
+                    HStack(alignment: .top, spacing: 0) {
+                        Text("Product name: ").bold()
+                        Spacer()
+                        TextField("Enter text", text: $productName)
+                    }
+                    DatePicker("Harvest date: ", selection: $harvestDate, displayedComponents: .date)
+                    HStack(spacing: 0){
+                        VStack(alignment: .leading){
+                            Text("Quantity").bold()
+                            HStack {
+                                TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                HStack{
+                                    Text("Unit").bold()
+                                    VStack {
+                                        Picker("", selection: $selectedUnit) {
+                                            ForEach(units, id: \.self) {
+                                                Text($0)
+                                                    .foregroundColor(.yellow)
+                                                    .font(.title3)
+                                                
+                                            }
+                                        }.pickerStyle(.menu)
+                                    }  .frame(width: 50)
+                                        .clipped()
+                                        .transition(.scale)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 6)
+                                                .stroke(Color.gray, lineWidth: 1)
+                                        )
+                                }
+                            }
+                            HStack {
+                                Text("Price per Unit").bold()
+                                TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                            }
                         }
                     }
                 }
             }
+            .toast(isPresenting: $showToast, duration: 1) {
+                AlertToast(displayMode: .alert, type: .complete(Color("DarkGreen")), title: "Success!")
+            }
+            HStack{
+                ButtonView(buttonText: "Add",
+                           buttonColorLight: "LightGreen",
+                           buttonColorDark: "DarkGreen",
+                           buttonAction: {
+                    // Gather data from form to send to product data controller
+                    handleAddProductData()
+                    clearForm()
+                    // Navigate to main product list view
+                    tabSelection = 1
+                    showToast.toggle()
+                })
+                ButtonView(buttonText: "Clear",
+                           buttonColorLight: "PinkishRed",
+                           buttonColorDark: "PinkishRed",
+                           buttonAction: {
+                    clearForm()
+                })
+            }
+            .padding(.horizontal, 4)
         }
-        HStack{
-            ButtonView(buttonText: "Add",
-                       buttonColorLight: "LightGreen",
-                       buttonColorDark: "DarkGreen",
-                       buttonAction: {
-                // Gather data from form to send to product data controller
-                handleAddProductData()
-                clearForm()
-                // Navigate to main product list view
-                tabSelection = 1
-            })
-            ButtonView(buttonText: "Clear",
-                       buttonColorLight: "PinkishRed",
-                       buttonColorDark: "PinkishRed",
-                       buttonAction: {
-                clearForm()
-            })
-        }
-        .padding(.horizontal, 4)
+        
     }
     
     func loadImage() {
@@ -164,4 +172,6 @@ struct AddProductForm: View {
         productDataController.addProduct(description: newProduct, image: productImage ?? UIImage(imageLiteralResourceName: "placeholder"))
     }
 }
+
+
 
