@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    //let product: ProductList
+    let product: ProductFetched
     @State var screenTitle = "product.details"
     @State var hasBackButton = true
+    let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
     
     var body: some View {
         
@@ -18,37 +19,36 @@ struct ProductDetailView: View {
            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
         
             ScrollView {
-                Image ("entrecote")
+                Image (uiImage: UIImage(data: product.image ?? placeholderImageData!)!)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 300, height: 200)
                 HStack {
-                    Text ("Fresh entrecote cut")
-                        .font(.subheadline)
+                    Text (product.product_name ?? "")
+                        .font(.headline)
                         .fontWeight(.bold)
                         .padding()
                     
-                    Image(systemName: "pencil")
-                        .aspectRatio(contentMode: .fit)
-                        .foregroundColor(Color.black)
-                        
+//                    Image(systemName: "pencil")
+//                        .aspectRatio(contentMode: .fit)
+//                        .foregroundColor(Color.black)
                 }
-                
+                // TODO: deducting sold quantity here
                 VStack(alignment: .leading) {
-                    Text ("Quantity: 100kg")
+                    Text ("Available quantity: \(product.selling_quantity, specifier: "%.2f")kg")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Price: 18€/kg")
+                    Text ("Price: \(product.unit_price, specifier: "%.2f") €/kg")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Category: Beef")
+                    Text ("Category: \(product.category ?? "") " )
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Harvest date: 23/2/2022")
+                    Text ("Harvest date: \(Utils.utils.formatDateString(product.harvest_date ?? Date()))")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
                 }
-                .frame(width: 300)
+                .frame(width: 300).navigationBarHidden(true)
                
                 ButtonView(buttonText: "Delete", buttonColorLight: "PinkishRed", buttonColorDark: "PinkishRed", buttonAction: {print("Button clicked")}).padding(.top, 30)
             }
@@ -56,8 +56,8 @@ struct ProductDetailView: View {
     }
 }
 
-struct ProductDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetailView()
-    }
-}
+//struct ProductDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductDetailView()
+//    }
+//}

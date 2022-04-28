@@ -15,11 +15,19 @@ class ProductDataController: UIViewController, ObservableObject {
     
     @Published var products: [ProductFromApi] = []
     
+    @Published var allProducts: [ProductFetched] = []
+    @Published var meatProductList: [ProductFetched] = []
+    @Published var vegeProductList: [ProductFetched] = []
+    @Published var fruitProductList: [ProductFetched] = []
+    @Published var dairyProductList: [ProductFetched] = []
+
+    @Published var loadCompleted: Bool = false
+    
     let context = PersistenceController.shared.container.viewContext
     
-    
-    func fetchProduct (completion: @escaping(Result<[ProductFromApi], Error>)-> Void) {
-        print("FETCHED PRODUCTS \(self.products)")
+    // Fetch product info from network ans save to Core Data
+    func loadProducts(completion: @escaping(Result<[ProductFetched], Error>)-> Void) {
+        print("LOADED PRODUCTS \(self.products)")
         
         DispatchQueue.global(qos: .userInteractive).sync {
             do {
@@ -30,21 +38,33 @@ class ProductDataController: UIViewController, ObservableObject {
                         print("FAILURE \(error)")
                         completion(.failure(error))
                     case .success(let products):
+                        // Clear product data table
+                        self.clearProductCoreData(context: self.context)
                         DispatchQueue.main.sync {
                             self.products = products
-                            print(products.count)
+                            print("PRODUCT LOADED FROM API COUNT", products.count)
                             if (products.count > 0){
                                 let string_test = products[0].description.product_name
-                                print("product extra info: \(string_test)")
+                                print("test product extra info: \(string_test)")
+                                // Save products loaded from API to core data
                                 self.saveProducts(context: self.context, products: products)
                             }
+                            // Fetch Product from Core Data
+                            self.allProducts = self.fetchAllProducts()
+                            self.vegeProductList = self.getProductsByCategory(category: "vegetables")
+                            self.meatProductList = self.getProductsByCategory(category: "meat")
+                            self.fruitProductList = self.getProductsByCategory(category: "fruit")
+                            self.dairyProductList = self.getProductsByCategory(category: "egg")
+                            self.loadCompleted = true
                         }
                     }}
-                completion(.success(self.products))
+                completion(.success(self.allProducts))
             }
         }
     }
     
+    
+    // Function to save Products to Core Data (as ProductFetched object)
     func saveProducts(context: NSManagedObjectContext, products: [ProductFromApi]){
         //save fetched products to core data
         for product in products {
@@ -58,17 +78,17 @@ class ProductDataController: UIViewController, ObservableObject {
             productsFetched.unit_price = Double(product.description.unit_price) ?? 0.00
             productsFetched.sold_in_cart = NSSet()
             productsFetched.image = loadImageFrom(filename: product.filename)
-//            print("product fetched image data ", productsFetched.image)
+            //            print("product fetched image data ", productsFetched.image)
             do {
                 try context.save()
-                print("product fetched from API saved to coredata")
+//                print("product fetched from API saved to coredata")
             } catch {
                 UserDefaults.standard.setValue(true, forKey: Constants.productsLoaded)
             }
         }
     }
     
-    
+    // Function to handle data from Add Product Form and call POST request to the API
     func addProduct(description: ProductJSON, image: UIImage){
         // parse product info from add product form to a ProductExtraInfo object
         var product = ProductExtraInfo()
@@ -97,6 +117,48 @@ class ProductDataController: UIViewController, ObservableObject {
         // call Webservice POST method
         WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
     }
+    
+    // Function to fetch products from Core Data
+    func fetchAllProducts() -> [ProductFetched] {
+        do {
+            let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
+            let productsFromCoreData = try context.fetch(request)
+            print("PRODUCT FETCHED FROM CORE DATA COUNT",productsFromCoreData.count)
+//            productsFromCoreData.forEach{ product in
+//                print("product in CD: \(product.product_name), \(product.unit_price)")
+//            }
+            return productsFromCoreData
+        }
+        catch {
+            print("Cannot fetch products from Core Data")
+            return []
+        }
+    }
+    
+    // Function to sort and filter products from Core Data based on given condition
+    func getProductsByCategory (category: String) -> [ProductFetched]{
+        do {
+            let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
+            
+            let pred = NSPredicate(format: "category contains[cd] %@", category )
+            request.predicate = pred
+            let sort = NSSortDescriptor(key: "harvest_date", ascending: true)
+            request.sortDescriptors = [sort]
+            
+            let groupProducts = try context.fetch(request)
+            if (groupProducts.count > 0 ){
+                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.count)
+//                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
+            }
+            return groupProducts
+        } catch {
+            print("Cannot fetch products by category from Core Data")
+            return []
+        }
+    }
+    
+    
+    
     
     // HELPERS
     // Function to prepare multipart/form-data body for the POST request
@@ -136,6 +198,32 @@ class ProductDataController: UIViewController, ObservableObject {
         guard let url = URL(string: uploadUrl) else { return Data()}
         let loadedImageData = try! Data(contentsOf: url)
         return loadedImageData
+    }
+    
+    
+    // Function to delete objects in batch
+    func clearProductCoreData(context: NSManagedObjectContext) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ProductFetched")
+        let deleteRequest = NSBatchDeleteRequest(
+            fetchRequest: fetchRequest
+        )
+        // Specify the result of the NSBatchDeleteRequest
+        // should be the NSManagedObject IDs for the deleted objects
+        deleteRequest.resultType = .resultTypeObjectIDs
+        // Perform the batch delete
+        let batchDelete = try! context.execute(deleteRequest) as? NSBatchDeleteResult
+        
+        guard let deleteResult = batchDelete?.result as? [NSManagedObjectID]
+        else { return }
+        
+        let deletedObjects: [AnyHashable: Any] = [NSDeletedObjectsKey: deleteResult]
+        
+        // Merge the delete changes into the managed
+        // object context
+        NSManagedObjectContext.mergeChanges(
+            fromRemoteContextSave: deletedObjects,
+            into: [context]
+        )
     }
     
 }
