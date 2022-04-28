@@ -48,7 +48,7 @@ struct ProductDetailView: View {
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
                 }
-                .frame(width: 300)
+                .frame(width: 300).navigationBarHidden(true)
                
                 ButtonView(buttonText: "Delete", buttonColorLight: "PinkishRed", buttonColorDark: "PinkishRed", buttonAction: {print("Button clicked")}).padding(.top, 30)
             }

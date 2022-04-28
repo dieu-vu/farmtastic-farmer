@@ -26,9 +26,9 @@ struct CategoryProductListView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(products, id: \.product_id) { product in
-                        ProductCardView(product: product).padding([.horizontal, .bottom], 10)
-                    }.padding([.horizontal, .bottom], 10)
-                }
+                        ProductCardView(product: product)
+                    }
+                }.padding([.bottom, .leading], 20)
             }
         }
     }
