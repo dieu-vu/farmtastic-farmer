@@ -8,12 +8,14 @@ import MapKit
 import SwiftUI
 
 struct MapUIView: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     var manager = LocationManager()
     @State private var mapRoutes: [String] = []
     @State private var showDirections = false
     @Binding var selectedDate: Date
     @State var orders: [ActiveOrder]
-    @State var hasBackButton = true
+    @State var screenTitle: String = "order.deliveryDate"
     
     var body: some View {
         VStack {
@@ -23,10 +25,16 @@ struct MapUIView: View {
                 )
                 RoundedRectangle(cornerRadius: 50).fill(.white).frame(height: 70).padding(.top, -50)
                 HStack {
+                    BackButton()
                     Spacer()
-                    Text("Delivery date: \(orders[0].pickup_date)").font(.title).bold()
+                    VStack {
+                        Text("\(screenTitle)".localized(language: language)).font(.title2)
+                        Text("\(orders[0].pickup_date)").font(.title).bold()
+                    }
                     Spacer()
-                }.padding(.horizontal, 20).padding(.top, -50)
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, -50)
                 MapView(mapRoutes: $mapRoutes, orders: $orders, currentLocation: manager.region.center)
                 ButtonView(buttonText: "Show Directions",
                            buttonColorLight: "LightGreen",
@@ -36,7 +44,9 @@ struct MapUIView: View {
                 })
                 .padding(.bottom, 32)
                 .disabled(mapRoutes.isEmpty)
-            }.edgesIgnoringSafeArea(.top).padding(.bottom, -50)
+            }
+            .edgesIgnoringSafeArea(.top)
+            .padding(.bottom, -50)
         }
         .sheet(isPresented: $showDirections, content: {
             VStack {
