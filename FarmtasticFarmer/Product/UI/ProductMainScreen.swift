@@ -57,7 +57,7 @@ struct ProductMainScreen: View {
                     }) {
                         Image(systemName: isRecording ? "stop.circle" : "mic.fill").padding(.trailing, 8)
                     }
-                    NavigationLink(destination: SearchResults(searchText: $searchText)){
+                    NavigationLink(destination: SearchResults(searchText: $searchText).navigationBarBackButtonHidden(true)){
                         Image(systemName: "magnifyingglass").padding(.trailing, 20)
                     }
                     .disabled(searchText.isEmpty)

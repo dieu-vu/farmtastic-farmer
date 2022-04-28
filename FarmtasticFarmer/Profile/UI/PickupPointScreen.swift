@@ -24,9 +24,11 @@ struct PickupPointScreen: View {
                        buttonAction: {
             })
             
+            /*List(pickupPoints,
+                id: \.id) { pickupPoint in
             List(pickupPoints, id: \.id) { pickupPoint in
                 PickupPointRow(pickupPoint: pickupPoint)
-            }
+            }*/
             
         }.navigationBarHidden(true)
     }

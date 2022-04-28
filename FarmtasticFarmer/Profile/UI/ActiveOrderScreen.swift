@@ -27,7 +27,7 @@ struct ActiveOrderScreen: View {
             HStack {
                 DatePicker("Select pickup date:", selection: $selectedDate, in: Date()..., displayedComponents: .date)
                 Spacer()
-                NavigationLink(destination: MapView(selectedDate: $selectedDate, orders: filteredList)) {
+                NavigationLink(destination: MapUIView(selectedDate: $selectedDate, orders: filteredList).navigationBarBackButtonHidden(true)) {
                     Image(systemName: "map").font(.title).foregroundColor(Color("PinkishRed"))
                 }
             }.padding(.horizontal, 20)

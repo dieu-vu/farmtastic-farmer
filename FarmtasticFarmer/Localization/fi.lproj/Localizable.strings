@@ -18,7 +18,7 @@
 "product.allCategories" = "Kaikki Tuotteet";
 "product.addProduct" = "Lisää Tuotetta";
 "product.details" = "Tuotteen Yksityiskohdat";
-"product.searchResult" = "Hakutulos";
+"product.searchResults" = "Hakutulokset:";
 
 "profile" = "Profiili";
 "profile.username" = "Käyttäjätunnus";
@@ -37,3 +37,5 @@
 "profile.newAddress" = "Uusi osoite";
 "profile.newPhone" = "Uusi puhelinnumero";
 "profile.pickupPoint" = "Noutopiste";
+
+"order.deliveryDate" = "Toimituspäivä:";

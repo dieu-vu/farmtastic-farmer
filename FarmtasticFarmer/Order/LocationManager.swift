@@ -2,14 +2,15 @@
 //  LocationManager.swift
 //  FarmtasticFarmer
 //
-//  Created by hanghuynh on 22.4.2022.
+//  Created by hanghuynh on 26.4.2022.
 //
 
-import MapKit
+import UIKit
 import CoreLocation
+import MapKit
 
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
-    
+
     @Published var region = MKCoordinateRegion()
     private let manager = CLLocationManager()
     
