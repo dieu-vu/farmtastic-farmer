@@ -9,12 +9,21 @@ import SwiftUI
 import AVFoundation
 
 struct ProductMainScreen: View {
+    
+    @EnvironmentObject var productDataController: ProductDataController
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @Binding var tabSelection: Int
+    
     let products: [Product]
     @State var searchText: String = ""
     @State private var isRecording: Bool = false
     @State var isOn: Bool = false
     @StateObject var speechRecognizer = SpeechRecognizer()
     
+    @State var screenTitle = "product.allCategories"
+    @State var hasBackButton = false
     @State var navigateToAddProduct: Bool = false
     
     
@@ -31,12 +40,10 @@ struct ProductMainScreen: View {
     var body: some View {
         
         VStack {
-            Text("All Categories")
-                .font(.headline)
-                .fontWeight(.bold)
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton).padding(.bottom, 30)
             ZStack {
                 RoundedRectangle(cornerRadius: 40)
-                    .foregroundColor(Color("LightYellow"))
+                    .foregroundColor(Color("LightYellow")).opacity(0.2)
                 HStack {
                     TextField("Search ..", text: $searchText)
                     Button(action: {
@@ -62,7 +69,7 @@ struct ProductMainScreen: View {
                     .disabled(searchText.isEmpty)
                 }
                 .foregroundColor(.gray)
-                .padding(.leading, 13)
+                .padding(.leading, 15)
             }
             .frame(height: 40)
             .overlay(
@@ -75,14 +82,15 @@ struct ProductMainScreen: View {
             }
             
             ScrollView {
-                VStack{
+                VStack {
                     CategoryProductListView(products: meatProductList, category: "Meat")
                     CategoryProductListView(products: vegeProductList, category: "Vegetables")
                     CategoryProductListView(products: fruitProductList, category: "Fruit")
                 }
-                NavigationLink(destination: ProductAddScreen(), isActive: $navigateToAddProduct){}
-
+                NavigationLink(destination: ProductAddScreen(tabSelection: $tabSelection), isActive: $navigateToAddProduct){}
+                
             }
+            .navigationBarHidden(true)
             .gesture(DragGesture()
                 .onChanged({ _ in
                     UIApplication.shared.dismissKeyboard()
@@ -93,15 +101,13 @@ struct ProductMainScreen: View {
                 .foregroundColor(.black)) {
                     navigateToAddProduct = true
                 }
-
-        }
-
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 
 struct ProductMainScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProductMainScreen(products: Product.sampleProductsList)
+        ProductMainScreen(tabSelection: Binding.constant(Constants.productTab), products: Product.sampleProductsList)
     }
 }
 

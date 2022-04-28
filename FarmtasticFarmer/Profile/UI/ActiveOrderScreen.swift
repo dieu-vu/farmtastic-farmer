@@ -13,6 +13,8 @@ struct ActiveOrderScreen: View {
     //@ObservedObject var loader = ActiveOrderLoader()
     @State var selectedDate = Date.now
     @State var orders = loadData()
+    @State var screenTitle = "profile.orderList"
+    @State var hasBackButton = true
     var filteredList: [ActiveOrder] {
         return orders.filter {
             $0.pickup_date == dateFormat(selectedDate)
@@ -21,6 +23,7 @@ struct ActiveOrderScreen: View {
     
     var body: some View {
         VStack {
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
             HStack {
                 DatePicker("Select pickup date:", selection: $selectedDate, in: Date()..., displayedComponents: .date)
                 Spacer()
@@ -35,7 +38,7 @@ struct ActiveOrderScreen: View {
                 }
             }
             
-        }.navigationTitle("Active Orders")
+        }.navigationBarHidden(true)
     }
 }
 

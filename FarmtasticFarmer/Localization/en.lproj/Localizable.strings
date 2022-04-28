@@ -9,13 +9,16 @@
 "apply" = "Apply";
 "english" = "English";
 "finnish" = "Finnish";
-"vietnamese" = "Vietnamees";
+"vietnamese" = "Vietnamese";
 
 "home" = "Home";
 
 
 "product" = "Product";
-
+"product.allCategories" = "All Categories";
+"product.addProduct" = "Add Product";
+"product.details" = "Product Details";
+"product.searchResult" = "Search Result";
 
 "profile" = "Profile";
 "profile.username" = "Username";
@@ -33,3 +36,4 @@
 "profile.newName" = "New name";
 "profile.newAddress" = "New address";
 "profile.newPhone" = "New phone";
+"profile.pickupPoint" = "Pickup points";

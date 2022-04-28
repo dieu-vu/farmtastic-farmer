@@ -28,7 +28,7 @@ class ProductModel: ObservableObject {
     }
     
     func preLoadLocalData() {
-        // Request and parse user data
+        // Request and parse product data
       
         // Create CoreData object
         

@@ -20,14 +20,14 @@ struct CategoryProductListView: View {
                 .fontWeight(.bold)
                 .foregroundColor(.red)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(4)
+                .padding(.leading, 20)
             
-            ScrollView(.horizontal, showsIndicators: false){
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack{
                     ForEach(products, id: \.name) { product in
-                        productCardView(product: product).padding(6)
+                        productCardView(product: product).padding([.horizontal, .bottom], 10)
                     }
-                }
+                }.padding([.horizontal, .bottom], 10)
             }
         }
         .onAppear{
@@ -43,7 +43,6 @@ struct CategoryProductListView: View {
                 }
             }
         }
-        .padding(.horizontal, 8)
     }
 }
 

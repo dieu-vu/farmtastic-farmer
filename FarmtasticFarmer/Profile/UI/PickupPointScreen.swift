@@ -12,21 +12,23 @@ struct PickupPointScreen: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
     let pickupPoints: [PickupPoint] = PickupPoint.samplePickupPointLists;
+    @State var screenTitle = "profile.pickupPoint"
+    @State var hasBackButton = true
     
     var body: some View {
         VStack {
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
             ButtonView(buttonText: "Add New",
-                       buttonColorLight: "LightYellow",
-                       buttonColorDark: "Yellow",
+                       buttonColorLight: "LightGreen",
+                       buttonColorDark: "DarkGreen",
                        buttonAction: {
             })
             
-            List(pickupPoints,
-                id: \.id) { pickupPoint in
+            List(pickupPoints, id: \.id) { pickupPoint in
                 PickupPointRow(pickupPoint: pickupPoint)
             }
             
-        }.navigationTitle("Active Orders")
+        }.navigationBarHidden(true)
     }
 }
 
