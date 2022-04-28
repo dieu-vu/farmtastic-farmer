@@ -18,7 +18,7 @@
 "product.allCategories" = "All Categories";
 "product.addProduct" = "Add Product";
 "product.details" = "Product Details";
-"product.searchResult" = "Search Result";
+"product.searchResults" = "Search Results:";
 
 "profile" = "Profile";
 "profile.username" = "Username";
@@ -37,3 +37,5 @@
 "profile.newAddress" = "New address";
 "profile.newPhone" = "New phone";
 "profile.pickupPoint" = "Pickup points";
+
+"order.deliveryDate" = "Delivery Date:";
