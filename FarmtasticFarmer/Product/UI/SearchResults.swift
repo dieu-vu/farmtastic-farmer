@@ -41,8 +41,8 @@ struct SearchResults: View {
     }
 }
 
-/*struct SearchResults_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchResults()
-    }
-}*/
+//struct SearchResults_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchResults(searchText: "")
+//    }
+
