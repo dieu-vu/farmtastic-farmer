@@ -27,28 +27,10 @@ struct CategoryProductListView: View {
                 HStack {
                     ForEach(products, id: \.product_id) { product in
                         ProductCardView(product: product).padding([.horizontal, .bottom], 10)
-                            .onTapGesture {
-                                // Navigate to detail view
-                                productIsTapped.toggle()
-                                print("tapped \(product.product_name)")
-                            }
-                        NavigationLink("", destination: ProductDetailView(product: product), isActive: $productIsTapped)
-                        
                     }.padding([.horizontal, .bottom], 10)
                 }
             }
         }
-        //        .onAppear{
-        //            productDataController.loadProducts {
-        //                result in
-        //                switch result {
-        //                case .success(let products):
-        //                    productDataController.products = products
-        //                case .failure(let error):
-        //                    print(error.localizedDescription)
-        //                }
-        //            }
-        //        }
     }
     
     struct CategoryProductListView_Previews: PreviewProvider {

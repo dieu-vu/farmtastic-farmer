@@ -35,7 +35,7 @@ struct ProductDetailView: View {
                 }
                 // TODO: deducting sold quantity here
                 VStack(alignment: .leading) {
-                    Text ("Available quantity: \(product.selling_quantity)kg")
+                    Text ("Available quantity: \(product.selling_quantity, specifier: "%.2f")kg")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
                     Text ("Price: \(product.unit_price, specifier: "%.2f") €/kg")

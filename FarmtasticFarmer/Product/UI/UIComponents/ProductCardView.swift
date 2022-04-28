@@ -29,6 +29,12 @@ struct ProductCardView : View {
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.green, lineWidth: 1)
             )
+            .onTapGesture {
+                // Navigate to detail view
+                productIsTapped.toggle()
+                print("tapped \(product.product_name)")
+            }
+        NavigationLink("", destination: ProductDetailView(product: product), isActive: $productIsTapped)
 
     }
     
