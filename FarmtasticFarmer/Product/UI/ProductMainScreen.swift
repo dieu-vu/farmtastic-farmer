@@ -16,7 +16,7 @@ struct ProductMainScreen: View {
     
     @Binding var tabSelection: Int
     
-    let products: [Product]
+    @State var products: [ProductFetched]
     @State var searchText: String = ""
     @State private var isRecording: Bool = false
     @State var isOn: Bool = false
@@ -101,14 +101,26 @@ struct ProductMainScreen: View {
                     navigateToAddProduct = true
                 }
         }.edgesIgnoringSafeArea(.top)
+            .onAppear{
+                productDataController.loadProducts {
+                    result in
+                    switch result {
+                    case .success(let products):
+                        productDataController.allProducts = products
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
     }
+        
 }
 
-struct ProductMainScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductMainScreen(tabSelection: Binding.constant(Constants.productTab), products: Product.sampleProductsList)
-    }
-}
+//struct ProductMainScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductMainScreen(tabSelection: Binding.constant(Constants.productTab), products: Product.sampleProductsList)
+//    }
+//}
 
 extension UIApplication {
     func dismissKeyboard() {

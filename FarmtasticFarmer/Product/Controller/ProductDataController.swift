@@ -15,6 +15,7 @@ class ProductDataController: UIViewController, ObservableObject {
     
     @Published var products: [ProductFromApi] = []
     
+    @Published var allProducts: [ProductFetched] = []
     @Published var meatProductList: [ProductFetched] = []
     @Published var vegeProductList: [ProductFetched] = []
     @Published var fruitProductList: [ProductFetched] = []
@@ -25,7 +26,7 @@ class ProductDataController: UIViewController, ObservableObject {
     let context = PersistenceController.shared.container.viewContext
     
     // Fetch product info from network ans save to Core Data
-    func loadProducts(completion: @escaping(Result<[ProductFromApi], Error>)-> Void) {
+    func loadProducts(completion: @escaping(Result<[ProductFetched], Error>)-> Void) {
         print("LOADED PRODUCTS \(self.products)")
         
         DispatchQueue.global(qos: .userInteractive).sync {
@@ -49,7 +50,7 @@ class ProductDataController: UIViewController, ObservableObject {
                                 self.saveProducts(context: self.context, products: products)
                             }
                             // Fetch Product from Core Data
-                            let _ = self.fetchAllProducts()
+                            self.allProducts = self.fetchAllProducts()
                             self.vegeProductList = self.getProductsByCategory(category: "vegetables")
                             self.meatProductList = self.getProductsByCategory(category: "meat")
                             self.fruitProductList = self.getProductsByCategory(category: "fruit")
@@ -57,7 +58,7 @@ class ProductDataController: UIViewController, ObservableObject {
                             self.loadCompleted = true
                         }
                     }}
-                completion(.success(self.products))
+                completion(.success(self.allProducts))
             }
         }
     }

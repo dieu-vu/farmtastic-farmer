@@ -36,7 +36,7 @@ struct BaseView: View {
                 }
                 .tag(Constants.homeTab)
 
-            ProductMainScreen(tabSelection: $tabSelection, products: Product.sampleProductsList)
+            ProductMainScreen(tabSelection: $tabSelection, products: productDataController.allProducts)
                 .tabItem {
                     Image(systemName: "list.bullet")
                     Text("product".localized(language: language))

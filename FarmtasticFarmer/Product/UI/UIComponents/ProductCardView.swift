@@ -25,14 +25,10 @@ struct ProductCardView : View {
             Text(String(product.unit_price))
                 .multilineTextAlignment(.leading)
         }.frame(width: 150, height: 150)
-            .onTapGesture {
-                productIsTapped.toggle()
-            }
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.green, lineWidth: 1)
             )
-//        NavigationLink("", destination: ProductDetailView(product: product), isActive: $productIsTapped)
 
     }
     

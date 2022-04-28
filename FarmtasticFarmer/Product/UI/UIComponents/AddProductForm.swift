@@ -33,11 +33,6 @@ struct AddProductForm: View {
     // Product Image
     @Binding var productImage: UIImage?
     
-    let formatterDecimal: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter
-    }()
     
     var body: some View {
         Form {
