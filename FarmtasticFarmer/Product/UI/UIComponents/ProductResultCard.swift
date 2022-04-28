@@ -8,37 +8,47 @@
 import SwiftUI
 
 struct ProductResultCard: View {
-    let product: Product
+    let product: ProductFetched
+    let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
+    @State var productIsTapped = false
+
     var body: some View {
         HStack {
             
-            Image(product.image)
+            Image(uiImage: UIImage(data: product.image ?? placeholderImageData!)!)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 140, height: 140)
-                Spacer()
+            Spacer()
             VStack(alignment: .center) {
-                Text(product.name)
+                Text(product.product_name ?? "")
                     .font(.title2)
                     .multilineTextAlignment(.leading)
                     .padding(5)
-                Text(product.pricePerUnit)
+                Text("\(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
                     .multilineTextAlignment(.leading)
-                Text(product.Category)
+                Text("\(product.category ?? "") ")
                     .multilineTextAlignment(.leading)
             }
             .padding(5.0)
             .frame(width: 140.0, height: 140.0)
         }
         .padding([.leading, .trailing], 20)
+        .onTapGesture {
+            // Navigate to detail view
+            productIsTapped.toggle()
+            print("tapped \(String(describing: product.product_name))")
+        }
+        NavigationLink("", destination: ProductDetailView(product: product).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
+        
     }
 }
 
-struct ProductCard_Previews: PreviewProvider {
-    static var product = Product.sampleProductsList[0]
-    static var previews: some View {
-        ProductResultCard(product: product)
-            .previewLayout(.fixed(width: 1000, height: 70))
-            
-    }
-}
+//struct ProductCard_Previews: PreviewProvider {
+//    static var product = ProductDataController().allProducts[0]
+//    static var previews: some View {
+//        ProductResultCard(product: product)
+//            .previewLayout(.sizeThatFits)
+//
+//    }
+//}

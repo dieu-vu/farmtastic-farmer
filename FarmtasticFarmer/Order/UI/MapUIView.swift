@@ -51,17 +51,15 @@ struct MapUIView: View {
         .sheet(isPresented: $showDirections, content: {
             VStack {
                 Text("Directions")
-                    .font(.largeTitle)
+                    .font(.title)
                     .bold()
-                    .padding()
-                
+                    .padding(8)
                 List {
                     ForEach(0..<self.mapRoutes.count, id: \.self) { i in
                         Text(self.mapRoutes[i])
                             .padding()
                     }
                 }
-                
                 ButtonView(buttonText: "Dismiss",
                            buttonColorLight: "LightGreen",
                            buttonColorDark: "DarkGreen",
@@ -116,7 +114,6 @@ struct MapView: UIViewRepresentable {
         }
         
         groupedRoute.forEach { pair in
-            print("origin: \(pair.startItem), destination: \(pair.endItem)")
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: pair.startItem)
             request.destination = MKMapItem(placemark: pair.endItem)
@@ -128,7 +125,6 @@ struct MapView: UIViewRepresentable {
                 mapView.addOverlay(route.polyline)
                 mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
                 let mapRoute = route.steps.map { $0.instructions }.filter { !$0.isEmpty }
-                print(mapRoute)
                 mapRoutes += mapRoute
             }
         }

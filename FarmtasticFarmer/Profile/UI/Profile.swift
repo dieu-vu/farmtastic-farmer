@@ -29,8 +29,7 @@ struct ProfileScreen: View {
     var body: some View {
         ScrollView {
             Color("AppBackground")
-            HeaderImage()
-            //Text("\(loggedInUser[0].username), \(loggedInUser[0].user_id), count \(loggedInUser.count)")
+            HeaderImage(currentUser: $userController.currentUser)
             UserInfoCardView(currentUser: $userController.currentUser)
             actionButtonGroup
             ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",

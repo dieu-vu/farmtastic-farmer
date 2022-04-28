@@ -3,20 +3,20 @@
 //  FarmtasticFarmer
 //
 //  Created by Nguyen Giang on 11.4.2022.
-//
+// Screen showing all the products arranged by category
 
 import SwiftUI
 import AVFoundation
 
 struct ProductMainScreen: View {
-    
+        
     @EnvironmentObject var productDataController: ProductDataController
     
     @Environment(\.managedObjectContext) private var viewContext
     
     @Binding var tabSelection: Int
     
-    let products: [Product]
+    @State var products: [ProductFetched]
     @State var searchText: String = ""
     @State private var isRecording: Bool = false
     @State var isOn: Bool = false
@@ -27,20 +27,14 @@ struct ProductMainScreen: View {
     @State var navigateToAddProduct: Bool = false
     
     
-    let meatProductList = Product.sampleProductsList.filter {
-        $0.Category.starts(with: "Meat")
-    }
-    let vegeProductList = Product.sampleProductsList.filter {
-        $0.Category.starts(with: "Vegetables")
-    }
-    let fruitProductList = Product.sampleProductsList.filter {
-        $0.Category.starts(with: "Fruit")
-    }
-    
+    // Build the view
     var body: some View {
         
         VStack {
+            // View header
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton).padding(.bottom, 30)
+            
+            // Search bar with speech recognition
             ZStack {
                 RoundedRectangle(cornerRadius: 40)
                     .foregroundColor(Color("LightYellow")).opacity(0.2)
@@ -63,7 +57,15 @@ struct ProductMainScreen: View {
                     }) {
                         Image(systemName: isRecording ? "stop.circle" : "mic.fill").padding(.trailing, 8)
                     }
-                    NavigationLink(destination: SearchResults(searchText: $searchText).navigationBarBackButtonHidden(true)){
+                    NavigationLink(destination: SearchResults(searchText: searchText)
+                        .navigationBarBackButtonHidden(true)
+                        .onAppear{
+                            // call function to search product
+                            print("SEARCH PHRASE", searchText)
+                            productDataController.getProductBySearchPhrase(searchPhrase: searchText)
+                        }
+                    
+                    ){
                         Image(systemName: "magnifyingglass").padding(.trailing, 20)
                     }
                     .disabled(searchText.isEmpty)
@@ -81,11 +83,16 @@ struct ProductMainScreen: View {
                 searchText = ""
             }
             
+            // Products by category view
             ScrollView {
                 VStack {
-                    CategoryProductListView(products: meatProductList, category: "Meat")
-                    CategoryProductListView(products: vegeProductList, category: "Vegetables")
-                    CategoryProductListView(products: fruitProductList, category: "Fruit")
+                    CategoryProductListView(products: productDataController.meatProductList, category: "Meat")
+                    CategoryProductListView(products: productDataController.vegeProductList, category: "Vegetables")
+                    CategoryProductListView(products: productDataController.fruitProductList, category: "Fruit")
+                    CategoryProductListView(products: productDataController.dairyProductList, category: "Egg & Dairy")
+                }
+                .onAppear{
+                    
                 }
                 NavigationLink(destination: ProductAddScreen(tabSelection: $tabSelection), isActive: $navigateToAddProduct){}
                 
@@ -102,14 +109,26 @@ struct ProductMainScreen: View {
                     navigateToAddProduct = true
                 }
         }.edgesIgnoringSafeArea(.top)
+            .onAppear{
+                productDataController.loadProducts {
+                    result in
+                    switch result {
+                    case .success(let products):
+                        productDataController.allProducts = products
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
     }
+        
 }
 
-struct ProductMainScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductMainScreen(tabSelection: Binding.constant(Constants.productTab), products: Product.sampleProductsList)
-    }
-}
+//struct ProductMainScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductMainScreen(tabSelection: Binding.constant(Constants.productTab), products: Product.sampleProductsList)
+//    }
+//}
 
 extension UIApplication {
     func dismissKeyboard() {

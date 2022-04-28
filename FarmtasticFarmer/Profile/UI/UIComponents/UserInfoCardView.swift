@@ -17,7 +17,7 @@ struct UserInfoCardView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 20){
             HStack{
-                Text(currentUser.username.localized(language: language))
+                Text(currentUser.full_name.name.localized(language: language))
                     .bold()
                     .font(.title)
             }

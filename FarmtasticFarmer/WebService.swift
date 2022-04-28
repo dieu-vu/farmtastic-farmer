@@ -339,7 +339,7 @@ class WebService {
         let searchRequestBody = SearchRequestBody(title: "farmtastic2022")
         
         let urlString = "\(baseUrl)media/search"
-        print("product req url", urlString)
+//        print("product req url", urlString)
         guard let url = URL(string: urlString) else {
             fatalError("search Product: Failed to create URL")
         }
@@ -369,7 +369,7 @@ class WebService {
 //                        print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
                         let decoder = JSONDecoder()
                         let productArray = try decoder.decode([ProductFromApi].self, from: reformattedData)
-                        print("GET PRODUCT RESULT", productArray)
+                        print("GET PRODUCT RESULT", productArray.count)
                         completion(.success(productArray))
                     } catch {
                         print("failed to parse Product array")
@@ -398,7 +398,7 @@ class WebService {
         }
                 
         let urlString = "\(baseUrl)media"
-        print("product req url", urlString)
+//        print("product req url", urlString)
         guard let url = URL(string: urlString) else {
             fatalError("Post Product: Failed to create URL")
         }
@@ -432,7 +432,6 @@ class WebService {
                 }
             }
             }.resume()
-        
     }
 }
 

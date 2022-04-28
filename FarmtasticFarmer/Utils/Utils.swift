@@ -47,4 +47,10 @@ class Utils {
     func getDateComponents(_ dateObj: Date) -> DateComponents {
         return Calendar.current.dateComponents([.year, .month, .day], from: dateObj)
     }
+    
+//    let formatterDecimal: NumberFormatter = {
+//        let formatter = NumberFormatter()
+//        formatter.numberStyle = .decimal
+//        return formatter
+//    }()
 }
