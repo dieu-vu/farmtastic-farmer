@@ -7,40 +7,23 @@
 import MapKit
 import SwiftUI
 
-struct PickupPoint: Identifiable {
-    let id = UUID()
-    let name: String
-    let coordinate: CLLocationCoordinate2D
-}
-
-extension PickupPoint {
-    static let samplePickupPointLists: [PickupPoint] =
-        [
-            PickupPoint(name: "Rautatienasema", coordinate: CLLocationCoordinate2D(latitude: 61.29, longitude: 24.96)),
-            PickupPoint(name: "Sello", coordinate: CLLocationCoordinate2D(latitude: 62.29, longitude: 24.96)),
-            PickupPoint(name: "Jumbo", coordinate: CLLocationCoordinate2D(latitude: 60.29, longitude: 24.96))
-        ]
-}
-
 struct MapUIView: View {
     var manager = LocationManager()
-    @State private var directions: [String] = []
+    @State private var mapRoutes: [String] = []
     @State private var showDirections = false
     @Binding var selectedDate: Date
     @State var orders: [ActiveOrder]
     
-    
     var body: some View {
         VStack {
-            
-            MapView(directions: $directions, orders: $orders, currentLocation: manager.region.center)
+            MapView(mapRoutes: $mapRoutes, orders: $orders, currentLocation: manager.region.center)
             ButtonView(buttonText: "Show Directions",
                        buttonColorLight: "LightGreen",
                        buttonColorDark: "DarkGreen",
                        buttonAction: {
                 self.showDirections.toggle()
             })
-            .disabled(directions.isEmpty)
+            .disabled(mapRoutes.isEmpty)
         }
         .sheet(isPresented: $showDirections, content: {
             VStack {
@@ -50,8 +33,8 @@ struct MapUIView: View {
                     .padding()
                 
                 List {
-                    ForEach(0..<self.directions.count, id: \.self) { i in
-                        Text(self.directions[i])
+                    ForEach(0..<self.mapRoutes.count, id: \.self) { i in
+                        Text(self.mapRoutes[i])
                             .padding()
                     }
                 }
@@ -74,9 +57,10 @@ struct MapUIView: View {
 }*/
 
 struct MapView: UIViewRepresentable {
+    
     typealias UIViewType = MKMapView
     
-    @Binding var directions: [String]
+    @Binding var mapRoutes: [String]
     @Binding var orders: [ActiveOrder]
     var pickupPointsId: Set<Int> { Set(orders.map { $0.pickup_location }) }
     let currentLocation: CLLocationCoordinate2D
@@ -87,7 +71,8 @@ struct MapView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
-        let pickupPoints: [MKPlacemark] = matchingIdsWithPickupLocations(pickupPointIds: pickupPointsId)
+        let pickupPoints: [PickupPoint] = matchingIdsWithPickupLocations(pickupPointIds: pickupPointsId)
+        let groupedRoute = groupRoutes(origin: MKPlacemark(coordinate: currentLocation), stops: pickupPoints)
         
         mapView.delegate = context.coordinator
         
@@ -100,21 +85,29 @@ struct MapView: UIViewRepresentable {
         mapView.showsUserLocation = true
         mapView.userTrackingMode = MKUserTrackingMode.follow
         
-        print("User location: \(currentLocation)")
-        let jumbo = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 60.2915341, longitude: 24.962077))
+        pickupPoints.forEach { point in
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = point.coordinate
+            annotation.title = point.name
+            mapView.addAnnotation(annotation)
+        }
         
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: currentLocation))
-        request.destination = MKMapItem(placemark: jumbo)
-        request.transportType = .automobile
-        
-        let directions = MKDirections(request: request)
-        directions.calculate { response, error in
-            guard let route = response?.routes.first else { return }
-            mapView.addAnnotations(pickupPoints)
-            mapView.addOverlay(route.polyline)
-            mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
-            self.directions = route.steps.map { $0.instructions }.filter { !$0.isEmpty }
+        groupedRoute.forEach { pair in
+            print("origin: \(pair.startItem), destination: \(pair.endItem)")
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: pair.startItem)
+            request.destination = MKMapItem(placemark: pair.endItem)
+            request.transportType = .automobile
+            
+            let directions = MKDirections(request: request)
+            directions.calculate { response, error in
+                guard let route = response?.routes.first else { return }
+                mapView.addOverlay(route.polyline)
+                mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20), animated: true)
+                let mapRoute = route.steps.map { $0.instructions }.filter { !$0.isEmpty }
+                print(mapRoute)
+                mapRoutes += mapRoute
+            }
         }
         
         return mapView
@@ -127,24 +120,49 @@ struct MapView: UIViewRepresentable {
     class MapViewCoordinator: NSObject, MKMapViewDelegate {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = .green
+            renderer.strokeColor = .blue
             renderer.lineWidth = 5
             return renderer
         }
     }
 }
 
-func matchingIdsWithPickupLocations(pickupPointIds: Set<Int>) -> [MKPlacemark]{
-    var pickupPoints: [MKPlacemark] = []
+func matchingIdsWithPickupLocations(pickupPointIds: Set<Int>) -> [PickupPoint]{
+    var pickupPoints: [PickupPoint] = []
     pickupPointIds.forEach { id in
         switch id {
         case 1:
-            pickupPoints.append(MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 60.1703535, longitude: 24.9388679)))
+            pickupPoints.append(PickupPoint.samplePickupPointLists[0])
         case 2:
-            pickupPoints.append(MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 60.2181571, longitude: 24.8086836)))
+            pickupPoints.append(PickupPoint.samplePickupPointLists[1])
         default:
-            pickupPoints.append(MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 60.2915341, longitude: 24.962077)))
+            pickupPoints.append(PickupPoint.samplePickupPointLists[2])
         }
     }
     return pickupPoints
+}
+
+func groupRoutes(origin: MKPlacemark, stops: [PickupPoint]) -> [(startItem: MKPlacemark, endItem: MKPlacemark)] {
+    
+    let formattedStops = stops.map { MKPlacemark(coordinate: $0.coordinate) }
+    var groupedRoutes: [(startItem: MKPlacemark, endItem: MKPlacemark)] = []
+    
+    if stops.isEmpty {
+        return []
+    }
+    
+    groupedRoutes.append((origin, formattedStops[0]))
+    
+    if stops.count == 2 {
+        groupedRoutes.append((formattedStops[0], formattedStops[1]))
+        groupedRoutes.append((formattedStops[1], origin))
+    }
+    
+    if stops.count == 3 {
+        groupedRoutes.append((formattedStops[0], formattedStops[1]))
+        groupedRoutes.append((formattedStops[1], formattedStops[2]))
+        groupedRoutes.append((formattedStops[2], origin))
+    }
+    
+    return groupedRoutes
 }
