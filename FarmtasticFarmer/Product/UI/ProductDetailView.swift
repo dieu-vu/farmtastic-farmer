@@ -38,7 +38,7 @@ struct ProductDetailView: View {
                     Text ("Available quantity: \(product.selling_quantity, specifier: "%.2f")kg")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Price: \(product.unit_price, specifier: "%.2f") €/kg")
+                    Text ("Price: \(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
                     Text ("Category: \(product.category ?? "") " )

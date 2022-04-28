@@ -25,7 +25,6 @@ struct UpdateProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("User in coredata \(loggedInUser.count)")
                 Text("profile.update".localized(language: language)).font(.title).bold()
                 VStack(alignment: .leading, spacing: 15) {
                     TextField("profile.newName".localized(language: language), text: $newName)

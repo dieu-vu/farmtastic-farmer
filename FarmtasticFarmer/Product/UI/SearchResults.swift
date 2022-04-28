@@ -2,15 +2,16 @@
 //  SearchResults.swift
 //  FarmtasticFarmer
 //
-//  Created by Trung on 7.4.2022.
-//
+//  Created by Trang on 7.4.2022.
+//  Struct to handle search result list view
 
 import SwiftUI
 struct SearchResults: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
-    @Binding var searchText: String
+    @State var searchText: String
     @State var screenTitle: String = "product.searchResults"
+    @EnvironmentObject var productDataController: ProductDataController
     
     var body: some View {
         VStack {
@@ -30,19 +31,28 @@ struct SearchResults: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, -50)
-                List {
-                    
+                Text("\(productDataController.searchResultProductList.count) results")
+                
+                List{
+                    VStack {
+                        ForEach(productDataController.searchResultProductList, id: \.product_id) { product in
+                            ZStack{
+                                ProductResultCard(product: product)}
+                            Divider()
+                        }
+                    }.padding([.bottom],10)
                 }
             }
             .edgesIgnoringSafeArea(.top)
             .padding(.bottom, -50)
+            
         }
-        
+
     }
 }
 
-//struct SearchResults_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchResults(searchText: "")
-//    }
-
+struct SearchResults_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchResults(searchText:"")
+    }
+}

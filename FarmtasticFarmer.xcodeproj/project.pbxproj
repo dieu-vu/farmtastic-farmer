@@ -49,7 +49,6 @@
 		18C079BF280B0FE60079E186 /* UserFetched+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */; };
 		18C079C2280B0FE60079E186 /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079BA280B0FE60079E186 /* Order+CoreDataClass.swift */; };
 		18C079C3280B0FE60079E186 /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079BB280B0FE60079E186 /* Order+CoreDataProperties.swift */; };
-		18C079C7280D6F8E0079E186 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079C6280D6F8E0079E186 /* ProductModel.swift */; };
 		18C079C9280D729B0079E186 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079C8280D729B0079E186 /* Constants.swift */; };
 		18C079CB280D77CF0079E186 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C079CA280D77CF0079E186 /* users.json */; };
 		18E65337281698FC00DE8D81 /* ProductDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E65336281698FC00DE8D81 /* ProductDataController.swift */; };
@@ -67,7 +66,6 @@
 		8788398B280A0CED00A2593C /* FloatingActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */; };
 		8788398D280A0EB000A2593C /* ProductAddScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8788398C280A0EB000A2593C /* ProductAddScreen.swift */; };
 		87C66D1427FF6F950068503E /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1327FF6F940068503E /* SearchResults.swift */; };
-		87C66D1C27FF76620068503E /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1B27FF76620068503E /* Product.swift */; };
 		87C66D1E27FF792A0068503E /* ProductResultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D1D27FF792A0068503E /* ProductResultCard.swift */; };
 		87C66D2228000E800068503E /* (null) in Sources */ = {isa = PBXBuildFile; };
 		87C66D24280021FD0068503E /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C66D23280021FC0068503E /* ProductDetailView.swift */; };
@@ -150,7 +148,6 @@
 		18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFetched+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18C079BA280B0FE60079E186 /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
 		18C079BB280B0FE60079E186 /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		18C079C6280D6F8E0079E186 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		18C079C8280D729B0079E186 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		18C079CA280D77CF0079E186 /* users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		18E65336281698FC00DE8D81 /* ProductDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDataController.swift; path = FarmtasticFarmer/Product/Controller/ProductDataController.swift; sourceTree = SOURCE_ROOT; };
@@ -168,7 +165,6 @@
 		8788398A280A0CED00A2593C /* FloatingActionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButtonView.swift; sourceTree = "<group>"; };
 		8788398C280A0EB000A2593C /* ProductAddScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddScreen.swift; sourceTree = "<group>"; };
 		87C66D1327FF6F940068503E /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
-		87C66D1B27FF76620068503E /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		87C66D1D27FF792A0068503E /* ProductResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResultCard.swift; sourceTree = "<group>"; };
 		87C66D23280021FC0068503E /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		B347E61D2802FB1100DA9863 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
@@ -492,8 +488,6 @@
 		87C66D0E27FEE99A0068503E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				18C079C6280D6F8E0079E186 /* ProductModel.swift */,
-				87C66D1B27FF76620068503E /* Product.swift */,
 				185C914F281532DD00CBDCB6 /* ProductFromAPI.swift */,
 				18E6533A28180DDC00DE8D81 /* ProductJSON.swift */,
 			);
@@ -724,7 +718,6 @@
 				18618927281A899F006CED7E /* ProductCardView.swift in Sources */,
 				18C079C3280B0FE60079E186 /* Order+CoreDataProperties.swift in Sources */,
 				18C079A228096F3F0079E186 /* Utils.swift in Sources */,
-				18C079C7280D6F8E0079E186 /* ProductModel.swift in Sources */,
 				01DEC6DF28166D5900EDDF19 /* SpeechRecognizer.swift in Sources */,
 				B37CCD672806B52A004BE217 /* LocalizationService.swift in Sources */,
 				0112CACC27FF09E100A77B74 /* ButtonView.swift in Sources */,
@@ -736,7 +729,6 @@
 				2D91FFD52817158700FBE56C /* ScreenLayout.swift in Sources */,
 				18C079C9280D729B0079E186 /* Constants.swift in Sources */,
 				0112CAEA28059D0B00A77B74 /* ChangePasswordController.swift in Sources */,
-				87C66D1C27FF76620068503E /* Product.swift in Sources */,
 				182D9C3727F9E01400158D0C /* FarmtasticFarmerDataModel.xcdatamodeld in Sources */,
 				87C66D24280021FD0068503E /* ProductDetailView.swift in Sources */,
 				182D9C3427F9E01400158D0C /* Persistence.swift in Sources */,
