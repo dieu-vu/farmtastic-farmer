@@ -15,7 +15,11 @@ class ProductDataController: UIViewController, ObservableObject {
     
     @Published var products: [ProductFromApi] = []
     
-    @Published var productsFetched: [ProductFetched] = []
+    @Published var meatProductList: [ProductFetched] = []
+    @Published var vegeProductList: [ProductFetched] = []
+    @Published var fruitProductList: [ProductFetched] = []
+    @Published var dairyProductList: [ProductFetched] = []
+
     
     let context = PersistenceController.shared.container.viewContext
     
@@ -32,6 +36,7 @@ class ProductDataController: UIViewController, ObservableObject {
                         print("FAILURE \(error)")
                         completion(.failure(error))
                     case .success(let products):
+                        // Clear product data table
                         self.clearProductCoreData(context: self.context)
                         DispatchQueue.main.sync {
                             self.products = products
@@ -39,9 +44,15 @@ class ProductDataController: UIViewController, ObservableObject {
                             if (products.count > 0){
                                 let string_test = products[0].description.product_name
                                 print("test product extra info: \(string_test)")
+                                // Save products loaded from API to core data
                                 self.saveProducts(context: self.context, products: products)
                             }
-                            self.fetchAllProducts()
+                            // Fetch Product from Core Data
+                            let _ = self.fetchAllProducts()
+                            self.vegeProductList = self.getProductsByCategory(category: "vegetables")
+                            self.meatProductList = self.getProductsByCategory(category: "meat")
+                            self.fruitProductList = self.getProductsByCategory(category: "fruit")
+                            self.dairyProductList = self.getProductsByCategory(category: "egg")
                         }
                     }}
                 completion(.success(self.products))
@@ -110,9 +121,9 @@ class ProductDataController: UIViewController, ObservableObject {
             let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
             let productsFromCoreData = try context.fetch(request)
             print("PRODUCT FETCHED FROM CORE DATA COUNT",productsFromCoreData.count)
-            productsFromCoreData.forEach{ product in
-                print("product in CD: \(product.product_name), \(product.unit_price)")
-            }
+//            productsFromCoreData.forEach{ product in
+//                print("product in CD: \(product.product_name), \(product.unit_price)")
+//            }
             return productsFromCoreData
         }
         catch {
@@ -122,6 +133,27 @@ class ProductDataController: UIViewController, ObservableObject {
     }
     
     // Function to sort and filter products from Core Data based on given condition
+    func getProductsByCategory (category: String) -> [ProductFetched]{
+        do {
+            let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
+            
+            let pred = NSPredicate(format: "category contains[cd] %@", category )
+            request.predicate = pred
+            let sort = NSSortDescriptor(key: "harvest_date", ascending: true)
+            request.sortDescriptors = [sort]
+            
+            let groupProducts = try context.fetch(request)
+            if (groupProducts.count > 0 ){
+                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.harvest_date!)
+                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
+            }
+            return groupProducts
+        } catch {
+            print("Cannot fetch products by category from Core Data")
+            return []
+        }
+    }
+    
     
     
     

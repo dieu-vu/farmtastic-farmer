@@ -3,13 +3,13 @@
 //  FarmtasticFarmer
 //
 //  Created by Nguyen Giang on 11.4.2022.
-//
+// Screen showing all the products arranged by category
 
 import SwiftUI
 import AVFoundation
 
 struct ProductMainScreen: View {
-    
+        
     @EnvironmentObject var productDataController: ProductDataController
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -27,20 +27,14 @@ struct ProductMainScreen: View {
     @State var navigateToAddProduct: Bool = false
     
     
-    let meatProductList = Product.sampleProductsList.filter {
-        $0.Category.starts(with: "Meat")
-    }
-    let vegeProductList = Product.sampleProductsList.filter {
-        $0.Category.starts(with: "Vegetables")
-    }
-    let fruitProductList = Product.sampleProductsList.filter {
-        $0.Category.starts(with: "Fruit")
-    }
-    
+    // Build the view
     var body: some View {
         
         VStack {
+            // View header
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton).padding(.bottom, 30)
+            
+            // Search bar with speech recognition
             ZStack {
                 RoundedRectangle(cornerRadius: 40)
                     .foregroundColor(Color("LightYellow")).opacity(0.2)
@@ -81,11 +75,16 @@ struct ProductMainScreen: View {
                 searchText = ""
             }
             
+            // Products by category view
             ScrollView {
                 VStack {
-                    CategoryProductListView(products: meatProductList, category: "Meat")
-                    CategoryProductListView(products: vegeProductList, category: "Vegetables")
-                    CategoryProductListView(products: fruitProductList, category: "Fruit")
+                    CategoryProductListView(products: productDataController.meatProductList, category: "Meat")
+                    CategoryProductListView(products: productDataController.vegeProductList, category: "Vegetables")
+                    CategoryProductListView(products: productDataController.fruitProductList, category: "Fruit")
+                    CategoryProductListView(products: productDataController.dairyProductList, category: "Egg & Dairy")
+                }
+                .onAppear{
+                    
                 }
                 NavigationLink(destination: ProductAddScreen(tabSelection: $tabSelection), isActive: $navigateToAddProduct){}
                 
