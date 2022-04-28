@@ -25,7 +25,7 @@ struct HeaderImage: View {
             Circle().frame(width: 100, height: 100)
                 .foregroundColor(Color("LightGreen"))
             
-            Text("\(String(currentUser.username.prefix(1)).uppercased())").foregroundColor(.white).font(.system(size: 60)).fontWeight(.medium)
+            Text("\(String(currentUser.full_name.name.prefix(1)).uppercased())").foregroundColor(.white).font(.system(size: 60)).fontWeight(.medium)
         }.offset(y: -80).padding(.bottom, -70)
     }
 }
