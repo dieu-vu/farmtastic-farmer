@@ -12,9 +12,9 @@ struct ProductCardView : View {
     let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
     
     @State var productIsTapped = false
-
+    
     var body: some View {
-        VStack{
+        VStack {
             Image(uiImage: UIImage(data: product.image ?? placeholderImageData!)!)
                 .resizable()
                 .scaledToFit()
@@ -24,7 +24,7 @@ struct ProductCardView : View {
                 .multilineTextAlignment(.leading)
             Text("\(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
                 .multilineTextAlignment(.leading)
-        }.frame(width: 150, height: 150)
+        }.frame(width: 170, height: 170)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.green, lineWidth: 1)
@@ -34,8 +34,8 @@ struct ProductCardView : View {
                 productIsTapped.toggle()
                 print("tapped \(String(describing: product.product_name))")
             }
-        NavigationLink("", destination: ProductDetailView(product: product).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
 
+        NavigationLink("", destination: ProductDetailView(product: product).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
     }
     
 }
