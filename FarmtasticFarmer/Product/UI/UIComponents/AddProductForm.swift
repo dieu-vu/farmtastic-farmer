@@ -40,21 +40,8 @@ struct AddProductForm: View {
     }()
     
     var body: some View {
-        Form {
-            VStack(alignment: .leading, spacing: 0){
-                Text("Choose category").font(.headline)
-                Picker(selection: $selectedCategory,
-                       label:Text(""))
-                {
-                    ForEach(0 ..< 4) {
-                        Text(self.categories[$0]).foregroundColor(.red)
-                    }
-                }.padding(4)
-            }.pickerStyle(.segmented)
-            //.pickerStyle(.menu)
-            
-            VStack(alignment: .leading, spacing: 6){
-                Text("Choose Product Image").bold()
+        List {
+            Section(header: Text("Product Image")) {
                 VStack (alignment: .center){
                     placeHolderImage
                         .resizable()
@@ -74,80 +61,79 @@ struct AddProductForm: View {
                     .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
                         ImagePicker(selectedSource: selectedImageSource, productImage: $productImage)
                     }
-                }.padding()
+                }
             }
             
-            HStack(alignment: .top, spacing: 0) {
-                Text("Product name")
-                Spacer()
-                TextField("Enter text", text: $productName)
-            }
-            .padding()
-            
-            DatePicker("Harvest day?", selection: $harvestDate, displayedComponents: .date)
-            
-            HStack(spacing: 0){
-                VStack(alignment: .leading){
-                    Text("Quantity").bold()
-                    TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
-                    //                        .keyboardType(.numberPad)
-                    Text("Price per Unit").bold()
-                    
-                    TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    //                        .keyboardType(.numberPad)
-                    /*
-                     HStack{
-                     TextField("Price per unit", value: $price, formatter: formatterDecimal)             .textFieldStyle(RoundedBorderTextFieldStyle())
-                     Text("€").bold()
-                     }*/
-                }.frame(minWidth: 0, maxWidth: .infinity)
-                VStack(alignment: .leading){
-                    HStack{
-                        Text("Unit").bold()
-                        VStack {
-                            Picker("", selection: $selectedUnit) {
-                                ForEach(units, id: \.self) {
-                                    Text($0)
-                                        .foregroundColor(.yellow)
-                                        .font(.title3)
-                                    
-                                }
-                            }.pickerStyle(.menu)
-                        }  .frame(width: 50)
-                            .clipped()
-                            .transition(.scale)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 6)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                    }
+            Section(header: Text("Product Info")) {
+                VStack(alignment: .leading) {
+                    Text("Choose category: ").bold()
+                    Picker(selection: $selectedCategory,
+                           label:Text(""))
+                    {
+                        ForEach(0 ..< 4) {
+                            Text(self.categories[$0]).foregroundColor(.red)
+                        }
+                    }.pickerStyle(.segmented)
+                }
+                HStack(alignment: .top, spacing: 0) {
+                    Text("Product name: ").bold()
                     Spacer()
-                }.frame(minWidth: 0, maxWidth: .infinity).padding()
+                    TextField("Enter text", text: $productName)
+                }
+                DatePicker("Harvest date: ", selection: $harvestDate, displayedComponents: .date)
+                HStack(spacing: 0){
+                    VStack(alignment: .leading){
+                        Text("Quantity").bold()
+                        HStack {
+                            TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            HStack{
+                                Text("Unit").bold()
+                                VStack {
+                                    Picker("", selection: $selectedUnit) {
+                                        ForEach(units, id: \.self) {
+                                            Text($0)
+                                                .foregroundColor(.yellow)
+                                                .font(.title3)
+                                            
+                                        }
+                                    }.pickerStyle(.menu)
+                                }  .frame(width: 50)
+                                    .clipped()
+                                    .transition(.scale)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 6)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    )
+                            }
+                        }
+                        HStack {
+                            Text("Price per Unit").bold()
+                            TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                    }
+                }
             }
-            HStack{
-                Button(action: {
-                    // Gather data from form to send to product data controller
-                    handleAddProductData()
-                    clearForm()
-                    // Navigate to main product list view
-                    tabSelection = 1
-                }, label:
-                        {
-                    Text("Add")
-                })
-                .buttonStyle(BorderlessButtonStyle())
-                
-                Spacer()
-                Button(action: {
-                    clearForm()
-                }, label: {
-                    Text("Clear")
-                })
-                .buttonStyle(BorderlessButtonStyle())
-                
-            }.padding()
         }
+        HStack{
+            ButtonView(buttonText: "Add",
+                       buttonColorLight: "LightGreen",
+                       buttonColorDark: "DarkGreen",
+                       buttonAction: {
+                // Gather data from form to send to product data controller
+                handleAddProductData()
+                clearForm()
+                // Navigate to main product list view
+                tabSelection = 1
+            })
+            ButtonView(buttonText: "Clear",
+                       buttonColorLight: "PinkishRed",
+                       buttonColorDark: "PinkishRed",
+                       buttonAction: {
+                clearForm()
+            })
+        }
+        .padding(.horizontal, 4)
     }
     
     func loadImage() {
@@ -182,6 +168,5 @@ struct AddProductForm: View {
         print("newProduct from form", newProduct)
         productDataController.addProduct(description: newProduct, image: productImage ?? UIImage(imageLiteralResourceName: "placeholder"))
     }
-    
 }
 
