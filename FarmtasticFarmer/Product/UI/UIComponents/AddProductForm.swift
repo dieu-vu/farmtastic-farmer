@@ -38,7 +38,7 @@ struct AddProductForm: View {
     var body: some View {
         VStack {
             List {
-                //Section(header: Text("Product Image")) {
+                Section(header: Text("Product Image")) {
                     VStack (alignment: .center){
                         placeHolderImage
                             .resizable()
@@ -59,7 +59,7 @@ struct AddProductForm: View {
                             ImagePicker(selectedSource: selectedImageSource, productImage: $productImage)
                         }
                     }
-                //}
+                }
                 
                 Section(header: Text("Product Info")) {
                     VStack(alignment: .leading) {
