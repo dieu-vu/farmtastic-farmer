@@ -35,4 +35,3 @@ extension User {
     static let initData: User =  User(user_id: 0, username: "init", email: "init", full_name: UserExtraInfo(name: "", type: 0, address: "init", phone:  "init", location:[]))
 }
 
-

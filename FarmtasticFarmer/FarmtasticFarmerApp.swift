@@ -11,21 +11,19 @@ import SwiftUI
 struct FarmtasticFarmerApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject var authentication = AuthenticationController()
-    
+    @StateObject var userController = UserDataController()
+    @StateObject var productDataController = ProductDataController()
 
+    
     var body: some Scene {
         WindowGroup {
-            //BaseView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            //just for test
-            //ProductResultView(products: ProductList.sampleData)
             NavigationView {
                 ApplicationSwitcher()
             }
             .navigationViewStyle(.stack)
             .environmentObject(authentication)
-            .environmentObject(UserDataController())
-            .environmentObject(ProductDataController())
+            .environmentObject(userController)
+            .environmentObject(productDataController)
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
@@ -40,6 +38,7 @@ struct ApplicationSwitcher: View {
         if (authController.isLoggedIn || KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
             BaseView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            
 //            MapView()
            
         }
@@ -47,13 +46,5 @@ struct ApplicationSwitcher: View {
             LoginView()
         }
         
-        /*if (authController.isLoggedIn) || (KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
-             BaseView()
- //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-             //MapView()
-         }
-         else {
-             LoginView()
-         }*/
     }
 }

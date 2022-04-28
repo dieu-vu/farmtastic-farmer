@@ -11,7 +11,7 @@ class Utils {
     static let utils = Utils()
     private init() {}
     
-//   Preprocess nested json
+    //   Preprocess nested json
     func preProcessJson(_ data:Data) -> Data {
         let jsonString = String(decoding: data, as: UTF8.self)
         let cleanedJson = jsonString
@@ -22,22 +22,29 @@ class Utils {
     }
     
     // Convert dateString from API to ISODateFormat to save into Coredata
-       func convertDateFromApi(_ timeStr: String) -> Date {
-           let date = ISO8601DateFormatter().date(from: timeStr) ?? Date()
-           return date
-       }
-       
-       // Convert ISO date to string dd-MM-yyyy
-       func formatDateString(_ dateObj: Date) -> String {
-           let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "dd-MM-yyyy"
-           dateFormatter.locale = Locale(identifier: "fi_FI")
-           dateFormatter.timeZone = TimeZone(identifier: "Europe/Helsinki")
-           let dateFormatted = dateFormatter.string(from: dateObj)
-           return dateFormatted
-       }
-       
-       func getDateComponents(_ dateObj: Date) -> DateComponents {
-           return Calendar.current.dateComponents([.year, .month, .day], from: dateObj)
-       }
+    func convertDateFromApi(_ timeStr: String) -> Date {
+        let date = ISO8601DateFormatter().date(from: timeStr) ?? Date()
+        return date
+    }
+    
+    // Convert data to ISODateFormat String to post to API
+    func convertDateToISOString(_ date: Date) -> String {
+        let ISOString = ISO8601DateFormatter().string(from: date)
+        return ISOString
+    }
+    
+    
+    // Convert ISO date to string dd-MM-yyyy
+    func formatDateString(_ dateObj: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.locale = Locale(identifier: "fi_FI")
+        dateFormatter.timeZone = TimeZone(identifier: "Europe/Helsinki")
+        let dateFormatted = dateFormatter.string(from: dateObj)
+        return dateFormatted
+    }
+    
+    func getDateComponents(_ dateObj: Date) -> DateComponents {
+        return Calendar.current.dateComponents([.year, .month, .day], from: dateObj)
+    }
 }
