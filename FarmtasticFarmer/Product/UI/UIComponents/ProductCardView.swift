@@ -22,7 +22,7 @@ struct ProductCardView : View {
             Text(product.product_name ?? "")
                 .font(.title2)
                 .multilineTextAlignment(.leading)
-            Text(String(product.unit_price))
+            Text("\(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
                 .multilineTextAlignment(.leading)
         }.frame(width: 150, height: 150)
             .overlay(

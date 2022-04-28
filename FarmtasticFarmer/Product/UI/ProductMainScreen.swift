@@ -57,7 +57,15 @@ struct ProductMainScreen: View {
                     }) {
                         Image(systemName: isRecording ? "stop.circle" : "mic.fill").padding(.trailing, 8)
                     }
-                    NavigationLink(destination: SearchResults(searchText: $searchText).navigationBarBackButtonHidden(true)){
+                    NavigationLink(destination: SearchResults(searchText: searchText)
+                        .navigationBarBackButtonHidden(true)
+                        .onAppear{
+                            // call function to search product
+                            print("SEARCH PHRASE", searchText)
+                            productDataController.getProductBySearchPhrase(searchPhrase: searchText)
+                        }
+                    
+                    ){
                         Image(systemName: "magnifyingglass").padding(.trailing, 20)
                     }
                     .disabled(searchText.isEmpty)

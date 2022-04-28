@@ -20,7 +20,9 @@ class ProductDataController: UIViewController, ObservableObject {
     @Published var vegeProductList: [ProductFetched] = []
     @Published var fruitProductList: [ProductFetched] = []
     @Published var dairyProductList: [ProductFetched] = []
-
+    
+    @Published var searchResultProductList: [ProductFetched] = []
+    
     @Published var loadCompleted: Bool = false
     
     let context = PersistenceController.shared.container.viewContext
@@ -81,7 +83,7 @@ class ProductDataController: UIViewController, ObservableObject {
             //            print("product fetched image data ", productsFetched.image)
             do {
                 try context.save()
-//                print("product fetched from API saved to coredata")
+                //                print("product fetched from API saved to coredata")
             } catch {
                 UserDefaults.standard.setValue(true, forKey: Constants.productsLoaded)
             }
@@ -124,9 +126,9 @@ class ProductDataController: UIViewController, ObservableObject {
             let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
             let productsFromCoreData = try context.fetch(request)
             print("PRODUCT FETCHED FROM CORE DATA COUNT",productsFromCoreData.count)
-//            productsFromCoreData.forEach{ product in
-//                print("product in CD: \(product.product_name), \(product.unit_price)")
-//            }
+            //            productsFromCoreData.forEach{ product in
+            //                print("product in CD: \(product.product_name), \(product.unit_price)")
+            //            }
             return productsFromCoreData
         }
         catch {
@@ -148,7 +150,7 @@ class ProductDataController: UIViewController, ObservableObject {
             let groupProducts = try context.fetch(request)
             if (groupProducts.count > 0 ){
                 print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.count)
-//                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
+                //                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
             }
             return groupProducts
         } catch {
@@ -157,10 +159,32 @@ class ProductDataController: UIViewController, ObservableObject {
         }
     }
     
+    // Function to search product by dictation transcript
+    func getProductBySearchPhrase (searchPhrase: String) {
+        do {
+            let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
+            
+            let pred = NSPredicate(format: "category contains[cd] %@ or product_name contains[cd] %@", searchPhrase, searchPhrase)
+            request.predicate = pred
+            let sort = NSSortDescriptor(key: "harvest_date", ascending: true)
+            request.sortDescriptors = [sort]
+            
+            let groupProducts = try context.fetch(request)
+            if (groupProducts.count > 0 ){
+                print("SEARCH PRODUCT RESULT", groupProducts.count)
+//                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
+            }
+            self.searchResultProductList = groupProducts
+            print("searchResultProductList",self.searchResultProductList.count)
+        } catch {
+            print("Cannot fetch products by category from Core Data")
+            self.searchResultProductList = []
+        }
+    }
     
     
     
-    // HELPERS
+    // ----------- HELPERS ------------ //
     // Function to prepare multipart/form-data body for the POST request
     func createDataBody(withParameters params: [String: String]?, image: UIImage) -> [String: Any] {
         let lineBreak = "\r\n"
