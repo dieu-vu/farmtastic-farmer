@@ -26,7 +26,6 @@ struct ProductMainScreen: View {
     @State var hasBackButton = false
     @State var navigateToAddProduct: Bool = false
     
-    
     // Build the view
     var body: some View {
         

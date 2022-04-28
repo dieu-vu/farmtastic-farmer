@@ -22,6 +22,7 @@
 		01DEC6FF2817BFDF00EDDF19 /* MapUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEC6FE2817BFDF00EDDF19 /* MapUIView.swift */; };
 		01DEC7012818039A00EDDF19 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEC7002818039A00EDDF19 /* LocationManager.swift */; };
 		01DEC704281A698000EDDF19 /* PickupPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEC703281A698000EDDF19 /* PickupPoint.swift */; };
+		01DEC718281AFF7C00EDDF19 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 01DEC717281AFF7C00EDDF19 /* AlertToast */; };
 		182D9C2B27F9E01300158D0C /* FarmtasticFarmerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2A27F9E01300158D0C /* FarmtasticFarmerApp.swift */; };
 		182D9C2D27F9E01300158D0C /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182D9C2C27F9E01300158D0C /* BaseView.swift */; };
 		182D9C2F27F9E01400158D0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182D9C2E27F9E01400158D0C /* Assets.xcassets */; };
@@ -191,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01DEC6DA280EE27500EDDF19 /* MapKit.framework in Frameworks */,
+				01DEC718281AFF7C00EDDF19 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +570,9 @@
 			dependencies = (
 			);
 			name = FarmtasticFarmer;
+			packageProductDependencies = (
+				01DEC717281AFF7C00EDDF19 /* AlertToast */,
+			);
 			productName = FarmtasticFarmer;
 			productReference = 182D9C2727F9E01300158D0C /* FarmtasticFarmer.app */;
 			productType = "com.apple.product-type.application";
@@ -642,6 +647,9 @@
 				vi,
 			);
 			mainGroup = 182D9C1E27F9E01300158D0C;
+			packageReferences = (
+				01DEC716281AFF7C00EDDF19 /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 182D9C2827F9E01300158D0C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1118,6 +1126,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		01DEC716281AFF7C00EDDF19 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		01DEC717281AFF7C00EDDF19 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01DEC716281AFF7C00EDDF19 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		182D9C3527F9E01400158D0C /* FarmtasticFarmerDataModel.xcdatamodeld */ = {

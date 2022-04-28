@@ -40,7 +40,8 @@ struct ProductAddScreen: View {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
             AddProductForm(tabSelection: $tabSelection, selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
             
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
     }
     
 }
@@ -50,3 +51,4 @@ struct ProductAddScreen_Previews: PreviewProvider {
         ProductAddScreen(tabSelection: Binding.constant(Constants.productTab))
     }
 }
+
