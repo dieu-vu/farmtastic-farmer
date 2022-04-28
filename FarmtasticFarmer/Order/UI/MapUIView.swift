@@ -13,17 +13,30 @@ struct MapUIView: View {
     @State private var showDirections = false
     @Binding var selectedDate: Date
     @State var orders: [ActiveOrder]
+    @State var hasBackButton = true
     
     var body: some View {
         VStack {
-            MapView(mapRoutes: $mapRoutes, orders: $orders, currentLocation: manager.region.center)
-            ButtonView(buttonText: "Show Directions",
-                       buttonColorLight: "LightGreen",
-                       buttonColorDark: "DarkGreen",
-                       buttonAction: {
-                self.showDirections.toggle()
-            })
-            .disabled(mapRoutes.isEmpty)
+            VStack {
+                Rectangle().fill(Color("LightGreen")).frame(height: 150).opacity(0.5).overlay(
+                    Image("logo").resizable().scaledToFill().frame(width: 250, height: 100).padding(.top, 15)
+                )
+                RoundedRectangle(cornerRadius: 50).fill(.white).frame(height: 70).padding(.top, -50)
+                HStack {
+                    Spacer()
+                    Text("Delivery date: \(orders[0].pickup_date)").font(.title).bold()
+                    Spacer()
+                }.padding(.horizontal, 20).padding(.top, -50)
+                MapView(mapRoutes: $mapRoutes, orders: $orders, currentLocation: manager.region.center)
+                ButtonView(buttonText: "Show Directions",
+                           buttonColorLight: "LightGreen",
+                           buttonColorDark: "DarkGreen",
+                           buttonAction: {
+                    self.showDirections.toggle()
+                })
+                .padding(.bottom, 32)
+                .disabled(mapRoutes.isEmpty)
+            }.edgesIgnoringSafeArea(.top).padding(.bottom, -50)
         }
         .sheet(isPresented: $showDirections, content: {
             VStack {
