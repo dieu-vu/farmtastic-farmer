@@ -42,7 +42,6 @@ struct CategoryProductListView: View {
                     print(error.localizedDescription)
                 }
             }
-            productDataController.fetchProducts()
         }
     }
 }

@@ -339,7 +339,7 @@ class WebService {
         let searchRequestBody = SearchRequestBody(title: "farmtastic2022")
         
         let urlString = "\(baseUrl)media/search"
-        print("product req url", urlString)
+//        print("product req url", urlString)
         guard let url = URL(string: urlString) else {
             fatalError("search Product: Failed to create URL")
         }
@@ -398,7 +398,7 @@ class WebService {
         }
                 
         let urlString = "\(baseUrl)media"
-        print("product req url", urlString)
+//        print("product req url", urlString)
         guard let url = URL(string: urlString) else {
             fatalError("Post Product: Failed to create URL")
         }

@@ -15,7 +15,7 @@ class ProductDataController: UIViewController, ObservableObject {
     
     @Published var products: [ProductFromApi] = []
     
-    @Published var productsFromCoreData: [ProductFetched] = []
+    @Published var productsFetched: [ProductFetched] = []
     
     let context = PersistenceController.shared.container.viewContext
     
@@ -36,11 +36,12 @@ class ProductDataController: UIViewController, ObservableObject {
                         DispatchQueue.main.sync {
                             self.products = products
                             print("PRODUCT LOADED FROM API COUNT", products.count)
-//                            if (products.count > 0){
-//                                let string_test = products[0].description.product_name
-//                                print("product extra info: \(string_test)")
-//                                self.saveProducts(context: self.context, products: products)
-//                            }
+                            if (products.count > 0){
+                                let string_test = products[0].description.product_name
+                                print("test product extra info: \(string_test)")
+                                self.saveProducts(context: self.context, products: products)
+                            }
+                            self.fetchAllProducts()
                         }
                     }}
                 completion(.success(self.products))
@@ -104,19 +105,24 @@ class ProductDataController: UIViewController, ObservableObject {
     }
     
     // Function to fetch products from Core Data
-    func fetchProducts() {
+    func fetchAllProducts() -> [ProductFetched] {
         do {
             let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
-            self.productsFromCoreData = try context.fetch(request)
+            let productsFromCoreData = try context.fetch(request)
             print("PRODUCT FETCHED FROM CORE DATA COUNT",productsFromCoreData.count)
-            //            self.productsFromCoreData.forEach{ product in
-            //                print(product.product_name)
-            //            }
+            productsFromCoreData.forEach{ product in
+                print("product in CD: \(product.product_name), \(product.unit_price)")
+            }
+            return productsFromCoreData
         }
         catch {
-            
+            print("Cannot fetch products from Core Data")
+            return []
         }
     }
+    
+    // Function to sort and filter products from Core Data based on given condition
+    
     
     
     // HELPERS
