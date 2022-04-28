@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    //let product: ProductList
+    let product: ProductFetched
     @State var screenTitle = "product.details"
     @State var hasBackButton = true
     
@@ -56,8 +56,8 @@ struct ProductDetailView: View {
     }
 }
 
-struct ProductDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetailView()
-    }
-}
+//struct ProductDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductDetailView()
+//    }
+//}

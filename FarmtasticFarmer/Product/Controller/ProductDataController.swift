@@ -20,6 +20,7 @@ class ProductDataController: UIViewController, ObservableObject {
     @Published var fruitProductList: [ProductFetched] = []
     @Published var dairyProductList: [ProductFetched] = []
 
+    @Published var loadCompleted: Bool = false
     
     let context = PersistenceController.shared.container.viewContext
     
@@ -53,6 +54,7 @@ class ProductDataController: UIViewController, ObservableObject {
                             self.meatProductList = self.getProductsByCategory(category: "meat")
                             self.fruitProductList = self.getProductsByCategory(category: "fruit")
                             self.dairyProductList = self.getProductsByCategory(category: "egg")
+                            self.loadCompleted = true
                         }
                     }}
                 completion(.success(self.products))
@@ -144,7 +146,7 @@ class ProductDataController: UIViewController, ObservableObject {
             
             let groupProducts = try context.fetch(request)
             if (groupProducts.count > 0 ){
-                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.harvest_date!)
+                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.image!)
                 print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
             }
             return groupProducts

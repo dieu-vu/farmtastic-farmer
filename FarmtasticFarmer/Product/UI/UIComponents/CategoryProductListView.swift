@@ -12,7 +12,8 @@ struct CategoryProductListView: View {
     let category: String
     
     @EnvironmentObject var productDataController: ProductDataController
-
+    
+    @State var productIsTapped = false
     var body: some View {
         VStack{
             Text (category)
@@ -23,11 +24,17 @@ struct CategoryProductListView: View {
                 .padding(.leading, 20)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack{
-                    ForEach(products, id: \.product_id) { product in
-                        ProductCardView(product: product).padding([.horizontal, .bottom], 10)
-                    }
-                }.padding([.horizontal, .bottom], 10)
+                    HStack {
+                        ForEach(products, id: \.product_id) { product in
+                            ProductCardView(product: product).padding([.horizontal, .bottom], 10)
+                                .onTapGesture {
+                                    // Navigate to detail view
+                                    productIsTapped.toggle()
+                                    print("tapped \(product.product_name)")
+                                }
+                       
+                    }.padding([.horizontal, .bottom], 10)
+                }
             }
         }
         .onAppear{
@@ -42,14 +49,14 @@ struct CategoryProductListView: View {
             }
         }
     }
-}
-
-struct CategoryProductListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let meatProductList = ProductDataController().meatProductList
-        CategoryProductListView(
-            products: meatProductList,category: "Meat")
+    
+    struct CategoryProductListView_Previews: PreviewProvider {
+        static var previews: some View {
+            let meatProductList = ProductDataController().meatProductList
+            CategoryProductListView(
+                products: meatProductList,category: "Meat")
+        }
     }
 }
-
-
+    
+    
