@@ -32,9 +32,9 @@ struct ProductCardView : View {
             .onTapGesture {
                 // Navigate to detail view
                 productIsTapped.toggle()
-                print("tapped \(product.product_name)")
+                print("tapped \(String(describing: product.product_name))")
             }
-        NavigationLink("", destination: ProductDetailView(product: product), isActive: $productIsTapped)
+        NavigationLink("", destination: ProductDetailView(product: product).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
 
     }
     

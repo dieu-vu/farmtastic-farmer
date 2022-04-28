@@ -147,8 +147,8 @@ class ProductDataController: UIViewController, ObservableObject {
             
             let groupProducts = try context.fetch(request)
             if (groupProducts.count > 0 ){
-                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.image!)
-                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
+                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.count)
+//                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
             }
             return groupProducts
         } catch {
