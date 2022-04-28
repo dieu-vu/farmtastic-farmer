@@ -24,12 +24,9 @@ struct PickupPointScreen: View {
                        buttonAction: {
             })
             
-<<<<<<< HEAD
             /*List(pickupPoints,
                 id: \.id) { pickupPoint in
-=======
             List(pickupPoints, id: \.id) { pickupPoint in
->>>>>>> add-product
                 PickupPointRow(pickupPoint: pickupPoint)
             }*/
             
