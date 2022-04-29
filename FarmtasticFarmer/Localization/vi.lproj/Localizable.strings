@@ -22,8 +22,19 @@
 "october" = "Tháng 10";
 "november" = "Tháng 11";
 "december" = "Tháng 12";
+"meat" = "Thịt";
+"vegetables" = "Rau củ";
+"fruit" = "Hoa quả";
+"eggDairy" = "Trứng và Sữa";
 
 "statistics" = "Thống kê";
+"statistics.monthly" = "Hàng tháng";
+"statistics.yearly" = "Hàng năm";
+"statistics.revenueOverview" = "Doanh thu tổng quan";
+"statistics.totalOrders" = "Tổng đơn hàng";
+"statistics.selectYear" = "Chọn năm";
+"statistics.selectMonth" = "Chọn tháng";
+"statistics.noData" = "Không tìm thấy dữ liệu nào.";
 
 "product" = "Sản phẩm";
 "product.allCategories" = "Tất cả sản phẩm";

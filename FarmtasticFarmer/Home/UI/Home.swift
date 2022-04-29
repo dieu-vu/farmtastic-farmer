@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct Home: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     @State var selection: String = Constants.MONTHLY
     var selections: [String] = [Constants.MONTHLY, Constants.YEARLY]
     
@@ -29,10 +32,11 @@ struct Home: View {
             
             Picker("Picker", selection: $selection) {
                 ForEach(selections, id: \.self) {
-                    Text($0)
+                    Text($0.localized(language: language))
                 }
             }
             .padding(.horizontal, 20)
+            .padding(.top, 40)
             .pickerStyle(SegmentedPickerStyle())
             
             ScrollView {
@@ -43,7 +47,7 @@ struct Home: View {
                 }
                 Spacer()
             }.navigationBarHidden(true)
-        }
+        }.edgesIgnoringSafeArea(.top)
     }
 }
 

@@ -11,12 +11,15 @@ struct CategoryProductListView: View {
     let products: [ProductFetched]
     let category: String
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     @EnvironmentObject var productDataController: ProductDataController
     
     @State var productIsTapped = false
     var body: some View {
         VStack{
-            Text (category)
+            Text (category.localized(language: language))
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.red)

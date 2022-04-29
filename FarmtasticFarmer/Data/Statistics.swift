@@ -127,8 +127,8 @@ struct StatisticsData {
     static var aprilPieChartData: [PieChartDataEntry] = [
         PieChartDataEntry(value: 100, label: "Meat"),
         PieChartDataEntry(value: 104, label: "Vegetables"),
-        PieChartDataEntry(value: 100, label: "Fruit"),
-        PieChartDataEntry(value: 56, label: "Egg & Diary")
+        PieChartDataEntry(value: 10, label: "Fruit"),
+        PieChartDataEntry(value: 36, label: "Egg & Diary")
     ]
     
     static var mayPieChartData: [PieChartDataEntry] = [

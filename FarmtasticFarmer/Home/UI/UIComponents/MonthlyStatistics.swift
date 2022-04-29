@@ -9,7 +9,8 @@ import SwiftUI
 import Charts
 
 struct MonthlyStatistics: View {
-    
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
     @State var selectedMonth: String = DateUtils().getCurrentMonthString()
     
     func getSelectedMonthRevenue() -> Double {
@@ -24,7 +25,7 @@ struct MonthlyStatistics: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Select month:").foregroundColor(Color("DarkGreen"))
+                Text("statistics.selectMonth".localized(language: language)).foregroundColor(Color("DarkGreen"))
                 Picker("", selection: $selectedMonth) {
                     ForEach(DateUtils().months, id: \.self) {
                         Text(String($0.capitalized))
@@ -34,13 +35,13 @@ struct MonthlyStatistics: View {
             
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {
-                    Text("Revenue Overview").font(.subheadline).foregroundColor(Color("DarkGreen"))
+                    Text("statistics.revenueOverview".localized(language: language)).font(.subheadline).foregroundColor(Color("DarkGreen"))
                     Text("€ " + String(format: "%.2f", getSelectedMonthRevenue())).font(.title).bold().foregroundColor(Color("DarkGreen"))
                     
                     if let data = StatisticsData.monthlyLineChartData[selectedMonth] {
                         LineChart(entries: data, isYearly: false).frame(height: 300)
                     } else {
-                        Text("No data found.")
+                        Text("statistics.noData".localized(language: language))
                     }
                 }.padding(.horizontal, 40)
                 
@@ -48,13 +49,13 @@ struct MonthlyStatistics: View {
             
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {
-                    Text("Total Orders").font(.subheadline).foregroundColor(Color("DarkGreen"))
+                    Text("statistics.totalOrders".localized(language: language)).font(.subheadline).foregroundColor(Color("DarkGreen"))
                     Text("3402").font(.title).bold().foregroundColor(Color("DarkGreen"))
                     
                     if let data = StatisticsData.monthlyPieChartData[selectedMonth] {
                         PieChart(entries: data).frame(height: 300)
                     } else {
-                        Text("No data found.")
+                        Text("statistics.noData".localized(language: language))
                     }
                    
                 }.padding(.horizontal, 40)

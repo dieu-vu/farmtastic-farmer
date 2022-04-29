@@ -85,10 +85,10 @@ struct ProductMainScreen: View {
             // Products by category view
             ScrollView {
                 VStack {
-                    CategoryProductListView(products: productDataController.meatProductList, category: "Meat")
-                    CategoryProductListView(products: productDataController.vegeProductList, category: "Vegetables")
-                    CategoryProductListView(products: productDataController.fruitProductList, category: "Fruit")
-                    CategoryProductListView(products: productDataController.dairyProductList, category: "Egg & Dairy")
+                    CategoryProductListView(products: productDataController.meatProductList, category: "meat")
+                    CategoryProductListView(products: productDataController.vegeProductList, category: "vegetables")
+                    CategoryProductListView(products: productDataController.fruitProductList, category: "fruit")
+                    CategoryProductListView(products: productDataController.dairyProductList, category: "eggDairy")
                 }
                 .onAppear{
                     
