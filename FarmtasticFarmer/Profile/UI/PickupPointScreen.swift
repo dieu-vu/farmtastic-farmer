@@ -18,19 +18,13 @@ struct PickupPointScreen: View {
     var body: some View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
-            ButtonView(buttonText: "Add New",
-                       buttonColorLight: "LightGreen",
-                       buttonColorDark: "DarkGreen",
-                       buttonAction: {
-            })
-            
-            /*List(pickupPoints,
-                id: \.id) { pickupPoint in
-            List(pickupPoints, id: \.id) { pickupPoint in
-                PickupPointRow(pickupPoint: pickupPoint)
-            }*/
-            
-        }.navigationBarHidden(true)
+            List {
+                ForEach(pickupPoints, id: \.id) { point in
+                    PickupPointRow(pickupPoint: point)
+                }
+            }
+        }
+        .navigationBarHidden(true)
     }
 }
 

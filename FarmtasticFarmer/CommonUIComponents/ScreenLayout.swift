@@ -24,7 +24,7 @@ struct ScreenLayout: View {
                     BackButton()
                 }
                 Spacer()
-                Text("\(screenTitle)".localized(language: language)).font(.title).bold()
+                Text("\(screenTitle)".localized(language: language)).font(.title2).bold()
                 Spacer()
             }.padding(.horizontal, 20).padding(.top, -50)
         }.edgesIgnoringSafeArea(.top).padding(.bottom, -50)
