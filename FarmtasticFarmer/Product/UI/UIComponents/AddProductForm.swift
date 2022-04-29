@@ -28,7 +28,7 @@ struct AddProductForm: View {
     
     // Default categories and units:
     let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
-    let units = ["liter", "piece", "kg"]
+    let units = ["kg", "piece", "liter"]
     
     // Binding variable for the form
     @Binding var selectedUnit: Int
@@ -102,11 +102,10 @@ struct AddProductForm: View {
                                     Text("Unit").bold()
                                     VStack {
                                         Picker("", selection: $selectedUnit) {
-                                            ForEach(units, id: \.self) {
-                                                Text($0)
+                                            ForEach(0 ..< 3) {
+                                                Text(self.units[$0])
                                                     .foregroundColor(.yellow)
                                                     .font(.title3)
-                                                
                                             }
                                         }.pickerStyle(.menu)
                                     }  .frame(width: 50)
@@ -231,6 +230,20 @@ struct AddProductForm: View {
             case .some(_):
                 selectedCategory = 0
             }
+            
+            switch productDataController.selectedProduct[0].unit {
+            case "kg":
+                selectedUnit = 0
+            case "piece":
+                selectedUnit = 1
+            case "liter":
+                selectedUnit = 2
+            case .none:
+                selectedUnit = 0
+            case .some(_):
+                selectedUnit = 0
+            }
+            
         }
     }
 }
