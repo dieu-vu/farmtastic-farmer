@@ -22,6 +22,7 @@ struct AddProductForm: View {
     
     // If navigate from detail product view, switch to "update" form
     @State var isUpdating: Bool
+    @State var productId: Int?
     
     // Default categories and units:
     let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
@@ -123,10 +124,13 @@ struct AddProductForm: View {
                         }
                     }
                 }
+                .onAppear{prefillFormIfUpdating()}
             }
             .toast(isPresenting: $showToast, duration: 1) {
                 AlertToast(displayMode: .alert, type: .complete(Color("DarkGreen")), title: "Success!")
             }
+            
+            
             HStack{
                 ButtonView(buttonText: {if isUpdating {return "Save"} else {return "Add"}}(),
                            buttonColorLight: "LightGreen",
@@ -187,7 +191,20 @@ struct AddProductForm: View {
         if !isUpdating {
             productDataController.addProduct(description: newProduct, image: productImage ?? UIImage(imageLiteralResourceName: "placeholder"))
         } else {
-            productDataController.updateProduct(description: newProduct)
+            productDataController.updateProduct(description: newProduct, productId: productId!)
+        }
+    }
+    
+    func prefillFormIfUpdating () {
+        print("prefilling form")
+        print("is updating", isUpdating)
+        productDataController.getProductById(productId: productId!)
+        print("product id", productDataController.selectedProduct[0].product_id)
+        if isUpdating && productDataController.selectedProduct.count > 0 {
+            productName = productDataController.selectedProduct[0].product_name ?? ""
+            quantity = productDataController.selectedProduct[0].selling_quantity
+            price = productDataController.selectedProduct[0].unit_price
+            harvestDate = productDataController.selectedProduct[0].harvest_date ?? Date()
         }
     }
 }

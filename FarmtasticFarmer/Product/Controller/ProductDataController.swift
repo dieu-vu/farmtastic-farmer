@@ -23,6 +23,8 @@ class ProductDataController: UIViewController, ObservableObject {
     
     @Published var searchResultProductList: [ProductFetched] = []
     
+    @Published var selectedProduct: [ProductFetched] = []
+    
     @Published var loadCompleted: Bool = false
     
     let context = PersistenceController.shared.container.viewContext
@@ -121,8 +123,8 @@ class ProductDataController: UIViewController, ObservableObject {
     }
     
     //Function to handle data from Update Product Form and call PUT request to the API
-    func updateProduct(description: ProductJSON) {
-        
+    func updateProduct(description: ProductJSON, productId: Int) {
+        print("UPDATING PRODUCT ID", productId)
     }
     
     
@@ -188,6 +190,25 @@ class ProductDataController: UIViewController, ObservableObject {
         }
     }
     
+    // Function to retrieve product data by product ID from Core Data:
+    func getProductById (productId: Int) {
+        do {
+            let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
+            let pred = NSPredicate(format: "product_id == %@", NSNumber(value: productId))
+            request.predicate = pred
+            let groupProducts = try context.fetch(request)
+            if (groupProducts.count > 0 ){
+                print("RETRIEVE PRODUCT by ID RESULT", groupProducts.count)
+//                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
+            }
+            self.selectedProduct = groupProducts
+            print("Get single product by ID from CD",self.searchResultProductList.count)
+        } catch {
+            print("Cannot fetch products by category from Core Data")
+            self.selectedProduct = []
+        }
+    }
+    
     
     
     // ----------- HELPERS ------------ //
@@ -200,7 +221,6 @@ class ProductDataController: UIViewController, ObservableObject {
         
         guard let mediaImage = Media(withImage: image, forKey: "file") else { return ["dataBody": Data()] }
         print("BUILDING REQUEST BODY MEDIA DATA", mediaImage.data)
-        
         
         if let parameters = params {
             for (key, value) in parameters {

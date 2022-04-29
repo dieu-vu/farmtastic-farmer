@@ -18,6 +18,8 @@ struct ProductAddScreen: View {
     let units = ["kg", "liter", "piece"]
     
     @State var isUpdating: Bool
+    @State var productId: Int?
+    
     @State var category: String = ""
     @State var productName: String = ""
     @State var quantity: Double = 0.0
@@ -40,7 +42,7 @@ struct ProductAddScreen: View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
             AddProductForm(tabSelection: $tabSelection,
-                           isUpdating: isUpdating,selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
+                           isUpdating: isUpdating, productId: productId, selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
             
         }
         .navigationBarHidden(true)

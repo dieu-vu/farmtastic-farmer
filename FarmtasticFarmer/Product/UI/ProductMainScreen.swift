@@ -100,7 +100,7 @@ struct ProductMainScreen: View {
                 .onAppear{
                     
                 }
-                NavigationLink(destination: ProductAddScreen(tabSelection: $tabSelection, isUpdating: false), isActive: $navigateToAddProduct){}
+                NavigationLink(destination: ProductAddScreen(tabSelection: $tabSelection, isUpdating: false, productId: nil), isActive: $navigateToAddProduct){}
                 
             }
             .navigationBarHidden(true)

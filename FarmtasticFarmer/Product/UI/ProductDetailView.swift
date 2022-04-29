@@ -59,7 +59,7 @@ struct ProductDetailView: View {
                                    buttonColorLight: "LightGreen",
                                    buttonColorDark: "DarkGreen",
                                    buttonAction: {navigateToUpdateProduct = true})
-                        NavigationLink("", destination: ProductAddScreen(tabSelection: $tabSelection, isUpdating: true), isActive: $navigateToUpdateProduct)
+                        NavigationLink("", destination: ProductAddScreen(tabSelection: $tabSelection, isUpdating: true, productId: Int(product.product_id)), isActive: $navigateToUpdateProduct)
                     }
                     VStack{
                     ButtonView(buttonText: "Delete",

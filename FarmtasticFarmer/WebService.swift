@@ -5,6 +5,7 @@
 //  Created by hanghuynh on 13.4.2022.
 //
 // Class to handle requests to the API and return parsed response data
+// API Doc: https://media.mw.metropolia.fi/wbma/docs/
 
 import Foundation
 import SwiftUI
@@ -49,6 +50,10 @@ struct GetUserResponse: Codable {
 
 struct SearchRequestBody: Codable {
     let title: String?
+}
+
+struct UpdateRequestBody: Codable {
+    let description: String
 }
 
 class WebService {
@@ -259,6 +264,8 @@ class WebService {
         .resume()
     }
     
+    
+    //  FUNCTION TO HANDLE UPDATE PASSWORD REQUEST
     func changePassword(password: String, allowRetry: Bool = true, completion: @escaping (Result<String, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users") else {
@@ -311,6 +318,8 @@ class WebService {
         .resume()
     }
     
+    
+    // FUNCTION TO HANDLE LOGOUT ACTION
     func logout(completion: @escaping (Result<Bool, CustomError>) -> Void) {
         KeychainHelper.standard.delete(service: "auth-token", account: "farmtastic")
         
@@ -322,16 +331,10 @@ class WebService {
         completion(.success(true))
     }
     
+    
+    // FUNCTION TO GET PRODUCTS FROM THE SHARED API
+    // Get files from API based on search key "farmtastic" (This is the shared backend from WBMA course, thus having many media that cannot be parsed properly)
     func getProducts(completion: @escaping (Result<[ProductFromApi], CustomError>) -> Void){
-        // Get files from API based on search key "farmtastic" (This is the shared backend from WBMA course, thus having many media that cannot be parsed properly)
-                
-//        guard let userIdInKeyChain = KeychainHelper.standard.read(service: "user-id", account: "farmtastic") else {
-//            //               authController.logout()
-//            return
-//        }
-//        let userId = String(data: userIdInKeyChain, encoding: .utf8)
-//        print("USER ID IN KEY CHAIN", userId ?? "")
-        
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
@@ -388,11 +391,8 @@ class WebService {
         // TODO: Filter for files with user Id of the current user
     }
     
-    
-    func uploadProduct(dataBody: Data, boundary: String) {
-        // Ref: https://developer.apple.com/documentation/foundation/url_loading_system/uploading_data_to_a_website
-        // API Doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
-        
+    // FUNCTION TO HANDLE POST REQUEST FOR ADDING NEW PRODUCT
+    func uploadProduct(dataBody: Data, boundary: String) {        
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
