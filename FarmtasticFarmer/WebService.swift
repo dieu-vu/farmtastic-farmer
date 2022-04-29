@@ -442,7 +442,7 @@ class WebService {
         let urlString = "\(baseUrl)media/\(productId)"
 //        print("product req url", urlString)
         guard let url = URL(string: urlString) else {
-            fatalError("Post Product: Failed to create URL")
+            fatalError("PUT Product: Failed to create URL")
         }
         
         let body = UpdateRequestBody(description: data)
@@ -462,7 +462,39 @@ class WebService {
             if let response = response {
                 print(response)
             }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch {
+                    print(error)
+                }
+            }
+            }.resume()
+    }
+    
+    
+    // Function to handle delete request
+    func deleteProduct(productId: Int){
+        guard let token = getUserToken() else {
+            fatalError("getUserInfo: Token not found")
+        }
+                
+        let urlString = "\(baseUrl)media/\(productId)"
+        guard let url = URL(string: urlString) else {
+            fatalError("DELETE Product: Failed to create URL")
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.addValue(token, forHTTPHeaderField: "x-access-token")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])

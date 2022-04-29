@@ -66,6 +66,7 @@ struct ProductDetailView: View {
                                buttonColorLight: "PinkishRed",
                                buttonColorDark: "PinkishRed",
                                buttonAction: {
+                        productDataController.deleteProduct(productId: Int(product.product_id))
                         navigateToMainList = true
                         print("Button clicked")
                         

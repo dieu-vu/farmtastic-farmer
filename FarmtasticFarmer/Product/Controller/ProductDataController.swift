@@ -29,6 +29,8 @@ class ProductDataController: UIViewController, ObservableObject {
     
     let context = PersistenceController.shared.container.viewContext
     
+    
+    // ----------- FUNCTIONS TO HANDLE WEBSERVICE RELATED TASKS ------------ //
     // Fetch product info from network ans save to Core Data
     func loadProducts(completion: @escaping(Result<[ProductFetched], Error>)-> Void) {
         print("LOADED PRODUCTS \(self.products)")
@@ -68,6 +70,40 @@ class ProductDataController: UIViewController, ObservableObject {
     }
     
     
+    // Function to handle data from Add Product Form and call POST request to the API
+    func addProduct(description: ProductJSON, image: UIImage){
+        // parse product info from add product form to a ProductExtraInfo object
+        let newProductString = stringifyDescription(description: description)
+        print("NEW PRODUCT DESCRIPTION STRING", newProductString)
+        print("NEW PRODUCT IMAGE DATA", image)
+        
+        // Parse JSON for POST method in WebService: multipart/form-data
+        // API doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
+        let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductString]
+        let dataBody = createPostDataBody(withParameters: productDataDict, image: image)
+        let boundary = dataBody["boundary"]
+        let requestData = dataBody["dataBody"]
+        
+        // call Webservice POST method
+        WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
+    }
+    
+    // Function to handle data from Update Product Form and call PUT request to the API
+    func updateProduct(description: ProductJSON, productId: Int) {
+        print("UPDATING PRODUCT ID", productId)
+        let newProductString = stringifyDescription(description: description)
+        WebService().updateProduct(data: newProductString, productId: productId)
+    }
+    
+    // Function to handle product delete request
+    func deleteProduct(productId: Int){
+        print("DELETING PRODUCT ID", productId)
+        WebService().deleteProduct(productId: productId)
+    }
+    
+    
+    // ----------- FUNCTIONS TO HANDLE CORE DATA TASKS ------------ //
+
     // Function to save Products to Core Data (as ProductFetched object)
     func saveProducts(context: NSManagedObjectContext, products: [ProductFromApi]){
         //save fetched products to core data
@@ -91,32 +127,6 @@ class ProductDataController: UIViewController, ObservableObject {
             }
         }
     }
-    
-    // Function to handle data from Add Product Form and call POST request to the API
-    func addProduct(description: ProductJSON, image: UIImage){
-        // parse product info from add product form to a ProductExtraInfo object
-        let newProductString = stringifyDescription(description: description)
-        print("NEW PRODUCT DESCRIPTION STRING", newProductString)
-        print("NEW PRODUCT IMAGE DATA", image)
-        
-        // Parse JSON for POST method in WebService: multipart/form-data
-        // API doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
-        let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductString]
-        let dataBody = createPostDataBody(withParameters: productDataDict, image: image)
-        let boundary = dataBody["boundary"]
-        let requestData = dataBody["dataBody"]
-        
-        // call Webservice POST method
-        WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
-    }
-    
-    //Function to handle data from Update Product Form and call PUT request to the API
-    func updateProduct(description: ProductJSON, productId: Int) {
-        print("UPDATING PRODUCT ID", productId)
-        let newProductString = stringifyDescription(description: description)
-        WebService().updateProduct(data: newProductString, productId: productId)
-    }
-    
     
     // Function to fetch products from Core Data
     func fetchAllProducts() -> [ProductFetched] {
