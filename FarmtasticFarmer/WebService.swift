@@ -42,7 +42,18 @@ struct LoginRequestBody: Codable {
 struct LoginResponse: Codable {
     let token: String?
     let message: String?
+    let user: UserLoginInfo
 }
+
+struct UserLoginInfo: Codable {
+    let user_id: Int
+    let username: String
+    let email: String
+    let full_name: String
+    let is_admin: String?
+    let time_created: String
+}
+
 
 struct GetUserResponse: Codable {
     let message: String?
@@ -63,7 +74,7 @@ class WebService {
     let logger = Logger(subsystem: "Fartastic", category: "WebService")
     
     let context = PersistenceController.shared.container.viewContext
-    
+        
     
     func login(username: String, password: String, completion: @escaping (Result<Bool, CustomError>) -> Void) {
         
@@ -90,7 +101,8 @@ class WebService {
                 completion(.failure(.invalidCredentials))
                 return
             }
-            
+            let userId = loginResponse.user.user_id
+
             guard let token = loginResponse.token else {
                 completion(.failure(.invalidCredentials))
                 return
@@ -100,6 +112,8 @@ class WebService {
             
             KeychainHelper.standard.save(savedToken, service: "auth-token", account: "farmtastic")
             KeychainHelper.standard.save(password, service: "password", account: "farmtastic")
+            KeychainHelper.standard.save(userId, service: "user-id", account: "farmtastic")
+
             self.logger.log("PASSWORD IN KEYCHAIN \(password)")
             
             DispatchQueue.main.async {
@@ -338,11 +352,18 @@ class WebService {
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
-        
+        var userId: Int
+        let userIdInKeyChain = KeychainHelper.standard.read(service: "user-id", account: "farmtastic")
+        if userIdInKeyChain == nil {
+            completion(.failure(.custom(errorMessage: "Fail to get saved user Id")))
+            return
+        } else {
+            print("USER ID IN KEYCHAIN",String(data: userIdInKeyChain ?? Data(), encoding: .utf8) as Any)
+            userId = Int(String(data: userIdInKeyChain ?? Data(), encoding: .utf8) ?? "") ?? 0
+        }
         let searchRequestBody = SearchRequestBody(title: "farmtastic2022")
         
         let urlString = "\(baseUrl)media/search"
-//        print("product req url", urlString)
         guard let url = URL(string: urlString) else {
             fatalError("search Product: Failed to create URL")
         }
@@ -372,8 +393,13 @@ class WebService {
 //                        print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
                         let decoder = JSONDecoder()
                         let productArray = try decoder.decode([ProductFromApi].self, from: reformattedData)
+                        
+                        // Filter for files with user Id of the current user
+                        let productArrayFiltered = productArray.filter{$0.user_id == userId }
                         print("GET PRODUCT RESULT", productArray.count)
-                        completion(.success(productArray))
+                        print("GET PRODUCT FOR USER ONLY", productArray.count)
+
+                        completion(.success(productArrayFiltered))
                     } catch {
                         print("failed to parse Product array")
                         do {
@@ -388,7 +414,7 @@ class WebService {
             }
         }
         dataTask.resume()
-        // TODO: Filter for files with user Id of the current user
+        
     }
     
     // FUNCTION TO HANDLE POST REQUEST FOR ADDING NEW PRODUCT
