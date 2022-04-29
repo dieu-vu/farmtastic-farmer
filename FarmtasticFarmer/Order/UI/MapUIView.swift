@@ -28,8 +28,8 @@ struct MapUIView: View {
                     BackButton()
                     Spacer()
                     VStack {
-                        Text("\(screenTitle)".localized(language: language)).font(.title2)
-                        Text("\(orders[0].pickup_date)").font(.title).bold()
+                        Text("\(screenTitle)".localized(language: language)).font(.headline)
+                        Text("\(orders[0].pickup_date)").font(.title3).bold()
                     }
                     Spacer()
                 }
