@@ -15,4 +15,7 @@ struct Constants {
     static var productTab = 1
     static var profileTab = 2
     static var uploadUrl = "https://media.mw.metropolia.fi/wbma/uploads/"
+    
+    static var MONTHLY = "Monthly"
+    static var YEARLY = "Yearly"
 }

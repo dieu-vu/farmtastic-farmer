@@ -19,8 +19,6 @@ struct BaseView: View {
 
     
     @AppStorage("language")
-
-    
     private var language = LocalizationService.shared.language
 
     init() {
@@ -31,8 +29,8 @@ struct BaseView: View {
         TabView (selection: $tabSelection){
             Home()
                 .tabItem {
-                    Image(systemName: "house")
-                    Text("home".localized(language: language))
+                    Image(systemName: "chart.pie.fill")
+                    Text("statistics".localized(language: language))
                 }
                 .tag(Constants.homeTab)
 
