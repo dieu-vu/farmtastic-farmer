@@ -392,7 +392,7 @@ class WebService {
     }
     
     // FUNCTION TO HANDLE POST REQUEST FOR ADDING NEW PRODUCT
-    func uploadProduct(dataBody: Data, boundary: String) {        
+    func uploadProduct(dataBody: Data, boundary: String) {
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
@@ -406,7 +406,6 @@ class WebService {
         var request = URLRequest(url: url)
 
         request.httpMethod = "POST"
-
         request.allHTTPHeaderFields = [
                     "X-User-Agent": "ios",
                     "Accept-Language": "en",
@@ -416,6 +415,47 @@ class WebService {
                 ]
 
         request.httpBody = dataBody
+
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch {
+                    print(error)
+                }
+            }
+            }.resume()
+    }
+    
+    // FUNCTION TO HANDLE POST REQUEST FOR ADDING NEW PRODUCT
+    func updateProduct(data: String, productId: Int) {
+        guard let token = getUserToken() else {
+            fatalError("getUserInfo: Token not found")
+        }
+                
+        let urlString = "\(baseUrl)media/\(productId)"
+//        print("product req url", urlString)
+        guard let url = URL(string: urlString) else {
+            fatalError("Post Product: Failed to create URL")
+        }
+        
+        let body = UpdateRequestBody(description: data)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.allHTTPHeaderFields = [
+                    "X-User-Agent": "ios",
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "x-access-token": token
+                ]
+        request.httpBody = try? JSONEncoder().encode(body)
 
         let session = URLSession.shared
         session.dataTask(with: request) { (data, response, error) in

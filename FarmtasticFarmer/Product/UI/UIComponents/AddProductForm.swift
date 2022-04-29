@@ -124,7 +124,9 @@ struct AddProductForm: View {
                         }
                     }
                 }
-                .onAppear{prefillFormIfUpdating()}
+                .onAppear{
+                    if productId != nil {
+                        prefillFormIfUpdating()}}
             }
             .toast(isPresenting: $showToast, duration: 1) {
                 AlertToast(displayMode: .alert, type: .complete(Color("DarkGreen")), title: "Success!")
@@ -196,10 +198,8 @@ struct AddProductForm: View {
     }
     
     func prefillFormIfUpdating () {
-        print("prefilling form")
-        print("is updating", isUpdating)
         productDataController.getProductById(productId: productId!)
-        print("product id", productDataController.selectedProduct[0].product_id)
+        print("updating product id", productDataController.selectedProduct[0].product_id)
         if isUpdating && productDataController.selectedProduct.count > 0 {
             productName = productDataController.selectedProduct[0].product_name ?? ""
             quantity = productDataController.selectedProduct[0].selling_quantity

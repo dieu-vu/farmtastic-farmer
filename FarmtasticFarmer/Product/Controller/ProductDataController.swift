@@ -95,19 +95,7 @@ class ProductDataController: UIViewController, ObservableObject {
     // Function to handle data from Add Product Form and call POST request to the API
     func addProduct(description: ProductJSON, image: UIImage){
         // parse product info from add product form to a ProductExtraInfo object
-        var product = ProductExtraInfo()
-        product.product_name = description.product_name ?? ""
-        product.category = description.category ?? ""
-        product.harvest_date = description.harvest_date ?? ""
-        product.selling_quantity = String(format: "%.2f", description.selling_quantity!)
-        product.unit = description.unit ?? ""
-        product.unit_price = String(format: "%.2f", description.unit_price!)
-        
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .sortedKeys
-        
-        let newProduct = try! encoder.encode(product)
-        let newProductString = String(data: newProduct, encoding: .utf8)!
+        let newProductString = stringifyDescription(description: description)
         print("NEW PRODUCT DESCRIPTION STRING", newProductString)
         print("NEW PRODUCT IMAGE DATA", image)
         
@@ -125,6 +113,8 @@ class ProductDataController: UIViewController, ObservableObject {
     //Function to handle data from Update Product Form and call PUT request to the API
     func updateProduct(description: ProductJSON, productId: Int) {
         print("UPDATING PRODUCT ID", productId)
+        let newProductString = stringifyDescription(description: description)
+        WebService().updateProduct(data: newProductString, productId: productId)
     }
     
     
@@ -274,6 +264,23 @@ class ProductDataController: UIViewController, ObservableObject {
             fromRemoteContextSave: deletedObjects,
             into: [context]
         )
+    }
+    
+    func stringifyDescription (description: ProductJSON) -> String {
+        var product = ProductExtraInfo()
+        product.product_name = description.product_name ?? ""
+        product.category = description.category ?? ""
+        product.harvest_date = description.harvest_date ?? ""
+        product.selling_quantity = String(format: "%.2f", description.selling_quantity!)
+        product.unit = description.unit ?? ""
+        product.unit_price = String(format: "%.2f", description.unit_price!)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .sortedKeys
+        
+        let newProduct = try! encoder.encode(product)
+        let newProductString = String(data: newProduct, encoding: .utf8)!
+        print("PRODUCT DESCRIPTION STRING", newProductString)
+        return newProductString
     }
     
 }
