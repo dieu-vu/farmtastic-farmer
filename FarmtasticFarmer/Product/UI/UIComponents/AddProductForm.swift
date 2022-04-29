@@ -11,6 +11,8 @@ import AlertToast
 struct AddProductForm: View {
     @EnvironmentObject var productDataController: ProductDataController
     @State var showToast = false
+    @State var navigateToMainList: Bool = false
+
     
     // Variable to disable from when price, name and quantity is missing
     var disableForm: Bool {
@@ -147,9 +149,14 @@ struct AddProductForm: View {
                     // Navigate to main product list view
                     tabSelection = 1
                     showToast.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        navigateToMainList = true
+                    }
                 })
                 // Disable add button if there is no info filled in Product name, price and quantity
                 .disabled(disableForm)
+                NavigationLink("", destination: BaseView(), isActive: $navigateToMainList)
+//                NavigationLink("", destination: ProductMainScreen(tabSelection: $tabSelection, products: productDataController.allProducts), isActive: $navigateToMainList)
                 ButtonView(buttonText: "Clear",
                            buttonColorLight: "PinkishRed",
                            buttonColorDark: "PinkishRed",
@@ -210,6 +217,20 @@ struct AddProductForm: View {
             quantity = productDataController.selectedProduct[0].selling_quantity
             price = productDataController.selectedProduct[0].unit_price
             harvestDate = productDataController.selectedProduct[0].harvest_date ?? Date()
+            switch productDataController.selectedProduct[0].category {
+            case "Meat":
+                selectedCategory = 0
+            case "Vegetables":
+                selectedCategory = 1
+            case "Fruit":
+                selectedCategory = 2
+            case "Egg & Dairy":
+                selectedCategory = 3
+            case .none:
+                selectedCategory = 0
+            case .some(_):
+                selectedCategory = 0
+            }
         }
     }
 }

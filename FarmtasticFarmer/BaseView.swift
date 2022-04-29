@@ -15,11 +15,10 @@ struct BaseView: View {
     @EnvironmentObject var productDataController: ProductDataController
 
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var tabSelection = 0
+    @State private var tabSelection = 1
 
     
     @AppStorage("language")
-
     
     private var language = LocalizationService.shared.language
 
