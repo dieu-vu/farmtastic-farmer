@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Trang on 7.4.2022.
-//
+//  UI for item in the list of search product results
 
 import SwiftUI
 

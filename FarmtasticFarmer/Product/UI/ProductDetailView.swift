@@ -2,8 +2,8 @@
 //  ProductDetailView.swift
 //  FarmtasticFarmer
 //
-//  Created by Trung on 8.4.2022.
-//
+//  Created by Trang on 8.4.2022.
+//  Struct for Product detail UI
 
 import SwiftUI
 
@@ -36,7 +36,7 @@ struct ProductDetailView: View {
                         .fontWeight(.bold)
                         .padding()
                 }
-                // TODO: deducting sold quantity here
+
                 VStack(alignment: .leading) {
                     Text ("Available quantity: \(product.selling_quantity, specifier: "%.2f")kg")
                         .multilineTextAlignment(.leading)

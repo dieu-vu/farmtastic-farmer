@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/26/22.
-//
+// Struct to parse Product extra information for tasks related to product update
 
 import Foundation
 

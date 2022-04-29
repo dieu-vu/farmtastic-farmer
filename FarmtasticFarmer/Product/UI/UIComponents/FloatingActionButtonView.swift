@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Trang on 15.4.2022.
-//
+//  Floating action button for navigating to add product view from main product list View
 
 import SwiftUI
 

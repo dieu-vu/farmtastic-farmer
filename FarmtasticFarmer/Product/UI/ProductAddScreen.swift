@@ -2,8 +2,8 @@
 //  ProductAddScreen.swift
 //  FarmtasticFarmer
 //
-//  Created by Trung on 15.4.2022.
-//
+//  Created by Trang on 15.4.2022.
+// Struct to create add product UI view
 
 import SwiftUI
 

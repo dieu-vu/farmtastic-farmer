@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/28/22.
-//
+//  UI component for each product on the main Product view
 
 import SwiftUI
 

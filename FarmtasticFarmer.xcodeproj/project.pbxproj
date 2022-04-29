@@ -638,6 +638,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {

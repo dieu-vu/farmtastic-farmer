@@ -102,6 +102,7 @@ class WebService {
                 return
             }
             let userId = loginResponse.user.user_id
+            let username = loginResponse.user.username
 
             guard let token = loginResponse.token else {
                 completion(.failure(.invalidCredentials))
@@ -113,6 +114,8 @@ class WebService {
             KeychainHelper.standard.save(savedToken, service: "auth-token", account: "farmtastic")
             KeychainHelper.standard.save(password, service: "password", account: "farmtastic")
             KeychainHelper.standard.save(userId, service: "user-id", account: "farmtastic")
+            KeychainHelper.standard.save(username, service: "username", account: "farmtastic")
+
 
             self.logger.log("PASSWORD IN KEYCHAIN \(password)")
             
@@ -123,13 +126,18 @@ class WebService {
         .resume()
     }
     
+    
+    // Function to re authenticate in case token expires
     func reAuthentication() {
         
+        guard let username = String(data: KeychainHelper.standard.read(service: "username", account: "farmtastic") ?? Data(), encoding: .utf8) else {
+            return
+        }
         guard let password = KeychainHelper.standard.read(service: "password", account: "farmtastic") else {
             return
         }
         
-        login(username: "hangHuynh", password: String(data: password, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")) { result in
+        login(username: username, password: String(data: password, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")) { result in
             
             switch result {
             case .success:
@@ -140,6 +148,7 @@ class WebService {
         }
     }
     
+    // Function to check user token from Keychain
     func getUserToken() -> String? {
         var token = ""
         if let data = KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") {
@@ -156,6 +165,8 @@ class WebService {
         return token
     }
     
+    
+    // Function to get user data from API
     func getUser(allowRetry: Bool = true, completion: @escaping (Result<User, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users/user") else {
@@ -178,11 +189,6 @@ class WebService {
                 print("dataTask error: \(error.localizedDescription)")
             }
             else {
-                //guard let response = response else {
-                //return
-                //}
-                //print("response: \(response.expectedContentLength)")
-                
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
                     
                     if allowRetry {
@@ -224,6 +230,8 @@ class WebService {
         dataTask.resume()
     }
     
+    
+    // Function to handle update user info PUT request to API
     func updateUserInfo(name: String, address: String, phone: String, type: Int, location: [Int], allowRetry: Bool = true ,completion: @escaping (Result<String, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users") else {
