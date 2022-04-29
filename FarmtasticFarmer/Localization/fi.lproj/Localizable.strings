@@ -10,9 +10,31 @@
 "english" = "Englanti";
 "finnish" = "Suomi";
 "vietnamese" = "Vietnami";
+"january" = "tammikuu";
+"february" = "helmikuu";
+"march" = "maaliskuu ";
+"april" = "huhtikuu";
+"may" = "toukokuu";
+"june" = "kesäkuu";
+"july" = "heinäkuu";
+"august" = "elokuu";
+"september" = "syyskuu";
+"october" = "lokakuu";
+"november" = "marraskuu";
+"december" = "joulukuu";
+"meat" = "Liha";
+"vegetables" = "Vihannekset";
+"fruit" = "Hedelmä";
+"eggDairy" = "Muna & maitotuotteet";
 
-"home" = "Etuvisu";
-
+"statistics" = "Tilastot";
+"statistics.monthly" = "Kuukausittain";
+"statistics.yearly" = "Vuosittain";
+"statistics.revenueOverview" = "Tulojen yleiskatsaus";
+"statistics.totalOrders" = "Tilaukset yhteensä";
+"statistics.selectYear" = "Valitse vuosi";
+"statistics.selectMonth" = "Valitse kuukausi";
+"statistics.noData" = "Dataa ei löytynyt.";;
 
 "product" = "Tuotteet";
 "product.allCategories" = "Kaikki Tuotteet";

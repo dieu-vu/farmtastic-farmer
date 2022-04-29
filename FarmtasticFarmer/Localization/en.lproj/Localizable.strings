@@ -10,9 +10,31 @@
 "english" = "English";
 "finnish" = "Finnish";
 "vietnamese" = "Vietnamese";
+"january" = "january";
+"february" = "february";
+"march" = "march";
+"april" = "april";
+"may" = "may";
+"june" = "june";
+"july" = "july";
+"august" = "august";
+"september" = "september";
+"october" = "october";
+"november" = "november";
+"december" = "december";
+"meat" = "Meat";
+"vegetables" = "Vegetables";
+"fruit" = "Fruit";
+"eggDairy" = "Egg & Diary";
 
-"home" = "Home";
-
+"statistics" = "Statistics";
+"statistics.monthly" = "Monthly";
+"statistics.yearly" = "Yearly";
+"statistics.revenueOverview" = "Revenue Overview";
+"statistics.totalOrders" = "Total Orders";
+"statistics.selectYear" = "Select year";
+"statistics.selectMonth" = "Select month";
+"statistics.noData" = "No data found.";
 
 "product" = "Product";
 "product.allCategories" = "All Categories";
