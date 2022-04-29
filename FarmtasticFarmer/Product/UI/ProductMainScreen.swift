@@ -7,9 +7,10 @@
 
 import SwiftUI
 import AVFoundation
+import Foundation
 
 struct ProductMainScreen: View {
-        
+    
     @EnvironmentObject var productDataController: ProductDataController
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -63,7 +64,7 @@ struct ProductMainScreen: View {
                             print("SEARCH PHRASE", searchText)
                             productDataController.getProductBySearchPhrase(searchPhrase: searchText)
                         }
-                    
+                                   
                     ){
                         Image(systemName: "magnifyingglass").padding(.trailing, 20)
                     }
@@ -84,6 +85,12 @@ struct ProductMainScreen: View {
             
             // Products by category view
             ScrollView {
+                if !productDataController.loadCompleted {
+                    HStack(spacing: 15) {
+                        ProgressView()
+                        Text("Loading…")
+                    }
+                }
                 VStack {
                     CategoryProductListView(products: productDataController.meatProductList, category: "Meat")
                     CategoryProductListView(products: productDataController.vegeProductList, category: "Vegetables")
@@ -120,7 +127,7 @@ struct ProductMainScreen: View {
                 }
             }
     }
-        
+    
 }
 
 //struct ProductMainScreen_Previews: PreviewProvider {
@@ -134,3 +141,5 @@ extension UIApplication {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
+
+

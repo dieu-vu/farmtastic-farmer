@@ -11,6 +11,10 @@ import AlertToast
 struct AddProductForm: View {
     @EnvironmentObject var productDataController: ProductDataController
     @State var showToast = false
+    var disableForm: Bool {
+        productName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || quantity == 0.0 || price == 0.0
+    }
+    
     // Tab selection
     @Binding var tabSelection: Int
     
@@ -127,6 +131,8 @@ struct AddProductForm: View {
                     tabSelection = 1
                     showToast.toggle()
                 })
+                // Disable add button if there is no info filled in Product name, price and quantity
+                .disabled(disableForm)
                 ButtonView(buttonText: "Clear",
                            buttonColorLight: "PinkishRed",
                            buttonColorDark: "PinkishRed",
