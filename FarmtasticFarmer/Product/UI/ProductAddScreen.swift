@@ -17,6 +17,7 @@ struct ProductAddScreen: View {
         
     let units = ["kg", "liter", "piece"]
     
+    @State var isUpdating: Bool
     @State var category: String = ""
     @State var productName: String = ""
     @State var quantity: Double = 0.0
@@ -38,7 +39,8 @@ struct ProductAddScreen: View {
     var body: some View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
-            AddProductForm(tabSelection: $tabSelection, selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
+            AddProductForm(tabSelection: $tabSelection,
+                           isUpdating: isUpdating,selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
             
         }
         .navigationBarHidden(true)
@@ -48,7 +50,7 @@ struct ProductAddScreen: View {
 
 struct ProductAddScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProductAddScreen(tabSelection: Binding.constant(Constants.productTab))
+        ProductAddScreen(tabSelection: Binding.constant(Constants.productTab), isUpdating: false)
     }
 }
 

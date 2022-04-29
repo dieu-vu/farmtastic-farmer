@@ -14,6 +14,9 @@ struct CategoryProductListView: View {
     @EnvironmentObject var productDataController: ProductDataController
     
     @State var productIsTapped = false
+    @Binding var tabSelection: Int
+    
+    
     var body: some View {
         VStack{
             Text (category)
@@ -26,7 +29,7 @@ struct CategoryProductListView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(products, id: \.product_id) { product in
-                        ProductCardView(product: product)
+                        ProductCardView(product: product, tabSelection: $tabSelection)
                     }
                 }.padding([.bottom, .leading], 20)
             }
@@ -37,7 +40,7 @@ struct CategoryProductListView: View {
         static var previews: some View {
             let meatProductList = ProductDataController().meatProductList
             CategoryProductListView(
-                products: meatProductList,category: "Meat")
+                products: meatProductList,category: "Meat", tabSelection: Binding.constant(Constants.productTab))
         }
     }
 }

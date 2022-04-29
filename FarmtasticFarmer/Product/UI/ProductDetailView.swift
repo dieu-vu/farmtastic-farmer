@@ -9,12 +9,18 @@ import SwiftUI
 
 struct ProductDetailView: View {
     let product: ProductFetched
+    @Binding var tabSelection: Int
+   
+    @EnvironmentObject var productDataController: ProductDataController
+   
+    @State var navigateToUpdateProduct: Bool = false
+    @State var navigateToMainList: Bool = false
+    
     @State var screenTitle = "product.details"
     @State var hasBackButton = true
-    let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
-    @EnvironmentObject var productDataController: ProductDataController
-
     
+    let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
+
     var body: some View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
@@ -48,17 +54,26 @@ struct ProductDetailView: View {
                 .frame(width: 300).navigationBarHidden(true)
                 
                 HStack {
-                    ButtonView(buttonText: "Update",
-                               buttonColorLight: "LightGreen",
-                               buttonColorDark: "DarkGreen",
-                               buttonAction: {})
+                    VStack {
+                        ButtonView(buttonText: "Update",
+                                   buttonColorLight: "LightGreen",
+                                   buttonColorDark: "DarkGreen",
+                                   buttonAction: {navigateToUpdateProduct = true})
+                        NavigationLink("", destination: ProductAddScreen(tabSelection: $tabSelection, isUpdating: true), isActive: $navigateToUpdateProduct)
+                    }
+                    VStack{
                     ButtonView(buttonText: "Delete",
                                buttonColorLight: "PinkishRed",
                                buttonColorDark: "PinkishRed",
-                               buttonAction: {print("Button clicked")})
+                               buttonAction: {
+                        navigateToMainList = true
+                        print("Button clicked")
+                        
+                    })
+                        NavigationLink("", destination: ProductMainScreen(tabSelection: $tabSelection, products: productDataController.allProducts), isActive: $navigateToMainList)
+                    }
                 }
                 .padding(.horizontal, 4)
-
             }
         }
     }

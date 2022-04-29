@@ -112,13 +112,19 @@ class ProductDataController: UIViewController, ObservableObject {
         // Parse JSON for POST method in WebService: multipart/form-data
         // API doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
         let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductString]
-        let dataBody = createDataBody(withParameters: productDataDict, image: image)
+        let dataBody = createPostDataBody(withParameters: productDataDict, image: image)
         let boundary = dataBody["boundary"]
         let requestData = dataBody["dataBody"]
         
         // call Webservice POST method
         WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
     }
+    
+    //Function to handle data from Update Product Form and call PUT request to the API
+    func updateProduct(description: ProductJSON) {
+        
+    }
+    
     
     // Function to fetch products from Core Data
     func fetchAllProducts() -> [ProductFetched] {
@@ -186,7 +192,7 @@ class ProductDataController: UIViewController, ObservableObject {
     
     // ----------- HELPERS ------------ //
     // Function to prepare multipart/form-data body for the POST request
-    func createDataBody(withParameters params: [String: String]?, image: UIImage) -> [String: Any] {
+    func createPostDataBody(withParameters params: [String: String]?, image: UIImage) -> [String: Any] {
         let lineBreak = "\r\n"
         var body = Data()
         let boundary = "Boundary-\(NSUUID().uuidString)"

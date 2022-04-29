@@ -57,7 +57,7 @@ struct ProductMainScreen: View {
                     }) {
                         Image(systemName: isRecording ? "stop.circle" : "mic.fill").padding(.trailing, 8)
                     }
-                    NavigationLink(destination: SearchResults(searchText: searchText)
+                    NavigationLink(destination: SearchResults(searchText: searchText, tabSelection: Binding.constant(Constants.productTab))
                         .navigationBarBackButtonHidden(true)
                         .onAppear{
                             // call function to search product
@@ -92,15 +92,15 @@ struct ProductMainScreen: View {
                     }
                 }
                 VStack {
-                    CategoryProductListView(products: productDataController.meatProductList, category: "Meat")
-                    CategoryProductListView(products: productDataController.vegeProductList, category: "Vegetables")
-                    CategoryProductListView(products: productDataController.fruitProductList, category: "Fruit")
-                    CategoryProductListView(products: productDataController.dairyProductList, category: "Egg & Dairy")
+                    CategoryProductListView(products: productDataController.meatProductList, category: "Meat", tabSelection: $tabSelection)
+                    CategoryProductListView(products: productDataController.vegeProductList, category: "Vegetables", tabSelection: $tabSelection)
+                    CategoryProductListView(products: productDataController.fruitProductList, category: "Fruit", tabSelection: $tabSelection)
+                    CategoryProductListView(products: productDataController.dairyProductList, category: "Egg & Dairy", tabSelection: $tabSelection)
                 }
                 .onAppear{
                     
                 }
-                NavigationLink(destination: ProductAddScreen(tabSelection: $tabSelection), isActive: $navigateToAddProduct){}
+                NavigationLink(destination: ProductAddScreen(tabSelection: $tabSelection, isUpdating: false), isActive: $navigateToAddProduct){}
                 
             }
             .navigationBarHidden(true)

@@ -11,6 +11,8 @@ import AlertToast
 struct AddProductForm: View {
     @EnvironmentObject var productDataController: ProductDataController
     @State var showToast = false
+    
+    // Variable to disable from when price, name and quantity is missing
     var disableForm: Bool {
         productName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || quantity == 0.0 || price == 0.0
     }
@@ -18,12 +20,16 @@ struct AddProductForm: View {
     // Tab selection
     @Binding var tabSelection: Int
     
-    let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
+    // If navigate from detail product view, switch to "update" form
+    @State var isUpdating: Bool
     
+    // Default categories and units:
+    let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
     let units = ["kg", "liter", "piece"]
+    
+    // Binding variable for the form
     @Binding var selectedUnit: Int
     @Binding var selectedCategory: Int
-    
     @Binding var productName: String
     @Binding var quantity: Double
     @Binding var price: Double
@@ -42,29 +48,31 @@ struct AddProductForm: View {
     var body: some View {
         VStack {
             List {
-                Section(header: Text("Product Image")) {
-                    VStack (alignment: .center){
-                        placeHolderImage
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300 , height: 200, alignment: .center)
-                        HStack{
-                            Button("Photo library"){
-                                selectedImageSource = .photoLibrary
-                                isShowingImagePicker = true
+                // Hide image picker section if user is updating product
+                if !isUpdating {
+                    Section(header: Text("Product Image")) {
+                        VStack (alignment: .center){
+                            placeHolderImage
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 300 , height: 200, alignment: .center)
+                            HStack{
+                                Button("Photo library"){
+                                    selectedImageSource = .photoLibrary
+                                    isShowingImagePicker = true
+                                }
+                                Text("|")
+                                Button("Camera"){
+                                    selectedImageSource = .camera
+                                    isShowingImagePicker = true
+                                }
                             }
-                            Text("|")
-                            Button("Camera"){
-                                selectedImageSource = .camera
-                                isShowingImagePicker = true
+                            .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
+                                ImagePicker(selectedSource: selectedImageSource, productImage: $productImage)
                             }
-                        }
-                        .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
-                            ImagePicker(selectedSource: selectedImageSource, productImage: $productImage)
                         }
                     }
                 }
-                
                 Section(header: Text("Product Info")) {
                     VStack(alignment: .leading) {
                         Text("Choose category: ").bold()
@@ -120,11 +128,12 @@ struct AddProductForm: View {
                 AlertToast(displayMode: .alert, type: .complete(Color("DarkGreen")), title: "Success!")
             }
             HStack{
-                ButtonView(buttonText: "Add",
+                ButtonView(buttonText: {if isUpdating {return "Save"} else {return "Add"}}(),
                            buttonColorLight: "LightGreen",
                            buttonColorDark: "DarkGreen",
                            buttonAction: {
                     // Gather data from form to send to product data controller
+                    // Handle add new or update product
                     handleAddProductData()
                     clearForm()
                     // Navigate to main product list view
@@ -175,7 +184,11 @@ struct AddProductForm: View {
         newProduct.harvest_date = Utils.utils.convertDateToISOString(harvestDate)
         newProduct.selling_quantity = Double(quantity)
         print("newProduct from form", newProduct)
-        productDataController.addProduct(description: newProduct, image: productImage ?? UIImage(imageLiteralResourceName: "placeholder"))
+        if !isUpdating {
+            productDataController.addProduct(description: newProduct, image: productImage ?? UIImage(imageLiteralResourceName: "placeholder"))
+        } else {
+            productDataController.updateProduct(description: newProduct)
+        }
     }
 }
 
