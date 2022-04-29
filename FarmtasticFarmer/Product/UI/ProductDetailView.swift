@@ -12,12 +12,13 @@ struct ProductDetailView: View {
     @State var screenTitle = "product.details"
     @State var hasBackButton = true
     let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
+    @EnvironmentObject var productDataController: ProductDataController
+
     
     var body: some View {
-        
         VStack {
-           ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
-        
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
+            
             ScrollView {
                 Image (uiImage: UIImage(data: product.image ?? placeholderImageData!)!)
                     .resizable()
@@ -28,10 +29,6 @@ struct ProductDetailView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                         .padding()
-                    
-//                    Image(systemName: "pencil")
-//                        .aspectRatio(contentMode: .fit)
-//                        .foregroundColor(Color.black)
                 }
                 // TODO: deducting sold quantity here
                 VStack(alignment: .leading) {
@@ -41,7 +38,7 @@ struct ProductDetailView: View {
                     Text ("Price: \(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Category: \(product.category ?? "") " )
+                    Text ("Category: \(product.category ?? "")" )
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
                     Text ("Harvest date: \(Utils.utils.formatDateString(product.harvest_date ?? Date()))")
@@ -49,8 +46,19 @@ struct ProductDetailView: View {
                         .padding(.bottom, 5)
                 }
                 .frame(width: 300).navigationBarHidden(true)
-               
-                ButtonView(buttonText: "Delete", buttonColorLight: "PinkishRed", buttonColorDark: "PinkishRed", buttonAction: {print("Button clicked")}).padding(.top, 30)
+                
+                HStack {
+                    ButtonView(buttonText: "Update",
+                               buttonColorLight: "LightGreen",
+                               buttonColorDark: "DarkGreen",
+                               buttonAction: {})
+                    ButtonView(buttonText: "Delete",
+                               buttonColorLight: "PinkishRed",
+                               buttonColorDark: "PinkishRed",
+                               buttonAction: {print("Button clicked")})
+                }
+                .padding(.horizontal, 4)
+
             }
         }
     }
