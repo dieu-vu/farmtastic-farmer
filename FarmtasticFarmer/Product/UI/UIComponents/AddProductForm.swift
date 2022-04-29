@@ -26,7 +26,7 @@ struct AddProductForm: View {
     
     // Default categories and units:
     let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
-    let units = ["kg", "liter", "piece"]
+    let units = ["liter", "piece", "kg"]
     
     // Binding variable for the form
     @Binding var selectedUnit: Int
@@ -140,8 +140,10 @@ struct AddProductForm: View {
                            buttonAction: {
                     // Gather data from form to send to product data controller
                     // Handle add new or update product
+                    print("SELECTED UNIT", selectedUnit)
                     handleAddProductData()
                     clearForm()
+                    if isUpdating {productDataController.selectedProduct = []}
                     // Navigate to main product list view
                     tabSelection = 1
                     showToast.toggle()
@@ -182,6 +184,9 @@ struct AddProductForm: View {
         // Gather data from form to send to product data controller
         print("harvest date from form", harvestDate)
         print("price from form", price)
+        print("unit from form", selectedUnit)
+        print("unit from form", units[selectedUnit])
+
         var newProduct = ProductJSON()
         newProduct.product_name = productName.trimmingCharacters(in: .whitespacesAndNewlines)
         newProduct.category = categories[selectedCategory]
