@@ -20,9 +20,11 @@ struct ProductCardView : View {
                 .scaledToFit()
                 .frame(width: 90, height: 90)
             Text(product.product_name ?? "")
-                .font(.title2)
+                .font(.caption)
+                .bold()
                 .multilineTextAlignment(.leading)
             Text("\(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
+                .font(.headline)
                 .multilineTextAlignment(.leading)
         }.frame(width: 170, height: 170)
             .overlay(
