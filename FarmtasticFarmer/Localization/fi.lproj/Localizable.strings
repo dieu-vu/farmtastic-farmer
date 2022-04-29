@@ -10,6 +10,18 @@
 "english" = "Englanti";
 "finnish" = "Suomi";
 "vietnamese" = "Vietnami";
+"january" = "tammikuu";
+"february" = "helmikuu";
+"march" = "maaliskuu ";
+"april" = "huhtikuu";
+"may" = "toukokuu";
+"june" = "kesäkuu";
+"july" = "heinäkuu";
+"august" = "elokuu";
+"september" = "syyskuu";
+"october" = "lokakuu";
+"november" = "marraskuu";
+"december" = "joulukuu";
 
 "statistics" = "Tilastot";
 

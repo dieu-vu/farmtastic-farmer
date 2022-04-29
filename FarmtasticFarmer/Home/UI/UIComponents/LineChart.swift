@@ -11,7 +11,7 @@ import Charts
 struct LineChart: UIViewRepresentable {
     let entries: [ChartDataEntry]
     let lineChart = LineChartView()
-    let months = ["dummy", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let isYearly: Bool
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
@@ -38,11 +38,14 @@ struct LineChart: UIViewRepresentable {
         
         uiView.data = LineChartData(dataSet: dataSet)
         uiView.notifyDataSetChanged()
-        uiView.zoom(scaleX: 1.7, scaleY: 1, xValue: 0, yValue: 0, axis: .left)
+        
+        isYearly
+        ? uiView.zoom(scaleX: 1.7, scaleY: 1, xValue: 0, yValue: 0, axis: .left)
+        : uiView.zoom(scaleX: 4, scaleY: 1, xValue: 0, yValue: 0, axis: .left)
     }
     
     func formatDataSet(dataSet: LineChartDataSet) {
-        dataSet.label = "Revenue in year"
+        dataSet.label = isYearly ? "Revenue in year" : "Revenue in month"
         dataSet.colors = [UIColor(Color("DarkGreen"))]
         dataSet.valueFormatter = DefaultValueFormatter(decimals: 0)
         dataSet.drawCirclesEnabled = false
@@ -57,7 +60,9 @@ struct LineChart: UIViewRepresentable {
     
     func formatxAxis(xAxis: XAxis) {
         xAxis.enabled = true
-        xAxis.valueFormatter = IndexAxisValueFormatter(values: months)
+        if isYearly {
+            xAxis.valueFormatter = IndexAxisValueFormatter(values: DateUtils().abbrevMonths)
+        }
         xAxis.labelPosition = .bottom
         xAxis.labelTextColor = UIColor(Color("DarkGreen"))
     }

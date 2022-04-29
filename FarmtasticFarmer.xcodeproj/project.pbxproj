@@ -67,6 +67,7 @@
 		2D9A9441281B25500039BA86 /* AnalyticsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9A9440281B25500039BA86 /* AnalyticsCard.swift */; };
 		2D9A9447281B2C0C0039BA86 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9A9446281B2C0C0039BA86 /* Statistics.swift */; };
 		2DB4C400281BB2A100472775 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4C3FF281BB2A100472775 /* LineChart.swift */; };
+		2DB4C402281BD41E00472775 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4C401281BD41E00472775 /* DateUtils.swift */; };
 		8732FE9928081FDB002EC378 /* CategoryProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732FE9828081FDB002EC378 /* CategoryProductListView.swift */; };
 		878722BF28148E3600AB7F38 /* PickupPointRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722BE28148E3600AB7F38 /* PickupPointRow.swift */; };
 		878722C128148E9200AB7F38 /* PickupPointScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722C028148E9200AB7F38 /* PickupPointScreen.swift */; };
@@ -172,6 +173,7 @@
 		2D9A9440281B25500039BA86 /* AnalyticsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCard.swift; sourceTree = "<group>"; };
 		2D9A9446281B2C0C0039BA86 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		2DB4C3FF281BB2A100472775 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
+		2DB4C401281BD41E00472775 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		8732FE9828081FDB002EC378 /* CategoryProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListView.swift; sourceTree = "<group>"; };
 		878722BE28148E3600AB7F38 /* PickupPointRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointRow.swift; sourceTree = "<group>"; };
 		878722C028148E9200AB7F38 /* PickupPointScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointScreen.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				18C079A128096F3F0079E186 /* Utils.swift */,
 				01DEC6DE28166D5900EDDF19 /* SpeechRecognizer.swift */,
 				18C079C8280D729B0079E186 /* Constants.swift */,
+				2DB4C401281BD41E00472775 /* DateUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 				01DEC7012818039A00EDDF19 /* LocationManager.swift in Sources */,
 				8788398B280A0CED00A2593C /* FloatingActionButtonView.swift in Sources */,
 				18C079C2280B0FE60079E186 /* Order+CoreDataClass.swift in Sources */,
+				2DB4C402281BD41E00472775 /* DateUtils.swift in Sources */,
 				B3986BFE28043D49003C4130 /* LoginView.swift in Sources */,
 				2D9A9441281B25500039BA86 /* AnalyticsCard.swift in Sources */,
 			);

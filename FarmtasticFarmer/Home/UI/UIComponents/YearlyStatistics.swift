@@ -8,10 +8,8 @@
 import SwiftUI
 import Charts
 
-let currentYear: Int = Calendar.current.component(.year, from: Date())
-
 struct YearlyStatistics: View {
-    @State var selectedYear: Int = currentYear
+    @State var selectedYear: Int = DateUtils().getCurrentYear()
     
     var body: some View {
         VStack {
@@ -24,21 +22,21 @@ struct YearlyStatistics: View {
                 }
             }
             
-            if selectedYear == currentYear {
+            if selectedYear == DateUtils().getCurrentYear() {
                 VStack {
                     AnalyticsCard().overlay(
                         VStack (alignment: .leading) {
-                            Text("Revenue Overview").font(.subheadline).foregroundColor(Color("DarkGreen")).padding(.leading, 20)
-                            Text("€ 234 696").font(.title).bold().foregroundColor(Color("DarkGreen")).padding(.leading, 20)
-                            LineChart(entries: StatisticsData.yearlyBarChartData).frame(height: 300)
-                        }.padding([.horizontal, .bottom], 20)
+                            Text("Revenue Overview").font(.subheadline).foregroundColor(Color("DarkGreen"))
+                            Text("€ 70138,45").font(.title).bold().foregroundColor(Color("DarkGreen"))
+                            LineChart(entries: StatisticsData.yearlyLineChartData, isYearly: true).frame(height: 300)
+                        }.padding(.horizontal, 40)
                     )
                     AnalyticsCard().overlay(
                         VStack (alignment: .leading) {
-                            Text("Total Orders").font(.subheadline).foregroundColor(Color("DarkGreen")).padding(.leading, 20)
-                            Text("15 576").font(.title).bold().foregroundColor(Color("DarkGreen")).padding(.leading, 20)
+                            Text("Total Orders").font(.subheadline).foregroundColor(Color("DarkGreen"))
+                            Text("3402").font(.title).bold().foregroundColor(Color("DarkGreen"))
                             PieChart(entries: StatisticsData.yearlyPieChartData).frame(height: 300)
-                        }.padding(.horizontal, 20)
+                        }.padding(.horizontal, 40)
                     )
                 }
             } else {
