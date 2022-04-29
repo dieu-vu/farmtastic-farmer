@@ -3,7 +3,8 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/10/22.
-//
+//  Struct for user data retrieved from the API. https://media.mw.metropolia.fi/wbma/docs/#api-User-GetUser
+//  All user extra info is stringified in full_name field due to specific backend limitations
 
 import Foundation
 

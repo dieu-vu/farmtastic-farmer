@@ -3,18 +3,11 @@
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 13.4.2022.
-//
+//  Controller to handle data updated from update user info UI form and send data to webservice to make request
 
 import Foundation
 
 class UpdateUserInfoController: ObservableObject {
-    
-    /*@Published var name: String = ""
-    @Published var address: String = ""
-    @Published var phone: String = ""
-    @Published var type: Int = 0
-    @Published var location: [Int] = []*/
-    
     
     func updateUserInfo(name: String, address: String, phone: String, type: Int = 0, location: [Int] = []) {
         

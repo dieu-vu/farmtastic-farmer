@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Giang Nguyen on 21.4.2022.
-//
+// UI View for the list of active orders (data from JSON)
 
 import SwiftUI
 

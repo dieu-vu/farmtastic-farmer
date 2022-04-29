@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/3/22.
-//
+//  Tab view with navigation to main views
 
 import SwiftUI
 import CoreData

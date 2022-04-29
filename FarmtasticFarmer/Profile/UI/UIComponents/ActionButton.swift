@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Nguyen Giang on 10.4.2022.
-//
+//  UI component for the action button on profile view, such as update profile or change language, etc.
 
 import SwiftUI
 

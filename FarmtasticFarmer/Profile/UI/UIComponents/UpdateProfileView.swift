@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Nguyen Giang on 11.4.2022.
-//
+//  UI component for the Update profile form
 
 import SwiftUI
 

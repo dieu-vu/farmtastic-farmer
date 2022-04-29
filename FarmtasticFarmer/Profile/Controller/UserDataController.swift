@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/10/22.
-//
+//  Controller to handle data between webservice and Profile UI, including loading user data from API and save to Core Data
 
 import Foundation
 import UIKit

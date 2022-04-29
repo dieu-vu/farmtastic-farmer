@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Trang on 23.4.2022.
-//
+//  UI view for the list of default pickup point (currently hardcoded data)
 
 import SwiftUI
 import CoreLocation

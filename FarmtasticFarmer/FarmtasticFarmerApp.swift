@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/3/22.
-//
+//  Entry point for the app, showing Login view if not logged in and BaseView otherwise
 
 import SwiftUI
 
@@ -13,7 +13,7 @@ struct FarmtasticFarmerApp: App {
     @StateObject var authentication = AuthenticationController()
     @StateObject var userController = UserDataController()
     @StateObject var productDataController = ProductDataController()
-
+    
     
     var body: some Scene {
         WindowGroup {
@@ -38,12 +38,9 @@ struct ApplicationSwitcher: View {
         if (authController.isLoggedIn || KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
             BaseView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-
-           
         }
         else {
             LoginView()
         }
-        
     }
 }

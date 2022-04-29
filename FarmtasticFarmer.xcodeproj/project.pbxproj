@@ -332,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				182D9C5D27F9E04C00158D0C /* Controller */,
-				182D9C5C27F9E04500158D0C /* Models */,
 				182D9C5A27F9E03700158D0C /* UI */,
 			);
 			path = Login;
@@ -341,17 +340,9 @@
 		182D9C5A27F9E03700158D0C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				187DFEB42801C6A40033693C /* UIComponents */,
 				B3986BFD28043D49003C4130 /* LoginView.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		182D9C5C27F9E04500158D0C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		182D9C5D27F9E04C00158D0C /* Controller */ = {
@@ -410,18 +401,10 @@
 				B347E61D2802FB1100DA9863 /* ActionButton.swift */,
 				B347E621280315E400DA9863 /* HeaderImage.swift */,
 				B3986BFF2804959E003C4130 /* UpdateProfileView.swift */,
-				0112CAE128057FD300A77B74 /* KeychainHelper.swift */,
 				B3986C032804A249003C4130 /* ChangePasswordView.swift */,
 				187DFEB82802A9200033693C /* UserInfoCardView.swift */,
 				2D863BDF2811FB4800AC1EB2 /* OrderRow.swift */,
 				878722BE28148E3600AB7F38 /* PickupPointRow.swift */,
-			);
-			path = UIComponents;
-			sourceTree = "<group>";
-		};
-		187DFEB42801C6A40033693C /* UIComponents */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -443,6 +426,7 @@
 			children = (
 				18C079A128096F3F0079E186 /* Utils.swift */,
 				01DEC6DE28166D5900EDDF19 /* SpeechRecognizer.swift */,
+				0112CAE128057FD300A77B74 /* KeychainHelper.swift */,
 				18C079C8280D729B0079E186 /* Constants.swift */,
 				2DB4C401281BD41E00472775 /* DateUtils.swift */,
 			);
