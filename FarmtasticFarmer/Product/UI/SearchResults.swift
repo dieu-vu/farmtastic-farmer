@@ -18,22 +18,7 @@ struct SearchResults: View {
     var body: some View {
         VStack {
             VStack {
-                Rectangle().fill(Color("LightGreen")).frame(height: 150).opacity(0.5).overlay(
-                    Image("logo").resizable().scaledToFill().frame(width: 250, height: 100).padding(.top, 15)
-                )
-                RoundedRectangle(cornerRadius: 50).fill(.white).frame(height: 70).padding(.top, -50)
-                HStack {
-                    BackButton()
-                    Spacer()
-                    VStack {
-                        Text("\(screenTitle)".localized(language: language)).font(.title2)
-                        Text("\(searchText)").font(.title2).bold()
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, -50)
-                Text("\(productDataController.searchResultProductList.count) results")
+                ScreenLayout(screenTitle: "product.searchResults", hasBackButton: true, subTitle: "\(searchText)", text: "\(productDataController.searchResultProductList.count) results")
                 
                 List{
                     VStack {
@@ -44,10 +29,7 @@ struct SearchResults: View {
                         }
                     }.padding([.bottom],10)
                 }
-            }
-            .edgesIgnoringSafeArea(.top)
-            .padding(.bottom, -50)
-            
+            }.navigationBarHidden(true)
         }
 
     }

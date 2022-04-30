@@ -28,9 +28,6 @@ struct ProductAddScreen: View {
     @State var selectedUnit = 0
     @State var selectedCategory = 0
     @State private var productImage: UIImage?
-
-    @State var screenTitle = "product.addProduct"
-    @State var hasBackButton = true
     
     let formatterDecimal: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -40,7 +37,7 @@ struct ProductAddScreen: View {
     
     var body: some View {
         VStack {
-            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
+            ScreenLayout(screenTitle: "product.addProduct", hasBackButton: true)
             AddProductForm(tabSelection: $tabSelection,
                            isUpdating: isUpdating, productId: productId, selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
             

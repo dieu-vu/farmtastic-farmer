@@ -28,7 +28,7 @@ struct Home: View {
     
     var body: some View {
         VStack {
-            ScreenLayout(screenTitle: .constant("statistics"), hasBackButton: .constant(false))
+            ScreenLayout(screenTitle: "statistics", hasBackButton: false)
             
             Picker("Picker", selection: $selection) {
                 ForEach(selections, id: \.self) {

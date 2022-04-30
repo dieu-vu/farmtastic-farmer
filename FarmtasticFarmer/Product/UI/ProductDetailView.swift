@@ -16,14 +16,11 @@ struct ProductDetailView: View {
     @State var navigateToUpdateProduct: Bool = false
     @State var navigateToMainList: Bool = false
     
-    @State var screenTitle = "product.details"
-    @State var hasBackButton = true
-    
     let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
 
     var body: some View {
         VStack {
-            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
+            ScreenLayout(screenTitle: "product.details", hasBackButton: true)
             
             ScrollView {
                 Image (uiImage: UIImage(data: product.image ?? placeholderImageData!)!)

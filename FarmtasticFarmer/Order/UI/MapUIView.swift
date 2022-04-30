@@ -19,35 +19,17 @@ struct MapUIView: View {
     
     var body: some View {
         VStack {
-            VStack {
-                Rectangle().fill(Color("LightGreen")).frame(height: 150).opacity(0.5).overlay(
-                    Image("logo").resizable().scaledToFill().frame(width: 250, height: 100).padding(.top, 15)
-                )
-                RoundedRectangle(cornerRadius: 50).fill(.white).frame(height: 70).padding(.top, -50)
-                HStack {
-                    BackButton()
-                    Spacer()
-                    VStack {
-                        Text("\(screenTitle)".localized(language: language)).font(.headline)
-                        Text("\(orders[0].pickup_date)").font(.title3).bold()
-                    }
-                    Spacer()
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, -50)
-                MapView(mapRoutes: $mapRoutes, orders: $orders, currentLocation: manager.region.center)
-                ButtonView(buttonText: "Show Directions",
-                           buttonColorLight: "LightGreen",
-                           buttonColorDark: "DarkGreen",
-                           buttonAction: {
-                    self.showDirections.toggle()
-                })
-                .padding(.bottom, 32)
-                .disabled(mapRoutes.isEmpty)
-            }
-            .edgesIgnoringSafeArea(.top)
-            .padding(.bottom, -50)
-        }
+            ScreenLayout(screenTitle: "order.deliveryDate", hasBackButton: true, subTitle: "\(orders[0].pickup_date)")
+            MapView(mapRoutes: $mapRoutes, orders: $orders, currentLocation: manager.region.center)
+            ButtonView(buttonText: "Show Directions",
+                       buttonColorLight: "LightGreen",
+                       buttonColorDark: "DarkGreen",
+                       buttonAction: {
+                self.showDirections.toggle()
+            })
+            .padding(.bottom, 32)
+            .disabled(mapRoutes.isEmpty)
+        }.navigationBarHidden(true)
         .sheet(isPresented: $showDirections, content: {
             VStack {
                 Text("Directions")
@@ -72,10 +54,10 @@ struct MapUIView: View {
 }
 
 /*struct MapUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapUIView()
-    }
-}*/
+ static var previews: some View {
+ MapUIView()
+ }
+ }*/
 
 struct MapView: UIViewRepresentable {
     
