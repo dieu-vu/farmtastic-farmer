@@ -19,13 +19,12 @@ struct FarmtasticFarmerApp: App {
         WindowGroup {
             NavigationView {
                 ApplicationSwitcher()
-                    .environmentObject(authentication)
-                    .environmentObject(userController)
-                    .environmentObject(productDataController)
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
-
             }
             .navigationViewStyle(.stack)
+            .environmentObject(authentication)
+            .environmentObject(userController)
+            .environmentObject(productDataController)
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
