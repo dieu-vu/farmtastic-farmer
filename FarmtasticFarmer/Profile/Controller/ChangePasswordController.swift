@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 12.4.2022.
-//
+//  Controller to handle request for actions on change password form
 
 import Foundation
 

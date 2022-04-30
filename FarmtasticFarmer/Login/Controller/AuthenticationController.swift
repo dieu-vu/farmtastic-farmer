@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 14.4.2022.
-//
+//  Controller to handle data from actions on login form
 
 import Foundation
 

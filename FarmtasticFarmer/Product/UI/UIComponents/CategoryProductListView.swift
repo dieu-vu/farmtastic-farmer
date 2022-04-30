@@ -11,12 +11,18 @@ struct CategoryProductListView: View {
     let products: [ProductFetched]
     let category: String
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     @EnvironmentObject var productDataController: ProductDataController
     
     @State var productIsTapped = false
+    @Binding var tabSelection: Int
+    
+    
     var body: some View {
         VStack{
-            Text (category)
+            Text (category.localized(language: language))
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.red)
@@ -26,7 +32,7 @@ struct CategoryProductListView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(products, id: \.product_id) { product in
-                        ProductCardView(product: product)
+                        ProductCardView(product: product, tabSelection: $tabSelection)
                     }
                 }.padding([.bottom, .leading], 20)
             }
@@ -37,7 +43,7 @@ struct CategoryProductListView: View {
         static var previews: some View {
             let meatProductList = ProductDataController().meatProductList
             CategoryProductListView(
-                products: meatProductList,category: "Meat")
+                products: meatProductList,category: "Meat", tabSelection: Binding.constant(Constants.productTab))
         }
     }
 }

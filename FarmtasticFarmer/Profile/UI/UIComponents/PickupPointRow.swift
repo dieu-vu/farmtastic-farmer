@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Trang on 23.4.2022.
-//
+//  UI component for each Pickup point row inside the PickupPoint Screen
 
 
 import SwiftUI

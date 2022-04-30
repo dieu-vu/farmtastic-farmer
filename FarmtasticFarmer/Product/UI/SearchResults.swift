@@ -12,6 +12,8 @@ struct SearchResults: View {
     @State var searchText: String
     @State var screenTitle: String = "product.searchResults"
     @EnvironmentObject var productDataController: ProductDataController
+    @Binding var tabSelection: Int
+
     
     var body: some View {
         VStack {
@@ -37,7 +39,7 @@ struct SearchResults: View {
                     VStack {
                         ForEach(productDataController.searchResultProductList, id: \.product_id) { product in
                             ZStack{
-                                ProductResultCard(product: product)}
+                                ProductResultCard(product: product, tabSelection: $tabSelection)}
                             Divider()
                         }
                     }.padding([.bottom],10)
@@ -53,6 +55,6 @@ struct SearchResults: View {
 
 struct SearchResults_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResults(searchText:"")
+        SearchResults(searchText:"", tabSelection: Binding.constant(Constants.productTab))
     }
 }

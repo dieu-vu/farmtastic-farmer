@@ -23,10 +23,14 @@ class ProductDataController: UIViewController, ObservableObject {
     
     @Published var searchResultProductList: [ProductFetched] = []
     
+    @Published var selectedProduct: [ProductFetched] = []
+    
     @Published var loadCompleted: Bool = false
     
     let context = PersistenceController.shared.container.viewContext
     
+    
+    // ----------- FUNCTIONS TO HANDLE WEBSERVICE RELATED TASKS ------------ //
     // Fetch product info from network ans save to Core Data
     func loadProducts(completion: @escaping(Result<[ProductFetched], Error>)-> Void) {
         print("LOADED PRODUCTS \(self.products)")
@@ -66,6 +70,40 @@ class ProductDataController: UIViewController, ObservableObject {
     }
     
     
+    // Function to handle data from Add Product Form and call POST request to the API
+    func addProduct(description: ProductJSON, image: UIImage){
+        // parse product info from add product form to a ProductExtraInfo object
+        let newProductString = stringifyDescription(description: description)
+        print("NEW PRODUCT DESCRIPTION STRING", newProductString)
+        print("NEW PRODUCT IMAGE DATA", image)
+        
+        // Parse JSON for POST method in WebService: multipart/form-data
+        // API doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
+        let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductString]
+        let dataBody = createPostDataBody(withParameters: productDataDict, image: image)
+        let boundary = dataBody["boundary"]
+        let requestData = dataBody["dataBody"]
+        
+        // call Webservice POST method
+        WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
+    }
+    
+    // Function to handle data from Update Product Form and call PUT request to the API
+    func updateProduct(description: ProductJSON, productId: Int) {
+        print("UPDATING PRODUCT ID", productId)
+        let newProductString = stringifyDescription(description: description)
+        WebService().updateProduct(data: newProductString, productId: productId)
+    }
+    
+    // Function to handle product delete request
+    func deleteProduct(productId: Int){
+        print("DELETING PRODUCT ID", productId)
+        WebService().deleteProduct(productId: productId)
+    }
+    
+    
+    // ----------- FUNCTIONS TO HANDLE CORE DATA TASKS ------------ //
+
     // Function to save Products to Core Data (as ProductFetched object)
     func saveProducts(context: NSManagedObjectContext, products: [ProductFromApi]){
         //save fetched products to core data
@@ -88,36 +126,6 @@ class ProductDataController: UIViewController, ObservableObject {
                 UserDefaults.standard.setValue(true, forKey: Constants.productsLoaded)
             }
         }
-    }
-    
-    // Function to handle data from Add Product Form and call POST request to the API
-    func addProduct(description: ProductJSON, image: UIImage){
-        // parse product info from add product form to a ProductExtraInfo object
-        var product = ProductExtraInfo()
-        product.product_name = description.product_name ?? ""
-        product.category = description.category ?? ""
-        product.harvest_date = description.harvest_date ?? ""
-        product.selling_quantity = String(format: "%.2f", description.selling_quantity!)
-        product.unit = description.unit ?? ""
-        product.unit_price = String(format: "%.2f", description.unit_price!)
-        
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .sortedKeys
-        
-        let newProduct = try! encoder.encode(product)
-        let newProductString = String(data: newProduct, encoding: .utf8)!
-        print("NEW PRODUCT DESCRIPTION STRING", newProductString)
-        print("NEW PRODUCT IMAGE DATA", image)
-        
-        // Parse JSON for POST method in WebService: multipart/form-data
-        // API doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
-        let productDataDict: [String: String] = ["title": "farmtastic2022", "description": newProductString]
-        let dataBody = createDataBody(withParameters: productDataDict, image: image)
-        let boundary = dataBody["boundary"]
-        let requestData = dataBody["dataBody"]
-        
-        // call Webservice POST method
-        WebService().uploadProduct(dataBody: requestData as! Data, boundary: boundary as! String)
     }
     
     // Function to fetch products from Core Data
@@ -182,11 +190,30 @@ class ProductDataController: UIViewController, ObservableObject {
         }
     }
     
+    // Function to retrieve product data by product ID from Core Data:
+    func getProductById (productId: Int) {
+        do {
+            let request = ProductFetched.fetchRequest() as NSFetchRequest<ProductFetched>
+            let pred = NSPredicate(format: "product_id == %@", NSNumber(value: productId))
+            request.predicate = pred
+            let groupProducts = try context.fetch(request)
+            if (groupProducts.count > 0 ){
+                print("RETRIEVE PRODUCT by ID RESULT", groupProducts.count)
+//                print("RETRIEVE PRODUCTS BY CATEGORY", groupProducts.last?.product_name!)
+            }
+            self.selectedProduct = groupProducts
+            print("Get single product by ID from CD",self.searchResultProductList.count)
+        } catch {
+            print("Cannot fetch products by category from Core Data")
+            self.selectedProduct = []
+        }
+    }
+    
     
     
     // ----------- HELPERS ------------ //
     // Function to prepare multipart/form-data body for the POST request
-    func createDataBody(withParameters params: [String: String]?, image: UIImage) -> [String: Any] {
+    func createPostDataBody(withParameters params: [String: String]?, image: UIImage) -> [String: Any] {
         let lineBreak = "\r\n"
         var body = Data()
         let boundary = "Boundary-\(NSUUID().uuidString)"
@@ -194,7 +221,6 @@ class ProductDataController: UIViewController, ObservableObject {
         
         guard let mediaImage = Media(withImage: image, forKey: "file") else { return ["dataBody": Data()] }
         print("BUILDING REQUEST BODY MEDIA DATA", mediaImage.data)
-        
         
         if let parameters = params {
             for (key, value) in parameters {
@@ -248,6 +274,23 @@ class ProductDataController: UIViewController, ObservableObject {
             fromRemoteContextSave: deletedObjects,
             into: [context]
         )
+    }
+    
+    func stringifyDescription (description: ProductJSON) -> String {
+        var product = ProductExtraInfo()
+        product.product_name = description.product_name ?? ""
+        product.category = description.category ?? ""
+        product.harvest_date = description.harvest_date ?? ""
+        product.selling_quantity = String(format: "%.2f", description.selling_quantity!)
+        product.unit = description.unit ?? ""
+        product.unit_price = String(format: "%.2f", description.unit_price!)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .sortedKeys
+        
+        let newProduct = try! encoder.encode(product)
+        let newProductString = String(data: newProduct, encoding: .utf8)!
+        print("PRODUCT DESCRIPTION STRING", newProductString)
+        return newProductString
     }
     
 }

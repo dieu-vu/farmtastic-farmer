@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 7.4.2022.
-//
+//  UI component for the language picker inside language view
 
 import SwiftUI
 

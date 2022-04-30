@@ -10,9 +10,31 @@
 "english" = "Tiếng Anh";
 "finnish" = "Tiếng Phần Lan";
 "vietnamese" = "Tiếng Việt";
+"january" = "Tháng 1";
+"february" = "Tháng 2";
+"march" = "Tháng 3";
+"april" = "Tháng 4";
+"may" = "Tháng 5";
+"june" = "Tháng 6";
+"july" = "Tháng 7";
+"august" = "Tháng 8";
+"september" = "Tháng 9";
+"october" = "Tháng 10";
+"november" = "Tháng 11";
+"december" = "Tháng 12";
+"meat" = "Thịt";
+"vegetables" = "Rau củ";
+"fruit" = "Hoa quả";
+"eggDairy" = "Trứng và Sữa";
 
-"home" = "Trang chủ";
-
+"statistics" = "Thống kê";
+"statistics.monthly" = "Hàng tháng";
+"statistics.yearly" = "Hàng năm";
+"statistics.revenueOverview" = "Doanh thu tổng quan";
+"statistics.totalOrders" = "Tổng đơn hàng";
+"statistics.selectYear" = "Chọn năm";
+"statistics.selectMonth" = "Chọn tháng";
+"statistics.noData" = "Không tìm thấy dữ liệu nào.";
 
 "product" = "Sản phẩm";
 "product.allCategories" = "Tất cả sản phẩm";

@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Trang on 7.4.2022.
-//
+//  UI for item in the list of search product results
 
 import SwiftUI
 
@@ -11,7 +11,9 @@ struct ProductResultCard: View {
     let product: ProductFetched
     let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
     @State var productIsTapped = false
+    @Binding var tabSelection: Int
 
+    
     var body: some View {
         HStack {
             
@@ -39,7 +41,7 @@ struct ProductResultCard: View {
             productIsTapped.toggle()
             print("tapped \(String(describing: product.product_name))")
         }
-        NavigationLink("", destination: ProductDetailView(product: product).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
+        NavigationLink("", destination: ProductDetailView(product: product, tabSelection: $tabSelection).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
         
     }
 }

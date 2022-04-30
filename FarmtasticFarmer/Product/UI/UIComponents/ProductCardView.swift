@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/28/22.
-//
+//  UI component for each product on the main Product view
 
 import SwiftUI
 
@@ -12,6 +12,8 @@ struct ProductCardView : View {
     let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
     
     @State var productIsTapped = false
+    @Binding var tabSelection: Int
+
     
     var body: some View {
         VStack {
@@ -37,7 +39,7 @@ struct ProductCardView : View {
                 print("tapped \(String(describing: product.product_name))")
             }
 
-        NavigationLink("", destination: ProductDetailView(product: product).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
+        NavigationLink("", destination: ProductDetailView(product: product, tabSelection: $tabSelection).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
     }
     
 }

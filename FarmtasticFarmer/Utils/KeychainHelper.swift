@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 12.4.2022.
-//
+//  Class to handle actions with keychain
 
 import Foundation
 

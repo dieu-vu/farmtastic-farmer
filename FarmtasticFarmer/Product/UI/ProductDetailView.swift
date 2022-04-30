@@ -2,22 +2,29 @@
 //  ProductDetailView.swift
 //  FarmtasticFarmer
 //
-//  Created by Trung on 8.4.2022.
-//
+//  Created by Trang on 8.4.2022.
+//  Struct for Product detail UI
 
 import SwiftUI
 
 struct ProductDetailView: View {
     let product: ProductFetched
+    @Binding var tabSelection: Int
+   
+    @EnvironmentObject var productDataController: ProductDataController
+   
+    @State var navigateToUpdateProduct: Bool = false
+    @State var navigateToMainList: Bool = false
+    
     @State var screenTitle = "product.details"
     @State var hasBackButton = true
-    let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
     
+    let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
+
     var body: some View {
-        
         VStack {
-           ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
-        
+            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
+            
             ScrollView {
                 Image (uiImage: UIImage(data: product.image ?? placeholderImageData!)!)
                     .resizable()
@@ -28,12 +35,8 @@ struct ProductDetailView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                         .padding()
-                    
-//                    Image(systemName: "pencil")
-//                        .aspectRatio(contentMode: .fit)
-//                        .foregroundColor(Color.black)
                 }
-                // TODO: deducting sold quantity here
+
                 VStack(alignment: .leading) {
                     Text ("Available quantity: \(product.selling_quantity, specifier: "%.2f")kg")
                         .multilineTextAlignment(.leading)
@@ -41,7 +44,7 @@ struct ProductDetailView: View {
                     Text ("Price: \(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Category: \(product.category ?? "") " )
+                    Text ("Category: \(product.category ?? "")" )
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
                     Text ("Harvest date: \(Utils.utils.formatDateString(product.harvest_date ?? Date()))")
@@ -49,8 +52,29 @@ struct ProductDetailView: View {
                         .padding(.bottom, 5)
                 }
                 .frame(width: 300).navigationBarHidden(true)
-               
-                ButtonView(buttonText: "Delete", buttonColorLight: "PinkishRed", buttonColorDark: "PinkishRed", buttonAction: {print("Button clicked")}).padding(.top, 30)
+                
+                HStack {
+                    VStack {
+                        ButtonView(buttonText: "Update",
+                                   buttonColorLight: "LightGreen",
+                                   buttonColorDark: "DarkGreen",
+                                   buttonAction: {navigateToUpdateProduct = true})
+                        NavigationLink("", destination: ProductAddScreen(tabSelection: $tabSelection, isUpdating: true, productId: Int(product.product_id)), isActive: $navigateToUpdateProduct)
+                    }
+                    VStack{
+                    ButtonView(buttonText: "Delete",
+                               buttonColorLight: "PinkishRed",
+                               buttonColorDark: "PinkishRed",
+                               buttonAction: {
+                        productDataController.deleteProduct(productId: Int(product.product_id))
+                        navigateToMainList = true
+                        print("Button clicked")
+                        
+                    })
+                        NavigationLink("", destination: ProductMainScreen(tabSelection: $tabSelection, products: productDataController.allProducts), isActive: $navigateToMainList)
+                    }
+                }
+                .padding(.horizontal, 4)
             }
         }
     }

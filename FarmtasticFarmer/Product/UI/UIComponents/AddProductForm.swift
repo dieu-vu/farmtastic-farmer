@@ -11,15 +11,28 @@ import AlertToast
 struct AddProductForm: View {
     @EnvironmentObject var productDataController: ProductDataController
     @State var showToast = false
+    @State var navigateToMainList: Bool = false
+
+    
+    // Variable to disable from when price, name and quantity is missing
+    var disableForm: Bool {
+        productName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || quantity == 0.0 || price == 0.0
+    }
+    
     // Tab selection
     @Binding var tabSelection: Int
     
-    let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
+    // If navigate from detail product view, switch to "update" form
+    @State var isUpdating: Bool
+    @State var productId: Int?
     
-    let units = ["kg", "liter", "piece"]
+    // Default categories and units:
+    let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
+    let units = ["kg", "piece", "liter"]
+    
+    // Binding variable for the form
     @Binding var selectedUnit: Int
     @Binding var selectedCategory: Int
-    
     @Binding var productName: String
     @Binding var quantity: Double
     @Binding var price: Double
@@ -38,29 +51,31 @@ struct AddProductForm: View {
     var body: some View {
         VStack {
             List {
-                Section(header: Text("Product Image")) {
-                    VStack (alignment: .center){
-                        placeHolderImage
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300 , height: 200, alignment: .center)
-                        HStack{
-                            Button("Photo library"){
-                                selectedImageSource = .photoLibrary
-                                isShowingImagePicker = true
+                // Hide image picker section if user is updating product
+                if !isUpdating {
+                    Section(header: Text("Product Image")) {
+                        VStack (alignment: .center){
+                            placeHolderImage
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 300 , height: 200, alignment: .center)
+                            HStack{
+                                Button("Photo library"){
+                                    selectedImageSource = .photoLibrary
+                                    isShowingImagePicker = true
+                                }
+                                Text("|")
+                                Button("Camera"){
+                                    selectedImageSource = .camera
+                                    isShowingImagePicker = true
+                                }
                             }
-                            Text("|")
-                            Button("Camera"){
-                                selectedImageSource = .camera
-                                isShowingImagePicker = true
+                            .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
+                                ImagePicker(selectedSource: selectedImageSource, productImage: $productImage)
                             }
-                        }
-                        .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage){
-                            ImagePicker(selectedSource: selectedImageSource, productImage: $productImage)
                         }
                     }
                 }
-                
                 Section(header: Text("Product Info")) {
                     VStack(alignment: .leading) {
                         Text("Choose category: ").bold()
@@ -87,11 +102,10 @@ struct AddProductForm: View {
                                     Text("Unit").bold()
                                     VStack {
                                         Picker("", selection: $selectedUnit) {
-                                            ForEach(units, id: \.self) {
-                                                Text($0)
+                                            ForEach(0 ..< 3) {
+                                                Text(self.units[$0])
                                                     .foregroundColor(.yellow)
                                                     .font(.title3)
-                                                
                                             }
                                         }.pickerStyle(.menu)
                                     }  .frame(width: 50)
@@ -111,22 +125,37 @@ struct AddProductForm: View {
                         }
                     }
                 }
+                .onAppear{
+                    if productId != nil {
+                        prefillFormIfUpdating()}}
             }
             .toast(isPresenting: $showToast, duration: 1) {
                 AlertToast(displayMode: .alert, type: .complete(Color("DarkGreen")), title: "Success!")
             }
+            
+            
             HStack{
-                ButtonView(buttonText: "Add",
+                ButtonView(buttonText: {if isUpdating {return "Save"} else {return "Add"}}(),
                            buttonColorLight: "LightGreen",
                            buttonColorDark: "DarkGreen",
                            buttonAction: {
                     // Gather data from form to send to product data controller
+                    // Handle add new or update product
+                    print("SELECTED UNIT", selectedUnit)
                     handleAddProductData()
                     clearForm()
+                    if isUpdating {productDataController.selectedProduct = []}
                     // Navigate to main product list view
                     tabSelection = 1
                     showToast.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        navigateToMainList = true
+                    }
                 })
+                // Disable add button if there is no info filled in Product name, price and quantity
+                .disabled(disableForm)
+                NavigationLink("", destination: BaseView(), isActive: $navigateToMainList)
+//                NavigationLink("", destination: ProductMainScreen(tabSelection: $tabSelection, products: productDataController.allProducts), isActive: $navigateToMainList)
                 ButtonView(buttonText: "Clear",
                            buttonColorLight: "PinkishRed",
                            buttonColorDark: "PinkishRed",
@@ -161,6 +190,9 @@ struct AddProductForm: View {
         // Gather data from form to send to product data controller
         print("harvest date from form", harvestDate)
         print("price from form", price)
+        print("unit from form", selectedUnit)
+        print("unit from form", units[selectedUnit])
+
         var newProduct = ProductJSON()
         newProduct.product_name = productName.trimmingCharacters(in: .whitespacesAndNewlines)
         newProduct.category = categories[selectedCategory]
@@ -169,7 +201,50 @@ struct AddProductForm: View {
         newProduct.harvest_date = Utils.utils.convertDateToISOString(harvestDate)
         newProduct.selling_quantity = Double(quantity)
         print("newProduct from form", newProduct)
-        productDataController.addProduct(description: newProduct, image: productImage ?? UIImage(imageLiteralResourceName: "placeholder"))
+        if !isUpdating {
+            productDataController.addProduct(description: newProduct, image: productImage ?? UIImage(imageLiteralResourceName: "placeholder"))
+        } else {
+            productDataController.updateProduct(description: newProduct, productId: productId!)
+        }
+    }
+    
+    func prefillFormIfUpdating () {
+        productDataController.getProductById(productId: productId!)
+        print("updating product id", productDataController.selectedProduct[0].product_id)
+        if isUpdating && productDataController.selectedProduct.count > 0 {
+            productName = productDataController.selectedProduct[0].product_name ?? ""
+            quantity = productDataController.selectedProduct[0].selling_quantity
+            price = productDataController.selectedProduct[0].unit_price
+            harvestDate = productDataController.selectedProduct[0].harvest_date ?? Date()
+            switch productDataController.selectedProduct[0].category {
+            case "Meat":
+                selectedCategory = 0
+            case "Vegetables":
+                selectedCategory = 1
+            case "Fruit":
+                selectedCategory = 2
+            case "Egg & Dairy":
+                selectedCategory = 3
+            case .none:
+                selectedCategory = 0
+            case .some(_):
+                selectedCategory = 0
+            }
+            
+            switch productDataController.selectedProduct[0].unit {
+            case "kg":
+                selectedUnit = 0
+            case "piece":
+                selectedUnit = 1
+            case "liter":
+                selectedUnit = 2
+            case .none:
+                selectedUnit = 0
+            case .some(_):
+                selectedUnit = 0
+            }
+            
+        }
     }
 }
 

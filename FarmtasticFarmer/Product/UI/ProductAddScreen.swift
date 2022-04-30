@@ -2,8 +2,8 @@
 //  ProductAddScreen.swift
 //  FarmtasticFarmer
 //
-//  Created by Trung on 15.4.2022.
-//
+//  Created by Trang on 15.4.2022.
+// Struct to create add product UI view
 
 import SwiftUI
 
@@ -16,6 +16,9 @@ struct ProductAddScreen: View {
     let categories = ["Meat", "Vegetables", "Fruit", "Egg & Dairy"]
         
     let units = ["kg", "liter", "piece"]
+    
+    @State var isUpdating: Bool
+    @State var productId: Int?
     
     @State var category: String = ""
     @State var productName: String = ""
@@ -38,7 +41,8 @@ struct ProductAddScreen: View {
     var body: some View {
         VStack {
             ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
-            AddProductForm(tabSelection: $tabSelection, selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
+            AddProductForm(tabSelection: $tabSelection,
+                           isUpdating: isUpdating, productId: productId, selectedUnit: $selectedUnit, selectedCategory: $selectedCategory, productName: $productName, quantity: $quantity, price: $price, harvestDate: $harvestDate, productImage: $productImage)
             
         }
         .navigationBarHidden(true)
@@ -48,7 +52,7 @@ struct ProductAddScreen: View {
 
 struct ProductAddScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProductAddScreen(tabSelection: Binding.constant(Constants.productTab))
+        ProductAddScreen(tabSelection: Binding.constant(Constants.productTab), isUpdating: false)
     }
 }
 

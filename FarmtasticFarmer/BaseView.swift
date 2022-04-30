@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/3/22.
-//
+//  Tab view with navigation to main views
 
 import SwiftUI
 import CoreData
@@ -15,12 +15,10 @@ struct BaseView: View {
     @EnvironmentObject var productDataController: ProductDataController
 
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var tabSelection = 0
+    @State private var tabSelection = 1
 
     
     @AppStorage("language")
-
-    
     private var language = LocalizationService.shared.language
 
     init() {
@@ -31,8 +29,8 @@ struct BaseView: View {
         TabView (selection: $tabSelection){
             Home()
                 .tabItem {
-                    Image(systemName: "house")
-                    Text("home".localized(language: language))
+                    Image(systemName: "chart.pie.fill")
+                    Text("statistics".localized(language: language))
                 }
                 .tag(Constants.homeTab)
 

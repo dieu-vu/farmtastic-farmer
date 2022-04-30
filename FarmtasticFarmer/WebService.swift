@@ -5,6 +5,7 @@
 //  Created by hanghuynh on 13.4.2022.
 //
 // Class to handle requests to the API and return parsed response data
+// API Doc: https://media.mw.metropolia.fi/wbma/docs/
 
 import Foundation
 import SwiftUI
@@ -41,7 +42,18 @@ struct LoginRequestBody: Codable {
 struct LoginResponse: Codable {
     let token: String?
     let message: String?
+    let user: UserLoginInfo
 }
+
+struct UserLoginInfo: Codable {
+    let user_id: Int
+    let username: String
+    let email: String
+    let full_name: String
+    let is_admin: String?
+    let time_created: String
+}
+
 
 struct GetUserResponse: Codable {
     let message: String?
@@ -51,6 +63,10 @@ struct SearchRequestBody: Codable {
     let title: String?
 }
 
+struct UpdateRequestBody: Codable {
+    let description: String
+}
+
 class WebService {
     
     let baseUrl = "https://media.mw.metropolia.fi/wbma/"
@@ -58,7 +74,7 @@ class WebService {
     let logger = Logger(subsystem: "Fartastic", category: "WebService")
     
     let context = PersistenceController.shared.container.viewContext
-    
+        
     
     func login(username: String, password: String, completion: @escaping (Result<Bool, CustomError>) -> Void) {
         
@@ -85,7 +101,9 @@ class WebService {
                 completion(.failure(.invalidCredentials))
                 return
             }
-            
+            let userId = loginResponse.user.user_id
+            let username = loginResponse.user.username
+
             guard let token = loginResponse.token else {
                 completion(.failure(.invalidCredentials))
                 return
@@ -95,6 +113,10 @@ class WebService {
             
             KeychainHelper.standard.save(savedToken, service: "auth-token", account: "farmtastic")
             KeychainHelper.standard.save(password, service: "password", account: "farmtastic")
+            KeychainHelper.standard.save(userId, service: "user-id", account: "farmtastic")
+            KeychainHelper.standard.save(username, service: "username", account: "farmtastic")
+
+
             self.logger.log("PASSWORD IN KEYCHAIN \(password)")
             
             DispatchQueue.main.async {
@@ -104,13 +126,18 @@ class WebService {
         .resume()
     }
     
+    
+    // Function to re authenticate in case token expires
     func reAuthentication() {
         
+        guard let username = String(data: KeychainHelper.standard.read(service: "username", account: "farmtastic") ?? Data(), encoding: .utf8) else {
+            return
+        }
         guard let password = KeychainHelper.standard.read(service: "password", account: "farmtastic") else {
             return
         }
         
-        login(username: "hangHuynh", password: String(data: password, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")) { result in
+        login(username: username, password: String(data: password, encoding: .utf8)!.replacingOccurrences(of: "\"", with: "")) { result in
             
             switch result {
             case .success:
@@ -121,6 +148,7 @@ class WebService {
         }
     }
     
+    // Function to check user token from Keychain
     func getUserToken() -> String? {
         var token = ""
         if let data = KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") {
@@ -137,6 +165,8 @@ class WebService {
         return token
     }
     
+    
+    // Function to get user data from API
     func getUser(allowRetry: Bool = true, completion: @escaping (Result<User, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users/user") else {
@@ -159,11 +189,6 @@ class WebService {
                 print("dataTask error: \(error.localizedDescription)")
             }
             else {
-                //guard let response = response else {
-                //return
-                //}
-                //print("response: \(response.expectedContentLength)")
-                
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 401 {
                     
                     if allowRetry {
@@ -205,6 +230,8 @@ class WebService {
         dataTask.resume()
     }
     
+    
+    // Function to handle update user info PUT request to API
     func updateUserInfo(name: String, address: String, phone: String, type: Int, location: [Int], allowRetry: Bool = true ,completion: @escaping (Result<String, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users") else {
@@ -259,6 +286,8 @@ class WebService {
         .resume()
     }
     
+    
+    //  FUNCTION TO HANDLE UPDATE PASSWORD REQUEST
     func changePassword(password: String, allowRetry: Bool = true, completion: @escaping (Result<String, CustomError>) -> Void) {
         
         guard let url = URL(string: "\(baseUrl)users") else {
@@ -311,6 +340,8 @@ class WebService {
         .resume()
     }
     
+    
+    // FUNCTION TO HANDLE LOGOUT ACTION
     func logout(completion: @escaping (Result<Bool, CustomError>) -> Void) {
         KeychainHelper.standard.delete(service: "auth-token", account: "farmtastic")
         
@@ -322,24 +353,25 @@ class WebService {
         completion(.success(true))
     }
     
+    
+    // FUNCTION TO GET PRODUCTS FROM THE SHARED API
+    // Get files from API based on search key "farmtastic" (This is the shared backend from WBMA course, thus having many media that cannot be parsed properly)
     func getProducts(completion: @escaping (Result<[ProductFromApi], CustomError>) -> Void){
-        // Get files from API based on search key "farmtastic" (This is the shared backend from WBMA course, thus having many media that cannot be parsed properly)
-                
-//        guard let userIdInKeyChain = KeychainHelper.standard.read(service: "user-id", account: "farmtastic") else {
-//            //               authController.logout()
-//            return
-//        }
-//        let userId = String(data: userIdInKeyChain, encoding: .utf8)
-//        print("USER ID IN KEY CHAIN", userId ?? "")
-        
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
-        
+        var userId: Int
+        let userIdInKeyChain = KeychainHelper.standard.read(service: "user-id", account: "farmtastic")
+        if userIdInKeyChain == nil {
+            completion(.failure(.custom(errorMessage: "Fail to get saved user Id")))
+            return
+        } else {
+            print("USER ID IN KEYCHAIN",String(data: userIdInKeyChain ?? Data(), encoding: .utf8) as Any)
+            userId = Int(String(data: userIdInKeyChain ?? Data(), encoding: .utf8) ?? "") ?? 0
+        }
         let searchRequestBody = SearchRequestBody(title: "farmtastic2022")
         
         let urlString = "\(baseUrl)media/search"
-//        print("product req url", urlString)
         guard let url = URL(string: urlString) else {
             fatalError("search Product: Failed to create URL")
         }
@@ -369,8 +401,13 @@ class WebService {
 //                        print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
                         let decoder = JSONDecoder()
                         let productArray = try decoder.decode([ProductFromApi].self, from: reformattedData)
+                        
+                        // Filter for files with user Id of the current user
+                        let productArrayFiltered = productArray.filter{$0.user_id == userId }
                         print("GET PRODUCT RESULT", productArray.count)
-                        completion(.success(productArray))
+                        print("GET PRODUCT FOR USER ONLY", productArray.count)
+
+                        completion(.success(productArrayFiltered))
                     } catch {
                         print("failed to parse Product array")
                         do {
@@ -385,14 +422,11 @@ class WebService {
             }
         }
         dataTask.resume()
-        // TODO: Filter for files with user Id of the current user
+        
     }
     
-    
+    // FUNCTION TO HANDLE POST REQUEST FOR ADDING NEW PRODUCT
     func uploadProduct(dataBody: Data, boundary: String) {
-        // Ref: https://developer.apple.com/documentation/foundation/url_loading_system/uploading_data_to_a_website
-        // API Doc: https://media.mw.metropolia.fi/wbma/docs/#api-Media-PostMediaFile
-        
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
@@ -406,7 +440,6 @@ class WebService {
         var request = URLRequest(url: url)
 
         request.httpMethod = "POST"
-
         request.allHTTPHeaderFields = [
                     "X-User-Agent": "ios",
                     "Accept-Language": "en",
@@ -423,6 +456,79 @@ class WebService {
                 print(response)
             }
 
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch {
+                    print(error)
+                }
+            }
+            }.resume()
+    }
+    
+    // FUNCTION TO HANDLE POST REQUEST FOR ADDING NEW PRODUCT
+    func updateProduct(data: String, productId: Int) {
+        guard let token = getUserToken() else {
+            fatalError("getUserInfo: Token not found")
+        }
+                
+        let urlString = "\(baseUrl)media/\(productId)"
+//        print("product req url", urlString)
+        guard let url = URL(string: urlString) else {
+            fatalError("PUT Product: Failed to create URL")
+        }
+        
+        let body = UpdateRequestBody(description: data)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.allHTTPHeaderFields = [
+                    "X-User-Agent": "ios",
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "x-access-token": token
+                ]
+        request.httpBody = try? JSONEncoder().encode(body)
+
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch {
+                    print(error)
+                }
+            }
+            }.resume()
+    }
+    
+    
+    // Function to handle delete request
+    func deleteProduct(productId: Int){
+        guard let token = getUserToken() else {
+            fatalError("getUserInfo: Token not found")
+        }
+                
+        let urlString = "\(baseUrl)media/\(productId)"
+        guard let url = URL(string: urlString) else {
+            fatalError("DELETE Product: Failed to create URL")
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.addValue(token, forHTTPHeaderField: "x-access-token")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])

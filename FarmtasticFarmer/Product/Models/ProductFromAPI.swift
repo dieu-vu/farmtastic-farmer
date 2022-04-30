@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/24/22.
-//
+//  Struct for parsing data loaded from API
 
 import Foundation
 

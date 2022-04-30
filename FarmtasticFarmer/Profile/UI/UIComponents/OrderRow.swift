@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Giang Nguyen on 21.4.2022.
-//
+//  UI component for each order row inside the Active order view
 
 import SwiftUI
 

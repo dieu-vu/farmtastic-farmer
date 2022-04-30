@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/10/22.
-//
+//  UI component for user information displayed on the Profile view
 
 import SwiftUI
 

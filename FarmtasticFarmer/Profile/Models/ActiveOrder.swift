@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Giang Nguyen on 21.4.2022.
-//
+//  Struct to parse order data from the JSON file. Due to time and API limitations, order data is implemented through a JSON file
 
 import Foundation
 
