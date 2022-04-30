@@ -3,7 +3,13 @@
 //  FarmtasticFarmer
 //
 //  Created by Nguyen Giang on 7.4.2022.
-//
+//  Ui for Profile screen, handling different actions and forms for user.
+// - User information displayed on the top
+// - See active orders (JSON data)
+// - See pickup points list
+// - Change app language on fly
+// - Update user info
+// - change account password
 
 import SwiftUI
 
@@ -47,6 +53,20 @@ struct ProfileScreen: View {
                 .ignoresSafeArea()
             // Inject Managed Object context to the sub view
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(userController)
+                .onDisappear{
+                    // Fetch user data again
+                    userController.fetchUser{
+                        result in
+                        switch result {
+                        case .success(let user):
+                            userController.currentUser = user
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+
         } onEnd: {
             print("Dismissed")
         }
@@ -57,6 +77,8 @@ struct ProfileScreen: View {
         }
     }
     
+    
+    // Actions buttons to handle different forms
     var actionButtonGroup: some View {
         VStack {
             NavigationLink(destination: ActiveOrderScreen(), isActive: $navigateToOrder) {
@@ -70,7 +92,8 @@ struct ProfileScreen: View {
                             })
                         }
             ActionButton(icon: "t.bubble", title: "profile.changeLanguage".localized(language: language), onClick: { showLanguageBottomSheet.toggle()})
-            ActionButton(icon: "pencil", title: "profile.update".localized(language: language), onClick: { showUpdateProfile.toggle() })
+            ActionButton(icon: "pencil", title: "profile.update".localized(language: language), onClick: { showUpdateProfile.toggle()
+            })
             ActionButton(icon: "person.circle", title: "profile.changePassword".localized(language: language), onClick: { showChangePassword.toggle() })
         }.navigationBarHidden(true)
     }

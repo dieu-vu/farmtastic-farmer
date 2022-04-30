@@ -14,6 +14,7 @@ struct UpdateProfileView: View {
     @StateObject private var updateUserInfoController = UpdateUserInfoController()
     @State var isDisabled = false
     
+    @EnvironmentObject var userController: UserDataController
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: []) private var loggedInUser: FetchedResults<UserFetched>
@@ -53,34 +54,33 @@ struct UpdateProfileView: View {
                 ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
                     isDisabled = true
                     closeKeyboard()
-                    checkNewUserData(newName: newName, newNumber: newNumber, newAddress: newAddress, loggedInUser: loggedInUser.last)
-                    updateUserInfoController.updateUserInfo(name: newName, address: newAddress, phone: newNumber)
-                    // Verify if update fields are left blank, if blank then filled from CoreData
-                    //let temp = checkNewUserData(newData: updateUserInfoController, loggedInUser: loggedInUser.last)
-                    /*updateUserInfoController.address = temp.address
-                    updateUserInfoController.name = temp.name
-                    updateUserInfoController.phone = temp.phone
-                    updateUserInfoController.location = [Int](loggedInUser.last?.location ?? [])
-                    updateUserInfoController.updateUserInfo()*/
                     showUpdateProfile.toggle()
-                    
+
+                    let checkedUpdatedUser = checkNewUserData(newName: newName, newNumber: newNumber, newAddress: newAddress)
+
+                    updateUserInfoController.updateUserInfo(name: checkedUpdatedUser.name, address: checkedUpdatedUser.address, phone: String(checkedUpdatedUser.phone))
+
                 })
                 .padding(.bottom, 32)
             }
         }
     }
     
-    func checkNewUserData(newName: String, newNumber: String, newAddress: String, loggedInUser: UserFetched?) {
-        //let checkedNewData = UpdateUserInfoController()
-        if newAddress == "" {
-            self.newName = loggedInUser?.address ?? ""
-        }
-        if newNumber == "" {
-            self.newNumber = loggedInUser?.phone ?? ""
-        }
-        if newName == "" {
-            self.newName = loggedInUser?.name ?? ""
-        }
+    
+    // Helper function to check and refill existing data if any field is left blank
+    func checkNewUserData(newName: String, newNumber: String, newAddress: String) -> UserExtraInfo {
+        let loggedInUser = userController.currentUser.full_name
+            if newAddress == "" {
+                self.newAddress = loggedInUser.address
+            }
+            if newNumber == "" {
+                self.newNumber = loggedInUser.phone
+            }
+            if newName == "" {
+                self.newName = loggedInUser.name
+            }
+        
+        return UserExtraInfo(name: self.newName, type: 0, address: self.newAddress, phone: self.newNumber)
     }
 }
 

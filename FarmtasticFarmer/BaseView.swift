@@ -42,6 +42,7 @@ struct BaseView: View {
                 .tag(Constants.productTab)
 
             ProfileScreen()
+                .environmentObject(userController)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("profile".localized(language: language))
