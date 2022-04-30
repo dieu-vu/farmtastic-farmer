@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct Home: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
-    
-    @State var selection: String = Constants.MONTHLY
-    var selections: [String] = [Constants.MONTHLY, Constants.YEARLY]
+    @State var selection: String = Translation().StatisticsMonthly
+    var selections: [String] = [Translation().StatisticsMonthly, Translation().StatisticsYearly]
     
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("PinkishRed"))
@@ -32,7 +29,7 @@ struct Home: View {
             
             Picker("Picker", selection: $selection) {
                 ForEach(selections, id: \.self) {
-                    Text($0.localized(language: language))
+                    Text($0)
                 }
             }
             .padding(.horizontal, 20)
@@ -40,7 +37,7 @@ struct Home: View {
             .pickerStyle(SegmentedPickerStyle())
             
             ScrollView {
-                if selection == Constants.MONTHLY {
+                if selection == Translation().StatisticsMonthly {
                     MonthlyStatistics()
                 } else {
                     YearlyStatistics()

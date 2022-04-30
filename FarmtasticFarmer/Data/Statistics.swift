@@ -25,10 +25,10 @@ struct StatisticsData {
     ]
     
     static var yearlyPieChartData: [PieChartDataEntry] = [
-        PieChartDataEntry(value: 144, label: "Meat"),
-        PieChartDataEntry(value: 108, label: "Vegetables"),
-        PieChartDataEntry(value: 72, label: "Fruit"),
-        PieChartDataEntry(value: 36, label: "Egg & Diary")
+        PieChartDataEntry(value: 144, label: Translation().Meat),
+        PieChartDataEntry(value: 108, label: Translation().Vegetables),
+        PieChartDataEntry(value: 72, label: Translation().Fruit),
+        PieChartDataEntry(value: 36, label: Translation().EggDairy)
     ]
     
     static var monthlyLineChartData: [String: [BarChartDataEntry]] = [
@@ -118,23 +118,23 @@ struct StatisticsData {
     ]
     
     static var marchPieChartData: [PieChartDataEntry] = [
-        PieChartDataEntry(value: 90, label: "Meat"),
-        PieChartDataEntry(value: 124, label: "Vegetables"),
-        PieChartDataEntry(value: 96, label: "Fruit"),
-        PieChartDataEntry(value: 50, label: "Egg & Diary")
+        PieChartDataEntry(value: 90, label: Translation().Meat),
+        PieChartDataEntry(value: 124, label: Translation().Vegetables),
+        PieChartDataEntry(value: 96, label: Translation().Fruit),
+        PieChartDataEntry(value: 50, label: Translation().EggDairy)
     ]
     
     static var aprilPieChartData: [PieChartDataEntry] = [
-        PieChartDataEntry(value: 100, label: "Meat"),
-        PieChartDataEntry(value: 104, label: "Vegetables"),
-        PieChartDataEntry(value: 10, label: "Fruit"),
-        PieChartDataEntry(value: 36, label: "Egg & Diary")
+        PieChartDataEntry(value: 100, label: Translation().Meat),
+        PieChartDataEntry(value: 104, label: Translation().Vegetables),
+        PieChartDataEntry(value: 10, label: Translation().Fruit),
+        PieChartDataEntry(value: 36, label: Translation().EggDairy)
     ]
     
     static var mayPieChartData: [PieChartDataEntry] = [
-        PieChartDataEntry(value: 180, label: "Meat"),
-        PieChartDataEntry(value: 180, label: "Vegetables"),
-        PieChartDataEntry(value: 0, label: "Fruit"),
-        PieChartDataEntry(value: 0, label: "Egg & Diary")
+        PieChartDataEntry(value: 180, label: Translation().Meat),
+        PieChartDataEntry(value: 180, label: Translation().Vegetables),
+        PieChartDataEntry(value: 0, label: Translation().Fruit),
+        PieChartDataEntry(value: 0, label: Translation().EggDairy)
     ]
 }

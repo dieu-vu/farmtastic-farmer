@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ActiveOrderScreen: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     //@ObservedObject var loader = ActiveOrderLoader()
     @State var selectedDate = Date.now
     @State var orders = loadData()
@@ -24,7 +22,7 @@ struct ActiveOrderScreen: View {
         VStack {
             ScreenLayout(screenTitle: "profile.orderList", hasBackButton: true)
             HStack {
-                DatePicker("Select pickup date:", selection: $selectedDate, in: Date()..., displayedComponents: .date)
+                DatePicker(Translation().SelectPickupDate, selection: $selectedDate, in: Date()..., displayedComponents: .date)
                 Spacer()
                 NavigationLink(destination: MapUIView(selectedDate: $selectedDate, orders: filteredList).navigationBarBackButtonHidden(true)) {
                     Image(systemName: "map").font(.title).foregroundColor(Color("PinkishRed"))

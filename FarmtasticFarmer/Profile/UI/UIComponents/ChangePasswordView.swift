@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ChangePasswordView: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     @Binding var showChangePassword: Bool
     @StateObject private var changePasswordControler = ChangePasswordController()
     @State var isDisabled = false
@@ -17,16 +15,16 @@ struct ChangePasswordView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("profile.changePassword".localized(language: language)).font(.title).bold()
+                Text(Translation().ProfileChangePassword).font(.title).bold()
                 VStack(alignment: .leading, spacing: 15) {
-                    TextField("profile.newPassword".localized(language: language), text: $changePasswordControler.password)
+                    TextField(Translation().ProfileNewPassword, text: $changePasswordControler.password)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .disabled(isDisabled)
-                    TextField("profile.confirmPassword".localized(language: language), text: $changePasswordControler.confirmedPassword)
+                    TextField(Translation().ProfileConfirmPassword, text: $changePasswordControler.confirmedPassword)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
@@ -35,7 +33,7 @@ struct ChangePasswordView: View {
                         .disabled(isDisabled)
                 }
                 .padding([.leading, .trailing], 27.5)
-                ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
+                ButtonView(buttonText: Translation().Apply, buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
                     closeKeyboard()
                     isDisabled = true
                     changePasswordControler.changePassword()

@@ -205,7 +205,7 @@ class WebService {
                 }
                 
                 if let data = data {
-                    print("data: \(String(decoding: data, as: UTF8.self))")
+                    print("data in get user: \(String(decoding: data, as: UTF8.self))")
                     
                     do {
                         let reformattedData = Utils.utils.preProcessJson(data)
@@ -394,7 +394,6 @@ class WebService {
                 print("response: \(response.expectedContentLength)")
                 
                 if let data = data {
-//                    print("data: \(String(decoding: data, as: UTF8.self))")
                     
                     do {
                         let reformattedData = Utils.utils.preProcessJson(data)

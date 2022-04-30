@@ -32,12 +32,14 @@ struct FarmtasticFarmerApp: App {
 struct ApplicationSwitcher: View {
     
     @EnvironmentObject var authController: AuthenticationController
+    @EnvironmentObject var userController: UserDataController
     let persistenceController = PersistenceController.shared
     
     var body: some View {
         if (authController.isLoggedIn || KeychainHelper.standard.read(service: "auth-token", account: "farmtastic") != nil) {
             BaseView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(userController)
         }
         else {
             LoginView()

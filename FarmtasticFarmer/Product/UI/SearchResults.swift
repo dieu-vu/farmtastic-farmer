@@ -13,25 +13,22 @@ struct SearchResults: View {
     @State var screenTitle: String = "product.searchResults"
     @EnvironmentObject var productDataController: ProductDataController
     @Binding var tabSelection: Int
-
+    
     
     var body: some View {
         VStack {
-            VStack {
-                ScreenLayout(screenTitle: "product.searchResults", hasBackButton: true, subTitle: "\(searchText)", text: "\(productDataController.searchResultProductList.count) results")
-                
-                List{
-                    VStack {
-                        ForEach(productDataController.searchResultProductList, id: \.product_id) { product in
-                            ZStack{
-                                ProductResultCard(product: product, tabSelection: $tabSelection)}
-                            Divider()
-                        }
-                    }.padding([.bottom],10)
-                }
-            }.navigationBarHidden(true)
-        }
-
+            ScreenLayout(screenTitle: "product.searchResults", hasBackButton: true, subTitle: "\(searchText)", text: "\(productDataController.searchResultProductList.count) results")
+            
+            List{
+                VStack {
+                    ForEach(productDataController.searchResultProductList, id: \.product_id) { product in
+                        ZStack{
+                            ProductResultCard(product: product, tabSelection: $tabSelection)}
+                        Divider()
+                    }
+                }.padding(.bottom, 10)
+            }
+        }.navigationBarHidden(true)
     }
 }
 

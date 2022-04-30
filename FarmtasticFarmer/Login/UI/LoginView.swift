@@ -20,23 +20,24 @@ struct LoginView: View {
             
             RoundedRectangle(cornerRadius: 10).fill(.white).shadow(radius: 5).frame(height: 350).offset(y: -100).padding(.horizontal, 20).overlay(
                 VStack {
-                    Text("Log In").font(.largeTitle)
+                    Text(Translation().Login).font(.largeTitle)
                     VStack(alignment: .leading, spacing: 15) {
-                        TextField("Username", text: $username)
+                        TextField(Translation().ProfileUsername, text: $username)
                             .padding()
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                             .autocapitalization(.none)
-                        SecureField("Password", text: $password)
+                        SecureField(Translation().ProfilePassword, text: $password)
                             .padding()
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                     }.padding([.leading, .trailing], 32)
-                    ButtonView(buttonText: "Login",
+
+                    ButtonView(buttonText: Translation().Login,
                                buttonColorLight: username.isEmpty || password.isEmpty ? "Grey" : "LightGreen",
                                buttonColorDark: username.isEmpty || password.isEmpty ? "Grey" : "DarkGreen",
                                buttonAction: {
