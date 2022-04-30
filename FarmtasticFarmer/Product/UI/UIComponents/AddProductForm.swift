@@ -53,19 +53,19 @@ struct AddProductForm: View {
             List {
                 // Hide image picker section if user is updating product
                 if !isUpdating {
-                    Section(header: Text("Product Image")) {
+                    Section(header: Text(Translation().ProductImage)) {
                         VStack (alignment: .center){
                             placeHolderImage
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 300 , height: 200, alignment: .center)
                             HStack{
-                                Button("Photo library"){
+                                Button(Translation().ProductLibrary){
                                     selectedImageSource = .photoLibrary
                                     isShowingImagePicker = true
                                 }
                                 Text("|")
-                                Button("Camera"){
+                                Button(Translation().ProductCamera){
                                     selectedImageSource = .camera
                                     isShowingImagePicker = true
                                 }
@@ -76,9 +76,9 @@ struct AddProductForm: View {
                         }
                     }
                 }
-                Section(header: Text("Product Info")) {
+                Section(header: Text(Translation().ProductInfo)) {
                     VStack(alignment: .leading) {
-                        Text("Choose category: ").bold()
+                        Text(Translation().ProductChooseCategory + ": ").bold()
                         Picker(selection: $selectedCategory,
                                label:Text(""))
                         {
@@ -88,18 +88,18 @@ struct AddProductForm: View {
                         }.pickerStyle(.segmented)
                     }
                     HStack(alignment: .top, spacing: 0) {
-                        Text("Product name: ").bold()
+                        Text(Translation().ProductName + ": ").bold()
                         Spacer()
-                        TextField("Enter text", text: $productName)
+                        TextField(Translation().ProductEnterText, text: $productName)
                     }
-                    DatePicker("Harvest date: ", selection: $harvestDate, displayedComponents: .date)
+                    DatePicker(Translation().HarvestDate + ": ", selection: $harvestDate, displayedComponents: .date)
                     HStack(spacing: 0){
                         VStack(alignment: .leading){
-                            Text("Quantity").bold()
+                            Text(Translation().ProductQuantity).bold()
                             HStack {
-                                TextField("Quantity", value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                TextField(Translation().ProductQuantity, value: $quantity, formatter: NumberFormatter())                .textFieldStyle(RoundedBorderTextFieldStyle())
                                 HStack{
-                                    Text("Unit").bold()
+                                    Text(Translation().ProductUnit).bold()
                                     VStack {
                                         Picker("", selection: $selectedUnit) {
                                             ForEach(0 ..< 3) {
@@ -118,8 +118,8 @@ struct AddProductForm: View {
                                 }
                             }
                             HStack {
-                                Text("Price per Unit").bold()
-                                TextField("Price per unit", value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
+                                Text(Translation().PricePerUnit).bold()
+                                TextField(Translation().PricePerUnit, value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                             }
                         }
@@ -135,7 +135,7 @@ struct AddProductForm: View {
             
             
             HStack{
-                ButtonView(buttonText: {if isUpdating {return "Save"} else {return "Add"}}(),
+                ButtonView(buttonText: {if isUpdating {return Translation().Save} else {return Translation().Add}}(),
                            buttonColorLight: "LightGreen",
                            buttonColorDark: "DarkGreen",
                            buttonAction: {
@@ -156,7 +156,7 @@ struct AddProductForm: View {
                 .disabled(disableForm)
                 NavigationLink("", destination: BaseView(), isActive: $navigateToMainList)
 //                NavigationLink("", destination: ProductMainScreen(tabSelection: $tabSelection, products: productDataController.allProducts), isActive: $navigateToMainList)
-                ButtonView(buttonText: "Clear",
+                ButtonView(buttonText: Translation().Clear,
                            buttonColorLight: "PinkishRed",
                            buttonColorDark: "PinkishRed",
                            buttonAction: {

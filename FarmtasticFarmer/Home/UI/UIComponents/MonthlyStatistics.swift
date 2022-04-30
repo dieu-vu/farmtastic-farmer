@@ -25,23 +25,23 @@ struct MonthlyStatistics: View {
     var body: some View {
         VStack {
             HStack {
-                Text("statistics.selectMonth".localized(language: language)).foregroundColor(Color("DarkGreen"))
+                Text(Translation().SelectMonth).foregroundColor(Color("DarkGreen"))
                 Picker("", selection: $selectedMonth) {
                     ForEach(DateUtils().months, id: \.self) {
-                        Text(String($0.capitalized))
+                        Text(String($0).localized(language: language))
                     }
                 }
             }
             
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {
-                    Text("statistics.revenueOverview".localized(language: language)).font(.subheadline).foregroundColor(Color("DarkGreen"))
+                    Text(Translation().RevenueOverview).font(.subheadline).foregroundColor(Color("DarkGreen"))
                     Text("€ " + String(format: "%.2f", getSelectedMonthRevenue())).font(.title).bold().foregroundColor(Color("DarkGreen"))
                     
                     if let data = StatisticsData.monthlyLineChartData[selectedMonth] {
                         LineChart(entries: data, isYearly: false).frame(height: 300)
                     } else {
-                        Text("statistics.noData".localized(language: language))
+                        Text(Translation().NoData)
                     }
                 }.padding(.horizontal, 40)
                 
@@ -49,13 +49,13 @@ struct MonthlyStatistics: View {
             
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {
-                    Text("statistics.totalOrders".localized(language: language)).font(.subheadline).foregroundColor(Color("DarkGreen"))
+                    Text(Translation().TotalOrders).font(.subheadline).foregroundColor(Color("DarkGreen"))
                     Text("3402").font(.title).bold().foregroundColor(Color("DarkGreen"))
                     
                     if let data = StatisticsData.monthlyPieChartData[selectedMonth] {
                         PieChart(entries: data).frame(height: 300)
                     } else {
-                        Text("statistics.noData".localized(language: language))
+                        Text(Translation().NoData)
                     }
                    
                 }.padding(.horizontal, 40)

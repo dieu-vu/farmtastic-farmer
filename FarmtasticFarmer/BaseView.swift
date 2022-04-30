@@ -17,10 +17,6 @@ struct BaseView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var tabSelection = 1
 
-    
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
-
     init() {
         UITabBar.appearance().backgroundColor = UIColor(Color("TabBarBackground"))
     }
@@ -30,14 +26,14 @@ struct BaseView: View {
             Home()
                 .tabItem {
                     Image(systemName: "chart.pie.fill")
-                    Text("statistics".localized(language: language))
+                    Text(Translation().Statistics)
                 }
                 .tag(Constants.homeTab)
 
             ProductMainScreen(tabSelection: $tabSelection, products: productDataController.allProducts)
                 .tabItem {
                     Image(systemName: "list.bullet")
-                    Text("product".localized(language: language))
+                    Text(Translation().Product)
                 }
                 .tag(Constants.productTab)
 
@@ -45,7 +41,7 @@ struct BaseView: View {
                 .environmentObject(userController)
                 .tabItem {
                     Image(systemName: "person.fill")
-                    Text("profile".localized(language: language))
+                    Text(Translation().Profile)
                 }
                 .tag(Constants.profileTab)
                 .onAppear{

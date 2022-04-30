@@ -68,6 +68,7 @@
 		2D9A9447281B2C0C0039BA86 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9A9446281B2C0C0039BA86 /* Statistics.swift */; };
 		2DB4C400281BB2A100472775 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4C3FF281BB2A100472775 /* LineChart.swift */; };
 		2DB4C402281BD41E00472775 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4C401281BD41E00472775 /* DateUtils.swift */; };
+		2DB53986281D0E440071289D /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB53985281D0E440071289D /* Translation.swift */; };
 		8732FE9928081FDB002EC378 /* CategoryProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732FE9828081FDB002EC378 /* CategoryProductListView.swift */; };
 		878722BF28148E3600AB7F38 /* PickupPointRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722BE28148E3600AB7F38 /* PickupPointRow.swift */; };
 		878722C128148E9200AB7F38 /* PickupPointScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722C028148E9200AB7F38 /* PickupPointScreen.swift */; };
@@ -174,6 +175,7 @@
 		2D9A9446281B2C0C0039BA86 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		2DB4C3FF281BB2A100472775 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		2DB4C401281BD41E00472775 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		2DB53985281D0E440071289D /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		8732FE9828081FDB002EC378 /* CategoryProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListView.swift; sourceTree = "<group>"; };
 		878722BE28148E3600AB7F38 /* PickupPointRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointRow.swift; sourceTree = "<group>"; };
 		878722C028148E9200AB7F38 /* PickupPointScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointScreen.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				0112CAE128057FD300A77B74 /* KeychainHelper.swift */,
 				18C079C8280D729B0079E186 /* Constants.swift */,
 				2DB4C401281BD41E00472775 /* DateUtils.swift */,
+				2DB53985281D0E440071289D /* Translation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				1891D99F280EBCDB00428C3C /* Location+CoreDataClass.swift in Sources */,
 				0112CAC227FEBE6900A77B74 /* LanguagePicker.swift in Sources */,
 				18618927281A899F006CED7E /* ProductCardView.swift in Sources */,
+				2DB53986281D0E440071289D /* Translation.swift in Sources */,
 				18C079C3280B0FE60079E186 /* Order+CoreDataProperties.swift in Sources */,
 				18C079A228096F3F0079E186 /* Utils.swift in Sources */,
 				2D9A9438281B1C4E0039BA86 /* PieChart.swift in Sources */,
