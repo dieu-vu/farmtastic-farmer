@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//a helper to translate all the Strings in the app to reduce re-declaring variable language in every screen
 struct Translation {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
