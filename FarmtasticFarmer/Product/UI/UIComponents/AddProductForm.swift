@@ -136,8 +136,8 @@ struct AddProductForm: View {
             
             HStack{
                 ButtonView(buttonText: {if isUpdating {return "Save"} else {return "Add"}}(),
-                           buttonColorLight: "LightGreen",
-                           buttonColorDark: "DarkGreen",
+                           buttonColorLight: disableForm ? "Grey" : "LightGreen",
+                           buttonColorDark: disableForm ? "Grey" : "DarkGreen",
                            buttonAction: {
                     // Gather data from form to send to product data controller
                     // Handle add new or update product
