@@ -30,8 +30,8 @@ struct MonthlyStatistics: View {
                     ForEach(DateUtils().months, id: \.self) {
                         Text(String($0.capitalized))
                     }
-                }
-            }
+                }.padding(.horizontal, 10).background(RoundedRectangle(cornerRadius: 4).stroke(Color("DarkGreen"), lineWidth: 2))
+            }.padding(.top, 10)
             
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {

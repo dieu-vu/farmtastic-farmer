@@ -21,8 +21,8 @@ struct YearlyStatistics: View {
                     ForEach(1970...2050, id: \.self) {
                         Text(String($0))
                     }
-                }
-            }
+                }.padding(.horizontal, 10).background(RoundedRectangle(cornerRadius: 4).stroke(Color("DarkGreen"), lineWidth: 2))
+            }.padding(.top, 10)
             
             if selectedYear == DateUtils().getCurrentYear() {
                 VStack {
