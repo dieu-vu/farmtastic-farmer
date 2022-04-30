@@ -9,8 +9,6 @@ import SwiftUI
 import CoreLocation
 
 struct PickupPointScreen: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     let pickupPoints: [PickupPoint] = PickupPoint.samplePickupPointLists;
     @State var screenTitle = "profile.pickupPoint"
     @State var hasBackButton = true

@@ -19,7 +19,7 @@ struct LineChart: UIViewRepresentable {
     
     func makeUIView(context: Context) -> LineChartView {
         lineChart.delegate = context.coordinator
-        lineChart.noDataText = "No Data"
+        lineChart.noDataText = Translation().NoData
         
         lineChart.legend.enabled = false
         

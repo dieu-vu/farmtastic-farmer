@@ -18,7 +18,7 @@ struct PieChart: UIViewRepresentable {
     
     func makeUIView(context: Context) -> PieChartView {
         pieChart.delegate = context.coordinator
-        pieChart.noDataText = "No Data"
+        pieChart.noDataText = Translation().NoData
                         
         pieChart.legend.enabled = false
         pieChart.drawEntryLabelsEnabled = true

@@ -76,4 +76,8 @@ class UserDataController: UIViewController, ObservableObject {
             print("CANNOT CLEAR USER DATA TABLE")
         }
     }
+    
+    func getCurrentUserDataFromCD(){
+        
+    }
 }

@@ -10,14 +10,12 @@ import SwiftUI
 import CoreLocation
 
 struct PickupPointRow: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     var pickupPoint: PickupPoint
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("\(pickupPoint.name)").font(.headline).bold()
-            Text("Address: \(pickupPoint.address)").font(.caption).bold()
+            Text(Translation().OrderAddress + ": \(pickupPoint.address)").font(.caption).bold()
         }
         .padding()
     }

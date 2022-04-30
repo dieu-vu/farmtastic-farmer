@@ -8,10 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct DateUtils {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
-    
+struct DateUtils {    
     let months: [String] = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
     let abbrevMonths = ["dummy", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     

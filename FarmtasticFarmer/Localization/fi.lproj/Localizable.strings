@@ -6,10 +6,21 @@
   
 */
 
+"login" = "Kirjaudu sisään";
 "apply" = "Lähetä";
+"search" = "Hae";
+"loading" = "Ladataan";
+"results" = "tuloksia";
+"update" = "Päivittää";
+"delete" = "Poistaa";
+"save" = "Tallenna";
+"add" = "Lisää";
+"clear" = "Tyhjennä";
+
 "english" = "Englanti";
 "finnish" = "Suomi";
 "vietnamese" = "Vietnami";
+
 "january" = "tammikuu";
 "february" = "helmikuu";
 "march" = "maaliskuu ";
@@ -22,10 +33,13 @@
 "october" = "lokakuu";
 "november" = "marraskuu";
 "december" = "joulukuu";
+
 "meat" = "Liha";
 "vegetables" = "Vihannekset";
 "fruit" = "Hedelmä";
 "eggDairy" = "Muna & maitotuotteet";
+
+"success" = "Onnistuminen";
 
 "statistics" = "Tilastot";
 "statistics.monthly" = "Kuukausittain";
@@ -41,9 +55,25 @@
 "product.addProduct" = "Lisää Tuotetta";
 "product.details" = "Tuotteen Yksityiskohdat";
 "product.searchResults" = "Hakutulokset:";
+"product.availableQuantity" = "Saatavilla oleva määrä";
+"product.price" = "Hinta";
+"product.category" = "Kategoria";
+"product.harvestDate" = "Sadonkorjuupäivä";
+"product.productImage" = "Tuotekuva";
+"product.productLibrary" = "Valokuvakirjasto";
+"product.camera" = "kamera";
+"product.productInfo" = "Tuotetiedot";
+"product.chooseCategory" = "Valitse luokka";
+"product.productName" = "Tuotteen nimi";
+"product.enterText" = "Syötä teksti";
+"product.quantity" = "Määrä";
+"product.unit" = "Yksikkö";
+"product.pricePerUnit" = "Yksikköhinta";
+"product.quantity" = "Määrä";
 
 "profile" = "Profiili";
 "profile.username" = "Käyttäjätunnus";
+"profile.password" = "Salasana";
 "profile.address" = "Osoite";
 "profile.phone" = "Puhelinnumero";
 "profile.logOutButton" = "Kirjaudu ulos";
@@ -61,3 +91,10 @@
 "profile.pickupPoint" = "Noutopiste";
 
 "order.deliveryDate" = "Toimituspäivä:";
+"order.showDirection" = "näytä suunta";
+"order" = "Tilaus";
+"order.pickupDate" = "Noutopäivä";
+"order.pickupLocation" = "Noutopaikka";
+"order.date" = "Tilauspäivämäärä:";
+"order.address" = "Osoite:";
+"order.selectPickupDate" = "Valitse noutopäivä";

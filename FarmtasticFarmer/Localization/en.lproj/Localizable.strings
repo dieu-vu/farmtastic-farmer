@@ -6,26 +6,40 @@
   
 */
 
+"login" = "Log in";
 "apply" = "Apply";
+"search" = "Search";
+"loading" = "Loading";
+"results" = "results";
+"update" = "Update";
+"delete" = "Delete";
+"save" = "Save";
+"add" = "Add";
+"clear" = "Clear";
+
 "english" = "English";
 "finnish" = "Finnish";
 "vietnamese" = "Vietnamese";
-"january" = "january";
-"february" = "february";
-"march" = "march";
-"april" = "april";
-"may" = "may";
-"june" = "june";
-"july" = "july";
-"august" = "august";
-"september" = "september";
-"october" = "october";
-"november" = "november";
-"december" = "december";
+
+"january" = "January";
+"february" = "February";
+"march" = "March";
+"april" = "April";
+"may" = "May";
+"june" = "June";
+"july" = "July";
+"august" = "August";
+"september" = "September";
+"october" = "October";
+"november" = "November";
+"december" = "December";
+
 "meat" = "Meat";
 "vegetables" = "Vegetables";
 "fruit" = "Fruit";
 "eggDairy" = "Egg & Diary";
+
+"success" = "Success";
 
 "statistics" = "Statistics";
 "statistics.monthly" = "Monthly";
@@ -41,9 +55,25 @@
 "product.addProduct" = "Add Product";
 "product.details" = "Product Details";
 "product.searchResults" = "Search Results:";
+"product.availableQuantity" = "Available quantity";
+"product.price" = "Price";
+"product.category" = "Category";
+"product.harvestDate" = "Harvest Date";
+"product.productImage" = "Product Image";
+"product.productLibrary" = "Photo library";
+"product.camera" = "Camera";
+"product.productInfo" = "Product Info";
+"product.chooseCategory" = "Choose category";
+"product.productName" = "Product name";
+"product.enterText" = "Enter text";
+"product.quantity" = "Quantity";
+"product.unit" = "Unit";
+"product.pricePerUnit" = "Price per Unit";
+"product.quantity" = "Quantity";
 
 "profile" = "Profile";
 "profile.username" = "Username";
+"profile.password" = "Password";
 "profile.address" = "Address";
 "profile.phone" = "Phone";
 "profile.logOutButton" = "Log out";
@@ -61,3 +91,10 @@
 "profile.pickupPoint" = "Pickup points";
 
 "order.deliveryDate" = "Delivery Date:";
+"order.showDirection" = "Show Directions";
+"order" = "Order";
+"order.pickupDate" = "Pickup Date";
+"order.pickupLocation" = "Pickup location";
+"order.date" = "Order date:";
+"order.address" = "Address:";
+"order.selectPickupDate" = "Select pickup date";

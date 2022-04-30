@@ -6,10 +6,21 @@
   
 */
 
+"login" = "Đăng nhập";
 "apply" = "Cập nhật";
+"search" = "Tìm kiếm";
+"loading" = "Đang tải";
+"results" = "kết quả";
+"update" = "Cập nhật";
+"delete" = "Xoá";
+"save" = "Lưu";
+"add" = "Thêm";
+"clear" = "Xoá";
+
 "english" = "Tiếng Anh";
 "finnish" = "Tiếng Phần Lan";
 "vietnamese" = "Tiếng Việt";
+
 "january" = "Tháng 1";
 "february" = "Tháng 2";
 "march" = "Tháng 3";
@@ -22,10 +33,13 @@
 "october" = "Tháng 10";
 "november" = "Tháng 11";
 "december" = "Tháng 12";
+
 "meat" = "Thịt";
 "vegetables" = "Rau củ";
 "fruit" = "Hoa quả";
 "eggDairy" = "Trứng và Sữa";
+
+"success" = "Thành công";
 
 "statistics" = "Thống kê";
 "statistics.monthly" = "Hàng tháng";
@@ -41,9 +55,25 @@
 "product.addProduct" = "Thêm sản phẩm";
 "product.details" = "Chi tiết sản phẩm";
 "product.searchResults" = "Kết quả tìm kiếm:";
+"product.availableQuantity" = "Số lượng có sẵn";
+"product.price" = "Giá";
+"product.category" = "Danh mục";
+"product.harvestDate" = "Ngày thu hoạch";
+"product.productImage" = "Hình ảnh sản phẩm";
+"product.productLibrary" = "Thư viện ảnh";
+"product.camera" = "Máy ảnh";
+"product.productInfo" = "Thông tin xản phẩm";
+"product.chooseCategory" = "Chọn danh mục";
+"product.productName" = "Tên sản phẩm";
+"product.enterText" = "Nhập tên";
+"product.quantity" = "Số lượng";
+"product.unit" = "Đơn vị";
+"product.pricePerUnit" = "Giá mỗi đơn vị";
+"product.quantity" = "Số lượng";
 
 "profile" = "Hồ sơ";
 "profile.username" = "Tên tài khoản";
+"profile.password" = "Mật khẩu";
 "profile.address" = "Địa chỉ";
 "profile.phone" = "Số điện thoại";
 "profile.logOutButton" = "Đăng xuất";
@@ -61,3 +91,10 @@
 "profile.pickupPoint" = "Điểm giao hàng";
 
 "order.deliveryDate" = "Ngày giao hàng:";
+"order.showDirection" = "Hiển thị hướng đi";
+"order" = "Đơn hàng";
+"order.pickupDate" = "Ngày nhận hàng";
+"order.pickupLocation" = "Địa điểm nhận hàng";
+"order.date" = "Ngày đặt hàng:";
+"order.address" = "Địa chỉ:";
+"order.selectPickupDate" = "Chọn ngày nhận hàng";
