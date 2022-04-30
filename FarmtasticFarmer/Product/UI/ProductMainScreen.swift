@@ -39,7 +39,7 @@ struct ProductMainScreen: View {
                 RoundedRectangle(cornerRadius: 40)
                     .foregroundColor(Color("LightYellow")).opacity(0.2)
                 HStack {
-                    TextField("Search ..", text: $searchText)
+                    TextField(Translation().Search + "...", text: $searchText)
                     Button(action: {
                         isOn.toggle()
                         if isOn {
@@ -88,14 +88,14 @@ struct ProductMainScreen: View {
                 if !productDataController.loadCompleted {
                     HStack(spacing: 15) {
                         ProgressView()
-                        Text("Loading…")
+                        Text(Translation().Loading + "...")
                     }
                 }
                 VStack {
-                    CategoryProductListView(products: productDataController.meatProductList, category: "Meat", tabSelection: $tabSelection)
-                    CategoryProductListView(products: productDataController.vegeProductList, category: "Vegetables", tabSelection: $tabSelection)
-                    CategoryProductListView(products: productDataController.fruitProductList, category: "Fruit", tabSelection: $tabSelection)
-                    CategoryProductListView(products: productDataController.dairyProductList, category: "Egg & Dairy", tabSelection: $tabSelection)
+                    CategoryProductListView(products: productDataController.meatProductList, category: Translation().Meat, tabSelection: $tabSelection)
+                    CategoryProductListView(products: productDataController.vegeProductList, category: Translation().Vegetables, tabSelection: $tabSelection)
+                    CategoryProductListView(products: productDataController.fruitProductList, category: Translation().Fruit, tabSelection: $tabSelection)
+                    CategoryProductListView(products: productDataController.dairyProductList, category: Translation().EggDairy, tabSelection: $tabSelection)
                 }
                 .onAppear{
                     

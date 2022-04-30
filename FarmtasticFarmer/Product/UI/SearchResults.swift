@@ -33,7 +33,7 @@ struct SearchResults: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, -50)
-                Text("\(productDataController.searchResultProductList.count) results")
+                Text("\(productDataController.searchResultProductList.count) " + Translation().Results)
                 
                 List{
                     VStack {

@@ -38,16 +38,16 @@ struct ProductDetailView: View {
                 }
 
                 VStack(alignment: .leading) {
-                    Text ("Available quantity: \(product.selling_quantity, specifier: "%.2f")kg")
+                    Text ("\(Translation().AvailableQuantity): \(product.selling_quantity, specifier: "%.2f")kg")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Price: \(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
+                    Text ("\(Translation().Price): \(product.unit_price, specifier: "%.2f") €/\(product.unit ?? "")")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Category: \(product.category ?? "")" )
+                    Text ("\(Translation().Category): \(product.category ?? "")" )
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
-                    Text ("Harvest date: \(Utils.utils.formatDateString(product.harvest_date ?? Date()))")
+                    Text ("\(Translation().HarvestDate): \(Utils.utils.formatDateString(product.harvest_date ?? Date()))")
                         .multilineTextAlignment(.leading)
                         .padding(.bottom, 5)
                 }
@@ -55,14 +55,14 @@ struct ProductDetailView: View {
                 
                 HStack {
                     VStack {
-                        ButtonView(buttonText: "Update",
+                        ButtonView(buttonText: Translation().Update,
                                    buttonColorLight: "LightGreen",
                                    buttonColorDark: "DarkGreen",
                                    buttonAction: {navigateToUpdateProduct = true})
                         NavigationLink("", destination: ProductAddScreen(tabSelection: $tabSelection, isUpdating: true, productId: Int(product.product_id)), isActive: $navigateToUpdateProduct)
                     }
                     VStack{
-                    ButtonView(buttonText: "Delete",
+                        ButtonView(buttonText: Translation().Delete,
                                buttonColorLight: "PinkishRed",
                                buttonColorDark: "PinkishRed",
                                buttonAction: {

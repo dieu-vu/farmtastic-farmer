@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ProfileScreen: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     @State var showLanguageBottomSheet: Bool = false
     @State var showUpdateProfile: Bool = false
     @State var showChangePassword: Bool = false
@@ -32,7 +30,7 @@ struct ProfileScreen: View {
             HeaderImage(currentUser: $userController.currentUser)
             UserInfoCardView(currentUser: $userController.currentUser)
             actionButtonGroup
-            ButtonView(buttonText: "Log out", buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
+            ButtonView(buttonText: Translation().LogoutButton, buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
                        buttonAction: {authentication.logout()})
             Spacer()
         }.edgesIgnoringSafeArea(.top).halfSheet(showSheet: $showLanguageBottomSheet) {
@@ -60,18 +58,18 @@ struct ProfileScreen: View {
     var actionButtonGroup: some View {
         VStack {
             NavigationLink(destination: ActiveOrderScreen(), isActive: $navigateToOrder) {
-                ActionButton(icon: "clock", title: "profile.orderList".localized(language: language), onClick: {
+                ActionButton(icon: "clock", title: Translation().OrderList, onClick: {
                     self.navigateToOrder = true
                 })
             }
             NavigationLink(destination: PickupPointScreen(), isActive: $navigateToPickup) {
-                            ActionButton(icon: "clock", title: "profile.pickupList".localized(language: language), onClick: {
+                ActionButton(icon: "clock", title: Translation().PickupList, onClick: {
                                 self.navigateToPickup = true
                             })
                         }
-            ActionButton(icon: "t.bubble", title: "profile.changeLanguage".localized(language: language), onClick: { showLanguageBottomSheet.toggle()})
-            ActionButton(icon: "pencil", title: "profile.update".localized(language: language), onClick: { showUpdateProfile.toggle() })
-            ActionButton(icon: "person.circle", title: "profile.changePassword".localized(language: language), onClick: { showChangePassword.toggle() })
+            ActionButton(icon: "t.bubble", title: Translation().ChangeLanguage, onClick: { showLanguageBottomSheet.toggle()})
+            ActionButton(icon: "pencil", title: Translation().ProfileUpdate, onClick: { showUpdateProfile.toggle() })
+            ActionButton(icon: "person.circle", title: Translation().ProfileChangePassword, onClick: { showChangePassword.toggle() })
         }.navigationBarHidden(true)
     }
 }

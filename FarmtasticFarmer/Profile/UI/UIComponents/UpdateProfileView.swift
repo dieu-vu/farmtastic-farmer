@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct UpdateProfileView: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     @Binding var showUpdateProfile: Bool
     @StateObject private var updateUserInfoController = UpdateUserInfoController()
     @State var isDisabled = false
@@ -25,23 +23,23 @@ struct UpdateProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("profile.update".localized(language: language)).font(.title).bold()
+                Text(Translation().ProfileUpdate).font(.title).bold()
                 VStack(alignment: .leading, spacing: 15) {
-                    TextField("profile.newName".localized(language: language), text: $newName)
+                    TextField(Translation().ProfileNewName, text: $newName)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .disabled(isDisabled)
-                    TextField("profile.newAddress".localized(language: language), text: $newAddress)
+                    TextField(Translation().ProfileNewAddress, text: $newAddress)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.gray, lineWidth: 1)
                         )
                         .disabled(isDisabled)
-                    TextField("profile.newPhone".localized(language: language), text: $newNumber)
+                    TextField(Translation().ProfileNewPhone, text: $newNumber)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
@@ -50,7 +48,7 @@ struct UpdateProfileView: View {
                         .disabled(isDisabled)
                 }
                 .padding([.leading, .trailing], 27.5)
-                ButtonView(buttonText: "apply".localized(language: language), buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
+                ButtonView(buttonText: Translation().Apply, buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen" , buttonAction: {
                     isDisabled = true
                     closeKeyboard()
                     checkNewUserData(newName: newName, newNumber: newNumber, newAddress: newAddress, loggedInUser: loggedInUser.last)

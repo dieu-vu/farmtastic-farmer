@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Constants {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     static var isDataPreLoaded = "isDataPreLoaded"
     static var productsLoaded = "productsLoaded"
     
@@ -15,7 +19,4 @@ struct Constants {
     static var productTab = 1
     static var profileTab = 2
     static var uploadUrl = "https://media.mw.metropolia.fi/wbma/uploads/"
-    
-    static var MONTHLY = "statistics.monthly"
-    static var YEARLY = "statistics.yearly"
 }
