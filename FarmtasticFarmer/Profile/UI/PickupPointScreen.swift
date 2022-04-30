@@ -10,12 +10,10 @@ import CoreLocation
 
 struct PickupPointScreen: View {
     let pickupPoints: [PickupPoint] = PickupPoint.samplePickupPointLists;
-    @State var screenTitle = "profile.pickupPoint"
-    @State var hasBackButton = true
     
     var body: some View {
         VStack {
-            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
+            ScreenLayout(screenTitle: "profile.pickupPoint", hasBackButton: true)
             List {
                 ForEach(pickupPoints, id: \.id) { point in
                     PickupPointRow(pickupPoint: point)

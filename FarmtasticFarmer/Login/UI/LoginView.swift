@@ -36,9 +36,10 @@ struct LoginView: View {
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                     }.padding([.leading, .trailing], 32)
+
                     ButtonView(buttonText: Translation().Login,
-                               buttonColorLight: "LightGreen",
-                               buttonColorDark: "DarkGreen",
+                               buttonColorLight: username.isEmpty || password.isEmpty ? "Grey" : "LightGreen",
+                               buttonColorDark: username.isEmpty || password.isEmpty ? "Grey" : "DarkGreen",
                                buttonAction: {
                         authentication.login(username: username, password: password)
                     })

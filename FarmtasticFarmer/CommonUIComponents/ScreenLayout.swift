@@ -10,8 +10,10 @@ import SwiftUI
 struct ScreenLayout: View {
     @AppStorage("language")
     private var language = LocalizationService.shared.language
-    @Binding var screenTitle: String
-    @Binding var hasBackButton: Bool
+    var screenTitle: String
+    var hasBackButton: Bool
+    var subTitle: String?
+    var text: String?
     
     var body: some View {
         VStack {
@@ -24,7 +26,17 @@ struct ScreenLayout: View {
                     BackButton()
                 }
                 Spacer()
-                Text("\(screenTitle)".localized(language: language)).font(.title2).bold()
+                VStack {
+                    if let subTitle = subTitle {
+                        Text("\(screenTitle)".localized(language: language)).font(.title2)
+                        Text(subTitle.localized(language: language)).font(.title2).bold()
+                        if let text = text {
+                            Text(text)
+                        }
+                    } else {
+                        Text("\(screenTitle)".localized(language: language)).font(.title2).bold()
+                    }
+                }
                 Spacer()
             }.padding(.horizontal, 20).padding(.top, -50)
         }.edgesIgnoringSafeArea(.top).padding(.bottom, -50)
@@ -33,6 +45,6 @@ struct ScreenLayout: View {
 
 struct ScreenLayout_Previews: PreviewProvider {
     static var previews: some View {
-        ScreenLayout(screenTitle: .constant("Test screen"), hasBackButton: .constant(true))
+        ScreenLayout(screenTitle: "Test screen", hasBackButton: true)
     }
 }

@@ -23,8 +23,6 @@ struct ProductMainScreen: View {
     @State var isOn: Bool = false
     @StateObject var speechRecognizer = SpeechRecognizer()
     
-    @State var screenTitle = "product.allCategories"
-    @State var hasBackButton = false
     @State var navigateToAddProduct: Bool = false
     
     // Build the view
@@ -32,7 +30,7 @@ struct ProductMainScreen: View {
         
         VStack {
             // View header
-            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton).padding(.bottom, 30)
+            ScreenLayout(screenTitle: "product.allCategories", hasBackButton: false).padding(.bottom, 30)
             
             // Search bar with speech recognition
             ZStack {

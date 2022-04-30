@@ -11,8 +11,7 @@ struct ActiveOrderScreen: View {
     //@ObservedObject var loader = ActiveOrderLoader()
     @State var selectedDate = Date.now
     @State var orders = loadData()
-    @State var screenTitle = "profile.orderList"
-    @State var hasBackButton = true
+    
     var filteredList: [ActiveOrder] {
         return orders.filter {
             $0.pickup_date == dateFormat(selectedDate)
@@ -21,7 +20,7 @@ struct ActiveOrderScreen: View {
     
     var body: some View {
         VStack {
-            ScreenLayout(screenTitle: $screenTitle, hasBackButton: $hasBackButton)
+            ScreenLayout(screenTitle: "profile.orderList", hasBackButton: true)
             HStack {
                 DatePicker(Translation().SelectPickupDate, selection: $selectedDate, in: Date()..., displayedComponents: .date)
                 Spacer()
