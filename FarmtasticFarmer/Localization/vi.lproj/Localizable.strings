@@ -100,3 +100,4 @@
 "order.address" = "Địa chỉ:";
 "order.selectPickupDate" = "Chọn ngày nhận hàng";
 "order.direction" = "Hướng đi";
+"order.noData" = "Không có đơn hàng nào.";

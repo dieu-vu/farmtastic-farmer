@@ -306,5 +306,9 @@ struct Translation {
     var OrderDirection: String {
         return "order.direction".localized(language: language)
     }
+    
+    var OrderNoData: String {
+        return "order.noData".localized(language: language)
+    }
 }
 

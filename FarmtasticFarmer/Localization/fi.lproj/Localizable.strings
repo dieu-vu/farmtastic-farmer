@@ -100,3 +100,4 @@
 "order.address" = "Osoite:";
 "order.selectPickupDate" = "Valitse noutopäivä";
 "order.direction" = "Suunta";
+"order.noData" = "Ei aktiivisia tilauksia.";

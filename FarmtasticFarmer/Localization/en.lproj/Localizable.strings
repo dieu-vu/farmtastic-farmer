@@ -100,3 +100,4 @@
 "order.address" = "Address:";
 "order.selectPickupDate" = "Select pickup date";
 "order.direction" = "Directions";
+"order.noData" = "No active orders.";
