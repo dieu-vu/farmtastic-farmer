@@ -55,6 +55,10 @@ struct Translation {
         return "clear".localized(language: language)
     }
     
+    var Dismiss: String {
+        return "dismiss".localized(language: language)
+    }
+    
     var English: String {
         return "english".localized(language: language)
     }
@@ -297,6 +301,10 @@ struct Translation {
     
     var SelectPickupDate: String {
         return "order.selectPickupDate".localized(language: language)
+    }
+    
+    var OrderDirection: String {
+        return "order.direction".localized(language: language)
     }
 }
 

@@ -8,8 +8,6 @@ import MapKit
 import SwiftUI
 
 struct MapUIView: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     var manager = LocationManager()
     @State private var mapRoutes: [String] = []
     @State private var showDirections = false
@@ -21,7 +19,7 @@ struct MapUIView: View {
         VStack {
             ScreenLayout(screenTitle: "order.deliveryDate", hasBackButton: true, subTitle: "\(orders[0].pickup_date)")
             MapView(mapRoutes: $mapRoutes, orders: $orders, currentLocation: manager.region.center)
-            ButtonView(buttonText: "Show Directions",
+            ButtonView(buttonText: Translation().ShowDirection,
                        buttonColorLight: "LightGreen",
                        buttonColorDark: "DarkGreen",
                        buttonAction: {
@@ -32,7 +30,7 @@ struct MapUIView: View {
         }.navigationBarHidden(true)
         .sheet(isPresented: $showDirections, content: {
             VStack {
-                Text("Directions")
+                Text(Translation().OrderDirection)
                     .font(.title)
                     .bold()
                     .padding(8)
@@ -42,7 +40,7 @@ struct MapUIView: View {
                             .padding()
                     }
                 }
-                ButtonView(buttonText: "Dismiss",
+                ButtonView(buttonText: Translation().Dismiss,
                            buttonColorLight: "LightGreen",
                            buttonColorDark: "DarkGreen",
                            buttonAction: {

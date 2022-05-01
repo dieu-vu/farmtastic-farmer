@@ -16,6 +16,7 @@
 "save" = "Save";
 "add" = "Add";
 "clear" = "Clear";
+"dimiss" = "Dismiss";
 
 "english" = "English";
 "finnish" = "Finnish";
@@ -98,3 +99,4 @@
 "order.date" = "Order date:";
 "order.address" = "Address:";
 "order.selectPickupDate" = "Select pickup date";
+"order.direction" = "Directions";

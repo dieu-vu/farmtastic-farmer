@@ -16,6 +16,7 @@
 "save" = "Lưu";
 "add" = "Thêm";
 "clear" = "Xoá";
+"dismiss" = "Ẩn";
 
 "english" = "Tiếng Anh";
 "finnish" = "Tiếng Phần Lan";
@@ -98,3 +99,4 @@
 "order.date" = "Ngày đặt hàng:";
 "order.address" = "Địa chỉ:";
 "order.selectPickupDate" = "Chọn ngày nhận hàng";
+"order.direction" = "Hướng đi";
