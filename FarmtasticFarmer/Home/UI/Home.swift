@@ -9,7 +9,7 @@ import SwiftUI
 
 //This is Statistics screen
 struct Home: View {
-    @State var selection: String = Translation().StatisticsMonthly
+    @State var selection: Int = 0
     var selections: [String] = [Translation().StatisticsMonthly, Translation().StatisticsYearly]
     
     init() {
@@ -29,8 +29,8 @@ struct Home: View {
             ScreenLayout(screenTitle: "statistics", hasBackButton: false)
             
             Picker("Picker", selection: $selection) {
-                ForEach(selections, id: \.self) {
-                    Text($0)
+                ForEach(selections.indices, id: \.self) { index in
+                    Text(selections[index])
                 }
             }
             .padding(.horizontal, 20)
@@ -38,7 +38,7 @@ struct Home: View {
             .pickerStyle(SegmentedPickerStyle())
             
             ScrollView {
-                if selection == Translation().StatisticsMonthly {
+                if selection == 0 {
                     MonthlyStatistics()
                 } else {
                     YearlyStatistics()

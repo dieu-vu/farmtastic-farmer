@@ -9,8 +9,6 @@ import SwiftUI
 import Charts
 
 struct MonthlyStatistics: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     @State var selectedMonth: String = DateUtils().getCurrentMonthString()
     
     func getSelectedMonthRevenue() -> Double {
@@ -27,8 +25,8 @@ struct MonthlyStatistics: View {
             HStack {
                 Text(Translation().SelectMonth).foregroundColor(Color("DarkGreen"))
                 Picker("", selection: $selectedMonth) {
-                    ForEach(DateUtils().months, id: \.self) {
-                        Text(String($0).localized(language: language))
+                    ForEach(DateUtils().months, id: \.self) { month in
+                        Text(Translation().translateLanguage(month: month).capitalized)
                     }
                 }.padding(.horizontal, 10).background(RoundedRectangle(cornerRadius: 4).stroke(Color("DarkGreen"), lineWidth: 2))
             }.padding(.top, 10)
