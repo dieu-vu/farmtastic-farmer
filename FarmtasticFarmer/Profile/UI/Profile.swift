@@ -33,16 +33,22 @@ struct ProfileScreen: View {
     @FetchRequest(
         sortDescriptors: []) var loggedInUser: FetchedResults<UserFetched>
     
+    init() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+
+        UINavigationBar.appearance().standardAppearance = appearance
+    }
+    
     var body: some View {
         ScrollView {
-            Color("AppBackground")
             HeaderImage(currentUser: $userController.currentUser)
             UserInfoCardView(currentUser: $userController.currentUser)
             actionButtonGroup
             ButtonView(buttonText: Translation().LogoutButton, buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
                        buttonAction: {authentication.logout()})
             Spacer()
-        }.navigationBarHidden(true).edgesIgnoringSafeArea(.top)
+        }.edgesIgnoringSafeArea(.top)
             .halfSheet(showSheet: $showLanguageBottomSheet) {
                 LanguagePicker(showLanguageBottomSheet: $showLanguageBottomSheet)
                     .cornerRadius(32).ignoresSafeArea()
@@ -87,7 +93,7 @@ struct ProfileScreen: View {
             ActionButton(icon: "t.bubble", title: Translation().ChangeLanguage, onClick: { showLanguageBottomSheet.toggle()})
             ActionButton(icon: "pencil", title: Translation().ProfileUpdate, onClick: { showUpdateProfile.toggle() })
             ActionButton(icon: "person.circle", title: Translation().ProfileChangePassword, onClick: { showChangePassword.toggle() })
-        }.navigationBarHidden(true)
+        }
     }
     
     // Fetch user data again
