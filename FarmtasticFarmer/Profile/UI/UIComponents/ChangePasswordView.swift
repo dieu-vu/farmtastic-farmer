@@ -39,7 +39,7 @@ struct ChangePasswordView: View {
                     changePasswordControler.changePassword()
                     showChangePassword.toggle()
                 })
-                    .padding(.bottom, 32)
+                .padding(.bottom, 32)
             }
         }
     }

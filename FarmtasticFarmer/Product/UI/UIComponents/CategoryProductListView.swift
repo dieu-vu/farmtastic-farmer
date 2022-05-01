@@ -15,10 +15,8 @@ struct CategoryProductListView: View {
     private var language = LocalizationService.shared.language
     
     @EnvironmentObject var productDataController: ProductDataController
-    
     @State var productIsTapped = false
     @Binding var tabSelection: Int
-    
     
     var body: some View {
         VStack{
@@ -34,7 +32,8 @@ struct CategoryProductListView: View {
                     ForEach(products, id: \.product_id) { product in
                         ProductCardView(product: product, tabSelection: $tabSelection)
                     }
-                }.padding([.bottom, .leading], 20)
+                }
+                .padding([.bottom, .leading], 20)
             }
         }
     }

@@ -14,7 +14,6 @@ struct SearchResults: View {
     @EnvironmentObject var productDataController: ProductDataController
     @Binding var tabSelection: Int
     
-    
     var body: some View {
         VStack {
             ScreenLayout(screenTitle: "product.searchResults", hasBackButton: true, subTitle: "\(searchText)", text: "\(productDataController.searchResultProductList.count) results")
@@ -26,9 +25,11 @@ struct SearchResults: View {
                             ProductResultCard(product: product, tabSelection: $tabSelection)}
                         Divider()
                     }
-                }.padding(.bottom, 10)
+                }
+                .padding(.bottom, 10)
             }
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
     }
 }
 

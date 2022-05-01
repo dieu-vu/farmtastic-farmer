@@ -12,16 +12,23 @@ struct OrderRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text(Translation().Order + " \(order.order_id)").font(.title3).bold()
-            Text(Translation().OrderPickupDate + ": \(order.pickup_date)").bold()
-            Text(Translation().OrderPickupLocation + ": \(order.pickup_location)").bold()
+            Text(Translation().Order + " \(order.order_id)").font(.title3)
+                .bold()
+            Text(Translation().OrderPickupDate + ": \(order.pickup_date)")
+                .bold()
+            Text(Translation().OrderPickupLocation + ": \(order.pickup_location)")
+                .bold()
                 .padding(.bottom, 5)
             VStack(alignment: .leading, spacing: 5) {
                 ForEach(order.items, id: \.id) { item in
-                    Text("\(item.sold_quantity) x \(item.name)").font(.subheadline)
+                    Text("\(item.sold_quantity) x \(item.name)")
+                        .font(.subheadline)
                 }
-            }.padding(.bottom, 10)
-            Text(Translation().OrderDate + ": \(order.order_date)").font(.subheadline).foregroundColor(Color.gray)
+            }
+            .padding(.bottom, 10)
+            Text(Translation().OrderDate + ": \(order.order_date)")
+                .font(.subheadline)
+                .foregroundColor(Color.gray)
         }
     }
 }

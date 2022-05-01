@@ -20,7 +20,9 @@ struct LanguagePicker: View {
                         LanguageView(language: language, selectedLanguage:  $selectedLanguage)
                            
                     }
-                }.listStyle(.inset).frame(height: 150)
+                }
+                .listStyle(.inset)
+                .frame(height: 150)
                 ButtonView(buttonText: Translation().Apply, buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen", buttonAction: {
                     LocalizationService.shared.language = selectedLanguage
                     showLanguageBottomSheet.toggle() })

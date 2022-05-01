@@ -17,7 +17,11 @@ struct HeaderImage: View {
     }
     
     var headerImage: some View {
-        Image("headerImage").resizable().scaledToFit().overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
+        Image("headerImage")
+            .resizable()
+            .scaledToFit()
+            .overlay(Rectangle().foregroundColor(.black).opacity(0.4))
+            .offset(y: -20)
     }
     
     var avatar: some View {
@@ -25,8 +29,12 @@ struct HeaderImage: View {
             Circle().frame(width: 100, height: 100)
                 .foregroundColor(Color("LightGreen"))
             
-            Text("\(String(currentUser.full_name.name.prefix(1)).uppercased())").foregroundColor(.white).font(.system(size: 60)).fontWeight(.medium)
-        }.offset(y: -80).padding(.bottom, -70)
+            Text("\(String(currentUser.full_name.name.prefix(1)).uppercased())")
+                .foregroundColor(.white)
+                .font(.system(size: 60))
+                .fontWeight(.medium)
+        }
+        .offset(y: -80).padding(.bottom, -70)
     }
 }
 

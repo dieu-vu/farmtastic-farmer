@@ -23,7 +23,9 @@ struct ActionButton: View {
                 RoundedRectangle(cornerRadius: 5)
                     .stroke(Color("DarkGreen"), lineWidth: 1)
             )
-        }).padding(.horizontal, 32).padding(.vertical, 10)
+        })
+        .padding(.horizontal, 32)
+        .padding(.vertical, 10)
     }
 }
 

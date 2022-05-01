@@ -3,10 +3,12 @@
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 28.4.2022.
-//
 
 import Foundation
 import MapKit
+
+// PickupPoint struct is the blueprint of what information a pickup point should contain.
+// Params: id, name, address, coordinate(consists of latitude and longitude)
 
 struct PickupPoint {
     let id: Int
