@@ -64,6 +64,9 @@
 		2DB4C400281BB2A100472775 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4C3FF281BB2A100472775 /* LineChart.swift */; };
 		2DB4C402281BD41E00472775 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4C401281BD41E00472775 /* DateUtils.swift */; };
 		2DB53986281D0E440071289D /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB53985281D0E440071289D /* Translation.swift */; };
+		2DBD4F9B281ED9DE00B79F7A /* DateUtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4F9A281ED9DE00B79F7A /* DateUtilsTest.swift */; };
+		2DBD4F9F281EE8E200B79F7A /* TranslationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4F9E281EE8E200B79F7A /* TranslationTest.swift */; };
+		2DBD4FA1281EEBFC00B79F7A /* UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4FA0281EEBFC00B79F7A /* UtilsTest.swift */; };
 		8732FE9928081FDB002EC378 /* CategoryProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732FE9828081FDB002EC378 /* CategoryProductListView.swift */; };
 		878722BF28148E3600AB7F38 /* PickupPointRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722BE28148E3600AB7F38 /* PickupPointRow.swift */; };
 		878722C128148E9200AB7F38 /* PickupPointScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878722C028148E9200AB7F38 /* PickupPointScreen.swift */; };
@@ -166,6 +169,9 @@
 		2DB4C3FF281BB2A100472775 /* LineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		2DB4C401281BD41E00472775 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		2DB53985281D0E440071289D /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		2DBD4F9A281ED9DE00B79F7A /* DateUtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilsTest.swift; sourceTree = "<group>"; };
+		2DBD4F9E281EE8E200B79F7A /* TranslationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationTest.swift; sourceTree = "<group>"; };
+		2DBD4FA0281EEBFC00B79F7A /* UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTest.swift; sourceTree = "<group>"; };
 		8732FE9828081FDB002EC378 /* CategoryProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListView.swift; sourceTree = "<group>"; };
 		878722BE28148E3600AB7F38 /* PickupPointRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointRow.swift; sourceTree = "<group>"; };
 		878722C028148E9200AB7F38 /* PickupPointScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupPointScreen.swift; sourceTree = "<group>"; };
@@ -306,6 +312,7 @@
 		182D9C3F27F9E01400158D0C /* FarmtasticFarmerTests */ = {
 			isa = PBXGroup;
 			children = (
+				2DBD4F99281ED9CE00B79F7A /* UtilTests */,
 				18B8AEB2281EA9B300B68E10 /* WebServiceTests */,
 				182D9C4027F9E01400158D0C /* FarmtasticFarmerTests.swift */,
 			);
@@ -477,6 +484,16 @@
 				2DB4C3FF281BB2A100472775 /* LineChart.swift */,
 			);
 			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		2DBD4F99281ED9CE00B79F7A /* UtilTests */ = {
+			isa = PBXGroup;
+			children = (
+				2DBD4F9A281ED9DE00B79F7A /* DateUtilsTest.swift */,
+				2DBD4F9E281EE8E200B79F7A /* TranslationTest.swift */,
+				2DBD4FA0281EEBFC00B79F7A /* UtilsTest.swift */,
+			);
+			path = UtilTests;
 			sourceTree = "<group>";
 		};
 		87C66D0D27FEE96C0068503E /* Product */ = {
@@ -772,8 +789,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DBD4F9B281ED9DE00B79F7A /* DateUtilsTest.swift in Sources */,
 				18B8AEB4281EAA0700B68E10 /* WebServiceUnitTest.swift in Sources */,
+				2DBD4FA1281EEBFC00B79F7A /* UtilsTest.swift in Sources */,
 				182D9C4127F9E01400158D0C /* FarmtasticFarmerTests.swift in Sources */,
+				2DBD4F9F281EE8E200B79F7A /* TranslationTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

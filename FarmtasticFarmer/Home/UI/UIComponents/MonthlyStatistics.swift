@@ -26,7 +26,7 @@ struct MonthlyStatistics: View {
                 Text(Translation().SelectMonth).foregroundColor(Color("DarkGreen"))
                 Picker("", selection: $selectedMonth) {
                     ForEach(DateUtils().months, id: \.self) { month in
-                        Text(Translation().translateLanguage(month: month).capitalized)
+                        Text(Translation().translateMonth(month: month).capitalized)
                     }
                 }.padding(.horizontal, 10).background(RoundedRectangle(cornerRadius: 4).stroke(Color("DarkGreen"), lineWidth: 2))
             }.padding(.top, 10)

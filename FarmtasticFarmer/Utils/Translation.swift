@@ -32,7 +32,7 @@ struct Translation {
         }
     }
     
-    func translateLanguage(month: String) -> String {
+    func translateMonth(month: String) -> String {
         switch month {
         case "january":
             return "january".localized(language: language)
