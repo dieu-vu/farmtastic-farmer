@@ -8,6 +8,7 @@
 import Charts
 import SwiftUI
 
+//format and style pie chart
 struct PieChart: UIViewRepresentable {
     let entries: [ChartDataEntry]
     let pieChart = PieChartView()
@@ -45,6 +46,8 @@ struct PieChart: UIViewRepresentable {
         formatter.numberStyle = .percent
         formatter.maximumFractionDigits = 1
         formatter.multiplier = 1
+        
+        //'%' has to be at last for the UI to update correctly
         formatter.percentSymbol = "%"
         dataSet.valueFormatter = DefaultValueFormatter(formatter: formatter)
 
