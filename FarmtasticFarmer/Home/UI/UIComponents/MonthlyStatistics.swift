@@ -34,7 +34,10 @@ struct MonthlyStatistics: View {
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {
                     Text(Translation().RevenueOverview).font(.subheadline).foregroundColor(Color("DarkGreen"))
-                    Text("€ " + String(format: "%.2f", getSelectedMonthRevenue())).font(.title).bold().foregroundColor(Color("DarkGreen"))
+                    
+                    if getSelectedMonthRevenue() != 0 {
+                        Text("€ " + String(format: "%.2f", getSelectedMonthRevenue())).font(.title).bold().foregroundColor(Color("DarkGreen"))
+                    } 
                     
                     if let data = StatisticsData.monthlyLineChartData[selectedMonth] {
                         LineChart(entries: data, isYearly: false).frame(height: 300)
@@ -48,14 +51,17 @@ struct MonthlyStatistics: View {
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {
                     Text(Translation().TotalOrders).font(.subheadline).foregroundColor(Color("DarkGreen"))
-                    Text("3402").font(.title).bold().foregroundColor(Color("DarkGreen"))
+                    
+                    if getSelectedMonthRevenue() != 0 {
+                        Text("3402").font(.title).bold().foregroundColor(Color("DarkGreen"))
+                    }
                     
                     if let data = StatisticsData.monthlyPieChartData[selectedMonth] {
                         PieChart(entries: data).frame(height: 300)
                     } else {
                         Text(Translation().NoData)
                     }
-                   
+                    
                 }.padding(.horizontal, 40)
             )
         }
