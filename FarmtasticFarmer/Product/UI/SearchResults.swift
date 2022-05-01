@@ -7,8 +7,6 @@
 
 import SwiftUI
 struct SearchResults: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     @State var searchText: String
     @State var screenTitle: String = "product.searchResults"
     @EnvironmentObject var productDataController: ProductDataController

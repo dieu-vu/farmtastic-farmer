@@ -9,8 +9,6 @@ import SwiftUI
 import Charts
 
 struct MonthlyStatistics: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     @State var selectedMonth: String = DateUtils().getCurrentMonthString()
     
     func getSelectedMonthRevenue() -> Double {
@@ -27,8 +25,8 @@ struct MonthlyStatistics: View {
             HStack {
                 Text(Translation().SelectMonth).foregroundColor(Color("DarkGreen"))
                 Picker("", selection: $selectedMonth) {
-                    ForEach(DateUtils().months, id: \.self) {
-                        Text(String($0).localized(language: language))
+                    ForEach(DateUtils().months, id: \.self) { month in
+                        Text(Translation().translateLanguage(month: month).capitalized)
                     }
                 }.padding(.horizontal, 10).background(RoundedRectangle(cornerRadius: 4).stroke(Color("DarkGreen"), lineWidth: 2))
             }.padding(.top, 10)
@@ -36,7 +34,10 @@ struct MonthlyStatistics: View {
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {
                     Text(Translation().RevenueOverview).font(.subheadline).foregroundColor(Color("DarkGreen"))
-                    Text("€ " + String(format: "%.2f", getSelectedMonthRevenue())).font(.title).bold().foregroundColor(Color("DarkGreen"))
+                    
+                    if getSelectedMonthRevenue() != 0 {
+                        Text("€ " + String(format: "%.2f", getSelectedMonthRevenue())).font(.title).bold().foregroundColor(Color("DarkGreen"))
+                    } 
                     
                     if let data = StatisticsData.monthlyLineChartData[selectedMonth] {
                         LineChart(entries: data, isYearly: false).frame(height: 300)
@@ -50,14 +51,17 @@ struct MonthlyStatistics: View {
             AnalyticsCard().overlay(
                 VStack (alignment: .leading) {
                     Text(Translation().TotalOrders).font(.subheadline).foregroundColor(Color("DarkGreen"))
-                    Text("3402").font(.title).bold().foregroundColor(Color("DarkGreen"))
+                    
+                    if getSelectedMonthRevenue() != 0 {
+                        Text("3402").font(.title).bold().foregroundColor(Color("DarkGreen"))
+                    }
                     
                     if let data = StatisticsData.monthlyPieChartData[selectedMonth] {
                         PieChart(entries: data).frame(height: 300)
                     } else {
                         Text(Translation().NoData)
                     }
-                   
+                    
                 }.padding(.horizontal, 40)
             )
         }
