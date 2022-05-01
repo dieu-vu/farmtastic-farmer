@@ -8,6 +8,7 @@
 import SwiftUI
 import Charts
 
+//format and styling line chart
 struct LineChart: UIViewRepresentable {
     let entries: [ChartDataEntry]
     let lineChart = LineChartView()
@@ -44,6 +45,7 @@ struct LineChart: UIViewRepresentable {
         : uiView.zoom(scaleX: 4, scaleY: 1, xValue: 0, yValue: 0, axis: .left)
     }
     
+    //format data and how the data is arranged on chart
     func formatDataSet(dataSet: LineChartDataSet) {
         dataSet.label = isYearly ? "Revenue in year" : "Revenue in month"
         dataSet.colors = [UIColor(Color("DarkGreen"))]
@@ -58,6 +60,7 @@ struct LineChart: UIViewRepresentable {
         dataSet.highlightColor = UIColor(Color("PinkishRed"))
     }
     
+    //format and add label for xAxis
     func formatxAxis(xAxis: XAxis) {
         xAxis.enabled = true
         if isYearly {
@@ -67,6 +70,7 @@ struct LineChart: UIViewRepresentable {
         xAxis.labelTextColor = UIColor(Color("DarkGreen"))
     }
     
+    //format and style left and right axis
     func formatyAxis(leftAxis: YAxis, rightAxis: YAxis) {
         leftAxis.axisMinimum = 0
         rightAxis.enabled = false

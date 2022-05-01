@@ -17,7 +17,7 @@ class LocalizationService {
         get {
             // get language in UserDefaults and return language in UserDefaults if there is
             guard let languageString = UserDefaults.standard.string(forKey: "language") else {
-                // get phone language and return phone language if there is
+                // get phone language code using prefix(2) and return phone language if there is
                 let phoneLanguage = Locale.preferredLanguages[0].prefix(2)
                 // else always fallback to English
                 return Language(rawValue: String(phoneLanguage)) ?? .en
@@ -25,6 +25,7 @@ class LocalizationService {
             return Language(rawValue: languageString) ?? .en
         } set {
             if newValue != language {
+                //update new language in UserDefaults
                 UserDefaults.standard.setValue(newValue.rawValue, forKey: "language")
                 NotificationCenter.default.post(name: LocalizationService.selectedLanguage, object: nil)
             }
@@ -33,6 +34,7 @@ class LocalizationService {
 }
 
 extension String {
+    //a function to run localization on string directly
     func localized(language: Language) -> String {
         let path = Bundle.main.path(forResource: language.rawValue, ofType: "lproj")
         let bundle: Bundle

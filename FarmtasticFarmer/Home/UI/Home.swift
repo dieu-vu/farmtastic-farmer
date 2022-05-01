@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//This is Statistics screen
 struct Home: View {
     @State var selection: String = Translation().StatisticsMonthly
     var selections: [String] = [Translation().StatisticsMonthly, Translation().StatisticsYearly]

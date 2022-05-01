@@ -24,7 +24,7 @@ extension ProductFetched {
     @NSManaged public var selling_quantity: Double
     @NSManaged public var unit: String?
     @NSManaged public var unit_price: Double
-    @NSManaged public var sold_in_cart: NSSet?
+//    @NSManaged public var sold_in_cart: NSSet?
 
 }
 
@@ -38,23 +38,6 @@ extension ProductFetched {
 //    }
 }
 
-// MARK: Generated accessors for sold_in_cart
-// TODO: Check if we need this after all as we have dummy order data in this app
-extension ProductFetched {
-
-    @objc(addSold_in_cartObject:)
-    @NSManaged public func addToSold_in_cart(_ value: CartItem)
-
-    @objc(removeSold_in_cartObject:)
-    @NSManaged public func removeFromSold_in_cart(_ value: CartItem)
-
-    @objc(addSold_in_cart:)
-    @NSManaged public func addToSold_in_cart(_ values: NSSet)
-
-    @objc(removeSold_in_cart:)
-    @NSManaged public func removeFromSold_in_cart(_ values: NSSet)
-
-}
 
 extension ProductFetched : Identifiable {
 
