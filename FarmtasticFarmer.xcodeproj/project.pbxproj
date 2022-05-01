@@ -40,15 +40,9 @@
 		187DFEB92802A9200033693C /* UserInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEB82802A9200033693C /* UserInfoCardView.swift */; };
 		187DFEBB2802BB780033693C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEBA2802BB780033693C /* User.swift */; };
 		187DFEBF2802CC0B0033693C /* UserDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEBE2802CC0B0033693C /* UserDataController.swift */; };
-		1891D99F280EBCDB00428C3C /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1891D99D280EBCDB00428C3C /* Location+CoreDataClass.swift */; };
-		1891D9A0280EBCDB00428C3C /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1891D99E280EBCDB00428C3C /* Location+CoreDataProperties.swift */; };
 		18C079A228096F3F0079E186 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079A128096F3F0079E186 /* Utils.swift */; };
-		18C079BC280B0FE60079E186 /* CartItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B4280B0FE60079E186 /* CartItem+CoreDataClass.swift */; };
-		18C079BD280B0FE60079E186 /* CartItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B5280B0FE60079E186 /* CartItem+CoreDataProperties.swift */; };
 		18C079BE280B0FE60079E186 /* UserFetched+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B6280B0FE60079E186 /* UserFetched+CoreDataClass.swift */; };
 		18C079BF280B0FE60079E186 /* UserFetched+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */; };
-		18C079C2280B0FE60079E186 /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079BA280B0FE60079E186 /* Order+CoreDataClass.swift */; };
-		18C079C3280B0FE60079E186 /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079BB280B0FE60079E186 /* Order+CoreDataProperties.swift */; };
 		18C079C9280D729B0079E186 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079C8280D729B0079E186 /* Constants.swift */; };
 		18C079CB280D77CF0079E186 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = 18C079CA280D77CF0079E186 /* users.json */; };
 		18E65337281698FC00DE8D81 /* ProductDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E65336281698FC00DE8D81 /* ProductDataController.swift */; };
@@ -148,15 +142,9 @@
 		187DFEB82802A9200033693C /* UserInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCardView.swift; sourceTree = "<group>"; };
 		187DFEBA2802BB780033693C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = FarmtasticFarmer/Profile/Models/User.swift; sourceTree = SOURCE_ROOT; };
 		187DFEBE2802CC0B0033693C /* UserDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataController.swift; sourceTree = "<group>"; };
-		1891D99D280EBCDB00428C3C /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1891D99E280EBCDB00428C3C /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18C079A128096F3F0079E186 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		18C079B4280B0FE60079E186 /* CartItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CartItem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		18C079B5280B0FE60079E186 /* CartItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CartItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18C079B6280B0FE60079E186 /* UserFetched+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFetched+CoreDataClass.swift"; sourceTree = "<group>"; };
 		18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFetched+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		18C079BA280B0FE60079E186 /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
-		18C079BB280B0FE60079E186 /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18C079C8280D729B0079E186 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		18C079CA280D77CF0079E186 /* users.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		18E65336281698FC00DE8D81 /* ProductDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDataController.swift; path = FarmtasticFarmer/Product/Controller/ProductDataController.swift; sourceTree = SOURCE_ROOT; };
@@ -441,15 +429,9 @@
 			children = (
 				185C914B2815307500CBDCB6 /* ProductFetched+CoreDataClass.swift */,
 				185C914C2815307500CBDCB6 /* ProductFetched+CoreDataProperties.swift */,
-				1891D99D280EBCDB00428C3C /* Location+CoreDataClass.swift */,
-				1891D99E280EBCDB00428C3C /* Location+CoreDataProperties.swift */,
-				18C079B4280B0FE60079E186 /* CartItem+CoreDataClass.swift */,
-				18C079B5280B0FE60079E186 /* CartItem+CoreDataProperties.swift */,
 				18C079B6280B0FE60079E186 /* UserFetched+CoreDataClass.swift */,
 				18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */,
 				182D9C3527F9E01400158D0C /* FarmtasticFarmerDataModel.xcdatamodeld */,
-				18C079BA280B0FE60079E186 /* Order+CoreDataClass.swift */,
-				18C079BB280B0FE60079E186 /* Order+CoreDataProperties.swift */,
 				182D9C3327F9E01400158D0C /* Persistence.swift */,
 				18C079CA280D77CF0079E186 /* users.json */,
 			);
@@ -709,8 +691,6 @@
 			files = (
 				18E6533B28180DDC00DE8D81 /* ProductJSON.swift in Sources */,
 				18C079BE280B0FE60079E186 /* UserFetched+CoreDataClass.swift in Sources */,
-				18C079BD280B0FE60079E186 /* CartItem+CoreDataProperties.swift in Sources */,
-				18C079BC280B0FE60079E186 /* CartItem+CoreDataClass.swift in Sources */,
 				2DB4C400281BB2A100472775 /* LineChart.swift in Sources */,
 				0112CAE228057FD300A77B74 /* KeychainHelper.swift in Sources */,
 				01853A7028069AA1000953EB /* WebService.swift in Sources */,
@@ -729,12 +709,9 @@
 				878722C128148E9200AB7F38 /* PickupPointScreen.swift in Sources */,
 				01DEC6FF2817BFDF00EDDF19 /* MapUIView.swift in Sources */,
 				B3ED079D27FF56AF00A95D0E /* Profile.swift in Sources */,
-				1891D9A0280EBCDB00428C3C /* Location+CoreDataProperties.swift in Sources */,
-				1891D99F280EBCDB00428C3C /* Location+CoreDataClass.swift in Sources */,
 				0112CAC227FEBE6900A77B74 /* LanguagePicker.swift in Sources */,
 				18618927281A899F006CED7E /* ProductCardView.swift in Sources */,
 				2DB53986281D0E440071289D /* Translation.swift in Sources */,
-				18C079C3280B0FE60079E186 /* Order+CoreDataProperties.swift in Sources */,
 				18C079A228096F3F0079E186 /* Utils.swift in Sources */,
 				2D9A9438281B1C4E0039BA86 /* PieChart.swift in Sources */,
 				01DEC6DF28166D5900EDDF19 /* SpeechRecognizer.swift in Sources */,
@@ -774,7 +751,6 @@
 				182D9C2D27F9E01300158D0C /* BaseView.swift in Sources */,
 				01DEC7012818039A00EDDF19 /* LocationManager.swift in Sources */,
 				8788398B280A0CED00A2593C /* FloatingActionButtonView.swift in Sources */,
-				18C079C2280B0FE60079E186 /* Order+CoreDataClass.swift in Sources */,
 				2DB4C402281BD41E00472775 /* DateUtils.swift in Sources */,
 				B3986BFE28043D49003C4130 /* LoginView.swift in Sources */,
 				2D9A9441281B25500039BA86 /* AnalyticsCard.swift in Sources */,

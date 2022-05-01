@@ -116,7 +116,6 @@ class ProductDataController: UIViewController, ObservableObject {
             productsFetched.selling_quantity = Double(product.description.selling_quantity) ?? 0.00
             productsFetched.unit = product.description.unit
             productsFetched.unit_price = Double(product.description.unit_price) ?? 0.00
-            productsFetched.sold_in_cart = NSSet()
             productsFetched.image = loadImageFrom(filename: product.filename)
             //            print("product fetched image data ", productsFetched.image)
             do {
