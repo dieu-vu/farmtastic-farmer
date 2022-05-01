@@ -15,6 +15,10 @@ struct Translation {
     
     init() {}
     
+    init(translatedLanguage: Language) {
+        self.language = translatedLanguage
+    }
+    
     var Login: String {
         return "login".localized(language: language)
     }

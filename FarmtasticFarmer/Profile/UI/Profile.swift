@@ -23,6 +23,9 @@ struct ProfileScreen: View {
     @State var navigateToOrder = false
     @State var navigateToPickup = false
     
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     let persistenceController = PersistenceController.shared
     
     @Environment(\.managedObjectContext) private var viewContext
@@ -42,10 +45,7 @@ struct ProfileScreen: View {
         }.navigationBarHidden(true).edgesIgnoringSafeArea(.top)
             .halfSheet(showSheet: $showLanguageBottomSheet) {
                 LanguagePicker(showLanguageBottomSheet: $showLanguageBottomSheet)
-                    .cornerRadius(32).ignoresSafeArea().onDisappear {
-                        //force update profile page again to display changed language
-                        refetchUser()
-                    }
+                    .cornerRadius(32).ignoresSafeArea()
             } onEnd: {
                 print("Dismissed")
             }
@@ -75,7 +75,7 @@ struct ProfileScreen: View {
     var actionButtonGroup: some View {
         VStack {
             NavigationLink(destination: ActiveOrderScreen(), isActive: $navigateToOrder) {
-                ActionButton(icon: "clock", title: Translation().OrderList, onClick: {
+                ActionButton(icon: "clock", title: Translation(translatedLanguage: language).OrderList, onClick: {
                     self.navigateToOrder = true
                 })
             }
