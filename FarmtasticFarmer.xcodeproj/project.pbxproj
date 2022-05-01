@@ -40,6 +40,7 @@
 		187DFEB92802A9200033693C /* UserInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEB82802A9200033693C /* UserInfoCardView.swift */; };
 		187DFEBB2802BB780033693C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEBA2802BB780033693C /* User.swift */; };
 		187DFEBF2802CC0B0033693C /* UserDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DFEBE2802CC0B0033693C /* UserDataController.swift */; };
+		18B8AEB4281EAA0700B68E10 /* WebServiceUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8AEB3281EAA0700B68E10 /* WebServiceUnitTest.swift */; };
 		18C079A228096F3F0079E186 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079A128096F3F0079E186 /* Utils.swift */; };
 		18C079BE280B0FE60079E186 /* UserFetched+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B6280B0FE60079E186 /* UserFetched+CoreDataClass.swift */; };
 		18C079BF280B0FE60079E186 /* UserFetched+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */; };
@@ -142,6 +143,7 @@
 		187DFEB82802A9200033693C /* UserInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoCardView.swift; sourceTree = "<group>"; };
 		187DFEBA2802BB780033693C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = FarmtasticFarmer/Profile/Models/User.swift; sourceTree = SOURCE_ROOT; };
 		187DFEBE2802CC0B0033693C /* UserDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataController.swift; sourceTree = "<group>"; };
+		18B8AEB3281EAA0700B68E10 /* WebServiceUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceUnitTest.swift; sourceTree = "<group>"; };
 		18C079A128096F3F0079E186 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		18C079B6280B0FE60079E186 /* UserFetched+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFetched+CoreDataClass.swift"; sourceTree = "<group>"; };
 		18C079B7280B0FE60079E186 /* UserFetched+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFetched+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		182D9C3F27F9E01400158D0C /* FarmtasticFarmerTests */ = {
 			isa = PBXGroup;
 			children = (
+				18B8AEB2281EA9B300B68E10 /* WebServiceTests */,
 				182D9C4027F9E01400158D0C /* FarmtasticFarmerTests.swift */,
 			);
 			path = FarmtasticFarmerTests;
@@ -409,6 +412,14 @@
 				2D91FFD42817158700FBE56C /* ScreenLayout.swift */,
 			);
 			path = CommonUIComponents;
+			sourceTree = "<group>";
+		};
+		18B8AEB2281EA9B300B68E10 /* WebServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				18B8AEB3281EAA0700B68E10 /* WebServiceUnitTest.swift */,
+			);
+			path = WebServiceTests;
 			sourceTree = "<group>";
 		};
 		18C079A028096F2C0079E186 /* Utils */ = {
@@ -761,6 +772,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B8AEB4281EAA0700B68E10 /* WebServiceUnitTest.swift in Sources */,
 				182D9C4127F9E01400158D0C /* FarmtasticFarmerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
