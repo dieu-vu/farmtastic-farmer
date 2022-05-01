@@ -14,7 +14,6 @@ struct ProductCardView : View {
     @State var productIsTapped = false
     @Binding var tabSelection: Int
 
-    
     var body: some View {
         VStack {
             Image(uiImage: UIImage(data: product.image ?? placeholderImageData!)!)
@@ -36,7 +35,6 @@ struct ProductCardView : View {
             .onTapGesture {
                 // Navigate to detail view
                 productIsTapped.toggle()
-                print("tapped \(String(describing: product.product_name))")
             }
 
         NavigationLink("", destination: ProductDetailView(product: product, tabSelection: $tabSelection).navigationBarBackButtonHidden(true), isActive: $productIsTapped)

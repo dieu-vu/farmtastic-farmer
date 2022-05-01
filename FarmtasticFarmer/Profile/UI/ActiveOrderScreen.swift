@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ActiveOrderScreen: View {
-    //@ObservedObject var loader = ActiveOrderLoader()
+
     @State var selectedDate = Date.now
     @State var orders = loadData()
     
@@ -24,10 +24,15 @@ struct ActiveOrderScreen: View {
             HStack {
                 DatePicker(Translation().SelectPickupDate, selection: $selectedDate, in: Date()..., displayedComponents: .date)
                 Spacer()
-                NavigationLink(destination: MapUIView(selectedDate: $selectedDate, orders: filteredList).navigationBarBackButtonHidden(true)) {
-                    Image(systemName: "map").font(.title).foregroundColor(Color("PinkishRed"))
-                }
-            }.padding(.horizontal, 20)
+                NavigationLink(destination: MapUIView(selectedDate: $selectedDate, orders: filteredList)
+                    .navigationBarBackButtonHidden(true)) {
+                        Image(systemName: "map")
+                            .font(.title)
+                            .foregroundColor(filteredList.isEmpty ? Color.gray : Color("PinkishRed"))
+                    }
+                    .disabled(filteredList.isEmpty)
+            }
+            .padding(.horizontal, 20)
             
             List {
                 ForEach(filteredList, id: \.order_id) { order in
@@ -35,7 +40,8 @@ struct ActiveOrderScreen: View {
                 }
             }
             
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
     }
 }
 

@@ -3,20 +3,20 @@
 //  FarmtasticFarmer
 //
 //  Created by Trang on 7.4.2022.
-//  UI for item in the list of search product results
+//  UI for individual item on search results
 
 import SwiftUI
 
 struct ProductResultCard: View {
+    
     let product: ProductFetched
     let placeholderImageData = UIImage(imageLiteralResourceName: "placeholder").jpegData(compressionQuality: 0.5)
     @State var productIsTapped = false
     @Binding var tabSelection: Int
 
-    
     var body: some View {
+        
         HStack {
-            
             Image(uiImage: UIImage(data: product.image ?? placeholderImageData!)!)
                 .resizable()
                 .scaledToFit()
@@ -42,7 +42,6 @@ struct ProductResultCard: View {
             print("tapped \(String(describing: product.product_name))")
         }
         NavigationLink("", destination: ProductDetailView(product: product, tabSelection: $tabSelection).navigationBarBackButtonHidden(true), isActive: $productIsTapped)
-        
     }
 }
 

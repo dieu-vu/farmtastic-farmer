@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// This the login view of the app
+
 struct LoginView: View {
     
     @EnvironmentObject var authentication: AuthenticationController
@@ -16,39 +18,56 @@ struct LoginView: View {
     
     var body: some View {
         VStack() {
-            Image("headerImage").resizable().frame(width: 450, height: 400).overlay(Rectangle().foregroundColor(.black).opacity(0.4)).offset(y: -20)
+            Image("headerImage")
+                .resizable()
+                .frame(width: 450, height: 400)
+                .overlay(Rectangle().foregroundColor(.black).opacity(0.4))
+                .offset(y: -20)
             
-            RoundedRectangle(cornerRadius: 10).fill(.white).shadow(radius: 5).frame(height: 350).offset(y: -100).padding(.horizontal, 20).overlay(
-                VStack {
-                    Text(Translation().Login).font(.largeTitle)
-                    VStack(alignment: .leading, spacing: 15) {
-                        TextField(Translation().ProfileUsername, text: $username)
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                            .autocapitalization(.none)
-                        SecureField(Translation().ProfilePassword, text: $password)
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.gray, lineWidth: 1)
-                            )
-                    }.padding([.leading, .trailing], 32)
-
-                    ButtonView(buttonText: Translation().Login,
-                               buttonColorLight: username.isEmpty || password.isEmpty ? "Grey" : "LightGreen",
-                               buttonColorDark: username.isEmpty || password.isEmpty ? "Grey" : "DarkGreen",
-                               buttonAction: {
-                        authentication.login(username: username, password: password)
-                    })
-                    .disabled(username.isEmpty || password.isEmpty)
-
-                }.offset(y: -80)
-            ).padding(.bottom, -100)
-            Image("logo").resizable().scaledToFit().frame(width: 300, height: 300).padding(.bottom, 50)
-        }.edgesIgnoringSafeArea(.top)
+            RoundedRectangle(cornerRadius: 10)
+                .fill(.white)
+                .shadow(radius: 5)
+                .frame(height: 350)
+                .offset(y: -100)
+                .padding(.horizontal, 20)
+                .overlay(
+                    VStack {
+                        Text(Translation().Login)
+                            .font(.largeTitle)
+                        VStack(alignment: .leading, spacing: 15) {
+                            TextField(Translation().ProfileUsername, text: $username)
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
+                                .autocapitalization(.none)
+                            SecureField(Translation().ProfilePassword, text: $password)
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
+                        }
+                        .padding([.leading, .trailing], 32)
+                        
+                        ButtonView(buttonText: Translation().Login,
+                                   buttonColorLight: username.isEmpty || password.isEmpty ? "Grey" : "LightGreen",
+                                   buttonColorDark: username.isEmpty || password.isEmpty ? "Grey" : "DarkGreen",
+                                   buttonAction: {
+                            authentication.login(username: username, password: password)
+                        })
+                        .disabled(username.isEmpty || password.isEmpty)
+                    }.offset(y: -80)
+                )
+                .padding(.bottom, -100)
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 300, height: 300)
+                .padding(.bottom, 50)
+        }
+        .edgesIgnoringSafeArea(.top)
     }
 }
 

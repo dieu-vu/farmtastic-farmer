@@ -3,15 +3,17 @@
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 12.4.2022.
-//  Class to handle actions with keychain
+
 
 import Foundation
 
+// This class provides neccessary methods to save, read and delete data in keychain
 final class KeychainHelper {
     
     static let standard = KeychainHelper()
     private init() {}
     
+    // Save data in keychain in key-value pair format
     func save(_ data: Data, service: String, account: String) {
 
         var query = [
@@ -40,6 +42,7 @@ final class KeychainHelper {
         
     }
     
+    // Reading value from keychain according to its key
     func read(service: String, account: String) -> Data? {
         
         let query = [
@@ -55,6 +58,7 @@ final class KeychainHelper {
         return (result as? Data)
     }
     
+    // Delete value in the keychain according to its key
     func delete(service: String, account: String) {
         
         let query = [

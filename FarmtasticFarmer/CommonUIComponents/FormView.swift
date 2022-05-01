@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// Reusable component for update profile form and add new pickup location (not implemented in this release)
+
 struct FormView: View {
     
     var formTitle: String

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// Reusable components for all buttons in the app
+
 struct ButtonView: View {
     var buttonText: String
     var buttonColorLight: String

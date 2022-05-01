@@ -3,9 +3,14 @@
 //  FarmtasticFarmer
 //
 //  Created by hanghuynh on 26.4.2022.
-//
+
 import MapKit
 import SwiftUI
+
+// This is the UI view of the map.
+// On the map there will be current location of user, pickpup points at which the farmer has to deliver his products.
+// The pickup points will change according to order data. If there is no order data for a certain pickup point, the pickup point will not be marked on the map
+// Routing will also be shown on the map. The route will vary depending on the order data. Generally, the map displys the round trip from the current user location to all the pickup points that the famer has to visit that specific date and back at the starting location
 
 struct MapUIView: View {
     @AppStorage("language")
@@ -29,7 +34,8 @@ struct MapUIView: View {
             })
             .padding(.bottom, 32)
             .disabled(mapRoutes.isEmpty)
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
         .sheet(isPresented: $showDirections, content: {
             VStack {
                 Text("Directions")

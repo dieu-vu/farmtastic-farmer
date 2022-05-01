@@ -65,8 +65,6 @@ struct ProductDetailView: View {
                                buttonAction: {
                         productDataController.deleteProduct(productId: Int(product.product_id))
                         navigateToMainList = true
-                        print("Button clicked")
-                        
                     })
                         NavigationLink("", destination: ProductMainScreen(tabSelection: $tabSelection, products: productDataController.allProducts), isActive: $navigateToMainList)
                     }

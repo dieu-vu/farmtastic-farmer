@@ -9,6 +9,8 @@ import UIKit
 import CoreLocation
 import MapKit
 
+// LocationManager manages which area in the map appreared on the screen.
+// In Farmtastic app, the area in which current user is located will be displayed
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
 
     @Published var region = MKCoordinateRegion()

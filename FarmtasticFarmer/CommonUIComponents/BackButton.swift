@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Reusable back button for the app
 struct BackButton: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     

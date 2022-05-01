@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Nguyen Giang on 11.4.2022.
-// Screen showing all the products arranged by category
+//  Screen showing all the products arranged by category
 
 import SwiftUI
 import AVFoundation
@@ -12,17 +12,13 @@ import Foundation
 struct ProductMainScreen: View {
     
     @EnvironmentObject var productDataController: ProductDataController
-    
     @Environment(\.managedObjectContext) private var viewContext
-    
     @Binding var tabSelection: Int
-    
     @State var products: [ProductFetched]
     @State var searchText: String = ""
     @State private var isRecording: Bool = false
     @State var isOn: Bool = false
     @StateObject var speechRecognizer = SpeechRecognizer()
-    
     @State var navigateToAddProduct: Bool = false
     
     // Build the view
@@ -53,7 +49,8 @@ struct ProductMainScreen: View {
                             print("searchText: \(searchText)")
                         }
                     }) {
-                        Image(systemName: isRecording ? "stop.circle" : "mic.fill").padding(.trailing, 8)
+                        Image(systemName: isRecording ? "stop.circle" : "mic.fill")
+                            .padding(.trailing, 8)
                     }
                     NavigationLink(destination: SearchResults(searchText: searchText, tabSelection: Binding.constant(Constants.productTab))
                         .navigationBarBackButtonHidden(true)
@@ -125,7 +122,6 @@ struct ProductMainScreen: View {
                 }
             }
     }
-    
 }
 
 //struct ProductMainScreen_Previews: PreviewProvider {

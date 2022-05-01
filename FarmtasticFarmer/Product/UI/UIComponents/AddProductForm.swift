@@ -3,7 +3,7 @@
 //  FarmtasticFarmer
 //
 //  Created by Dieu Vu on 4/26/22.
-// Handle Add product form UI and parse JSON for product extra info object
+//  Handle Add product form UI and parse JSON for product extra info object
 
 import SwiftUI
 import AlertToast
@@ -38,7 +38,6 @@ struct AddProductForm: View {
     @Binding var price: Double
     @Binding var harvestDate: Date
     
-    
     // Image Picker
     @State private var isShowingImagePicker = false
     @State private var selectedImageSource = UIImagePickerController.SourceType.photoLibrary
@@ -46,7 +45,6 @@ struct AddProductForm: View {
     
     // Product Image
     @Binding var productImage: UIImage?
-    
     
     var body: some View {
         VStack {
@@ -85,7 +83,8 @@ struct AddProductForm: View {
                             ForEach(0 ..< 4) {
                                 Text(self.categories[$0]).foregroundColor(.red)
                             }
-                        }.pickerStyle(.segmented)
+                        }
+                        .pickerStyle(.segmented)
                     }
                     HStack(alignment: .top, spacing: 0) {
                         Text(Translation().ProductName + ": ").bold()
@@ -107,7 +106,8 @@ struct AddProductForm: View {
                                                     .foregroundColor(.yellow)
                                                     .font(.title3)
                                             }
-                                        }.pickerStyle(.menu)
+                                        }
+                                        .pickerStyle(.menu)
                                     }  .frame(width: 50)
                                         .clipped()
                                         .transition(.scale)
@@ -119,7 +119,8 @@ struct AddProductForm: View {
                             }
                             HStack {
                                 Text(Translation().PricePerUnit).bold()
-                                TextField(Translation().PricePerUnit, value: $price, format: .currency(code: "EUR")).keyboardType(.decimalPad)
+                                TextField(Translation().PricePerUnit, value: $price, format: .currency(code: "EUR"))
+                                    .keyboardType(.decimalPad)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                             }
                         }
@@ -132,7 +133,6 @@ struct AddProductForm: View {
             .toast(isPresenting: $showToast, duration: 1) {
                 AlertToast(displayMode: .alert, type: .complete(Color("DarkGreen")), title: "Success!")
             }
-            
             
             HStack{
                 ButtonView(buttonText: {if isUpdating {return Translation().Save} else {return Translation().Add}}(),
