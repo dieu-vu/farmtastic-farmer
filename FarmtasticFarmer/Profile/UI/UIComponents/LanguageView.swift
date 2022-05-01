@@ -10,12 +10,10 @@ import SwiftUI
 struct LanguageView: View {
     let language: Language
     @Binding var selectedLanguage: Language
-    @AppStorage("language")
-    private var translatedLanguage = LocalizationService.shared.language
     
     var body: some View {
-        HStack { 
-            Text(language.name.lowercased().localized(language: translatedLanguage))
+        HStack {
+            Text(Translation().translateLanguage(lang: language.name.lowercased()))
                 .padding(4)
             Spacer()
             if selectedLanguage == language {

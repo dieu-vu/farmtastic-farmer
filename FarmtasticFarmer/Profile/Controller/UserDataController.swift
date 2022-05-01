@@ -33,7 +33,7 @@ class UserDataController: UIViewController, ObservableObject {
                         self.clearUserCoreData(context: self.context)
                         DispatchQueue.main.sync {
                             self.currentUser = user
-                            print(user.full_name.address)
+                            print("logged in user", user.username)
                             let string_test = String(data: try! JSONEncoder().encode(self.currentUser.full_name), encoding: .utf8)
                             print("convert extra info to string: \(type(of:string_test))")
                             // Save current user to CoreData UserFetched

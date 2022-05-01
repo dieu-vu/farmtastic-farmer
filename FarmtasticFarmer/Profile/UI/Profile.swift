@@ -22,11 +22,14 @@ struct ProfileScreen: View {
     @State private var presentAlert = false
     @State var navigateToOrder = false
     @State var navigateToPickup = false
-
+    
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
+    
     let persistenceController = PersistenceController.shared
     
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: []) var loggedInUser: FetchedResults<UserFetched>
     
@@ -39,40 +42,32 @@ struct ProfileScreen: View {
             ButtonView(buttonText: Translation().LogoutButton, buttonColorLight: "LightGreen", buttonColorDark: "DarkGreen",
                        buttonAction: {authentication.logout()})
             Spacer()
-        }.edgesIgnoringSafeArea(.top).halfSheet(showSheet: $showLanguageBottomSheet) {
-            LanguagePicker(showLanguageBottomSheet: $showLanguageBottomSheet)
-                .cornerRadius(32).ignoresSafeArea()
-        } onEnd: {
-            print("Dismissed")
-        }
-        .halfSheet(showSheet: $showUpdateProfile) {
-            UpdateProfileView(showUpdateProfile: $showUpdateProfile)
-                .cornerRadius(32)
-                .ignoresSafeArea()
-            // Inject Managed Object context to the sub view
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(userController)
-                .onDisappear{
-                    // Fetch user data again
-                    userController.fetchUser{
-                        result in
-                        switch result {
-                        case .success(let user):
-                            userController.currentUser = user
-                        case .failure(let error):
-                            print(error.localizedDescription)
-                        }
+        }.navigationBarHidden(true).edgesIgnoringSafeArea(.top)
+            .halfSheet(showSheet: $showLanguageBottomSheet) {
+                LanguagePicker(showLanguageBottomSheet: $showLanguageBottomSheet)
+                    .cornerRadius(32).ignoresSafeArea()
+            } onEnd: {
+                print("Dismissed")
+            }
+            .halfSheet(showSheet: $showUpdateProfile) {
+                UpdateProfileView(showUpdateProfile: $showUpdateProfile)
+                    .cornerRadius(32)
+                    .ignoresSafeArea()
+                // Inject Managed Object context to the sub view
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .environmentObject(userController)
+                    .onDisappear{
+                        refetchUser()
                     }
-                }
-
-        } onEnd: {
-            print("Dismissed")
-        }
-        .halfSheet(showSheet: $showChangePassword) {
-            ChangePasswordView(showChangePassword: $showChangePassword).cornerRadius(32).ignoresSafeArea()
-        } onEnd: {
-            print("Dismissed")
-        }
+                
+            } onEnd: {
+                print("Dismissed")
+            }
+            .halfSheet(showSheet: $showChangePassword) {
+                ChangePasswordView(showChangePassword: $showChangePassword).cornerRadius(32).ignoresSafeArea()
+            } onEnd: {
+                print("Dismissed")
+            }
     }
     
     
@@ -80,19 +75,32 @@ struct ProfileScreen: View {
     var actionButtonGroup: some View {
         VStack {
             NavigationLink(destination: ActiveOrderScreen(), isActive: $navigateToOrder) {
-                ActionButton(icon: "clock", title: Translation().OrderList, onClick: {
+                ActionButton(icon: "clock", title: Translation(translatedLanguage: language).OrderList, onClick: {
                     self.navigateToOrder = true
                 })
             }
             NavigationLink(destination: PickupPointScreen(), isActive: $navigateToPickup) {
                 ActionButton(icon: "clock", title: Translation().PickupList, onClick: {
-                                self.navigateToPickup = true
-                            })
-                        }
+                    self.navigateToPickup = true
+                })
+            }
             ActionButton(icon: "t.bubble", title: Translation().ChangeLanguage, onClick: { showLanguageBottomSheet.toggle()})
             ActionButton(icon: "pencil", title: Translation().ProfileUpdate, onClick: { showUpdateProfile.toggle() })
             ActionButton(icon: "person.circle", title: Translation().ProfileChangePassword, onClick: { showChangePassword.toggle() })
         }.navigationBarHidden(true)
+    }
+    
+    // Fetch user data again
+    func refetchUser() {
+        userController.fetchUser{
+            result in
+            switch result {
+            case .success(let user):
+                userController.currentUser = user
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

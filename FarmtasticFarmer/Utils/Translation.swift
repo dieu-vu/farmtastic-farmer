@@ -15,6 +15,55 @@ struct Translation {
     
     init() {}
     
+    init(translatedLanguage: Language) {
+        self.language = translatedLanguage
+    }
+    
+    func translateLanguage(lang: String) -> String {
+        switch lang {
+        case "english":
+            return "english".localized(language: language)
+        case "finnish":
+            return "finnish".localized(language: language)
+        case "vietnamese":
+            return "vietnamese".localized(language: language)
+        default:
+            return "english".localized(language: language)
+        }
+    }
+    
+    func translateLanguage(month: String) -> String {
+        switch month {
+        case "january":
+            return "january".localized(language: language)
+        case "february":
+            return "february".localized(language: language)
+        case "march":
+            return "march".localized(language: language)
+        case "april":
+            return "april".localized(language: language)
+        case "may":
+            return "may".localized(language: language)
+        case "june":
+            return "june".localized(language: language)
+        case "july":
+            return "july".localized(language: language)
+        case "august":
+            return "august".localized(language: language)
+        case "september":
+            return "september".localized(language: language)
+        case "october":
+            return "october".localized(language: language)
+        case "november":
+            return "november".localized(language: language)
+        case "december":
+            return "december".localized(language: language)
+        default:
+            return ""
+        }
+    }
+    
+    
     var Login: String {
         return "login".localized(language: language)
     }
@@ -55,16 +104,8 @@ struct Translation {
         return "clear".localized(language: language)
     }
     
-    var English: String {
-        return "english".localized(language: language)
-    }
-    
-    var Finnish: String {
-        return "finish".localized(language: language)
-    }
-    
-    var Vietnamese: String {
-        return "vietnamese".localized(language: language)
+    var Dismiss: String {
+        return "dismiss".localized(language: language)
     }
     
     var Meat: String {
@@ -297,6 +338,14 @@ struct Translation {
     
     var SelectPickupDate: String {
         return "order.selectPickupDate".localized(language: language)
+    }
+    
+    var OrderDirection: String {
+        return "order.direction".localized(language: language)
+    }
+    
+    var OrderNoData: String {
+        return "order.noData".localized(language: language)
     }
 }
 
