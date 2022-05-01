@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 struct BaseView: View {
+    @AppStorage("language")
+    private var language = LocalizationService.shared.language
 
     @EnvironmentObject var userController: UserDataController
     @EnvironmentObject var authController: AuthenticationController
@@ -41,7 +43,7 @@ struct BaseView: View {
                 .environmentObject(userController)
                 .tabItem {
                     Image(systemName: "person.fill")
-                    Text(Translation().Profile)
+                    Text(Translation(translatedLanguage: language).Profile)
                 }
                 .tag(Constants.profileTab)
                 .onAppear{

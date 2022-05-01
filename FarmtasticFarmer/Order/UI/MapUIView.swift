@@ -13,8 +13,6 @@ import SwiftUI
 // Routing will also be shown on the map. The route will vary depending on the order data. Generally, the map displys the round trip from the current user location to all the pickup points that the famer has to visit that specific date and back at the starting location
 
 struct MapUIView: View {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     var manager = LocationManager()
     @State private var mapRoutes: [String] = []
     @State private var showDirections = false
@@ -26,7 +24,7 @@ struct MapUIView: View {
         VStack {
             ScreenLayout(screenTitle: "order.deliveryDate", hasBackButton: true, subTitle: "\(orders[0].pickup_date)")
             MapView(mapRoutes: $mapRoutes, orders: $orders, currentLocation: manager.region.center)
-            ButtonView(buttonText: "Show Directions",
+            ButtonView(buttonText: Translation().ShowDirection,
                        buttonColorLight: "LightGreen",
                        buttonColorDark: "DarkGreen",
                        buttonAction: {
@@ -38,7 +36,7 @@ struct MapUIView: View {
         .navigationBarHidden(true)
         .sheet(isPresented: $showDirections, content: {
             VStack {
-                Text("Directions")
+                Text(Translation().OrderDirection)
                     .font(.title)
                     .bold()
                     .padding(8)
@@ -48,7 +46,7 @@ struct MapUIView: View {
                             .padding()
                     }
                 }
-                ButtonView(buttonText: "Dismiss",
+                ButtonView(buttonText: Translation().Dismiss,
                            buttonColorLight: "LightGreen",
                            buttonColorDark: "DarkGreen",
                            buttonAction: {

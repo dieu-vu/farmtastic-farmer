@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 
 struct Constants {
-    @AppStorage("language")
-    private var language = LocalizationService.shared.language
     
     static var isDataPreLoaded = "isDataPreLoaded"
     static var productsLoaded = "productsLoaded"

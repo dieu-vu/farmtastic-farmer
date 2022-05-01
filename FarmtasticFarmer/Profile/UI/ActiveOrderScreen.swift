@@ -34,9 +34,14 @@ struct ActiveOrderScreen: View {
             }
             .padding(.horizontal, 20)
             
-            List {
-                ForEach(filteredList, id: \.order_id) { order in
-                    OrderRow(order: order)
+            if filteredList.count == 0 {
+                Text(Translation().OrderNoData)
+                Spacer()
+            } else {
+                List {
+                    ForEach(filteredList, id: \.order_id) { order in
+                        OrderRow(order: order)
+                    }
                 }
             }
             
