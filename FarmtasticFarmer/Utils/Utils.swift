@@ -12,7 +12,7 @@ class Utils {
     private init() {}
     
     //   Preprocess nested json
-    func preProcessJson(_ data:Data) -> Data {
+    func preProcessJson(_ data: Data) -> Data {
         let jsonString = String(decoding: data, as: UTF8.self)
         let cleanedJson = jsonString
             .replacingOccurrences(of: "\\", with: "")

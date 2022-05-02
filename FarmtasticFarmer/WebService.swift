@@ -176,7 +176,6 @@ class WebService {
         guard let token = getUserToken() else {
             fatalError("getUserInfo: Token not found")
         }
-        print("token \(token)")
         
         var request = URLRequest(url: url)
         
@@ -298,7 +297,6 @@ class WebService {
         guard let token = getUserToken() else {
             return
         }
-        print("Token for change password \(token)")
         
         let body = ChangePasswordRequestBody(password: password)
         var request = URLRequest(url: url)
@@ -307,7 +305,6 @@ class WebService {
         request.addValue(token, forHTTPHeaderField: "x-access-token")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(body)
-        print("requestBody in ChangePasswordModel \(String(describing: String(data: request.httpBody!, encoding: .utf8)))")
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -388,27 +385,21 @@ class WebService {
                 print("dataTask error: \(error.localizedDescription)")
             }
             else {
-                guard let response = response else {
+                guard response != nil else {
                     return
                 }
-                print("response: \(response.expectedContentLength)")
                 
                 if let data = data {
-                    
                     do {
                         let reformattedData = Utils.utils.preProcessJson(data)
-//                        print("REFORMATTED DATA", String(decoding: reformattedData, as: UTF8.self))
                         let decoder = JSONDecoder()
                         let productArray = try decoder.decode([ProductFromApi].self, from: reformattedData)
                         
                         // Filter for files with user Id of the current user
                         let productArrayFiltered = productArray.filter{$0.user_id == userId }
-                        print("GET PRODUCT RESULT", productArray.count)
-                        print("GET PRODUCT FOR USER ONLY", productArray.count)
 
                         completion(.success(productArrayFiltered))
                     } catch {
-                        print("failed to parse Product array")
                         do {
                             let res = try JSONDecoder().decode(GetUserResponse.self, from: data)
                             print("RES if invalid token: \(res)")
@@ -431,7 +422,7 @@ class WebService {
         }
                 
         let urlString = "\(baseUrl)media"
-//        print("product req url", urlString)
+
         guard let url = URL(string: urlString) else {
             fatalError("Post Product: Failed to create URL")
         }
@@ -473,7 +464,6 @@ class WebService {
         }
                 
         let urlString = "\(baseUrl)media/\(productId)"
-//        print("product req url", urlString)
         guard let url = URL(string: urlString) else {
             fatalError("PUT Product: Failed to create URL")
         }
