@@ -34,9 +34,13 @@ iOS Development group project at Metropolia UAS - Spring 2022
 
 </p>
 
-<iframe width="420" height="315"
-src="https://youtu.be/fS2B3cMipnM">
-</iframe>
+<p>
+
+### Demo recording with full features
+
+<p>
+[![demo recording](http://img.youtube.com/vi/fS2B3cMipnM/0.jpg)](https://youtu.be/fS2B3cMipnM)
+</p>
 
 ## Features
 
@@ -77,6 +81,10 @@ xed .
 ## Run project on Simulator
 
 Press `Cmd+B` or [run from Xcode menu](https://developer.apple.com/documentation/xcode/running-your-app-in-the-simulator-or-on-a-device)
+
+## API doc
+
+[Metropolia's WBMA API doc](https://media.mw.metropolia.fi/wbma/docs/)
 
 ## Contributors
 
