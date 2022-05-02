@@ -33,6 +33,7 @@ struct ProfileScreen: View {
     @FetchRequest(
         sortDescriptors: []) var loggedInUser: FetchedResults<UserFetched>
     
+    //make the navigation bar transparent
     init() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
@@ -81,6 +82,7 @@ struct ProfileScreen: View {
     var actionButtonGroup: some View {
         VStack {
             NavigationLink(destination: ActiveOrderScreen(), isActive: $navigateToOrder) {
+                //using Translation(translatedLanguage: language) triggers changing language immediately
                 ActionButton(icon: "clock", title: Translation(translatedLanguage: language).OrderList, onClick: {
                     self.navigateToOrder = true
                 })

@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-//This is Statistics screen
+/*This is Statistics screen.
+We tried to change the name to Statistics but it complained with multiple errors.
+So we decided to keep the original name.
+*/
 struct Home: View {
     @State var selection: Int = 0
     var selections: [String] = [Translation().StatisticsMonthly, Translation().StatisticsYearly]
     
+    //change the original color of the picker and picker text color
     init() {
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color("PinkishRed"))
         
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
         
         UISegmentedControl.appearance().setTitleTextAttributes(attributes, for: .selected)
-    }
-    
-    func graph() {
-        print(selection)
     }
     
     var body: some View {
