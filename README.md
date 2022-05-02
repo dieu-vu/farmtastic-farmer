@@ -16,7 +16,7 @@ iOS Development group project at Metropolia UAS - Spring 2022
 
 <p  align="center">
 
-<img  src="FarmtasticFarmer/Assets.xcassets/logo.imageset/logo.png"  alt="Logo"  width="80"  height="80">
+<img  src="FarmtasticFarmer/Assets.xcassets/placeholder.imageset/placeholder.png"  alt="Logo"  width="100"  height="100">
 
 </a>
 
@@ -30,7 +30,7 @@ iOS Development group project at Metropolia UAS - Spring 2022
 
 <p  align="row">
 
-<img  src= "FarmtasticFarmer/demo/Demo gif.gif"  width="400"  >
+<img  src= "FarmtasticFarmer/demo/Demo gif.gif"  width="300"  >
 
 </p>
 
@@ -39,7 +39,10 @@ iOS Development group project at Metropolia UAS - Spring 2022
 ### Demo recording with full features
 
 <p>
-[![demo recording](http://img.youtube.com/vi/fS2B3cMipnM/0.jpg)](https://youtu.be/fS2B3cMipnM)
+
+ [
+  ![demo recording](http://img.youtube.com/vi/fS2B3cMipnM/0.jpg)](https://youtu.be/fS2B3cMipnM)
+  
 </p>
 
 ## Features
