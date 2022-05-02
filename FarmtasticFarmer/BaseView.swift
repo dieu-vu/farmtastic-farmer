@@ -43,6 +43,7 @@ struct BaseView: View {
                 .environmentObject(userController)
                 .tabItem {
                     Image(systemName: "person.fill")
+                    //using Translation(translatedLanguage: language) triggers changing language immediately
                     Text(Translation(translatedLanguage: language).Profile)
                 }
                 .tag(Constants.profileTab)

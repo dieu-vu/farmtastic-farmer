@@ -15,10 +15,12 @@ struct Translation {
     
     init() {}
     
+    //an initializer to trigger translating when a new language is chosen
     init(translatedLanguage: Language) {
         self.language = translatedLanguage
     }
     
+    //translate the language name
     func translateLanguage(lang: String) -> String {
         switch lang {
         case "english":
@@ -32,6 +34,7 @@ struct Translation {
         }
     }
     
+    //translate the language name
     func translateMonth(month: String) -> String {
         switch month {
         case "january":
