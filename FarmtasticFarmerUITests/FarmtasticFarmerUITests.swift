@@ -6,7 +6,6 @@
 //  Simple UI test
 
 import XCTest
-//@testable import FarmtasticFarmer
 
 class FarmtasticFarmerUITests: XCTestCase {
     var app: XCUIApplication!
@@ -38,11 +37,7 @@ class FarmtasticFarmerUITests: XCTestCase {
             XCTAssertTrue(profileTab.exists)
             XCTAssertTrue(productTab.exists)
             XCTAssertTrue(statsTab.exists)
-        } else {
-//            let loginButton = app.buttons[Translation().Login]
-//            XCTAssertTrue(loginButton.exists)
         }
-        
         // UI tests must launch the application that they test.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }

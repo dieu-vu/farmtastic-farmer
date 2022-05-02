@@ -385,7 +385,7 @@ class WebService {
                 print("dataTask error: \(error.localizedDescription)")
             }
             else {
-                guard let response = response else {
+                guard response != nil else {
                     return
                 }
                 
