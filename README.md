@@ -34,6 +34,10 @@ iOS Development group project at Metropolia UAS - Spring 2022
 
 </p>
 
+<iframe width="420" height="315"
+src="https://youtu.be/fS2B3cMipnM">
+</iframe>
+
 ## Features
 
 🍖 Farmer can browse, update, delete own product list
