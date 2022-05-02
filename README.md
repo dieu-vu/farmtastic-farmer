@@ -91,6 +91,8 @@ Press `Cmd+B` or [run from Xcode menu](https://developer.apple.com/documentation
 - [Charts](https://github.com/danielgindi/Charts): Used to display charts on statistics screen
 - [AlertToast](https://github.com/elai950/AlertToast): Used to display toast in the app
 
+In case of dependencies issue: Navigate to top menu in Xcode: `File > Packages > Reset Package caches` and rebuild the project
+
 ## Contributors
 
 [Dieu Vu](https://github.com/dieu-vu)
