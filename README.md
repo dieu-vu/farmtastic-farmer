@@ -1,11 +1,6 @@
 [![Swift Version][swift-image]][swift-url]
-
-[![Build Status][travis-image]][travis-url]
-
 [![License][license-image]][license-url]
-
 [![Xcode][xcode-image]](https://developer.apple.com/documentation/xcode-release-notes/xcode-13_3_1-release-notes)
-
 ![Platform](https://img.shields.io/badge/ios-15.4-lightgray.svg)
 
 # Farmtastic Farmer
