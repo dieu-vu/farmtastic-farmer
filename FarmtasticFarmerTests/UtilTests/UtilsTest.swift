@@ -17,6 +17,9 @@ class UtilsTest: XCTestCase {
     let dateString = "30-04-2022"
     
     func testPreProcessJson() {
+        let expected = util.preProcessJson("\\\"{}\"".data(using: .utf8)!)
+        
+        XCTAssertEqual(expected, "{}".data(using: .utf8))
     }
     
     func testConvertDateFromApi() {
