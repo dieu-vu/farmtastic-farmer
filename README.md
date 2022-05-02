@@ -52,6 +52,16 @@ iOS Development group project at Metropolia UAS - Spring 2022
 
 🌽 In-app map and routing
 
+### Functional requirements implemented:
+
+- [x] Application supports multiple languages through localization.
+- [x] Application persists data on the device using the Core Data framework.
+- [x] Application uses MapKit
+- [x] Application retrieves data from network in JSON/XML format
+- [x] Application uses speech recognition, for example for dictation
+- [x] Application has master / detail views
+- [x] Basic Unit tests and UI unit tests
+
 ## Requirements
 
 - iOS 15.2+
