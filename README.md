@@ -82,9 +82,16 @@ xed .
 
 Press `Cmd+B` or [run from Xcode menu](https://developer.apple.com/documentation/xcode/running-your-app-in-the-simulator-or-on-a-device)
 
-## API doc
+## Resources
 
-[Metropolia's WBMA API doc](https://media.mw.metropolia.fi/wbma/docs/)
+- [Metropolia's WBMA API doc](https://media.mw.metropolia.fi/wbma/docs/)
+- [Wireframe](https://www.figma.com/file/lCpZyRcrzvuiIQ6xbi6LKS/Farmtastic?node-id=0%3A1)
+- [Kanban board](https://miro.com/app/board/uXjVODnLEX8=/?share_link_id=523297843888)
+- [Google Drive](https://drive.google.com/drive/folders/1a3XQqAnz3He3FRIf2Q2VWADE-m5gd8-_?usp=sharing): paper prototypes, storyboards, use interviews findings, sprint meeting notes, etc.
+
+## Used Packages
+- [Charts](https://github.com/danielgindi/Charts): Used to display charts on statistics screen
+- [AlertToast](https://github.com/elai950/AlertToast): Used to display toast in the app
 
 ## Contributors
 
