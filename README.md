@@ -11,7 +11,7 @@ iOS Development group project at Metropolia UAS - Spring 2022
 
 <p  align="center">
 
-<img  src="FarmtasticFarmer/Assets.xcassets/placeholder.imageset/placeholder.png"  alt="Logo"  width="100"  height="100">
+<img  src="FarmtasticFarmer/Assets.xcassets/placeholder.imageset/placeholder.png"  alt="Logo"  width="200"  height="200">
 
 </a>
 
