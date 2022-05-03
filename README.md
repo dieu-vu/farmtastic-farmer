@@ -108,9 +108,14 @@ In case of dependencies issue: Navigate to top menu in Xcode: `File > Packages >
 ## Contributors
 
 [Dieu Vu](https://github.com/dieu-vu)
+
 [Giang Nguyen](https://github.com/GiangNguyen1207)
+
 [Hang Huynh](https://github.com/HangHuynh19)
+
 [Trang Nguyen](https://github.com/maitrang85)
+
+With the guidance and support from teachers at Metropolia UAS: Peter Hjort, Juha Forsten, and Ulla Sederlöf.
 
 Questions and comments are welcomed.
 
