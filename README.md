@@ -52,6 +52,8 @@ iOS Development group project at Metropolia UAS - Spring 2022
 
 🌽 In-app map and routing
 
+**NOTES**: The register function is not available. Please contact the contributor if you want to have a test user account.
+
 ### Functional requirements implemented:
 
 - [x] Application supports multiple languages through localization.
@@ -109,6 +111,8 @@ In case of dependencies issue: Navigate to top menu in Xcode: `File > Packages >
 [Giang Nguyen](https://github.com/GiangNguyen1207)
 [Hang Huynh](https://github.com/HangHuynh19)
 [Trang Nguyen](https://github.com/maitrang85)
+
+Questions and comments are welcomed.
 
 [swift-image]: https://img.shields.io/badge/swift-5.0-orange.svg
 [xcode-image]: https://img.shields.io/badge/xcode-13.3.1-green.svg
