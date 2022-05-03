@@ -121,7 +121,7 @@ With the guidance and support from teachers at Metropolia UAS: Peter Hjort, Juha
 
 Questions and comments are welcomed.
 
-[swift-image]: https://img.shields.io/badge/swift-5.0-orange.svg
+[swift-image]: https://img.shields.io/badge/swift-5.6-orange.svg
 [xcode-image]: https://img.shields.io/badge/xcode-13.3.1-green.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
