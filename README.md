@@ -52,6 +52,8 @@ iOS Development group project at Metropolia UAS - Spring 2022
 
 🌽 In-app map and routing
 
+📢 Speech-to-text search
+
 **NOTES**: The register function is not available. Please contact the contributor if you want to have a test user account.
 
 ### Functional requirements implemented:
